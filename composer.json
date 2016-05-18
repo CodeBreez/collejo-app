@@ -1,0 +1,11 @@
+{
+    "name": "astroanu/collejo",
+    "description": "Collejo Core",
+    "authors": [
+        {
+            "name": "Anuradha Jayathilaka",
+            "email": "astroanu2004@gmail.com"
+        }
+    ],
+    "require": {}
+}
