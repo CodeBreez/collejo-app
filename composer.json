@@ -1,11 +1,12 @@
 {
     "name": "astroanu/collejo",
-    "description": "Collejo Core",
+    "require": {
+        "laravel/laravel": "^5.2"
+    },
     "authors": [
         {
             "name": "Anuradha Jayathilaka",
             "email": "astroanu2004@gmail.com"
         }
-    ],
-    "require": {}
+    ]
 }
