@@ -3,6 +3,7 @@
 namespace Collejo\Core\Foundation;
 
 use Illuminate\Foundation\Application as BaseApplication;
+use DB;
 
 class Application extends BaseApplication {
 
@@ -10,6 +11,14 @@ class Application extends BaseApplication {
 
 	public function isInstalled()
 	{
-		return false;
+		try {
+
+			return (bool) DB::connection('mysql')->select('SHOW TABLES');
+
+		} catch (\Exception $e) {
+
+			return false;
+
+		}
 	}
 }

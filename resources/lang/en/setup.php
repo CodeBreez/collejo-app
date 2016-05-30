@@ -27,14 +27,13 @@ return [
 	'host' => 'Host',
 	'host_help' => 'Database server. The default value should work fine.',
 	'port' => 'Port',
-	'host_help' => 'Database server. The default value should work fine.',
+	'port_help' => 'Database server. The default value should work fine.',
 	'database' => 'Database',
 	'database_help' => 'Name of the database, you need to create this first.',
 	'db_username' => 'Username',
 	'db_username_help' => 'Database user username',
-	'db_username' => 'Password',
+	'db_password' => 'Password',
 	'db_password_help' => 'Database user password',
-
 	'check_db' => [
 		'info' => 'Checkes the connection to the MySQL sever with the given user credentials.',
 		'success' => 'Database is reachable by the given user and password.',
@@ -53,5 +52,14 @@ return [
 		'info' => 'Checkes wheather the Modules directory exists and is writable by the web server.'
 	],
 	'installing_inprogress' => 'Instalation In Progress',
-	'installing' => 'Installing...'
+	'installing' => 'Installing...',
+	'env_create' => 'Updating configuration file...',
+	'migrate_copy' => 'Preparing database migration files...',
+	'migrate_run' => 'Running database migrations...',
+	'asset_copy' => 'Copying assets...',
+	'admin_create' => 'Creating admin account...',
+	'setup_done' => 'Setup complete',
+	'finished' => 'Setup complete',
+	'end1' => 'Setup has finished updating the installation.',
+	'end2' => 'You may now log in to the dashboard.',
 ];

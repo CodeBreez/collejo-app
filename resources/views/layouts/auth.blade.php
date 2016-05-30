@@ -9,7 +9,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     <link rel="icon" href="favicon.ico">
 
-    <title>{{ trans('collejo::setup.setup') }} - Collejo</title>
+    <title>@yield('title') - Collejo</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -41,28 +41,15 @@
 
   <body>
 
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="#">{{ trans('collejo::setup.about') }}</a></li>
-            <li role="presentation"><a href="#">{{ trans('collejo::setup.documentation') }}</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted"><a href="/"><span class="fa fa-graduation-cap"></span> Collejo</a></h3>
-      </div>
+    <div class="col-lg-4 col-lg-offset-4">
+
+      <div class="col-lg-8 col-lg-offset-2">
 
       @yield('content')
 
+      </div>
+
     </div> <!-- /container -->
 
-    <script type="text/javascript">
-      $(function(){
-        $.getJSON('/setup', function(response) {
-            $('#content').append(response.data.html);
-        });
-      });
-
-    </script>
   </body>
 </html>

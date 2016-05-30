@@ -13,7 +13,7 @@ class TestConnector {
 
 	public function __construct($options = null)
 	{
-		$database = $options['database'];
+		$database = $options['db_database'];
 		$this->database = $database;
 
 		$driver  = isset($options['driver']) ? $options['driver'] : Config::get("database.default");
@@ -21,7 +21,7 @@ class TestConnector {
 		$default = Config::get("database.connections.$driver");
 
 		foreach($default as $item => $value) {
-			$default[$item] = isset($options[$item]) ? $options[$item] : $default[$item];
+			$default[$item] = isset($options['db_' . $item]) ? $options['db_' . $item] : $default[$item];
 		}
 
 		Config::set("database.connections.$database", $default);

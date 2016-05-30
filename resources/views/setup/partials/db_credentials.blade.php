@@ -89,7 +89,11 @@
                     success:function(response){
                         if (response.success) {
                             $('#content').empty().append(response.data.html);
+                        } else {
+                            collejo.unlockForm(form);
                         }
+                    }, error:function(){
+                        collejo.unlockForm(form);
                     }
                 });
             }

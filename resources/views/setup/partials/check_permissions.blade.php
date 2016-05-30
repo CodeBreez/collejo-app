@@ -1,11 +1,11 @@
 <div>
 
-    <h2>{{ trans('pre_install_checkup') }}</h2>
+    <h2>{{ trans('collejo::setup.pre_install_checkup') }}</h2>
 
 	@if($results->canContinue())
-		<p>{{ trans('checkup_success') }}</p>
+		<p>{{ trans('collejo::setup.checkup_success') }}</p>
 	@else
-		<p>{{ trans('checkup_fail') }}</p>
+		<p>{{ trans('collejo::setup.checkup_fail') }}</p>
 	@endif
 
 	<ul class="list-group">

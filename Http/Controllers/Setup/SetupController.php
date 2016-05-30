@@ -7,24 +7,28 @@ use Request;
 use Collejo\Core\Foundation\Setup\Checkup\CheckDB;
 use Collejo\Core\Foundation\Setup;
 use Session;
+use Collejo\Repository\UserRepository;
 
 class SetupController extends BaseController
 {
 
-	public function copyMigrations()
+	public function getDone()
 	{
-		$setup = new Setup((array) Session::get('setup-db-data'));
-
-		return $this->printJson(true, $setup->copyMigrations());
+		return $this->printJson(true, ['html' => view('collejo::setup.partials.done')->render()]);
 	}
+
+	public function getRunStep($step = null, $param1 = null, $param2 = null)
+	{
+		return $this->printJson(true, $this->setup->processStep($step, $param1, $param2));
+	}	
 
 	public function postAdmin(Request $request)
 	{
 		Session::put('setup-admin-data', [
-				'first_name' => $request::get('first_name'),
-				'last_name' => $request::get('last_name'),
-				'email' => $request::get('email'),
-				'password' => $request::get('password')
+				'admin_first_name' => $request::get('first_name'),
+				'admin_last_name' => $request::get('last_name'),
+				'admin_email' => $request::get('email'),
+				'admin_password' => $request::get('password')
 			]);
 
 		return $this->printJson(true, ['html' => view('collejo::setup.partials.progress')->render()]);
@@ -37,21 +41,19 @@ class SetupController extends BaseController
 
 	public function getPreCheck()
 	{
-		$setup = new Setup((array) Session::get('setup-db-data'));
-
 		return $this->printJson(true, ['html' => view('collejo::setup.partials.check_permissions', [
-				'results' => $setup->preCheckup()
+				'results' => $this->setup->preCheckup()
 			])->render()]);
 	}
 
 	public function postDbConfig(Request $request)
 	{
 		$dbData = [
-			'host' => $request::get('host'),
-			'port' => $request::get('port'),
-			'database' => $request::get('db'),
-			'username' => $request::get('u'),
-			'password' => $request::get('p')
+			'db_host' => $request::get('host'),
+			'db_port' => $request::get('port'),
+			'db_database' => $request::get('db'),
+			'db_username' => $request::get('u'),
+			'db_password' => $request::get('p')
 		];
 
 		$checkup = new CheckDB();
@@ -75,7 +77,7 @@ class SetupController extends BaseController
 		return $this->printJson(true, ['html' => view('collejo::setup.partials.db_credentials')->render()]);
 	}
 
-	public function index(Request $request)
+	public function getIndex(Request $request)
 	{
 		if ($request::ajax()) {
 			return $this->printJson(true, ['html' => view('collejo::setup..partials.welcome')->render()]);
@@ -84,29 +86,13 @@ class SetupController extends BaseController
 		}
 	}
 
-	private function checkPermissions()
+	private function getSetupData()
 	{
-		return (object)[
-			'canContinue' => true,
-			'report' => [
-				(object)[
-					'name' => '.env file writable',
-					'success' => true,
-					'description' => 'werjlwke rljwekj r'
-				], (object)[
-					'name' => 'resource dir writable',
-					'success' => false,
-					'description' => 'werjlwke rljwekj r'
-				], (object)[
-					'name' => 'modules dir writable',
-					'success' => false,
-					'description' => 'werjlwke rljwekj r'
-				], (object)[
-					'name' => 'public dir writable',
-					'success' => false,
-					'description' => 'werjlwke rljwekj r'
-				]
-			]
-		];
+		return array_merge((array) Session::get('setup-db-data'), (array) Session::get('setup-admin-data'));
+	}
+
+	public function __construct(Setup $setup)
+	{
+		$this->setup = $setup->setSetupData($this->getSetupData());
 	}
 }

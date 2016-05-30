@@ -13,11 +13,11 @@ class CheckDB extends Checkup implements CheckupContract{
 	public function run($params = [])
 	{
 		$default = [
-			'host' => null,
-			'port' => null,
-			'database' => null,
-			'username' => null,
-			'password' => null
+			'db_host' => null,
+			'db_port' => null,
+			'db_database' => null,
+			'db_username' => null,
+			'db_password' => null
 		];
 
 		$connection = new TestConnector(array_merge($default, $params));
