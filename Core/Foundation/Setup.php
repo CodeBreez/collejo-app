@@ -90,7 +90,12 @@ class Setup {
 
 	public function createAdmin()
 	{
-		$this->userRepository->create(['name' => '34']);
+		$this->userRepository->create([
+				'first_name' => $this->params['admin_first_name'],
+				'last_name' => $this->params['admin_last_name'],
+				'email' => $this->params['admin_email'],
+				'password' => $this->params['admin_password']
+			]);
 	}
 
 	public function updateEnv()

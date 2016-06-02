@@ -17,7 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom([__DIR__ . '/../resources/views'], 'collejo');
+        $this->loadViewsFrom([
+                base_path('themes/basic/views'),
+                __DIR__ . '/../resources/views'
+            ], 'collejo');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'collejo');
     }
 
