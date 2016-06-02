@@ -16,6 +16,7 @@ class Setup {
 	private $step;
 	private $param1;
 	private $param2;
+	private $revManifest = [];
 
 	public function processStep($step, $param1, $param2)
 	{
@@ -150,9 +151,20 @@ class Setup {
 
 	public function copyAssets()
 	{
-		$this->copyFilesInFoder(__DIR__ . '/../../resources/assets/css', base_path('public/css'));
-		$this->copyFilesInFoder(__DIR__ . '/../../resources/assets/js', base_path('public/js'));
-		$this->copyFilesInFoder(__DIR__ . '/../../resources/assets/images', base_path('public/images'));
+		$this->copyFilesInFoder(__DIR__ . '/../../resources/assets/css', base_path('public/css'), true);
+		$this->copyFilesInFoder(__DIR__ . '/../../resources/assets/js', base_path('public/js'), true);
+		$this->copyFilesInFoder(__DIR__ . '/../../resources/assets/images', base_path('public/images'), true);
+
+		$this->saveRevManifest();
+	}
+
+	private function saveRevManifest()
+	{
+		$fn = fopen(storage_path('rev-manifest.json'), 'w');
+
+		fwrite($fn, json_encode($this->revManifest), JSON_PRETTY_PRINT);
+
+		fclose($fn);
 	}
 
 	public function preCheckup()
@@ -191,11 +203,31 @@ class Setup {
 		return $steps;
 	}
 
-	private function copyFilesInFoder($from, $to)
+	private function copyFilesInFoder($from, $to, $versioned = false)
 	{
 		foreach (new DirectoryIterator($from) as $fileInfo) {
 		    if($fileInfo->isDot()) continue;
-		    copy($from . '/' . $fileInfo->getFilename(), $to . '/' . $fileInfo->getFilename());
+
+		    if (!file_exists($to)) {
+			    mkdir($to, 0755, true);
+			} 
+
+			array_map('unlink', glob($to . '/*'));
+
+		    if ($versioned) {
+		    	
+		    	$revisionFileName = md5(time().$fileInfo->getFilename()) . '-' . $fileInfo->getFilename();
+		    	
+		    	$this->revManifest[basename($to) . '/' . $fileInfo->getFilename()] = basename($to) . '/' . $revisionFileName;
+
+		    	copy($from . '/' . $fileInfo->getFilename(), $to . '/' . $revisionFileName);
+
+		    } else {
+
+		    	copy($from . '/' . $fileInfo->getFilename(), $to . '/' . $fileInfo->getFilename());
+		    	
+		    }
+
 		}
 	}
 
