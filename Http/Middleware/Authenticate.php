@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Http\Middleware;
+namespace Collejo\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +21,7 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('login');
+                return redirect()->guest('auth/login');
             }
         }
 

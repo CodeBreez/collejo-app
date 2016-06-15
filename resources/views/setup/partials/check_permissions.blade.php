@@ -40,11 +40,11 @@
 
 	@if($results->canContinue())
 
-		<a href="/setup/admin" data-target="content" class="btn btn-lg btn-success pull-right c-ajaxlink">{{ trans('collejo::common.continue') }}</a>	
+		<a href="/setup/admin" data-target="content" class="btn btn-lg btn-success pull-right" data-toggle="ajax-link">{{ trans('collejo::common.continue') }}</a>	
 
 	@else
 
-		<a href="/setup/pre-check" data-target="content" class="btn btn-lg btn-success pull-right c-ajaxlink">{{ trans('collejo::common.try_again') }}</a>	
+		<a href="/setup/pre-check" data-target="content" class="btn btn-lg btn-success pull-right" data-toggle="ajax-link">{{ trans('collejo::common.try_again') }}</a>	
 
 	@endif
 </div>

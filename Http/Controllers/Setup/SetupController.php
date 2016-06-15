@@ -1,13 +1,13 @@
 <?php 
 
-namespace Collejo\Http\Controllers\Setup;
+namespace Collejo\App\Http\Controllers\Setup;
 
-use Collejo\Http\Controllers\Controller as BaseController;
+use Collejo\App\Http\Controllers\Controller as BaseController;
 use Request;
 use Collejo\Core\Foundation\Setup\Checkup\CheckDB;
 use Collejo\Core\Foundation\Setup;
 use Session;
-use Collejo\Repository\UserRepository;
+use Collejo\App\Repository\UserRepository;
 
 class SetupController extends BaseController
 {
@@ -79,10 +79,15 @@ class SetupController extends BaseController
 
 	public function getIndex(Request $request)
 	{
+		$this->metaData->title = 'Welcome';
+		$this->metaData->description = 'Some demo text here for you to see';
+		$this->metaData->robots = 'noindex,nofollow';
+		$this->metaData->image = 'http://www.sample.com/image.jpg';
+
 		if ($request::ajax()) {
 			return $this->printJson(true, ['html' => view('collejo::setup..partials.welcome')->render()]);
 		} else {
-			return view('collejo::setup.index');
+			return view('collejo::setup.index', ['metaData' => $this->metaData]);
 		}
 	}
 
@@ -93,6 +98,7 @@ class SetupController extends BaseController
 
 	public function __construct(Setup $setup)
 	{
+		parent::__construct();
 		$this->setup = $setup->setSetupData($this->getSetupData());
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Exceptions;
+namespace Collejo\App\Exceptions;
 
 use Exception;
 use Illuminate\Validation\ValidationException;

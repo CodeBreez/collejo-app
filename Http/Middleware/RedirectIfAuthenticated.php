@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Http\Middleware;
+namespace Collejo\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+            return redirect('/dash');
         }
 
         return $next($request);

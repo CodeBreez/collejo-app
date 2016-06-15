@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Http\Middleware;
+namespace Collejo\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

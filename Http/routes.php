@@ -3,7 +3,7 @@
 Route::any('/', function(){
     return Redirect::to('auth/login');
 });
-
+/*
 Route::group(['prefix' => 'setup'], function() {
 	Route::any('/', 'Setup\SetupController@getIndex')->name('setup');
 	Route::get('db', 'Setup\SetupController@getDbConfig')->name('setup.db');
@@ -14,13 +14,7 @@ Route::group(['prefix' => 'setup'], function() {
 	Route::get('run/{step?}/{param1?}/{param2?}', 'Setup\SetupController@getRunStep')->name('setup.run');
 	Route::get('done', 'Setup\SetupController@getDone')->name('setup.done');
 });
-
-Route::group(['prefix' => 'auth'], function() {
-	Route::get('login', 'Auth\AuthController@getLogin')->name('auth.login');
-	Route::post('login', 'Auth\AuthController@postLogin');
-});
-
-Route::group(['prefix' => 'password'], function() {
-	Route::get('email', 'Auth\PasswordController@getEmail')->name('password.email');
-	Route::post('email', 'Auth\PasswordController@postEmail');
+*/
+Route::group(['prefix' => 'dash', 'middleware' => 'auth'], function() {
+	Route::get('/', 'DashController@getIndex')->name('dash');
 });

@@ -1,9 +1,9 @@
 <?php
 
-namespace Collejo\Repository;
+namespace Collejo\App\Repository;
 
 use Collejo\Core\Foundation\Repository\BaseRepository;
-use Collejo\Models\User;
+use Collejo\App\Models\User;
 use Hash;
 
 class UserRepository extends BaseRepository {

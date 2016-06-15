@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Http;
+namespace Collejo\App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -24,12 +24,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Collejo\Http\Middleware\CheckInstalation::class,
-            \Collejo\Http\Middleware\EncryptCookies::class,
+            \Collejo\App\Http\Middleware\CheckInstalation::class,
+            \Collejo\App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Collejo\Http\Middleware\VerifyCsrfToken::class,
+            \Collejo\App\Http\Middleware\VerifyCsrfToken::class,
         ],
 
         'api' => [
@@ -45,10 +45,26 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Collejo\Http\Middleware\Authenticate::class,
+        'auth' => \Collejo\App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
-        'guest' => \Collejo\Http\Middleware\RedirectIfAuthenticated::class,
+        'can' => \Illuminate\Foundation\App\Http\Middleware\Authorize::class,
+        'guest' => \Collejo\App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
+
+    protected function dispatchToRouter()
+    {
+        $this->router = $this->app['router'];
+
+        foreach ($this->middlewareGroups as $key => $middleware) {
+            $this->router->middlewareGroup($key, $middleware);
+        }
+        
+        foreach ($this->routeMiddleware as $key => $middleware)
+        {
+            $this->router->middleware($key, $middleware);
+        }
+
+        return parent::dispatchToRouter();
+    }
 }

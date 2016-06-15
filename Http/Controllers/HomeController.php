@@ -1,13 +1,13 @@
 <?php 
 
-namespace Collejo\Http\Controllers;
+namespace Collejo\App\Http\Controllers;
 
-use Collejo\Http\Controllers\Controller as BaseController;
+use Collejo\App\Http\Controllers\Controller as BaseController;
 
 class HomeController extends BaseController
 {
 
-	public function index()
+	public function getIndex()
 	{
 		return view('collejo::home')->render();
 	}

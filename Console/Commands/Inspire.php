@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Console\Commands;
+namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

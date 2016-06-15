@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Events;
+namespace Collejo\App\Events;
 
 abstract class Event
 {

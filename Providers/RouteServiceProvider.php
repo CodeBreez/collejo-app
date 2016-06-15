@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Providers;
+namespace Collejo\App\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Collejo\Http\Controllers';
+    protected $namespace = 'Collejo\App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -27,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot($router);
+
     }
 
     /**
@@ -55,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->group([
             'namespace' => $this->namespace, 'middleware' => 'web',
         ], function ($router) {
-            require __DIR__ . '/../Http/routes.php';
+            require_once __DIR__ . '/../Http/routes.php';
         });
     }
 }

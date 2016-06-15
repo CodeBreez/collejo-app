@@ -85,15 +85,15 @@
             },
             submitHandler:function(form){
                 $(form).ajaxSubmit({
-                    beforeSubmit:collejo.lockForm(form),
+                    beforeSubmit:Collejo.form.lock(form),
                     success:function(response){
                         if (response.success) {
                             $('#content').empty().append(response.data.html);
                         } else {
-                            collejo.unlockForm(form);
+                            Collejo.form.unlock(form);
                         }
                     }, error:function(){
-                        collejo.unlockForm(form);
+                        Collejo.form.unlock(form);
                     }
                 });
             }

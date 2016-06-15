@@ -1,12 +1,8 @@
 <?php
 
-namespace Collejo\Providers;
+namespace Collejo\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use View;
-use Lang;
-use Collejo\Repository\UserRepository;
-use Collejo\Core\Foundation\Setup;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,11 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom([
-                base_path('themes/basic/views'),
-                __DIR__ . '/../resources/views'
-            ], 'collejo');
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'collejo');
+        $this->loadViewsFrom([realpath(__DIR__ . '/../resources/views')], 'collejo');
+
+        $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/lang'), 'collejo');
     }
 
     /**
@@ -31,12 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(UserRepository::class, function($app) { 
-            return new UserRepository($app); 
-        });
 
-        $this->app->bind(Setup::class, function($app) { 
-            return new Setup(new UserRepository($app)); 
-        });
     }
 }
