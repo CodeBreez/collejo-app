@@ -3,6 +3,8 @@
 namespace Collejo\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Repository\UserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->app->bind(UserRepositoryContract::class, function($app) { 
+            return new UserRepository(); 
+        });
     }
 }

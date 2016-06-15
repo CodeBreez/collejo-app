@@ -20,13 +20,5 @@
 
     </div> <!-- /container -->
 
-    <script type="text/javascript">
-      $(function(){
-        Collejo.getView('/setup',function(response) {
-            $('#content').append(response.data.html);
-        })
-      });
-
-    </script>
   </body>
 </html>

@@ -52,19 +52,4 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 
-    protected function dispatchToRouter()
-    {
-        $this->router = $this->app['router'];
-
-        foreach ($this->middlewareGroups as $key => $middleware) {
-            $this->router->middlewareGroup($key, $middleware);
-        }
-        
-        foreach ($this->routeMiddleware as $key => $middleware)
-        {
-            $this->router->middleware($key, $middleware);
-        }
-
-        return parent::dispatchToRouter();
-    }
 }

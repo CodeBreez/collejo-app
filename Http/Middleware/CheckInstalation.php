@@ -3,18 +3,18 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
-use Request;
+use Collejo\Core\Foundation\Application;
 
 class CheckInstalation
 {
 
     public function handle($request, Closure $next, $guard = null)
     {
-        if (!app()->isInstalled() || (!app()->isInstalled() && !str_is('setup*', Request::path()))) {
-            return redirect('/setup');
+        if (!app()->isInstalled()) {
+            return view('collejo::setup.incomplete');
         }
 
         return $next($request);
     }
+
 }
