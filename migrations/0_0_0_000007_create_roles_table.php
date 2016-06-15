@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFailedJobsTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateFailedJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->string('role');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateFailedJobsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('failed_jobs');
+        Schema::drop('roles');
     }
 }

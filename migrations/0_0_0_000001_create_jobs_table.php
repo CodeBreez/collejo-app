@@ -13,7 +13,7 @@ class CreateJobsTable extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id', 45)->primary();
             $table->string('queue');
             $table->longText('payload');
             $table->tinyInteger('attempts')->unsigned();
