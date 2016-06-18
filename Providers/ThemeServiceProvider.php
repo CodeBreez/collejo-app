@@ -34,7 +34,7 @@ class ThemeServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('menus', function ($app) {
-            return new MenuCollection();
+            return new MenuCollection($app);
         });
 
         $this->app->bind(ThemeInterface::class, function($app) { 
@@ -42,7 +42,7 @@ class ThemeServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('themes', function ($app) {
-            return new ThemeCollection();
+            return new ThemeCollection($app);
         });
     }
 }

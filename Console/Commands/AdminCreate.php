@@ -19,19 +19,54 @@ class AdminCreate extends Command
      *
      * @var string
      */
-    protected $description = 'Creates a user account and assigns administrative roles';
+    protected $description = 'Creates a new super user account and assigns administrative roles';
 
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle(UserRepository $userRepository)
+    public function handle()
     {
-        $name = $this->ask('Enter administrator name');
-        $email = $this->ask('Enter email');
+        $name = $this->ask('Enter name');
+        $email = false;
+
+        do{
+            $email = $this->ask('Enter email');
+
+            if (!$this->isValidEmail($email)) {
+                $this->error('Enter a valid email address');
+            }
+
+        } while (!$this->isValidEmail($email));
+
+        do{
+            if ($this->accountExists($email)) {
+                $this->error('There is already an account by this email');
+                $email = $this->ask('Enter email');
+            }
+
+        } while ($this->accountExists($email));
+
         $password = $this->secret('Enter password');
 
-        $userRepository->createAdminUser();
+        $this->userRepository->createAdminUser($name, $email, $password);
+    }
+
+    private function isValidEmail($email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+
+    private function accountExists($email)
+    {
+        return (bool) $this->userRepository->findByEmail($email);
+    }
+
+    public function __construct(UserRepository $userRepository)
+    {
+        parent::__construct();
+
+        $this->userRepository = $userRepository;
     }
 }

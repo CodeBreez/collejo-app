@@ -2,27 +2,21 @@
 
 namespace Collejo\App\Modules\Auth\Providers;
 
-use Collejo\Core\Support\ModuleServiceProvider;
-use Illuminate\Routing\Router;
+use Collejo\Core\Providers\Module\ModuleServiceProvider as BaseModuleServiceProvider;
 use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Repository\UserRepository;
+use Illuminate\Routing\Router;
 
-class AuthModuleServiceProvider extends ModuleServiceProvider
+class AuthModuleServiceProvider extends BaseModuleServiceProvider
 {
 
-    private $namespace = 'Collejo\App\Modules\Auth\Http\Controllers';
+    protected $namespace = 'Collejo\App\Modules\Auth\Http\Controllers';
+
+    protected $name = 'auth';
 
     public function boot(Router $router)
     {
-        $this->loadViewsFrom([realpath(__DIR__ . '/../resources/views')], 'auth');
-        
-        $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/lang'), 'auth');
-
-        $router->group([
-            'namespace' => $this->namespace, 'middleware' => 'web',
-        ], function ($router) {
-            require_once realpath(__DIR__ . '/../Http/routes.php');
-        });
+        $this->initModule();
     }
 
     public function register()

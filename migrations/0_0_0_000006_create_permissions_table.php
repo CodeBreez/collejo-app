@@ -13,15 +13,10 @@ class CreatePermissionsTable extends Migration
     public function up()
     {
         Schema::create('permissions', function (Blueprint $table) {
-            $table->string('id', 45)->primary();
-            $table->string('parent_id', 45)->nullable()->default(null);
+            $table->string('id', 45)->primary();            
             $table->string('permission')->unique();
             $table->string('description');
             $table->timestamps();
-        });
-
-        Schema::table('permissions', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('permissions');
         });
     }
 

@@ -8,7 +8,8 @@ use Collejo\App\Models\Permission;
 
 class Role extends Model
 {
-    protected $table = 'users';
+
+    protected $table = 'roles';
 
     protected $fillable = ['role', 'description'];
 
