@@ -27581,3 +27581,4 @@ $.ajaxSetup({
         'X-CSRF-Token': $('meta[name="token"]').attr('content')
     }
 });
+//# sourceMappingURL=collejo.js.map

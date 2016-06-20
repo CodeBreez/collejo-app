@@ -1,0 +1,30 @@
+h2{padding-bottom: 15px;}
+
+.brand-text{font-family: 'Raleway', sans-serif;}
+
+label.error{color: red;font-size: 10px;}
+
+.spinner-wrap{
+  display: inline-block;padding-left: 15px;
+}
+
+.progress{height: 10px;}
+
+.spinner {
+    display: inline-block;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: .25rem solid  rgba(255,255,255, 0.2);
+    border-top-color: rgb(255,255,255);
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

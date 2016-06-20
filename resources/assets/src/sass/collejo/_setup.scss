@@ -1,0 +1,38 @@
+body.setup-layout {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  
+  .header {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 40px;
+      a{text-decoration: none;color: $gray-light;}
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 730px;
+    }
+  }
+  .container-narrow > hr {
+    margin: 30px 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .header,
+    .marketing,
+    .footer {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .header {
+      margin-bottom: 30px;
+    }
+    .jumbotron {
+      border-bottom: 0;
+    }
+  }
+
+}
