@@ -1,6 +1,15 @@
+body{background: $gray-lighter;}
+
 .navbar-brand{
 	img{float: left;margin: -5px;}
 	span{display: inline-block;float: left;padding-left: 10px;font-size: 20px;}
 }
 
-.dash-content{margin-top:50px;padding-top:15px;}
+.dash-content{
+	margin-top:50px;padding-top:15px;
+
+	.section{
+		h2{margin: 0;}
+		.tab-content{  background: #fff;}
+	}
+}

@@ -5,13 +5,24 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
+    "bootstrap-sass": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-shell": "^0.5.2",
     "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "run-sequence": "^1.2.1"
   },
   "dependencies": {
+    "bootbox": "^4.4.0",
     "bootstrap": "^3.3.6",
     "bootstrap-sass": "^3.3.6",
-    "font-awesome": "^4.6.3"
+    "c3": "^0.4.11",
+    "d3": "^3.5.17",
+    "eonasdan-bootstrap-datetimepicker": "^4.15.35",
+    "font-awesome": "^4.6.3",
+    "jquery": "1.9.1",
+    "jquery-form": "^3.50.0",
+    "jquery-validation": "^1.15.0",
+    "moment": "^2.13.0",
+    "selectize": "^0.12.1"
   }
 }

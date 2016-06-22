@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\MigrateCopy::class,
         Commands\AdminCreate::class,
+        Commands\AssetCopy::class,
     ];
 
     /**
