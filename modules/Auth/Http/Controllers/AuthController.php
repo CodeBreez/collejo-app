@@ -13,6 +13,8 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers;
 
     protected $redirectTo = '/';
+
+    protected $redirectAfterLogout = '/';
     
     protected $loginView = 'auth::login';
 

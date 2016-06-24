@@ -30,6 +30,8 @@ class AssetCopy extends Command
      */
     public function handle(Module $module)
     {
+        $startTime = microtime(true);
+
         $this->info('Copying core assets...');
 
         $assetDir = realpath(__DIR__ . '/../../resources/assets');
@@ -81,5 +83,7 @@ class AssetCopy extends Command
         fwrite($fn, json_encode($manifest, JSON_PRETTY_PRINT));
 
         fclose($fn);
+
+        $this->info('Finished in ' . round(microtime(true) - $startTime, 3) * 1000);
     }
 }

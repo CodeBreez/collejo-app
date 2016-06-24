@@ -4,6 +4,9 @@
 
 @section('content')
 
-<h1>Looks like you haven't installed collejo yet.</h1>
+<section class="setup-incomplete text-center">
+	<i class="fa fa-television"></i>
+	<h1>It looks like you haven't installed collejo yet.</h1>
+</section>
 
 @endsection

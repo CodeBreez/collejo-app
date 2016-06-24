@@ -1,13 +1,13 @@
 <?php
 
-namespace Collejo\Modules\Students\Providers;
+namespace Collejo\App\Modules\Students\Providers;
 
 use Collejo\Core\Providers\Module\ModuleServiceProvider as BaseModuleServiceProvider;
 
 class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 {
 
-    protected $namespace = 'Collejo\Modules\Students\Http\Controllers';
+    protected $namespace = 'Collejo\App\Modules\Students\Http\Controllers';
 
     protected $name = 'students';
 

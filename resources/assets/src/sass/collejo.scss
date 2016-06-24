@@ -1,10 +1,11 @@
 @import "variables";
 @import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../../../../node_modules/font-awesome/scss/font-awesome";
+@import "../../../../node_modules/eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker";
 
 @import "collejo/common";
+@import "collejo/checkbox";
+@import "collejo/tabs";
 @import "collejo/auth";
 @import "collejo/setup";
 @import "collejo/dash";
-@import "collejo/checkbox";
-@import "collejo/tabs";

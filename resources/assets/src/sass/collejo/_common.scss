@@ -1,6 +1,6 @@
 h2{padding-bottom: 15px;}
 
-.brand-text{font-family: 'Raleway', sans-serif;}
+.brand-text{font-family: $font-family-brand;}
 
 label.error{color: red;font-size: 10px;}
 
@@ -19,6 +19,8 @@ label.error{color: red;font-size: 10px;}
     border-top-color: rgb(255,255,255);
     animation: spin 1s infinite linear;
 }
+
+.btn{ text-transform: uppercase;}
 
 @keyframes spin {
   0% {

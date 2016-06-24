@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -45,6 +46,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+
+        if ($e instanceof TokenMismatchException) {
+            return response()->json(['success' => false, 'data' => [] , 'message' => 'Could not fulfill your request. Please refresh the page and try again'], 400);
+        }
+
         return parent::render($request, $e);
     }
 }

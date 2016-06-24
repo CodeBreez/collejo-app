@@ -21,7 +21,14 @@ elixir(function(mix) {
             '../../../node_modules/d3/d3.js',
             '../../../node_modules/c3/c3.js',
             '../../../node_modules/selectize/dist/js/standalone/selectize.js',
-            srcDir + 'js/**/*.js'
+            srcDir + 'js/collejo.js',
+            srcDir + 'js/collejo/templates.js',
+            srcDir + 'js/collejo/ajax_setup.js',
+            srcDir + 'js/collejo/datetimepicker.js',
+            srcDir + 'js/collejo/ajax_link.js',
+            srcDir + 'js/collejo/alert.js',
+            srcDir + 'js/collejo/form.js',
+            srcDir + 'js/collejo/modal.js'
         ], buildDir + 'js/collejo.js');
 });
 

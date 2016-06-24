@@ -1,10 +1,19 @@
 $(function() {
-    $(document).resize();
+    $(window).resize();
+
+    $('.dash-content a').click(function(e) {
+        var url = $(this).prop('href');
+        if (url.substr(url.length - 1) == '#') {
+            e.preventDefault();
+        }
+    });
 });
 
-$(document).on('resize', function() {
+$(window).on('resize', function() {
     var tab = $('.dash-content .tab-content');
-    tab.css({
-        'min-height': ($(document).height() - tab.offset().top - 30) + 'px'
-    });
+    if (tab && tab.offset()) {
+        tab.css({
+            'min-height': ($(document).height() - tab.offset().top - 30) + 'px'
+        });
+    }
 });

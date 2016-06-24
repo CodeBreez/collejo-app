@@ -11,6 +11,11 @@ body.setup-layout {
     }
   }
 
+.setup-incomplete{
+  min-height: 350px;
+  i.fa{font-size: 100px; color: lighten($gray-light, 50%);margin-top: 50px;margin-bottom: 30px;}
+}
+
   @media (min-width: 768px) {
     .container {
       max-width: 730px;
