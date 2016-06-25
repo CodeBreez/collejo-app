@@ -11,6 +11,34 @@ body{background: $gray-lighter;}
 	.section{
 		h2{margin: 0;font-family: $font-family-brand;}
 		.tab-content{background: #fff;}
-		.tab-pane{padding-top: 30px;}
+		.tab-pane{
+			padding-top: 20px;
+    		padding-left: 5px;
+		}
+	}
+
+	.section-content{background: #fff;}
+
+	.table{
+		td.tools-column{
+			@extend .text-right;
+			a{display: none;}
+		}
+		tr:hover{
+			.tools-column a{display: inline;}
+		}
+	}
+}
+
+.panel{
+	.panel-footer{
+		.tools-footer{
+			display: none;@extend .pull-right;
+			a{margin-left: 10px;}
+		}
+		.label{ margin-top: 5px;}
+	}
+	&:hover{
+		.tools-footer{display: block;}
 	}
 }

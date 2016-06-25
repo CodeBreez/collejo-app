@@ -22,18 +22,20 @@ elixir(function(mix) {
             '../../../node_modules/c3/c3.js',
             '../../../node_modules/selectize/dist/js/standalone/selectize.js',
             srcDir + 'js/collejo.js',
+            srcDir + 'js/collejo/browser.js',
             srcDir + 'js/collejo/templates.js',
             srcDir + 'js/collejo/ajax_setup.js',
             srcDir + 'js/collejo/datetimepicker.js',
             srcDir + 'js/collejo/ajax_link.js',
             srcDir + 'js/collejo/alert.js',
             srcDir + 'js/collejo/form.js',
-            srcDir + 'js/collejo/modal.js'
+            srcDir + 'js/collejo/modal.js',
+            srcDir + 'js/dashboard.js'
         ], buildDir + 'js/collejo.js');
 });
 
 gulp.task('copy', function() {
-    return watch(buildDir + '**/**/*')
+    return watch([buildDir + '**/*.css', buildDir + '**/*.js'])
         .pipe(shell([
             'php ' + __dirname + '/../../../artisan asset:copy'
         ]));

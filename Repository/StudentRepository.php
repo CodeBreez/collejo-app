@@ -14,19 +14,37 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	protected $fillable;
 
-	public function create(array $attributes)
+	public function getStudents()
 	{
-		if ($this->sessionOwner) {
-			$attributes['enrolled_by'] = $this->sessionOwner->id;
-		}
+		return $this;
+	}
+
+	public function update(array $attributes, $studentId)
+	{
+		$student = null;
 
 		$studentAttributes = $this->parseFillable($attributes);
 
-		DB::transaction(function () use ($attributes, $studentAttributes) {
+		DB::transaction(function () use ($attributes, $studentAttributes, &$student, $studentId) {
+			$student = parent::update($studentAttributes, $studentId);
+
+			$user = $this->userRepository->update($attributes, $student->user->id);
+		});
+	}
+
+	public function create(array $attributes)
+	{
+		$student = null;
+
+		$studentAttributes = $this->parseFillable($attributes);
+
+		DB::transaction(function () use ($attributes, $studentAttributes, &$student) {
 			$user = $this->userRepository->create($attributes);
 
 			$student = parent::create(array_merge($studentAttributes, ['user_id' => $user->id]));
 		});
+
+		return $student;
 	}
 
     function model()

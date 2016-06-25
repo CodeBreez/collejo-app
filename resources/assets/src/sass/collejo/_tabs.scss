@@ -47,6 +47,10 @@
 
 .tab-content{
   border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   margin-left: -30px;
   margin-top: 2px;
 }
+
+.nav-tabs > li > a:hover{border-color: transparent #ddd transparent transparent;}

@@ -43714,8 +43714,23 @@ var Collejo = Collejo || {
     templates: {},
     form: {},
     link: {},
-    modal: {}
+    modal: {},
+    browser: {}
 };
+// Opera 8.0+
+Collejo.browser.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+// Firefox 1.0+
+Collejo.browser.isFirefox = typeof InstallTrigger !== 'undefined';
+// At least Safari 3+: "[object HTMLElementConstructor]"
+Collejo.browser.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+// Internet Explorer 6-11
+Collejo.browser.isIE = /*@cc_on!@*/ false || !!document.documentMode;
+// Edge 20+
+Collejo.browser.isEdge = !Collejo.browser.isIE && !!window.StyleMedia;
+// Chrome 1+
+Collejo.browser.isChrome = !!window.chrome && !!window.chrome.webstore;
+// Blink engine detection
+Collejo.browser.isBlink = (Collejo.browser.isChrome || Collejo.browser.isOpera) && !!window.CSS;
 $(function() {
 
     Collejo.templates.spinnerTemplate = function() {
@@ -43858,7 +43873,7 @@ $(function() {
 
         alertWrap.css({
             position: 'fixed',
-            top: 0,
+            top: '60px',
             width: '100%',
             height: 0,
             'z-index': 99999
@@ -43886,13 +43901,18 @@ $(function() {
 
         if (duration > 0) {
             window.setTimeout(function() {
-                alert.removeClass(Collejo.settings.alertInClass)
-                    .addClass(Collejo.settings.alertOutClass)
-                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                        alert.remove();
-                    });
+                if (Collejo.browser.isFirefox || Collejo.browser.isChrome) {
+                    alert.removeClass(Collejo.settings.alertInClass)
+                        .addClass(Collejo.settings.alertOutClass)
+                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                            alert.remove();
+                        });
+                } else {
+                    alert.remove();
+                }
             }, duration);
         }
+
     }
 });
 $(function() {
@@ -43914,7 +43934,7 @@ $(function() {
 $(function() {
 
     Collejo.modal.open = function(link) {
-        var id = link.data('modal-id') != null ? link.data('modal-id') : 'ajax-modal' + moment();
+        var id = link.data('modal-id') != null ? link.data('modal-id') : 'ajax-modal-' + moment();
         var size = link.data('modal-size') != null ? ' modal-' + link.data('modal-size') + ' ' : '';
 
         var backdrop = link.data('modal-backdrop') != null ? link.data('modal-backdrop') : true;
@@ -43922,7 +43942,7 @@ $(function() {
 
         var modal = $('<div id="' + id + '" class="modal fade loading" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog' + size + '"></div></div>');
 
-        var loader = this.templates.ajaxLoader;
+        var loader = Collejo.templates.ajaxLoader();
 
         if (loader != null) {
             loader.appendTo(modal);
@@ -43935,8 +43955,8 @@ $(function() {
                 url: link.attr('href'),
                 type: 'get',
                 success: function(response) {
-                    if (response.success == undefined) {
-                        modal.find('.modal-dialog').html(response);
+                    if (response.success == true && response.data && response.data.content) {
+                        modal.find('.modal-dialog').html(response.data.content);
                         modal.removeClass('loading');
 
                         if (loader != null) {
@@ -43961,5 +43981,39 @@ $(function() {
         e.preventDefault();
         Collejo.modal.open($(this));
     });
+});
+$(function() {
+    $(window).resize();
+
+    $('.dash-content a').click(function(e) {
+        var url = $(this).prop('href');
+        if (url.substr(url.length - 1) == '#') {
+            e.preventDefault();
+        }
+    });
+});
+
+$(window).on('resize', function() {
+
+    var tab = $('.dash-content .tab-content');
+    if (tab && tab.offset()) {
+        tab.css({
+            'min-height': ($(document).height() - tab.offset().top - 30) + 'px'
+        });
+    }
+
+    var tabnav = $('.tabs-left');
+    if (tabnav && tab) {
+        tabnav.css({
+            'height': tab.height() + 'px'
+        });
+    }
+
+    var section = $('.section-content');
+    if (section && section.offset()) {
+        section.css({
+            'min-height': ($(document).height() - section.offset().top - 30) + 'px'
+        });
+    }
 });
 //# sourceMappingURL=collejo.js.map

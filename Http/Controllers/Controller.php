@@ -21,4 +21,14 @@ abstract class Controller extends BaseController
         ]);
     }
 
+    public function printRedirect($route, $msg = null)
+    {
+        return $this->printJson(true, ['redir' => $route], $msg);
+    }
+
+    public function printModal($view)
+    {
+    	return $this->printJson(true, ['content' => $view->render()]);
+    }
+
 }

@@ -1,7 +1,7 @@
 $(function() {
 
     Collejo.modal.open = function(link) {
-        var id = link.data('modal-id') != null ? link.data('modal-id') : 'ajax-modal' + moment();
+        var id = link.data('modal-id') != null ? link.data('modal-id') : 'ajax-modal-' + moment();
         var size = link.data('modal-size') != null ? ' modal-' + link.data('modal-size') + ' ' : '';
 
         var backdrop = link.data('modal-backdrop') != null ? link.data('modal-backdrop') : true;
@@ -9,7 +9,7 @@ $(function() {
 
         var modal = $('<div id="' + id + '" class="modal fade loading" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog' + size + '"></div></div>');
 
-        var loader = this.templates.ajaxLoader;
+        var loader = Collejo.templates.ajaxLoader();
 
         if (loader != null) {
             loader.appendTo(modal);
@@ -22,8 +22,8 @@ $(function() {
                 url: link.attr('href'),
                 type: 'get',
                 success: function(response) {
-                    if (response.success == undefined) {
-                        modal.find('.modal-dialog').html(response);
+                    if (response.success == true && response.data && response.data.content) {
+                        modal.find('.modal-dialog').html(response.data.content);
                         modal.removeClass('loading');
 
                         if (loader != null) {

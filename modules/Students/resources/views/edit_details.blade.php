@@ -1,30 +1,21 @@
-@extends('collejo::layouts.dash')
+@extends('collejo::dash.sections.tab_view')
 
-@section('title', 'New Student')
+@section('title', $student ? 'Edit Student': 'New Student')
 
-@section('content')
-
-<section class="section">
+@section('scripts')
 
 <script type="text/javascript">
 $(function(){
     $('#edit-details-form').validate({
-        /*rules:{
-            first_name:{
-                required:true
-            },
-            last_name:{
-                required:true
-            }
-        },*/
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:  'json',
-                //beforeSubmit:Collejo.form.lock(form),
+                beforeSubmit:Collejo.form.lock(form),
                 success: function(response){
-                    if(!response.success){
-                        Collejo.form.unlock(form)
-                    }                   
+                    Collejo.form.unlock(form);                   
+                },
+                error:function(){
+                    Collejo.form.unlock(form);
                 }
             });
         }
@@ -32,81 +23,75 @@ $(function(){
 });    
 </script>
 
-<h2>New Student</h2>
+@endsection
 
-<div class="row">
-  
-    <div class="col-xs-2">
-        
-        @include('students::partials.tabs')
+@section('tabs')
 
-    </div>
+    @include('students::partials.tabs')
 
-    <div class="col-xs-10">
-        <div class="tab-content">
-            <div class="tab-pane active">
+@endsection
 
-                <form class="form-horizontal" method="POST" id="edit-details-form" action="{{ route('students.new') }}">
+@section('tab')
 
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">First Name</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="first_name" class="form-control" placeholder="Jon">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Last Name</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="last_name" class="form-control" placeholder="Doe">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="text" name="date_of_birth" class="form-control date-input">
-                                    <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
+<form class="form-horizontal" method="POST" id="edit-details-form" action="{{ $student ? route('students.edit.details', $student->id) : route('students.new') }}">
 
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Email</label>
-                            <div class="col-sm-9">
-                                <input type="email" name="email" class="form-control" placeholder="name@example.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Password</label>
-                            <div class="col-sm-9">
-                                <input type="password" name="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>  
+    @if($student)
+        <input type="hidden" name="sid" value="{{ $student->id }}">
+        <input type="hidden" name="uid" value="{{ $student->user->id }}">
+    @endif
 
-                    <div class="clearfix"></div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Admission Number</label>
+            <div class="col-sm-8">
+                <input type="text" name="admission_number" class="form-control" value="{{ $student ? $student->admission_number : '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Admission Date</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <input type="text" name="admitted_on" class="form-control date-input" value="{{ $student ? $student->admitted_on : '' }}">
+                    <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                </div>
+            </div>
+        </div>                        
+        <div class="form-group">
+            <label class="col-sm-4 control-label">First Name</label>
+            <div class="col-sm-8">
+                <input type="text" name="first_name" class="form-control" placeholder="Jon" value="{{ $student ? $student->first_name : '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Last Name</label>
+            <div class="col-sm-8">
+                <input type="text" name="last_name" class="form-control" placeholder="Doe" value="{{ $student ? $student->last_name : '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Date of Birth</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <input type="text" name="date_of_birth" class="form-control date-input" value="{{ $student ? $student->date_of_birth : '' }}">
+                    <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>  
 
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-10">
-                                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="Saving...">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="clearfix"></div>
 
-                </form>
+    <div class="clearfix"></div>
 
+    <div class="col-xs-6">
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-10">
+                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="Saving...">Save</button>
             </div>
         </div>
     </div>
+    
+    <div class="clearfix"></div>
 
-</div>
-
-</section>
+</form>
 
 @endsection

@@ -6,7 +6,7 @@ $(function() {
 
         alertWrap.css({
             position: 'fixed',
-            top: 0,
+            top: '60px',
             width: '100%',
             height: 0,
             'z-index': 99999
@@ -34,12 +34,17 @@ $(function() {
 
         if (duration > 0) {
             window.setTimeout(function() {
-                alert.removeClass(Collejo.settings.alertInClass)
-                    .addClass(Collejo.settings.alertOutClass)
-                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                        alert.remove();
-                    });
+                if (Collejo.browser.isFirefox || Collejo.browser.isChrome) {
+                    alert.removeClass(Collejo.settings.alertInClass)
+                        .addClass(Collejo.settings.alertOutClass)
+                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                            alert.remove();
+                        });
+                } else {
+                    alert.remove();
+                }
             }, duration);
         }
+
     }
 });
