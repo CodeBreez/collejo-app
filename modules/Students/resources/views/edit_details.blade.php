@@ -51,7 +51,7 @@ $(function(){
             <label class="col-sm-4 control-label">Admission Date</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="text" name="admitted_on" class="form-control date-input" value="{{ $student ? $student->admitted_on : '' }}">
+                    <input type="text" name="admitted_on" class="form-control" data-toggle="date-input" value="{{ $student ? $student->admitted_on : '' }}">
                     <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
             </div>
@@ -72,7 +72,7 @@ $(function(){
             <label class="col-sm-4 control-label">Date of Birth</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="text" name="date_of_birth" class="form-control date-input" value="{{ $student ? $student->date_of_birth : '' }}">
+                    <input type="text" name="date_of_birth" class="form-control" data-toggle="date-input" value="{{ $student ? $student->date_of_birth : '' }}">
                     <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
             </div>

@@ -7,7 +7,7 @@ $(function() {
         var backdrop = link.data('modal-backdrop') != null ? link.data('modal-backdrop') : true;
         var keyboard = link.data('modal-keyboard') != null ? link.data('modal-keyboard') : true;
 
-        var modal = $('<div id="' + id + '" class="modal fade loading" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog' + size + '"></div></div>');
+        var modal = $('<div id="' + id + '" class="modal loading fade" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog ' + size + '"></div></div>');
 
         var loader = Collejo.templates.ajaxLoader();
 
@@ -33,7 +33,7 @@ $(function() {
                 }
             });
         }).on('hidden.bs.modal', function() {
-            $(this).remove();
+            modal.remove();
         }).modal({
             backdrop: backdrop,
             keyboard: keyboard
@@ -41,7 +41,7 @@ $(function() {
     }
 
     Collejo.modal.close = function(form) {
-        $('body').find(form).closest('.modal').modal('hide').remove();
+        $(document).find('#' + $(form).prop('id')).closest('.modal').modal('hide');
     }
 
     $(document).on('click', '[data-toggle="ajax-modal"]', function(e) {

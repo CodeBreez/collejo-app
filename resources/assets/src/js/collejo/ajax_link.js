@@ -7,17 +7,39 @@ $(function() {
 
     Collejo.link.ajax = function(link) {
 
-        link.attr('disabled', true).append(Collejo.templates.spinnerTemplate());
-
-        Collejo.getView(link.attr('href'), function(response) {
-            if (response.success) {
-                if (link.data('target')) {
-                    $('#' + link.data('target')).empty().append(response.data.html);
-                } else {
-                    link.replaceWith(response.data.html);
+        if (link.data('confirm') == null) {
+            callAjax(link);
+        } else {
+            bootbox.confirm({
+                message: link.data('confirm'),
+                buttons: {
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-default'
+                    },
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+                    if (result) {
+                        callAjax(link);
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        function callAjax(link) {
+            $.getJSON(link.attr('href'), function(response) {
+                var func = window[link.data('success-callback')];
+
+                if (typeof func == 'function') {
+                    func(link, response);
+                }
+            });
+        }
+
     }
 
 });

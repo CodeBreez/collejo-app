@@ -43794,6 +43794,26 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     if (status != 0 && status != null) {
         var code = status.code != undefined ? status.code : 0;
         if (code == 0) {
+            if (response.data != undefined && response.data.partial != undefined) {
+                var target = response.data.target ? response.data.target : 'ajax-target';
+
+                var target = $('#' + target);
+
+                if (target.find('.placeholder').length) {
+                    target.empty();
+                }
+
+                var partial = $(response.data.partial);
+                var id = partial.prop('id');
+                var replacing = target.find('#' + id);
+
+                if (replacing.length) {
+                    replacing.replaceWith(partial);
+                } else {
+                    partial.hide().prependTo(target).fadeIn();
+                }
+            }
+
             if (response.data != undefined && response.data.redir != undefined) {
                 if (response.message != null) {
                     Collejo.alert(response.success ? 'success' : 'warning', response.message + '. redirecting&hellip;', 1000);
@@ -43830,15 +43850,15 @@ $(function() {
 $(function() {
     $.fn.datetimepicker.defaults.icons = Collejo.templates.dateTimePickerIcons();
 
-    $('.date-input').datetimepicker({
+    $('[data-toggle="date-input]').datetimepicker({
         format: 'YYYY-MM-DD'
     });
 
-    $('.time-input').datetimepicker({
+    $('[data-toggle="time-input]').datetimepicker({
         format: 'HH:i:s'
     });
 
-    $('.date-time-input').datetimepicker({
+    $('[data-toggle="date-time-input]').datetimepicker({
         format: 'YYYY-MM-DD HH:i:s'
     });
 });
@@ -43851,17 +43871,39 @@ $(function() {
 
     Collejo.link.ajax = function(link) {
 
-        link.attr('disabled', true).append(Collejo.templates.spinnerTemplate());
-
-        Collejo.getView(link.attr('href'), function(response) {
-            if (response.success) {
-                if (link.data('target')) {
-                    $('#' + link.data('target')).empty().append(response.data.html);
-                } else {
-                    link.replaceWith(response.data.html);
+        if (link.data('confirm') == null) {
+            callAjax(link);
+        } else {
+            bootbox.confirm({
+                message: link.data('confirm'),
+                buttons: {
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-default'
+                    },
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+                    if (result) {
+                        callAjax(link);
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        function callAjax(link) {
+            $.getJSON(link.attr('href'), function(response) {
+                var func = window[link.data('success-callback')];
+
+                if (typeof func == 'function') {
+                    func(link, response);
+                }
+            });
+        }
+
     }
 
 });
@@ -43940,7 +43982,7 @@ $(function() {
         var backdrop = link.data('modal-backdrop') != null ? link.data('modal-backdrop') : true;
         var keyboard = link.data('modal-keyboard') != null ? link.data('modal-keyboard') : true;
 
-        var modal = $('<div id="' + id + '" class="modal fade loading" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog' + size + '"></div></div>');
+        var modal = $('<div id="' + id + '" class="modal loading fade" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog ' + size + '"></div></div>');
 
         var loader = Collejo.templates.ajaxLoader();
 
@@ -43966,7 +44008,7 @@ $(function() {
                 }
             });
         }).on('hidden.bs.modal', function() {
-            $(this).remove();
+            modal.remove();
         }).modal({
             backdrop: backdrop,
             keyboard: keyboard
@@ -43974,7 +44016,7 @@ $(function() {
     }
 
     Collejo.modal.close = function(form) {
-        $('body').find(form).closest('.modal').modal('hide').remove();
+        $(document).find('#' + $(form).prop('id')).closest('.modal').modal('hide');
     }
 
     $(document).on('click', '[data-toggle="ajax-modal"]', function(e) {

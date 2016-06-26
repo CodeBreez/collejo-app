@@ -32,7 +32,7 @@ class User extends Authenticatable
         return $this->hasOne(Student::class);
     }
 
-    public function addreses()
+    public function addresses()
     {
         return $this->hasMany(Address::class);
     }

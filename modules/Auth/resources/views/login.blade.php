@@ -53,8 +53,8 @@ $(function(){
         </div>
 
         <div class="checkbox-row">
-            <input type="checkbox" name="remember" id="remember=me">
-            <label for="remember=me"> </label> <span>{{ trans('auth::auth.remember_me') }}</span>
+            <input type="checkbox" name="remember" id="remember-me">
+            <label for="remember-me"> </label> <span>{{ trans('auth::auth.remember_me') }}</span>
         </div>
 
 		<button class="btn btn-lg btn-primary btn-block" type="submit"><span class="ladda-label">{{ trans('auth::auth.login') }}</span></button>

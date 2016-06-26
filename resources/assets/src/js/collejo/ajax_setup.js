@@ -23,6 +23,26 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     if (status != 0 && status != null) {
         var code = status.code != undefined ? status.code : 0;
         if (code == 0) {
+            if (response.data != undefined && response.data.partial != undefined) {
+                var target = response.data.target ? response.data.target : 'ajax-target';
+
+                var target = $('#' + target);
+
+                if (target.find('.placeholder').length) {
+                    target.empty();
+                }
+
+                var partial = $(response.data.partial);
+                var id = partial.prop('id');
+                var replacing = target.find('#' + id);
+
+                if (replacing.length) {
+                    replacing.replaceWith(partial);
+                } else {
+                    partial.hide().prependTo(target).fadeIn();
+                }
+            }
+
             if (response.data != undefined && response.data.redir != undefined) {
                 if (response.message != null) {
                     Collejo.alert(response.success ? 'success' : 'warning', response.message + '. redirecting&hellip;', 1000);

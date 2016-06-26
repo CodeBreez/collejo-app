@@ -9149,6 +9149,18 @@ label.error {
   100% {
     transform: rotate(360deg); } }
 
+.modal {
+  /*! adjust transition time */
+  transition: all 0.3s ease-out !important; }
+
+.modal.in .modal-dialog {
+  /*! editthis transform to any transform you want */
+  transform: scale(1, 1) !important; }
+
+.modal.fade .modal-dialog {
+  /*! disable sliding from left/right/top/bottom */
+  transform: translate(0, 0); }
+
 .checkbox-row {
   position: relative;
   margin: 15px 0; }
@@ -9301,8 +9313,7 @@ body {
   .dash-content .section .tab-content {
     background: #fff; }
   .dash-content .section .tab-pane {
-    padding-top: 20px;
-    padding-left: 5px; }
+    padding-top: 15px; }
   .dash-content .section-content {
     background: #fff; }
   .dash-content .table td.tools-column a {
@@ -9320,5 +9331,12 @@ body {
 
 .panel:hover .tools-footer {
   display: block; }
+
+.placeholder {
+  background: -webkit-repeating-linear-gradient(135deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
+  background: repeating-linear-gradient(-45deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
+  background-size: 30px 30px;
+  text-align: center;
+  padding: 30px 15px; }
 
 /*# sourceMappingURL=collejo.css.map */

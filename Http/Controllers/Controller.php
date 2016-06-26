@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use Request;
 
 abstract class Controller extends BaseController
 {
@@ -28,7 +29,12 @@ abstract class Controller extends BaseController
 
     public function printModal($view)
     {
-    	return $this->printJson(true, ['content' => $view->render()]);
+        return $this->printJson(true, ['content' => $view->render()]);
+    }    
+
+    public function printPartial($view, $msg = null, $target = null)
+    {
+    	return $this->printJson(true, ['partial' => $view->render(), 'target' => Request::get('target', $target)], $msg);
     }
 
 }

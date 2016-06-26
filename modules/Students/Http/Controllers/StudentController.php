@@ -6,16 +6,54 @@ use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\StudentRepository;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentRequest;
+use Collejo\App\Modules\Students\Http\Requests\CreateAddressRequest;
+use Collejo\App\Modules\Students\Http\Requests\UpdateAddressRequest;
+use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
 
 class StudentController extends BaseController
 {
 
 	protected $studentRepository;
 
-	public function getStudentContactsNew($studentId)
+	public function getStudentAddressDelete($studentId, $addressId)
 	{
-		return $this->printModal(view('students::modals.edit_contact', [
-				'contact' => null,
+		$this->studentRepository->deleteAddress($addressId, $studentId);
+
+		return $this->printJson(true, [], 'Contact Deleted');
+	}
+
+	public function postStudentAddressEdit(UpdateAddressRequest $request, $studentId, $addressId)
+	{
+		$address = $this->studentRepository->updateAddress($request->all(), $addressId, $studentId);
+
+		return $this->printPartial(view('students::partials.address', [
+				'student' => $this->studentRepository->find($studentId),
+				'address' => $address
+			]), 'Contact updated');
+	}
+
+	public function getStudentAddressEdit($studentId, $addressId)
+	{
+		return $this->printModal(view('students::modals.edit_address', [
+				'address' => $this->studentRepository->findAddress($addressId, $studentId),
+				'student' => $this->studentRepository->find($studentId)
+			]));
+	}
+
+	public function postStudentAddressNew(CreateAddressRequest $request, $studentId)
+	{
+		$address = $this->studentRepository->createAddress($request->all(), $studentId);
+
+		return $this->printPartial(view('students::partials.address', [
+				'student' => $this->studentRepository->find($studentId),
+				'address' => $address
+			]), 'Contact Created');
+	}
+
+	public function getStudentAddressNew($studentId)
+	{
+		return $this->printModal(view('students::modals.edit_address', [
+				'address' => null,
 				'student' => $this->studentRepository->find($studentId)
 			]));
 	}
@@ -32,10 +70,17 @@ class StudentController extends BaseController
 		return $this->printJson(true, [], 'Student updated');
 	}	
 
-	public function getStudentContacts($studentId)
+	public function getStudentAddresses($studentId)
 	{
-		return view('students::edit_contacts', ['student' => $this->studentRepository->find($studentId)]);
+		return view('students::edit_addresses', ['student' => $this->studentRepository->find($studentId)]);
 	}		
+
+	public function postStudentAccount(UpdateStudentAccountRequest $request, $studentId)
+	{
+		$this->studentRepository->update($request->all(), $studentId);
+
+		return $this->printJson(true, [], 'Student Updated');
+	}
 
 	public function getStudentAccount($studentId)
 	{

@@ -12,20 +12,22 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('addreses', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->string('id', 45)->primary();
             $table->string('user_id', 45);
-            $table->string('address_type', 8);
-            $table->string('address', 200);
+            $table->string('full_name', 150);
+            $table->string('address', 300);
             $table->string('city', 20)->nullable();
             $table->string('postal_code', 10)->nullable();
-            $table->string('note', 100)->nullable();
+            $table->string('phone', 15)->nullable();
+            $table->boolean('is_emergency')->default(false);
+            $table->string('note', 200);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('addreses', function (Blueprint $table) {
+        Schema::table('addresses', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
@@ -39,6 +41,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('addreses');
+        Schema::drop('addresses');
     }
 }

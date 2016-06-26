@@ -12,9 +12,7 @@ class CreateStudentRequest extends Request
 	    return [
 	        'admission_number' => 'required|unique:students',
 	        'first_name' => 'required',
-	        'last_name' => 'required',
-	        'email' => 'email|unique:users',
-	        'password' => 'required_with:email'
+	        'last_name' => 'required'
 	    ];
 	}
 
@@ -23,9 +21,7 @@ class CreateStudentRequest extends Request
 		return [
 	        'admission_number' => 'Admission Number',
 	        'first_name' => 'First Name',
-	        'last_name' => 'Last Name',
-	        'email' => 'Email',
-	        'password' => 'Password'
+	        'last_name' => 'Last Name'
 	    ];
 	}
 }

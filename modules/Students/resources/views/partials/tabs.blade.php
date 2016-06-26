@@ -12,8 +12,8 @@
     <li class="{{ active_class(if_route(['students.edit.details'])) }}">
     	<a href="{{ route('students.edit.details', $student->id) }}">Student Details</a>
     </li>
-    <li class="{{ active_class(if_route(['students.edit.contacts'])) }}">
-    	<a href="{{ route('students.edit.contacts', $student->id) }}">Contact Details</a>
+    <li class="{{ active_class(if_route(['students.edit.addresses'])) }}">
+    	<a href="{{ route('students.edit.addresses', $student->id) }}">Contact Details</a>
     </li>
     <li class="{{ active_class(if_route(['students.edit.account'])) }}">
     	<a href="{{ route('students.edit.account', $student->id) }}">Account Details</a>

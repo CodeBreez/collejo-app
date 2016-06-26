@@ -30,3 +30,23 @@ label.error{color: red;font-size: 10px;}
     transform: rotate(360deg);
   }
 }
+
+.modal {
+    /*! adjust transition time */
+    -webkit-transition: all ease-out !important;
+    -moz-transition: all 0.3s ease-out !important;
+    -o-transition: all 0.3s ease-out !important;
+    transition: all 0.3s ease-out !important;
+}
+.modal.in .modal-dialog {
+    /*! editthis transform to any transform you want */
+    -webkit-transform: scale(1, 1) !important;
+    -ms-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
+}
+.modal.fade .modal-dialog {
+    /*! disable sliding from left/right/top/bottom */
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+}

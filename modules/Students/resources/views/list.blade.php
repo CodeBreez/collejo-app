@@ -10,6 +10,8 @@
 
 @section('table')
 
+@if($students->count())
+
 <table class="table">
                 
     <tr>
@@ -32,6 +34,12 @@
     @endforeach
 
 </table>
+
+@else
+
+<div class="placeholder">There are not students in the system.</div>
+
+@endif
 
 @endsection
 

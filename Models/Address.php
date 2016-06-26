@@ -10,7 +10,9 @@ class Address extends Model
 
     protected $table = 'addresses';
 
-    protected $fillable = ['address_type', 'user_id', 'address', 'city', 'postal_code', 'created_by', 'updated_by', 'note'];
+    protected $fillable = ['full_name', 'user_id', 'address', 'city', 'postal_code', 'phone', 'created_by', 'updated_by', 'note', 'is_emergency'];
+
+    protected $casts = ['is_emergency' => 'boolean'];
 
     public function user()
     {
