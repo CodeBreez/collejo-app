@@ -16,7 +16,7 @@ function afterDeleteAddress(link, response){
 
 @section('tools')
 
-<a href="{{ route('students.edit.addresses.new', $student->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Contact</a>  
+<a href="{{ route('students.edit.address.new', $student->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Contact</a>  
 
 @endsection
 

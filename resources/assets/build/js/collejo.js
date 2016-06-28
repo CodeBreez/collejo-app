@@ -43715,8 +43715,15 @@ var Collejo = Collejo || {
     form: {},
     link: {},
     modal: {},
-    browser: {}
+    browser: {},
+    ready: []
 };
+
+$(function() {
+    $.each(Collejo.ready, function(i, f) {
+        f($(document));
+    });
+});
 // Opera 8.0+
 Collejo.browser.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 // Firefox 1.0+
@@ -43731,44 +43738,41 @@ Collejo.browser.isEdge = !Collejo.browser.isIE && !!window.StyleMedia;
 Collejo.browser.isChrome = !!window.chrome && !!window.chrome.webstore;
 // Blink engine detection
 Collejo.browser.isBlink = (Collejo.browser.isChrome || Collejo.browser.isOpera) && !!window.CSS;
-$(function() {
+Collejo.templates.spinnerTemplate = function() {
+    return $('<span class="spinner-wrap"><span class="spinner"></span></span>');
+}
 
-    Collejo.templates.spinnerTemplate = function() {
-        return $('<span class="spinner-wrap"><span class="spinner"></span></span>');
-    }
+Collejo.templates.alertTemplate = function(type, message, duration) {
+    return $('<div class="alert alert-' + type + ' ' + (duration !== false ? 'alert-dismissible' : '') + '" role="alert">' +
+        (duration !== false ? '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span></button>' : '') + message + '</div>');
+}
 
-    Collejo.templates.alertTemplate = function(type, message, duration) {
-        return $('<div class="alert alert-' + type + ' ' + (duration !== false ? 'alert-dismissible' : '') + '" role="alert">' +
-            (duration !== false ? '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                '<span aria-hidden="true">&times;</span></button>' : '') + message + '</div>');
-    }
+Collejo.templates.alertWrap = function() {
+    return $('<div id="alert-wrap"></div>');
+}
 
-    Collejo.templates.alertWrap = function() {
-        return $('<div id="alert-wrap"></div>');
-    }
+Collejo.templates.alertContainer = function() {
+    return $('<div class="alert-container"></div>');
+}
 
-    Collejo.templates.alertContainer = function() {
-        return $('<div class="alert-container"></div>');
-    }
+Collejo.templates.ajaxLoader = function() {
+    return null;
+}
 
-    Collejo.templates.ajaxLoader = function() {
-        return null;
+Collejo.templates.dateTimePickerIcons = function() {
+    return {
+        time: 'fa fa-clock-o',
+        date: 'fa fa-calendar',
+        up: 'fa fa-chevron-up',
+        down: 'fa fa-chevron-down',
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-calendar-check-o',
+        clear: 'fa fa-trash-o',
+        close: 'fa fa-close'
     }
-
-    Collejo.templates.dateTimePickerIcons = function() {
-        return {
-            time: 'fa fa-clock-o',
-            date: 'fa fa-calendar',
-            up: 'fa fa-chevron-up',
-            down: 'fa fa-chevron-down',
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-calendar-check-o',
-            clear: 'fa fa-trash-o',
-            close: 'fa fa-close'
-        }
-    }
-});
+}
 $.ajaxSetup({
     headers: {
         'X-CSRF-Token': $('meta[name="token"]').attr('content')
@@ -43844,182 +43848,178 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     $(window).resize();
 }
 
-$(function() {
-    $(document).ajaxComplete(Collejo.ajaxComplete);
-});
-$(function() {
-    $.fn.datetimepicker.defaults.icons = Collejo.templates.dateTimePickerIcons();
+$(document).ajaxComplete(Collejo.ajaxComplete);
+$.fn.datetimepicker.defaults.icons = Collejo.templates.dateTimePickerIcons();
 
-    $('[data-toggle="date-input]').datetimepicker({
+Collejo.ready.push(function(scope) {
+    $(scope).find('[data-toggle="date-input"]').datetimepicker({
         format: 'YYYY-MM-DD'
     });
+});
 
-    $('[data-toggle="time-input]').datetimepicker({
+Collejo.ready.push(function(scope) {
+    $(scope).find('[data-toggle="time-input"]').datetimepicker({
         format: 'HH:i:s'
     });
+});
 
-    $('[data-toggle="date-time-input]').datetimepicker({
+Collejo.ready.push(function(scope) {
+    $(scope).find('[data-toggle="date-time-input"]').datetimepicker({
         format: 'YYYY-MM-DD HH:i:s'
     });
 });
-$(function() {
-
-    $(document).on('click', '[data-toggle="ajax-link"]', function(e) {
+Collejo.ready.push(function(scope) {
+    $(scope).on('click', '[data-toggle="ajax-link"]', function(e) {
         e.preventDefault();
         Collejo.link.ajax($(this));
     });
+});
 
-    Collejo.link.ajax = function(link) {
+Collejo.link.ajax = function(link) {
 
-        if (link.data('confirm') == null) {
-            callAjax(link);
-        } else {
-            bootbox.confirm({
-                message: link.data('confirm'),
-                buttons: {
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-default'
-                    },
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-danger'
-                    }
+    if (link.data('confirm') == null) {
+        callAjax(link);
+    } else {
+        bootbox.confirm({
+            message: link.data('confirm'),
+            buttons: {
+                cancel: {
+                    label: 'No',
+                    className: 'btn-default'
                 },
-                callback: function(result) {
-                    if (result) {
-                        callAjax(link);
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    callAjax(link);
+                }
+            }
+        });
+    }
+
+    function callAjax(link) {
+        $.getJSON(link.attr('href'), function(response) {
+            var func = window[link.data('success-callback')];
+
+            if (typeof func == 'function') {
+                func(link, response);
+            }
+        });
+    }
+
+}
+Collejo.alert = function(type, msg, duration) {
+    var alertWrap = Collejo.templates.alertWrap();
+    var alertContainer = Collejo.templates.alertContainer();
+
+    alertWrap.css({
+        position: 'fixed',
+        top: '60px',
+        width: '100%',
+        height: 0,
+        'z-index': 99999
+    });
+
+    alertContainer.css({
+        width: '400px',
+        margin: '0 auto'
+    });
+
+    alertWrap.append(alertContainer);
+    var alert = Collejo.templates.alertTemplate(type, msg, duration);
+
+    if ($('#alert-wrap').length == 0) {
+        $('body').append(alertWrap);
+    }
+
+    var alertContainer = $('#alert-wrap').find('.alert-container');
+
+    if (duration === false) {
+        alertContainer.empty();
+    }
+
+    alert.appendTo(alertContainer).addClass('animated ' + Collejo.settings.alertInClass);
+
+    if (duration > 0) {
+        window.setTimeout(function() {
+            if (Collejo.browser.isFirefox || Collejo.browser.isChrome) {
+                alert.removeClass(Collejo.settings.alertInClass)
+                    .addClass(Collejo.settings.alertOutClass)
+                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                        alert.remove();
+                    });
+            } else {
+                alert.remove();
+            }
+        }, duration);
+    }
+
+}
+Collejo.form.lock = function(form) {
+    $(form).find('button[type="submit"]')
+        .attr('disabled', true)
+        .append(Collejo.templates.spinnerTemplate());
+}
+
+Collejo.form.unlock = function(form) {
+    $(form).find('button[type="submit"]')
+        .attr('disabled', false)
+        .find('.spinner-wrap')
+        .remove();
+}
+Collejo.modal.open = function(link) {
+    var id = link.data('modal-id') != null ? link.data('modal-id') : 'ajax-modal-' + moment();
+    var size = link.data('modal-size') != null ? ' modal-' + link.data('modal-size') + ' ' : '';
+
+    var backdrop = link.data('modal-backdrop') != null ? link.data('modal-backdrop') : true;
+    var keyboard = link.data('modal-keyboard') != null ? link.data('modal-keyboard') : true;
+
+    var modal = $('<div id="' + id + '" class="modal loading fade" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog ' + size + '"></div></div>');
+
+    var loader = Collejo.templates.ajaxLoader();
+
+    if (loader != null) {
+        loader.appendTo(modal);
+    }
+
+    $('body').append(modal);
+
+    modal.on('show.bs.modal', function() {
+        $.ajax({
+            url: link.attr('href'),
+            type: 'get',
+            success: function(response) {
+                if (response.success == true && response.data && response.data.content) {
+                    modal.find('.modal-dialog').html(response.data.content);
+                    modal.removeClass('loading');
+
+                    if (loader != null) {
+                        loader.remove();
                     }
+
+                    $.each(Collejo.ready, function(i, f) {
+                        f(modal);
+                    });
                 }
-            });
-        }
-
-        function callAjax(link) {
-            $.getJSON(link.attr('href'), function(response) {
-                var func = window[link.data('success-callback')];
-
-                if (typeof func == 'function') {
-                    func(link, response);
-                }
-            });
-        }
-
-    }
-
-});
-$(function() {
-
-    Collejo.alert = function(type, msg, duration) {
-        var alertWrap = Collejo.templates.alertWrap();
-        var alertContainer = Collejo.templates.alertContainer();
-
-        alertWrap.css({
-            position: 'fixed',
-            top: '60px',
-            width: '100%',
-            height: 0,
-            'z-index': 99999
+            }
         });
+    }).on('hidden.bs.modal', function() {
+        modal.remove();
+    }).modal({
+        backdrop: backdrop,
+        keyboard: keyboard
+    });
+}
 
-        alertContainer.css({
-            width: '400px',
-            margin: '0 auto'
-        });
+Collejo.modal.close = function(form) {
+    $(document).find('#' + $(form).prop('id')).closest('.modal').modal('hide');
+}
 
-        alertWrap.append(alertContainer);
-        var alert = Collejo.templates.alertTemplate(type, msg, duration);
-
-        if ($('#alert-wrap').length == 0) {
-            $('body').append(alertWrap);
-        }
-
-        var alertContainer = $('#alert-wrap').find('.alert-container');
-
-        if (duration === false) {
-            alertContainer.empty();
-        }
-
-        alert.appendTo(alertContainer).addClass('animated ' + Collejo.settings.alertInClass);
-
-        if (duration > 0) {
-            window.setTimeout(function() {
-                if (Collejo.browser.isFirefox || Collejo.browser.isChrome) {
-                    alert.removeClass(Collejo.settings.alertInClass)
-                        .addClass(Collejo.settings.alertOutClass)
-                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                            alert.remove();
-                        });
-                } else {
-                    alert.remove();
-                }
-            }, duration);
-        }
-
-    }
-});
-$(function() {
-
-    Collejo.form.lock = function(form) {
-        $(form).find('button[type="submit"]')
-            .attr('disabled', true)
-            .append(Collejo.templates.spinnerTemplate());
-    }
-
-    Collejo.form.unlock = function(form) {
-        $(form).find('button[type="submit"]')
-            .attr('disabled', false)
-            .find('.spinner-wrap')
-            .remove();
-    }
-
-});
-$(function() {
-
-    Collejo.modal.open = function(link) {
-        var id = link.data('modal-id') != null ? link.data('modal-id') : 'ajax-modal-' + moment();
-        var size = link.data('modal-size') != null ? ' modal-' + link.data('modal-size') + ' ' : '';
-
-        var backdrop = link.data('modal-backdrop') != null ? link.data('modal-backdrop') : true;
-        var keyboard = link.data('modal-keyboard') != null ? link.data('modal-keyboard') : true;
-
-        var modal = $('<div id="' + id + '" class="modal loading fade" role="dialog" aria-labelledby="' + id + '" aria-hidden="true"><div class="modal-dialog ' + size + '"></div></div>');
-
-        var loader = Collejo.templates.ajaxLoader();
-
-        if (loader != null) {
-            loader.appendTo(modal);
-        }
-
-        $('body').append(modal);
-
-        modal.on('show.bs.modal', function() {
-            $.ajax({
-                url: link.attr('href'),
-                type: 'get',
-                success: function(response) {
-                    if (response.success == true && response.data && response.data.content) {
-                        modal.find('.modal-dialog').html(response.data.content);
-                        modal.removeClass('loading');
-
-                        if (loader != null) {
-                            loader.remove();
-                        }
-                    }
-                }
-            });
-        }).on('hidden.bs.modal', function() {
-            modal.remove();
-        }).modal({
-            backdrop: backdrop,
-            keyboard: keyboard
-        });
-    }
-
-    Collejo.modal.close = function(form) {
-        $(document).find('#' + $(form).prop('id')).closest('.modal').modal('hide');
-    }
-
-    $(document).on('click', '[data-toggle="ajax-modal"]', function(e) {
+Collejo.ready.push(function(scope) {
+    $(scope).on('click', '[data-toggle="ajax-modal"]', function(e) {
         e.preventDefault();
         Collejo.modal.open($(this));
     });

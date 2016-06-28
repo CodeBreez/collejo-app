@@ -13,8 +13,6 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	protected $userRepository;
 
-	protected $fillable;
-
 	public function deleteAddress($addressId, $studentId)
 	{
 		$this->findAddress($addressId, $studentId)->delete();

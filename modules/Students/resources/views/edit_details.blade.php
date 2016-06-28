@@ -33,7 +33,7 @@ $(function(){
 
 @section('tab')
 
-<form class="form-horizontal" method="POST" id="edit-details-form" action="{{ $student ? route('students.edit.details', $student->id) : route('students.new') }}">
+<form class="form-horizontal" method="POST" id="edit-details-form" action="{{ $student ? route('students.edit.detail', $student->id) : route('students.new') }}">
 
     @if($student)
         <input type="hidden" name="sid" value="{{ $student->id }}">

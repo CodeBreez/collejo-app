@@ -20,7 +20,7 @@ $(function(){
 </script>
 
 <div class="modal-content">
-    <form method="POST" id="edit-contact" class="form-horizontal" action="{{ $address ? route('students.edit.addresses.edit', ['student' => $student->id, 'address' => $address]) : route('students.edit.addresses.new', $student->id) }}?target=addreses">
+    <form method="POST" id="edit-contact" class="form-horizontal" action="{{ $address ? route('students.edit.address.edit', ['student' => $student->id, 'address' => $address]) : route('students.edit.address.new', $student->id) }}?target=addreses">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <h4 class="modal-title">Add New Contact</h4>

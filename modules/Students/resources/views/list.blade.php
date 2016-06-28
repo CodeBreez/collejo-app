@@ -27,7 +27,7 @@
             <small class="text-muted">{{ $student->admission_number }}</small>
         </td>
         <td class="tools-column">
-            <a href="{{ route('students.edit.details', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('students.edit.detail', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
         </td>
     </tr>
 

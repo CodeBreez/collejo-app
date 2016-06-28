@@ -7,5 +7,12 @@ var Collejo = Collejo || {
     form: {},
     link: {},
     modal: {},
-    browser: {}
+    browser: {},
+    ready: []
 };
+
+$(function() {
+    $.each(Collejo.ready, function(i, f) {
+        f($(document));
+    });
+});

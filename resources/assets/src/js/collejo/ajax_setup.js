@@ -73,6 +73,4 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     $(window).resize();
 }
 
-$(function() {
-    $(document).ajaxComplete(Collejo.ajaxComplete);
-});
+$(document).ajaxComplete(Collejo.ajaxComplete);
