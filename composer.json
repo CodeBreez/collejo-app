@@ -16,6 +16,11 @@
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*"
     },
+    "autoload": {
+        "psr-4": {
+            "Collejo\\App\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "authors": [{
         "name": "Anuradha Jayathilaka",

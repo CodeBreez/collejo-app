@@ -1,0 +1,52 @@
+h2{padding-bottom: 15px;}
+
+.brand-text{font-family: $font-family-brand;}
+
+label.error{color: red;font-size: 10px;}
+
+.spinner-wrap{
+  display: inline-block;padding-left: 15px;
+}
+
+.progress{height: 10px;}
+
+.spinner {
+    display: inline-block;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: .25rem solid  rgba(255,255,255, 0.2);
+    border-top-color: rgb(255,255,255);
+    animation: spin 1s infinite linear;
+}
+
+.btn{ text-transform: uppercase;}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.modal {
+    /*! adjust transition time */
+    -webkit-transition: all ease-out !important;
+    -moz-transition: all 0.3s ease-out !important;
+    -o-transition: all 0.3s ease-out !important;
+    transition: all 0.3s ease-out !important;
+}
+.modal.in .modal-dialog {
+    /*! editthis transform to any transform you want */
+    -webkit-transform: scale(1, 1) !important;
+    -ms-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
+}
+.modal.fade .modal-dialog {
+    /*! disable sliding from left/right/top/bottom */
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
