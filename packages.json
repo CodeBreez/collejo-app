@@ -1,0 +1,11 @@
+{
+    "package": {
+        "name": "codebreez/collejo-app",
+        "version": "1.0.0",
+        "source": {
+            "url": "git@github.com:codebreez/collejo-app.git",
+            "type": "git",
+            "reference": "master"
+        }
+    }
+}
