@@ -30,6 +30,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Collejo\App\Http\Middleware\VerifyCsrfToken::class,
+            \Clockwork\Support\Laravel\ClockworkMiddleware::class
         ],
 
         'api' => [
