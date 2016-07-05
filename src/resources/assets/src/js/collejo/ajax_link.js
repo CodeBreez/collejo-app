@@ -8,8 +8,11 @@ Collejo.ready.push(function(scope) {
 Collejo.link.ajax = function(link) {
 
     if (link.data('confirm') == null) {
+
         callAjax(link);
+
     } else {
+
         bootbox.confirm({
             message: link.data('confirm'),
             buttons: {

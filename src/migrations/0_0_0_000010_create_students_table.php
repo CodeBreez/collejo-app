@@ -16,7 +16,7 @@ class CreateStudentsTable extends Migration
             $table->string('id', 45)->primary();
             $table->string('user_id', 45)->unique();
             $table->string('admission_number', 45)->unique();
-            $table->date('admitted_on');
+            $table->timestamp('admitted_on');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

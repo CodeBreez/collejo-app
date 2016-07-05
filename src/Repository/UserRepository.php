@@ -75,8 +75,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 						'permission' => $permission,
 						'description' => $description
 					]);
-
-
 		}
 	}
 

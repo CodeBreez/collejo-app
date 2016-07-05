@@ -10,14 +10,14 @@ class CreateBatchRequest extends Request
 	public function rules()
 	{
 	    return [
-	        'name' => 'required',
+	        'name' => 'required'
 	    ];
 	}
 
 	public function attributes()
 	{
 		return [
-	        'name' => 'Batch Name',
+	        'name' => 'Batch Name'
 	    ];
 	}
 }

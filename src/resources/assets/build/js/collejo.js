@@ -43775,7 +43775,8 @@ Collejo.templates.dateTimePickerIcons = function() {
 }
 $.ajaxSetup({
     headers: {
-        'X-CSRF-Token': $('meta[name="token"]').attr('content')
+        'X-CSRF-Token': $('meta[name="token"]').attr('content'),
+        'X-User-Time': new Date()
     }
 });
 
@@ -43878,8 +43879,11 @@ Collejo.ready.push(function(scope) {
 Collejo.link.ajax = function(link) {
 
     if (link.data('confirm') == null) {
+
         callAjax(link);
+
     } else {
+
         bootbox.confirm({
             message: link.data('confirm'),
             buttons: {

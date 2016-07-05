@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGradesTable extends Migration
+class CreateTermsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,16 @@ class CreateGradesTable extends Migration
      */
     public function up()
     {
-        Schema::create('grades', function (Blueprint $table) {
+        Schema::create('terms', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->string('name', 5);
+            $table->string('batch_id', 45);
+            $table->string('name', 45);
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +32,6 @@ class CreateGradesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('grades');
+        Schema::drop('terms');
     }
 }

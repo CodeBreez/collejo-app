@@ -1,6 +1,7 @@
 $.ajaxSetup({
     headers: {
-        'X-CSRF-Token': $('meta[name="token"]').attr('content')
+        'X-CSRF-Token': $('meta[name="token"]').attr('content'),
+        'X-User-Time': new Date()
     }
 });
 

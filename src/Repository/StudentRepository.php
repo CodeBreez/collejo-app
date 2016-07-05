@@ -45,7 +45,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function findAddress($addressId, $studentId)
 	{
-		return Address::where(['user_id' => $this->find($studentId)->user->id, 'id' => $addressId])->first();
+		return Address::where(['user_id' => $this->find($studentId)->user->id, 'id' => $addressId])->firstOrFail();
 	}
 
 	public function getStudents()
@@ -56,6 +56,8 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	public function update(array $attributes, $studentId)
 	{
 		$student = null;
+
+		$attributes['admitted_on'] = $this->userTzConvert($attributes['admitted_on']);
 
 		$studentAttributes = $this->parseFillable($attributes);
 
@@ -71,6 +73,8 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	public function create(array $attributes)
 	{
 		$student = null;
+		
+		$attributes['admitted_on'] = $this->userTzConvert($attributes['admitted_on']);
 
 		$studentAttributes = $this->parseFillable($attributes);
 

@@ -5,9 +5,62 @@ namespace Collejo\App\Repository;
 use Collejo\Core\Foundation\Repository\BaseRepository;
 use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Batch;
+use Collejo\App\Models\Term;
 use DB;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract {
+
+    public function updateBatch(array $attributes, $batchId)
+    {
+        return $this->findBatch($batchId)->update($attributes);
+    }
+
+    public function deleteTerm($termId, $batchId)
+    {
+        $this->findTerm($termId, $batchId)->delete();
+    }
+
+    public function updateTerm(array $attributes, $termId, $batchId)
+    {
+        $attributes['start_date'] = $this->userTzConvert($attributes['start_date']);
+        $attributes['end_date'] = $this->userTzConvert($attributes['end_date']);
+
+        $this->findTerm($termId, $batchId)->update($attributes);
+
+        return $this->findTerm($termId, $batchId);
+    }
+
+    public function findTerm($termId, $batchId)
+    {
+        return Term::where(['batch_id' => $batchId, 'id' => $termId])->firstOrFail();
+    }
+
+    public function createTerm(array $attributes, $batchId)
+    {
+        $term = null;
+
+        $batch = $this->findBatch($batchId);
+
+        $attributes['start_date'] = $this->userTzConvert($attributes['start_date']);
+        $attributes['end_date'] = $this->userTzConvert($attributes['end_date']);
+        $attributes['batch_id'] = $batch->id;
+
+        DB::transaction(function () use ($attributes, &$term) {
+            $term = Term::create($attributes);
+        });
+
+        return $term;
+    }
+
+    public function findBatch($id)
+    {
+        return Batch::findOrFail($id);
+    }
+
+    public function createBatch(array $attributes)
+    {
+        return Batch::create($attributes);
+    }
 
 	public function getBatches()
 	{

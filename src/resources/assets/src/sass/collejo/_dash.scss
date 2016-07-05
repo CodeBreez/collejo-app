@@ -11,7 +11,13 @@ body{background: $gray-lighter;}
 	.section{
 		h2{margin: 0;font-family: $font-family-brand;}
 		.tab-content{background: #fff;}
-		.tab-pane{padding-top: 15px;}
+		.tab-pane{
+			padding: 15px;
+			.form-horizontal, .columns{
+				padding-top: 15px;
+				.placeholder{margin-top: -15px;}
+			}
+		}
 	}
 
 	.section-content{background: #fff;}
@@ -45,4 +51,10 @@ body{background: $gray-lighter;}
   background: repeating-linear-gradient(-45deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
   background-size: 30px 30px; 
   text-align: center;padding:30px 15px;
+  margin: 0 -15px;
+  color: $gray-light;
+}
+.placeholder-row{
+	padding: 15px;
+	.placeholder{margin: 0;}
 }

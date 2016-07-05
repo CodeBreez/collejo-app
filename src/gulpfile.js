@@ -37,6 +37,6 @@ elixir(function(mix) {
 gulp.task('copy', function() {
     return watch([buildDir + '**/*.css', buildDir + '**/*.js'])
         .pipe(shell([
-            'php ' + __dirname + '/../../../artisan asset:copy'
+            'php ' + __dirname + '/../../../../artisan asset:copy'
         ]));
 });

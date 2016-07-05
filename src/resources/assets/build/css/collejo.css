@@ -9313,7 +9313,11 @@ body {
   .dash-content .section .tab-content {
     background: #fff; }
   .dash-content .section .tab-pane {
-    padding-top: 15px; }
+    padding: 15px; }
+    .dash-content .section .tab-pane .form-horizontal, .dash-content .section .tab-pane .columns {
+      padding-top: 15px; }
+      .dash-content .section .tab-pane .form-horizontal .placeholder, .dash-content .section .tab-pane .columns .placeholder {
+        margin-top: -15px; }
   .dash-content .section-content {
     background: #fff; }
   .dash-content .table td.tools-column a {
@@ -9337,6 +9341,13 @@ body {
   background: repeating-linear-gradient(-45deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
   background-size: 30px 30px;
   text-align: center;
-  padding: 30px 15px; }
+  padding: 30px 15px;
+  margin: 0 -15px;
+  color: #777777; }
+
+.placeholder-row {
+  padding: 15px; }
+  .placeholder-row .placeholder {
+    margin: 0; }
 
 /*# sourceMappingURL=collejo.css.map */
