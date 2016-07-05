@@ -1,6 +1,6 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', $student ? 'Edit Student': 'New Student')
+@section('title', 'Edit Student')
 
 @section('scripts')
 

@@ -1,6 +1,6 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', $student ? 'Edit Student': 'New Student')
+@section('title', 'Edit Student')
 
 @section('scripts')
 
@@ -29,10 +29,7 @@ function afterDeleteAddress(link, response){
 @section('tab')
 
 
-<input type="hidden" name="sid" value="{{ $student->id }}">
-<input type="hidden" name="uid" value="{{ $student->user->id }}">
-
-<div id="addreses">
+<div id="addreses" class="columns">
 
     @if($student->addresses->count())
 

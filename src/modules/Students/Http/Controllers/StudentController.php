@@ -98,7 +98,7 @@ class StudentController extends BaseController
 	{
 		$student = $this->studentRepository->create($request->all());
 
-		return $this->printRedirect(route('students.edit.details', $student->id));
+		return $this->printRedirect(route('students.edit.detail', $student->id));
 	}
 
 	public function getNew()
