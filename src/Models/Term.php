@@ -12,7 +12,7 @@ class Term extends Model
 
     protected $table = 'terms';
 
-    protected $fillable = ['batch_id', 'name', 'start_date', 'end_date', 'created_by', 'updated_by'];
+    protected $fillable = ['batch_id', 'name', 'start_date', 'end_date'];
 
     protected $dates = ['start_date', 'end_date'];
 

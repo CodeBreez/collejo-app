@@ -5,10 +5,42 @@ namespace Collejo\App\Repository;
 use Collejo\Core\Foundation\Repository\BaseRepository;
 use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Batch;
+use Collejo\App\Models\Grade;
+use Collejo\App\Models\Clasis;
 use Collejo\App\Models\Term;
 use DB;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract {
+
+    public function updateGrade(array $attributes, $id)
+    {
+        return $this->findGrade($id)->update($attributes);
+    }
+
+    public function findGrade($id)
+    {
+        return Grade::findOrFail($id);
+    }
+
+    public function createGrade(array $attributes)
+    {
+        return Grade::create($attributes);
+    }
+
+    public function getGrades()
+    {
+        return Grade::all();
+    }
+
+    public function createClass()
+    {
+
+    }
+
+    public function getClasses()
+    {
+        return Clasis::all();
+    }
 
     public function updateBatch(array $attributes, $batchId)
     {

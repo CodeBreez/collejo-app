@@ -23,6 +23,12 @@ class CreateTermsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::table('terms', function (Blueprint $table) {
+            $table->foreign('batch_id')->references('id')->on('batches');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+        });
     }
 
     /**

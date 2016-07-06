@@ -11,7 +11,9 @@ class Student extends Model
     
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'admission_number', 'admitted_on', 'created_by', 'updated_by'];
+    protected $table = 'students';
+
+    protected $fillable = ['user_id', 'admission_number', 'admitted_on'];
 
     protected $dates = ['admitted_on'];
 
