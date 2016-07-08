@@ -5,7 +5,7 @@ Collejo.ready.push(function(scope) {
     });
 });
 
-Collejo.link.ajax = function(link) {
+Collejo.link.ajax = function(link, callback) {
 
     if (link.data('confirm') == null) {
 
@@ -35,11 +35,22 @@ Collejo.link.ajax = function(link) {
 
     function callAjax(link) {
         $.getJSON(link.attr('href'), function(response) {
-            var func = window[link.data('success-callback')];
 
-            if (typeof func == 'function') {
-                func(link, response);
+            if (link.data('success-callback') == null) {
+
+                if (typeof callback == 'function') {
+                    callback(link, response);
+                }
+
+            } else {
+
+                var func = window[link.data('success-callback')];
+
+                if (typeof func == 'function') {
+                    func(link, response);
+                }
             }
+
         });
     }
 

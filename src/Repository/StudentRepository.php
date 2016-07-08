@@ -57,7 +57,9 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	{
 		$student = null;
 
-		$attributes['admitted_on'] = $this->userTzConvert($attributes['admitted_on']);
+		if (isset($attributes['admitted_on'])) {
+			$attributes['admitted_on'] = $this->userTzConvert($attributes['admitted_on']);
+		}
 
 		$studentAttributes = $this->parseFillable($attributes);
 

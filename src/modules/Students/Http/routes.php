@@ -2,24 +2,29 @@
 
 Route::group(['prefix' => 'dash/students', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'StudentController@getList')->name('students.list');
+	Route::get('/list', 'StudentController@getStudentList')->name('students.list');
 
-	Route::get('/new', 'StudentController@getNew')->name('students.new');
-	Route::post('/new', 'StudentController@postNew');
+});
 
-	Route::get('/{id}/detail/edit', 'StudentController@getStudentDetails')->name('students.edit.detail');
-	Route::post('/{id}/detail/edit', 'StudentController@postStudentDetails');
+Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 
-	Route::get('/{id}/contact/edit', 'StudentController@getStudentAddresses')->name('students.edit.address');
+	Route::get('/new', 'StudentController@getStudentNew')->name('student.new');
+	Route::post('/new', 'StudentController@postStudentNew');
 
-	Route::get('/{id}/contact/edit/new', 'StudentController@getStudentAddressNew')->name('students.edit.address.new');
-	Route::post('/{id}/contact/edit/new', 'StudentController@postStudentAddressNew');
+	Route::get('/{id}/details/edit', 'StudentController@getStudentDetailEdit')->name('student.details.edit');
+	Route::post('/{id}/details/edit', 'StudentController@postStudentDetailEdit');
 
-	Route::get('/{id}/contact/edit/{cid}/edit', 'StudentController@getStudentAddressEdit')->name('students.edit.address.edit');
-	Route::post('/{id}/contact/edit/{cid}/edit', 'StudentController@postStudentAddressEdit');
+	Route::get('/{id}/contacts/view', 'StudentController@getStudentAddressesView')->name('student.addresses.view');
 
-	Route::get('/{id}/contact/edit/{cid}/delete', 'StudentController@getStudentAddressDelete')->name('students.edit.address.delete');
+	Route::get('/{id}/contact/new', 'StudentController@getStudentAddressNew')->name('student.address.new');
+	Route::post('/{id}/contact/new', 'StudentController@postStudentAddressNew');
+
+	Route::get('/{id}/contact/{cid}/edit', 'StudentController@getStudentAddressEdit')->name('student.address.edit');
+	Route::post('/{id}/contact/{cid}/edit', 'StudentController@postStudentAddressEdit');
+
+	Route::get('/{id}/contact/{cid}/delete', 'StudentController@getStudentAddressDelete')->name('student.address.delete');
 	
-	Route::get('/{id}/account/edit', 'StudentController@getStudentAccount')->name('students.edit.account');
-	Route::post('/{id}/account/edit', 'StudentController@postStudentAccount');
+	Route::get('/{id}/account/edit', 'StudentController@getStudentAccountEdit')->name('student.account.edit');
+	Route::post('/{id}/account/edit', 'StudentController@postStudentAccountEdit');
+
 });

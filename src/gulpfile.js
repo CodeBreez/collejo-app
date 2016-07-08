@@ -29,6 +29,7 @@ elixir(function(mix) {
             srcDir + 'js/collejo/ajax_link.js',
             srcDir + 'js/collejo/alert.js',
             srcDir + 'js/collejo/form.js',
+            srcDir + 'js/collejo/dynamics.js',
             srcDir + 'js/collejo/modal.js',
             srcDir + 'js/dashboard.js'
         ], buildDir + 'js/collejo.js');

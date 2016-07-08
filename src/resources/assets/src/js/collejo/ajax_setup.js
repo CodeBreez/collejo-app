@@ -28,20 +28,13 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
                 var target = response.data.target ? response.data.target : 'ajax-target';
 
                 var target = $('#' + target);
-
-                if (target.find('.placeholder').length) {
-                    target.empty();
-                }
-
                 var partial = $(response.data.partial);
-                var id = partial.prop('id');
-                var replacing = target.find('#' + id);
 
-                if (replacing.length) {
-                    replacing.replaceWith(partial);
-                } else {
-                    partial.hide().prependTo(target).fadeIn();
-                }
+                Collejo.dynamics.prependRow(partial, target);
+
+                $.each(Collejo.ready, function(i, f) {
+                    f(partial);
+                });
             }
 
             if (response.data != undefined && response.data.redir != undefined) {

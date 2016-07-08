@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('classes.grade.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create Grade</a>  
+<a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create Grade</a>  
 
 @endsection
 
@@ -16,6 +16,7 @@
                 
     <tr>
         <th>Name</th>
+        <th>Number of Classes</th>
         <th></th>
     </tr>
 
@@ -26,8 +27,9 @@
             <div>{{ $grade->name }}</div>
             <small class="text-muted">{{ $grade->id }}</small>
         </td>
+        <td>{{ $grade->classes->count() }}</td>
         <td class="tools-column">
-            <a href="{{ route('classes.grade.edit.detail', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('grade.detail.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
         </td>
     </tr>
 

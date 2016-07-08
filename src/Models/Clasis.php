@@ -9,6 +9,6 @@ class Clasis extends Model
 
     protected $table = 'classes';
 
-    protected $fillable = [];
+    protected $fillable = ['grade_id', 'name'];
 
 }

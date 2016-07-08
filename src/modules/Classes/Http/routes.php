@@ -1,49 +1,54 @@
 <?php
 
-Route::group(['prefix' => 'dash/class', 'middleware' => 'auth'], function() {
-
-	Route::get('/list', 'ClassController@getList')->name('classes.class.list');
-
-	Route::get('/new', 'ClassController@getNew')->name('classes.class.new');
-	Route::post('/new', 'ClassController@postNew');
-
-	Route::get('/{cid}/detail/edit', 'ClassController@getEdit')->name('classes.class.edit.detail');
-	Route::post('/{cid}/detail/edit', 'ClassController@postEdit');
-
-	Route::get('/{cid}/delete', 'ClassController@getDelete')->name('classes.class.delete');
-});
-
 Route::group(['prefix' => 'dash/batches', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'BatchController@getList')->name('classes.batch.list');
+	Route::get('/list', 'BatchController@getBatchList')->name('batches.list');
 
-	Route::get('/new', 'BatchController@getNew')->name('classes.batch.new');
-	Route::post('/new', 'BatchController@postNew');
-
-	Route::get('/{id}/detail/edit', 'BatchController@getDetails')->name('classes.batch.edit.detail');
-	Route::post('/{id}/detail/edit', 'BatchController@postDetails');
-
-	Route::get('/{id}/term/edit', 'BatchController@getTerms')->name('classes.batch.edit.term');
-	Route::post('/{id}/term/edit', 'BatchController@postTerms');
-
-	Route::get('/{id}/term/edit/new', 'BatchController@getTermNew')->name('classes.batch.edit.term.new');
-	Route::post('/{id}/term/edit/new', 'BatchController@postTermNew');
-
-	Route::get('/{id}/term/edit/{tid}/edit', 'BatchController@getTermEdit')->name('classes.batch.edit.term.edit');
-	Route::post('/{id}/term/edit/{tid}/edit', 'BatchController@postTermEdit');
-
-	Route::get('/{id}/term/edit/{tid}/delete', 'BatchController@getTermDelete')->name('classes.batch.edit.term.delete');
 });
 
+Route::group(['prefix' => 'dash/batch', 'middleware' => 'auth'], function() {
+
+	Route::get('/new', 'BatchController@getBatchNew')->name('batch.new');
+	Route::post('/new', 'BatchController@postBatchNew');
+	
+	Route::get('/{id}/detail/edit', 'BatchController@getBatchDetailEdit')->name('batch.detail.edit');
+	Route::post('/{id}/detail/edit', 'BatchController@postBatchDetailEdit');
+
+	Route::get('/{id}/terms/view', 'BatchController@getBatchTerms')->name('batch.terms.view');
+
+	Route::get('/{id}/term/new', 'BatchController@getBatchTermNew')->name('batch.term.new');
+	Route::post('/{id}/term/new', 'BatchController@postBatchTermNew');
+
+	Route::get('/{id}/term/{tid}/edit', 'BatchController@getBatchTermEdit')->name('batch.term.edit');
+	Route::post('/{id}/term/{tid}/edit', 'BatchController@postBatchTermEdit');
+
+	Route::get('/{id}/term/{tid}/delete', 'BatchController@getBatchTermDelete')->name('batch.term.delete');
+});
+
+Route::group(['prefix' => 'dash/grades', 'middleware' => 'auth'], function() {
+	
+	Route::get('/list', 'GradeController@getGradeList')->name('grades.list');
+
+});
+	
 Route::group(['prefix' => 'dash/grade', 'middleware' => 'auth'], function() {
-	
-	Route::get('/list', 'GradeController@getList')->name('classes.grade.list');
 
-	Route::get('/new', 'GradeController@getNew')->name('classes.grade.new');
-	Route::post('/new', 'GradeController@postNew');
-	
-	Route::get('/{gid}/detail/edit', 'GradeController@getEdit')->name('classes.grade.edit.detail');
-	Route::post('/{gid}/detail/edit', 'GradeController@postEdit');
+	Route::get('/new', 'GradeController@getGradeNew')->name('grade.new');
+	Route::post('/new', 'GradeController@postGradeNew');
 
-	Route::get('/{gid}/delete', 'GradeController@getDelete')->name('classes.grade.delete');
+	Route::get('/{gid}/detail/edit', 'GradeController@getGradeDetailEdit')->name('grade.detail.edit');
+	Route::post('/{gid}/detail/edit', 'GradeController@postGradeDetailEdit');
+
+	Route::get('/{gid}/delete', 'GradeController@getDelete')->name('grade.delete');
+	
+	Route::get('/{gid}/classes/view', 'GradeController@getGradeClassesView')->name('grade.classes.view');
+
+	Route::get('/{id}/class/new', 'GradeController@getGradeClassNew')->name('grade.class.new');
+	Route::post('/{id}/class/new', 'GradeController@postGradeClassNew');
+
+	Route::get('/{id}/class/{tid}/edit', 'GradeController@getGradeClassEdit')->name('grade.class.edit');
+	Route::post('/{id}/class/{tid}/edit', 'GradeController@postGradeClassEdit');
+
+	Route::get('/{id}/class/{tid}/delete', 'GradeController@getGradeClassDelete')->name('grade.class.delete');
+
 });

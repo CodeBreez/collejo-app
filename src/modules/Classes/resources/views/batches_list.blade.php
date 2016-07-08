@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('classes.batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create Batch</a>  
+<a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create Batch</a>  
 
 @endsection
 
@@ -27,7 +27,7 @@
             <small class="text-muted">{{ $batch->id }}</small>
         </td>
         <td class="tools-column">
-            <a href="{{ route('classes.batch.edit.detail', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('batch.detail.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
         </td>
     </tr>
 

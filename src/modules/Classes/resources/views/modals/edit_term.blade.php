@@ -20,7 +20,7 @@ $(function(){
 </script>
 
 <div class="modal-content">
-    <form method="POST" id="edit-term" class="form-horizontal" action="{{ $term ? route('classes.batch.edit.term.edit', ['batch' => $batch->id, 'term' => $term]) : route('classes.batch.edit.term.new', $batch->id) }}?target=addreses">
+    <form method="POST" id="edit-term" class="form-horizontal" action="{{ $term ? route('batch.term.edit', [$batch->id, $term->id]) : route('batch.term.new', $batch->id) }}?target=addreses">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <h4 class="modal-title">Add New Term</h4>

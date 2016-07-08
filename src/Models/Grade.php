@@ -3,7 +3,7 @@
 namespace Collejo\App\Models;
 
 use Collejo\Core\Database\Eloquent\Model;
-use Collejo\App\Models\Term;
+use Collejo\App\Models\Clasis;
 
 class Grade extends Model
 {
@@ -12,4 +12,8 @@ class Grade extends Model
 
     protected $fillable = ['name'];
 
+    public function classes()
+    {
+    	return $this->hasMany(Clasis::class);
+    }
 }

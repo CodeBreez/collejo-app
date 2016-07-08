@@ -58,50 +58,50 @@ class StudentController extends BaseController
 			]));
 	}
 
-	public function getStudentDetails($studentId)
+	public function getStudentDetailEdit($studentId)
 	{
 		return view('students::edit_details', ['student' => $this->studentRepository->find($studentId)]);
 	}	
 
-	public function postStudentDetails(UpdateStudentRequest $request, $studentId)
+	public function postStudentDetailEdit(UpdateStudentRequest $request, $studentId)
 	{
 		$this->studentRepository->update($request->all(), $studentId);
 
 		return $this->printJson(true, [], 'Student updated');
 	}	
 
-	public function getStudentAddresses($studentId)
+	public function getStudentAddressesView($studentId)
 	{
-		return view('students::edit_addresses', ['student' => $this->studentRepository->find($studentId)]);
+		return view('students::view_student_addreses', ['student' => $this->studentRepository->find($studentId)]);
 	}		
 
-	public function postStudentAccount(UpdateStudentAccountRequest $request, $studentId)
+	public function postStudentAccountEdit(UpdateStudentAccountRequest $request, $studentId)
 	{
 		$this->studentRepository->update($request->all(), $studentId);
 
 		return $this->printJson(true, [], 'Student Updated');
 	}
 
-	public function getStudentAccount($studentId)
+	public function getStudentAccountEdit($studentId)
 	{
 		return view('students::edit_account', ['student' => $this->studentRepository->find($studentId)]);
 	}	
 
-	public function getList()
+	public function getStudentList()
 	{
 		return view('students::list', [
 				'students' => $this->studentRepository->getStudents()->paginate()
 			]);
 	}
 
-	public function postNew(CreateStudentRequest $request)
+	public function postStudentNew(CreateStudentRequest $request)
 	{
 		$student = $this->studentRepository->create($request->all());
 
 		return $this->printRedirect(route('students.edit.detail', $student->id));
 	}
 
-	public function getNew()
+	public function getStudentNew()
 	{
 		return view('students::edit_details', ['student' => null]);
 	}

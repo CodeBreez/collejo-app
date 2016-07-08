@@ -9320,10 +9320,13 @@ body {
         margin-top: -15px; }
   .dash-content .section-content {
     background: #fff; }
-  .dash-content .table td.tools-column a {
-    display: none; }
+  .dash-content .table td.tools-column {
+    width: 150px;
+    height: 40px; }
+    .dash-content .table td.tools-column a {
+      display: none; }
   .dash-content .table tr:hover .tools-column a {
-    display: inline; }
+    display: inline-block; }
 
 .panel .panel-footer .tools-footer {
   display: none; }

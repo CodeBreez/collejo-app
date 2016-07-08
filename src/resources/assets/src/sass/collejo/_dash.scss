@@ -24,11 +24,11 @@ body{background: $gray-lighter;}
 
 	.table{
 		td.tools-column{
-			@extend .text-right;
+			@extend .text-right;width: 150px;height: 40px;
 			a{display: none;}
 		}
 		tr:hover{
-			.tools-column a{display: inline;}
+			.tools-column a{display: inline-block;}
 		}
 	}
 }

@@ -10,7 +10,7 @@ class Batch extends Model
 
     protected $table = 'batches';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'is_ended'];
 
     public function terms()
     {

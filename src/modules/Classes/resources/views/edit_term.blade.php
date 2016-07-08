@@ -16,7 +16,7 @@ function afterDeleteTerm(link, response){
 
 @section('tools')
 
-<a href="{{ route('classes.batch.edit.term.new', $batch->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Term</a>  
+<a href="{{ route('batch.term.new', $batch->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Term</a>  
 
 @endsection
 

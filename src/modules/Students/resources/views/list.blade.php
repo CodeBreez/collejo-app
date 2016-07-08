@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('students.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create New</a>	
+<a href="{{ route('student.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create New</a>	
 
 @endsection
 
@@ -21,15 +21,15 @@
 
     @foreach($students as $student)
 
-    <tr>
-        <td>
-            <div>{{ $student->name }}</div>
-            <small class="text-muted">{{ $student->admission_number }}</small>
-        </td>
-        <td class="tools-column">
-            <a href="{{ route('students.edit.detail', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                <div>{{ $student->name }}</div>
+                <small class="text-muted">{{ $student->admission_number }}</small>
+            </td>
+            <td class="tools-column">
+                <a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            </td>
+        </tr>
 
     @endforeach
 

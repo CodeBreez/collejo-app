@@ -14,14 +14,14 @@ class BatchController extends BaseController
 
 	protected $classRepository;
 
-	public function getTermDelete($batchId, $termId)
+	public function getBatchTermDelete($batchId, $termId)
 	{
 		$this->classRepository->deleteTerm($termId, $batchId);
 
 		return $this->printJson(true, [], 'Term Deleted');
 	}
 
-	public function postTermEdit(UpdateTermRequest $request, $batchId, $termId)
+	public function postBatchTermEdit(UpdateTermRequest $request, $batchId, $termId)
 	{
 		$term = $this->classRepository->updateTerm($request->all(), $termId, $batchId);
 
@@ -31,7 +31,7 @@ class BatchController extends BaseController
 			]), 'Term updated');
 	}
 
-	public function getTermEdit($batchId, $termId)
+	public function getBatchTermEdit($batchId, $termId)
 	{
 		return $this->printModal(view('classes::modals.edit_term', [
 				'term' => $this->classRepository->findTerm($termId, $batchId), 
@@ -39,7 +39,7 @@ class BatchController extends BaseController
 			]));
 	}
 
-	public function postTermNew(CreateTermRequest $request, $batchId)
+	public function postBatchTermNew(CreateTermRequest $request, $batchId)
 	{
 		$term = $this->classRepository->createTerm($request->all(), $batchId);
 
@@ -49,7 +49,7 @@ class BatchController extends BaseController
 			]), 'Term Created');
 	}
 
-	public function getTermNew($batchId)
+	public function getBatchTermNew($batchId)
 	{
 		return $this->printModal(view('classes::modals.edit_term', [
 				'term' => null, 
@@ -57,36 +57,36 @@ class BatchController extends BaseController
 			]));
 	}
 
-	public function getTerms($batchId)
+	public function getBatchTerms($batchId)
 	{
 		return view('classes::edit_term', ['batch' => $this->classRepository->findBatch($batchId)]);
 	}
 
-	public function getDetails($batchId)
+	public function getBatchDetailEdit($batchId)
 	{
 		return view('classes::edit_batch', ['batch' => $this->classRepository->findBatch($batchId)]);
 	}
 
-	public function postDetails(UpdateBatchRequest $request, $batchId)
+	public function postBatchDetailEdit(UpdateBatchRequest $request, $batchId)
 	{
 		$this->classRepository->updateBatch($request->all(), $batchId);
 
 		return $this->printJson(true, [], 'Batch Updated');
 	}
 
-	public function postNew(CreateBatchRequest $request)
+	public function postBatchNew(CreateBatchRequest $request)
 	{
 		$batch = $this->classRepository->createBatch($request->all());
 
-		return $this->printRedirect(route('classes.batch.edit.detail', $batch->id));
+		return $this->printRedirect(route('classes.detail.edit', $batch->id));
 	}
 
-	public function getNew()
+	public function getBatchNew()
 	{
 		return view('classes::edit_batch', ['batch' => null]);
 	}
 
-	public function getList()
+	public function getBatchList()
 	{
 		return view('classes::batches_list', ['batches' => $this->classRepository->getBatches()]);
 	}

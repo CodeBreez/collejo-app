@@ -12,6 +12,11 @@ use DB;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract {
 
+    public function deleteClass($classId, $gradeId)
+    {
+        $this->findClass($classId, $gradeId)->delete();
+    }
+
     public function updateGrade(array $attributes, $id)
     {
         return $this->findGrade($id)->update($attributes);
@@ -32,9 +37,23 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
         return Grade::all();
     }
 
-    public function createClass()
+    public function updateClass(array $attributes, $classId, $gradeId)
     {
+        $this->findClass($classId, $gradeId)->update($attributes);
 
+        return $this->findClass($classId, $gradeId);
+    }
+
+    public function createClass(array $attributes, $gradeId)
+    {
+        $attributes['grade_id'] = $this->findGrade($gradeId)->id;
+
+        return Clasis::create($attributes);
+    }
+
+    public function findClass($classId, $gradeId)
+    {
+        return Clasis::where(['grade_id' => $gradeId, 'id' => $classId])->firstOrFail();
     }
 
     public function getClasses()
@@ -44,7 +63,9 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
     public function updateBatch(array $attributes, $batchId)
     {
-        return $this->findBatch($batchId)->update($attributes);
+        $this->findBatch($batchId)->update($attributes);
+
+        return $this->findBatch($batchId);
     }
 
     public function deleteTerm($termId, $batchId)

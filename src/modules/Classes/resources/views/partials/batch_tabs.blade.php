@@ -8,11 +8,11 @@
 @else
 
 <ul class="nav nav-tabs tabs-left">
-    <li class="{{ active_class(if_route(['classes.batch.edit.detail'])) }}">
-    	<a href="{{ route('classes.batch.edit.detail', $batch->id) }}">Batch Details</a>
+    <li class="{{ active_class(if_route(['batch.detail.edit'])) }}">
+    	<a href="{{ route('batch.detail.edit', $batch->id) }}">Batch Details</a>
     </li>
-    <li class="{{ active_class(if_route(['classes.batch.edit.term'])) }}">
-    	<a href="{{ route('classes.batch.edit.term', $batch->id) }}">Terms</a>
+    <li class="{{ active_class(if_route(['batch.terms.view'])) }}">
+    	<a href="{{ route('batch.terms.view', $batch->id) }}">Terms</a>
     </li>
 </ul>
 
