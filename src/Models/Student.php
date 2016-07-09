@@ -17,6 +17,11 @@ class Student extends Model
 
     protected $dates = ['admitted_on'];
 
+    public function class()
+    {
+        return $this->belongsTo(Clasis::class);
+    }
+
     public function user()
     {
     	return $this->belongsTo(User::class);

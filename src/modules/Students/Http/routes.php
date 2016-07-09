@@ -11,10 +11,13 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 	Route::get('/new', 'StudentController@getStudentNew')->name('student.new');
 	Route::post('/new', 'StudentController@postStudentNew');
 
+	Route::get('/{id}/details/view', 'StudentController@getStudentDetailView')->name('student.details.view');
+
 	Route::get('/{id}/details/edit', 'StudentController@getStudentDetailEdit')->name('student.details.edit');
 	Route::post('/{id}/details/edit', 'StudentController@postStudentDetailEdit');
 
 	Route::get('/{id}/contacts/view', 'StudentController@getStudentAddressesView')->name('student.addresses.view');
+	Route::get('/{id}/contacts/edit', 'StudentController@getStudentAddressesEdit')->name('student.addresses.edit');
 
 	Route::get('/{id}/contact/new', 'StudentController@getStudentAddressNew')->name('student.address.new');
 	Route::post('/{id}/contact/new', 'StudentController@postStudentAddressNew');
@@ -24,7 +27,12 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/contact/{cid}/delete', 'StudentController@getStudentAddressDelete')->name('student.address.delete');
 	
+	Route::get('/{id}/account/view', 'StudentController@getStudentAccountView')->name('student.account.view');
+
 	Route::get('/{id}/account/edit', 'StudentController@getStudentAccountEdit')->name('student.account.edit');
 	Route::post('/{id}/account/edit', 'StudentController@postStudentAccountEdit');
+
+	Route::get('/{id}/assign_class', 'StudentController@getStudentClassAssign')->name('student.assign_class');
+	Route::post('/{id}/assign_class', 'StudentController@postStudentClassAssign');
 
 });

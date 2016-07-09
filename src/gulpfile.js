@@ -26,6 +26,7 @@ elixir(function(mix) {
             srcDir + 'js/collejo/templates.js',
             srcDir + 'js/collejo/ajax_setup.js',
             srcDir + 'js/collejo/datetimepicker.js',
+            srcDir + 'js/collejo/select.js',
             srcDir + 'js/collejo/ajax_link.js',
             srcDir + 'js/collejo/alert.js',
             srcDir + 'js/collejo/form.js',

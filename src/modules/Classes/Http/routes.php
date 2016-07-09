@@ -11,8 +11,8 @@ Route::group(['prefix' => 'dash/batch', 'middleware' => 'auth'], function() {
 	Route::get('/new', 'BatchController@getBatchNew')->name('batch.new');
 	Route::post('/new', 'BatchController@postBatchNew');
 	
-	Route::get('/{id}/detail/edit', 'BatchController@getBatchDetailEdit')->name('batch.detail.edit');
-	Route::post('/{id}/detail/edit', 'BatchController@postBatchDetailEdit');
+	Route::get('/{id}/details/edit', 'BatchController@getBatchDetailsEdit')->name('batch.details.edit');
+	Route::post('/{id}/details/edit', 'BatchController@postBatchDetailsEdit');
 
 	Route::get('/{id}/terms/view', 'BatchController@getBatchTerms')->name('batch.terms.view');
 
@@ -36,8 +36,8 @@ Route::group(['prefix' => 'dash/grade', 'middleware' => 'auth'], function() {
 	Route::get('/new', 'GradeController@getGradeNew')->name('grade.new');
 	Route::post('/new', 'GradeController@postGradeNew');
 
-	Route::get('/{gid}/detail/edit', 'GradeController@getGradeDetailEdit')->name('grade.detail.edit');
-	Route::post('/{gid}/detail/edit', 'GradeController@postGradeDetailEdit');
+	Route::get('/{gid}/details/edit', 'GradeController@getGradeDetailsEdit')->name('grade.details.edit');
+	Route::post('/{gid}/details/edit', 'GradeController@postGradeDetailsEdit');
 
 	Route::get('/{gid}/delete', 'GradeController@getDelete')->name('grade.delete');
 	

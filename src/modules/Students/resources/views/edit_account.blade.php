@@ -2,6 +2,16 @@
 
 @section('title', 'Edit Student')
 
+@section('breadcrumbs')
+
+<ol class="breadcrumb">
+  <li><a href="{{ route('students.list') }}">Students List</a></li>
+  <li><a href="{{ route('student.account.view', $student->id) }}">{{ $student->name }}</a></li>
+  <li class="active">Edit Student</li>
+</ol>
+
+@endsection
+
 @section('scripts')
 
 <script type="text/javascript">
@@ -27,7 +37,7 @@ $(function(){
 
 @section('tabs')
 
-    @include('students::partials.tabs')
+    @include('students::partials.edit_tabs')
 
 @endsection
 

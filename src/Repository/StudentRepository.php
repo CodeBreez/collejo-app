@@ -13,6 +13,11 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	protected $userRepository;
 
+	public function assignToClass($batchId, $classId, $studentId)
+	{
+
+	}
+
 	public function deleteAddress($addressId, $studentId)
 	{
 		$this->findAddress($addressId, $studentId)->delete();

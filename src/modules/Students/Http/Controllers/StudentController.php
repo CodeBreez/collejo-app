@@ -4,16 +4,36 @@ namespace Collejo\App\Modules\Students\Http\Controllers;
 
 use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\StudentRepository;
+use Collejo\App\Repository\ClassRepository;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\CreateAddressRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateAddressRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
+use Collejo\App\Modules\Students\Http\Requests\AssignClassRequest;
 
 class StudentController extends BaseController
 {
 
 	protected $studentRepository;
+	protected $classRepository;
+
+	public function postStudentClassAssign(AssignClassRequest $request, $studentId)
+	{
+		$this->studentRepository->assignToClass($request->get('class_id'), $request->get('batch_id'), $studentId);
+
+		return $this->printPartial(view('students::partials.student', [
+				'student' => $this->studentRepository->find($studentId),
+			]), 'Student updated');
+	}
+
+	public function getStudentClassAssign($studentId)
+	{
+		return $this->printModal(view('students::modals.assign_class', [
+				'student' => $this->studentRepository->find($studentId),
+				'batches' => $this->classRepository->activeBatches()->get()
+			]));
+	}
 
 	public function getStudentAddressDelete($studentId, $addressId)
 	{
@@ -75,6 +95,11 @@ class StudentController extends BaseController
 		return view('students::view_student_addreses', ['student' => $this->studentRepository->find($studentId)]);
 	}		
 
+	public function getStudentAddressesEdit($studentId)
+	{
+		return view('students::edit_student_addreses', ['student' => $this->studentRepository->find($studentId)]);
+	}	
+
 	public function postStudentAccountEdit(UpdateStudentAccountRequest $request, $studentId)
 	{
 		$this->studentRepository->update($request->all(), $studentId);
@@ -84,8 +109,24 @@ class StudentController extends BaseController
 
 	public function getStudentAccountEdit($studentId)
 	{
-		return view('students::edit_account', ['student' => $this->studentRepository->find($studentId)]);
+		return view('students::edit_account', [
+			'student' => $this->studentRepository->find($studentId)
+		]);
 	}	
+
+	public function getStudentAccountView($studentId)
+	{
+		return view('students::view_student_account', [
+				'student' => $this->studentRepository->find($studentId)
+			]);
+	}
+
+	public function getStudentDetailView($studentId)
+	{
+		return view('students::view_student_details', [
+				'student' => $this->studentRepository->find($studentId)
+			]);
+	}
 
 	public function getStudentList()
 	{
@@ -98,7 +139,7 @@ class StudentController extends BaseController
 	{
 		$student = $this->studentRepository->create($request->all());
 
-		return $this->printRedirect(route('students.edit.detail', $student->id));
+		return $this->printRedirect(route('student.details.edit', $student->id));
 	}
 
 	public function getStudentNew()
@@ -106,8 +147,9 @@ class StudentController extends BaseController
 		return view('students::edit_details', ['student' => null]);
 	}
 
-	public function __construct(StudentRepository $studentRepository)
+	public function __construct(StudentRepository $studentRepository, ClassRepository $classRepository)
 	{
 		$this->studentRepository = $studentRepository;
+		$this->classRepository = $classRepository;
 	}
 }

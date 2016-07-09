@@ -35,7 +35,7 @@ $(function(){
 
 @section('tab')
 
-<form method="POST" id="edit-batch" class="form-horizontal" action="{{ $batch ? route('batch.detail.edit', $batch->id) : route('batch.new') }}">
+<form method="POST" id="edit-batch" class="form-horizontal" action="{{ $batch ? route('batch.details.edit', $batch->id) : route('batch.new') }}">
 
     <div class="col-xs-6">
         <div class="form-group">

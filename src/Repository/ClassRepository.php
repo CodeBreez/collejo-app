@@ -105,6 +105,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
         return $term;
     }
 
+    public function activeBatches()
+    {
+        return Batch::active();
+    }
+
     public function findBatch($id)
     {
         return Batch::findOrFail($id);

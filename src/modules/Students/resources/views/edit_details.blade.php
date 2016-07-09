@@ -2,6 +2,20 @@
 
 @section('title', $student ? 'Edit Student': 'New Student')
 
+@section('breadcrumbs')
+
+@if($student)
+
+<ol class="breadcrumb">
+  <li><a href="{{ route('students.list') }}">Students List</a></li>
+  <li><a href="{{ route('student.details.view', $student->id) }}">{{ $student->name }}</a></li>
+  <li class="active">Edit Student</li>
+</ol>
+
+@endif
+
+@endsection
+
 @section('scripts')
 
 <script type="text/javascript">
@@ -27,13 +41,13 @@ $(function(){
 
 @section('tabs')
 
-    @include('students::partials.tabs')
+    @include('students::partials.edit_tabs')
 
 @endsection
 
 @section('tab')
 
-<form class="form-horizontal" method="POST" id="edit-details-form" action="{{ $student ? route('student.details.edit', $student->id) : route('students.new') }}">
+<form class="form-horizontal" method="POST" id="edit-details-form" action="{{ $student ? route('student.details.edit', $student->id) : route('student.new') }}">
 
     @if($student)
         <input type="hidden" name="sid" value="{{ $student->id }}">

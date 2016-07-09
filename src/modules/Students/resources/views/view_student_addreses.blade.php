@@ -1,16 +1,16 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', 'Edit Student')
+@section('title', $student->name)
 
 @section('tools')
 
-<a href="{{ route('student.address.new', $student->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Contact</a>  
+<a href="{{ route('student.addresses.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-edit"></i> Edit</a>  
 
 @endsection
 
 @section('tabs')
 
-    @include('students::partials.tabs')
+    @include('students::partials.view_tabs')
 
 @endsection
 

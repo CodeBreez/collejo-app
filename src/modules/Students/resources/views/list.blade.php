@@ -12,24 +12,17 @@
 
 @if($students->count())
 
-<table class="table">
+<table class="table" id="students">
                 
     <tr>
         <th>Name</th>
+        <th>Class</th>
         <th></th>
     </tr>
 
     @foreach($students as $student)
 
-        <tr>
-            <td>
-                <div>{{ $student->name }}</div>
-                <small class="text-muted">{{ $student->admission_number }}</small>
-            </td>
-            <td class="tools-column">
-                <a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
-            </td>
-        </tr>
+        @include('students::partials.student')
 
     @endforeach
 

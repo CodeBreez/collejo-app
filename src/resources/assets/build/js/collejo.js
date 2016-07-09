@@ -43864,6 +43864,9 @@ Collejo.ready.push(function(scope) {
     });
 });
 Collejo.ready.push(function(scope) {
+    $(scope).find('[data-toggle="select-dropdown"]').selectize();
+});
+Collejo.ready.push(function(scope) {
     $(scope).on('click', '[data-toggle="ajax-link"]', function(e) {
         e.preventDefault();
         Collejo.link.ajax($(this));

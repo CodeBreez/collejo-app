@@ -62,12 +62,12 @@ class BatchController extends BaseController
 		return view('classes::edit_term', ['batch' => $this->classRepository->findBatch($batchId)]);
 	}
 
-	public function getBatchDetailEdit($batchId)
+	public function getBatchDetailsEdit($batchId)
 	{
 		return view('classes::edit_batch', ['batch' => $this->classRepository->findBatch($batchId)]);
 	}
 
-	public function postBatchDetailEdit(UpdateBatchRequest $request, $batchId)
+	public function postBatchDetailsEdit(UpdateBatchRequest $request, $batchId)
 	{
 		$this->classRepository->updateBatch($request->all(), $batchId);
 
@@ -78,7 +78,7 @@ class BatchController extends BaseController
 	{
 		$batch = $this->classRepository->createBatch($request->all());
 
-		return $this->printRedirect(route('classes.detail.edit', $batch->id));
+		return $this->printRedirect(route('batch.details.edit', $batch->id));
 	}
 
 	public function getBatchNew()

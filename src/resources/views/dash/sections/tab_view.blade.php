@@ -2,34 +2,50 @@
 
 @section('content')
 
-<section class="section">
+    <section class="section">
 
-@yield('scripts')
+    @yield('scripts')
 
-@yield('tools')
+    @hasSection('breadcrumbs')
 
-<h2>@yield('title')</h2>
+        <h2>@yield('title')</h2>
 
-<div class="row">
-  
-    <div class="col-xs-2">
+        <div class="pull-right">
+            @yield('tools')
+        </div>
+
+        @yield('breadcrumbs')
+
+    @else
+
+        <div class="pull-right">
+            @yield('tools')
+        </div>
         
-        @yield('tabs')
+        <h2>@yield('title')</h2>
 
-    </div>
+    @endif
 
-    <div class="col-xs-10">
-        <div class="tab-content">
-            <div class="tab-pane active">
+    <div class="row">
+      
+        <div class="col-xs-2">
+            
+            @yield('tabs')
 
-                @yield('tab')
+        </div>
 
+        <div class="col-xs-10">
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @yield('tab')
+
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
-
-</section>
+    </section>
 
 @endsection
