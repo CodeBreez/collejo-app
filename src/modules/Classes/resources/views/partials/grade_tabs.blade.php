@@ -8,8 +8,8 @@
 @else
 
 <ul class="nav nav-tabs tabs-left">
-    <li class="{{ active_class(if_route(['grade.detail.edit'])) }}">
-    	<a href="{{ route('grade.detail.edit', $grade->id) }}">Grade Details</a>
+    <li class="{{ active_class(if_route(['grade.details.edit'])) }}">
+    	<a href="{{ route('grade.details.edit', $grade->id) }}">Grade Details</a>
     </li>
     <li class="{{ active_class(if_route(['grade.classes.view'])) }}">
     	<a href="{{ route('grade.classes.view', $grade->id) }}">Classes</a>

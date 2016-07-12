@@ -15,6 +15,38 @@ $(function(){
             });
         }
     });
+
+    var batch = Collejo.components.dropDown($('#batch'));
+    var grade = Collejo.components.dropDown($('#grade'));
+    var cls = Collejo.components.dropDown($('#class'));
+
+    batch.on('change', function(value){
+        $.getJSON('{{ route('batch.grades.view') }}?batch_id=' + value, function(response){
+            if (response.success) {
+                grade.clear();
+                grade.clearOptions();
+                cls.clear();
+                cls.clearOptions();
+
+                $.each(response.data, function(value, text){
+                    grade.addOption({value:value,text:text});
+                });
+            }
+        });
+    });
+
+    grade.on('change', function(value){
+        $.getJSON('{{ route('grade.classes.view') }}?grade_id=' + value, function(response){
+            if (response.success) {
+                cls.clear();
+                cls.clearOptions();
+
+                $.each(response.data, function(value, text){
+                    cls.addOption({value:value,text:text});
+                });
+            }
+        });
+    });
     
 }); 
 </script>
@@ -30,13 +62,27 @@ $(function(){
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Batch</label>
                     <div class="col-sm-6">
-                        <select class="form-control" data-toggle="select-dropdown">
+                        <select class="form-control" name="batch_id" data-toggle="select-dropdown" id="batch">
                             @foreach($batches as $batch)
                                 <option value="{{ $batch->id }}">{{ $batch->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>               
+                </div>      
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Grade</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="grade_id" data-toggle="select-dropdown" id="grade">
+                        </select>
+                    </div>
+                </div>       
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Class</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="class_id" data-toggle="select-dropdown" id="class">
+                        </select>
+                    </div>
+                </div>             
 
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">

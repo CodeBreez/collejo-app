@@ -62,8 +62,6 @@ Collejo.dynamics.checkRowCount = function(list) {
     if (type = 'table') {
         var table = list.find('table');
 
-        console.log(table.html());
-
         if (table.find('tr').length == 1) {
             list.find('.placeholder').show();
             table.hide();

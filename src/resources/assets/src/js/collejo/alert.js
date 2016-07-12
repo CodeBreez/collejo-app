@@ -30,7 +30,7 @@ Collejo.alert = function(type, msg, duration) {
 
     alert.appendTo(alertContainer).addClass('animated ' + Collejo.settings.alertInClass);
 
-    if (duration > 0) {
+    if (duration !== false) {
         window.setTimeout(function() {
             if (Collejo.browser.isFirefox || Collejo.browser.isChrome) {
                 alert.removeClass(Collejo.settings.alertInClass)

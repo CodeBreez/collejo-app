@@ -9,6 +9,7 @@ var Collejo = Collejo || {
     modal: {},
     dynamics: {},
     browser: {},
+    components: {},
     ready: []
 };
 

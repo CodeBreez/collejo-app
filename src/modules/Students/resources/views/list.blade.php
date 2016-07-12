@@ -16,6 +16,9 @@
                 
     <tr>
         <th>Name</th>
+        <th>Admission Date</th>
+        <th>Batch</th>
+        <th>Grade</th>
         <th>Class</th>
         <th></th>
     </tr>

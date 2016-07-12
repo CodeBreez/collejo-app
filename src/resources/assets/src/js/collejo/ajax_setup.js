@@ -18,7 +18,13 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     status = (response == 0) ? xhr.status : response;
 
     if (status == 403 || status == 401) {
-        Collejo.alert('danger', 'You are not authorized to perform this action', 1000);
+        Collejo.alert('danger', 'You are not authorized to perform this action', 3000);
+        $('.modal,.modal-backdrop').remove();
+    }
+
+    if (status == 400) {
+        Collejo.alert('warning', response.message, false);
+        $('.modal,.modal-backdrop').remove();
     }
 
     if (status != 0 && status != null) {

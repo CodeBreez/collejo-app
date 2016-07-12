@@ -29,7 +29,7 @@
         </td>
         <td>{{ $grade->classes->count() }}</td>
         <td class="tools-column">
-            <a href="{{ route('grade.detail.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('grade.details.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
         </td>
     </tr>
 

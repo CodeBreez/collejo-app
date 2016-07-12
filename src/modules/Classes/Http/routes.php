@@ -8,13 +8,16 @@ Route::group(['prefix' => 'dash/batches', 'middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'dash/batch', 'middleware' => 'auth'], function() {
 
+	Route::get('/grades', 'BatchController@getBatchGrades')->middleware('ajax')->name('batch.grades.view');
+
 	Route::get('/new', 'BatchController@getBatchNew')->name('batch.new');
 	Route::post('/new', 'BatchController@postBatchNew');
-	
+
 	Route::get('/{id}/details/edit', 'BatchController@getBatchDetailsEdit')->name('batch.details.edit');
 	Route::post('/{id}/details/edit', 'BatchController@postBatchDetailsEdit');
 
-	Route::get('/{id}/terms/view', 'BatchController@getBatchTerms')->name('batch.terms.view');
+	Route::get('/{id}/terms/view', 'BatchController@getBatchTermsView')->name('batch.terms.view');
+	Route::get('/{id}/terms/edit', 'BatchController@getBatchTermsEdit')->name('batch.terms.edit');
 
 	Route::get('/{id}/term/new', 'BatchController@getBatchTermNew')->name('batch.term.new');
 	Route::post('/{id}/term/new', 'BatchController@postBatchTermNew');
@@ -23,6 +26,8 @@ Route::group(['prefix' => 'dash/batch', 'middleware' => 'auth'], function() {
 	Route::post('/{id}/term/{tid}/edit', 'BatchController@postBatchTermEdit');
 
 	Route::get('/{id}/term/{tid}/delete', 'BatchController@getBatchTermDelete')->name('batch.term.delete');
+
+	Route::get('/{id}/grades/edit', 'BatchController@getBatchGradesEdit')->name('batch.grades.edit');
 });
 
 Route::group(['prefix' => 'dash/grades', 'middleware' => 'auth'], function() {
@@ -51,4 +56,5 @@ Route::group(['prefix' => 'dash/grade', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/class/{tid}/delete', 'GradeController@getGradeClassDelete')->name('grade.class.delete');
 
+	Route::get('/classes', 'GradeController@getGradeClasses')->middleware('ajax')->name('grade.classes.view');
 });

@@ -31,7 +31,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Collejo\App\Http\Middleware\VerifyCsrfToken::class,
             \Clockwork\Support\Laravel\ClockworkMiddleware::class,
-            \Collejo\App\Http\Middleware\SetUserTime::class,
+            \Collejo\App\Http\Middleware\SetUserTime::class
         ],
 
         'api' => [
@@ -52,6 +52,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\App\Http\Middleware\Authorize::class,
         'guest' => \Collejo\App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'ajax' => \Collejo\App\Http\Middleware\Ajax::class
     ];
 
 }

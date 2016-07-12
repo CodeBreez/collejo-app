@@ -1,3 +1,13 @@
 Collejo.ready.push(function(scope) {
-    $(scope).find('[data-toggle="select-dropdown"]').selectize();
+    Collejo.components.dropDown($(scope).find('[data-toggle="select-dropdown"]'));
 });
+
+Collejo.components.dropDown = function(el) {
+    var component = el.selectize({
+        placeholder: 'Select...'
+    });
+
+    if (component.length) {
+        return component[0].selectize;
+    }
+}

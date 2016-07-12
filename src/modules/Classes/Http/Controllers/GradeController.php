@@ -8,6 +8,7 @@ use Collejo\App\Modules\Classes\Http\Requests\CreateGradeRequest;
 use Collejo\App\Modules\Classes\Http\Requests\CreateClassRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateGradeRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateClassRequest;
+use Request;
 
 class GradeController extends BaseController
 {
@@ -62,14 +63,14 @@ class GradeController extends BaseController
 		return view('classes::view_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
 	}
 
-	public function postGradeDetailEdit(UpdateGradeRequest $request, $gradeId)
+	public function postGradeDetailsEdit(UpdateGradeRequest $request, $gradeId)
 	{
 		$this->classRepository->updateGrade($request->all(), $gradeId);
 
 		return $this->printJson(true, [], 'Grade Updated');
 	}
 
-	public function getGradeDetailEdit($gradeId)
+	public function getGradeDetailsEdit($gradeId)
 	{
 		return view('classes::edit_grade', ['grade' => $this->classRepository->findGrade($gradeId)]);
 	}
@@ -78,7 +79,7 @@ class GradeController extends BaseController
 	{
 		$grade = $this->classRepository->createGrade($request->all());
 
-		return $this->printRedirect(route('grade.detail.edit', $grade->id));
+		return $this->printRedirect(route('grade.details.edit', $grade->id));
 	}
 
 	public function getGradeNew()
@@ -86,9 +87,14 @@ class GradeController extends BaseController
 		return view('classes::edit_grade', ['grade' => null]);
 	}
 
-	public function getGradeList()
+	public function getGradeList(Request $request)
 	{
 		return view('classes::grades_list', ['grades' => $this->classRepository->getGrades()]);
+	}
+
+	public function getGradeClasses(Request $request)
+	{
+		return $this->printJson(true, $this->classRepository->findGrade($request::get('grade_id'))->classes->pluck('name', 'id'));
 	}
 
 	public function __construct(ClassRepository $classRepository)

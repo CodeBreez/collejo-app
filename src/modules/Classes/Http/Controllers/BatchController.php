@@ -8,11 +8,22 @@ use Collejo\App\Modules\Classes\Http\Requests\CreateBatchRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateBatchRequest;
 use Collejo\App\Modules\Classes\Http\Requests\CreateTermRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateTermRequest;
+use Request;
 
 class BatchController extends BaseController
 {
 
 	protected $classRepository;
+
+	public function getBatchTermsEdit($batchId)
+	{
+
+	}
+
+	public function getBatchGradesEdit($batchId)
+	{
+
+	}
 
 	public function getBatchTermDelete($batchId, $termId)
 	{
@@ -89,6 +100,11 @@ class BatchController extends BaseController
 	public function getBatchList()
 	{
 		return view('classes::batches_list', ['batches' => $this->classRepository->getBatches()]);
+	}
+
+	public function getBatchGrades(Request $request)
+	{
+		return $this->printJson(true, $this->classRepository->findBatch($request::get('batch_id'))->grades->pluck('name', 'id'));
 	}
 
 	public function __construct(ClassRepository $classRepository)

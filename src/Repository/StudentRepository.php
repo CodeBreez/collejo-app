@@ -4,18 +4,27 @@ namespace Collejo\App\Repository;
 
 use Collejo\Core\Foundation\Repository\BaseRepository;
 use Collejo\Core\Contracts\Repository\StudentRepository as StudentRepositoryContract;
+use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Student;
 use Collejo\App\Models\Address;
 use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use DB;
+use Carbon;
 
 class StudentRepository extends BaseRepository implements StudentRepositoryContract {
 
 	protected $userRepository;
+	protected $classRepository;
 
-	public function assignToClass($batchId, $classId, $studentId)
+	public function assignToClass($batchId, $gradeId, $classId, $studentId)
 	{
-
+		if (!$this->find($studentId)->classes->contains($classId)) {
+			$this->find($studentId)->classes()->attach($this->classRepository->findClass($classId, $gradeId), [
+					'batch_id' => $this->classRepository->findBatch($batchId)->id,
+					'id' => $this->newUUID(),
+					'updated_at' => Carbon::now()
+				]);
+		}
 	}
 
 	public function deleteAddress($addressId, $studentId)
@@ -104,5 +113,6 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
     	parent::boot();
 
     	$this->userRepository = app()->make(UserRepositoryContract::class);
+    	$this->classRepository = app()->make(ClassRepositoryContract::class);
     }
 }

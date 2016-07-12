@@ -1,7 +1,18 @@
 <tr id="{{ $student->id }}">
     <td>
-        <div>{{ $student->name }}</div>
+        <div><a href="{{ route('student.details.view', $student->id) }}">{{ $student->name }}</a></div>
         <small class="text-muted">{{ $student->admission_number }}</small>
+    </td>
+    <td>{{ $student->admitted_on }}</td>
+    <td>
+        @if($student->batch)
+            {{ $student->batch->name }}
+        @endif
+    </td>
+    <td>
+        @if($student->grade)
+            {{ $student->grade->name }}
+        @endif
     </td>
     <td>
         @if($student->class)

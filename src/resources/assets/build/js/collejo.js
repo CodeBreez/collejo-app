@@ -43717,6 +43717,7 @@ var Collejo = Collejo || {
     modal: {},
     dynamics: {},
     browser: {},
+    components: {},
     ready: []
 };
 
@@ -43794,7 +43795,13 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     status = (response == 0) ? xhr.status : response;
 
     if (status == 403 || status == 401) {
-        Collejo.alert('danger', 'You are not authorized to perform this action', 1000);
+        Collejo.alert('danger', 'You are not authorized to perform this action', 3000);
+        $('.modal,.modal-backdrop').remove();
+    }
+
+    if (status == 400) {
+        Collejo.alert('warning', response.message, false);
+        $('.modal,.modal-backdrop').remove();
     }
 
     if (status != 0 && status != null) {
@@ -43864,8 +43871,18 @@ Collejo.ready.push(function(scope) {
     });
 });
 Collejo.ready.push(function(scope) {
-    $(scope).find('[data-toggle="select-dropdown"]').selectize();
+    Collejo.components.dropDown($(scope).find('[data-toggle="select-dropdown"]'));
 });
+
+Collejo.components.dropDown = function(el) {
+    var component = el.selectize({
+        placeholder: 'Select...'
+    });
+
+    if (component.length) {
+        return component[0].selectize;
+    }
+}
 Collejo.ready.push(function(scope) {
     $(scope).on('click', '[data-toggle="ajax-link"]', function(e) {
         e.preventDefault();
@@ -43955,7 +43972,7 @@ Collejo.alert = function(type, msg, duration) {
 
     alert.appendTo(alertContainer).addClass('animated ' + Collejo.settings.alertInClass);
 
-    if (duration > 0) {
+    if (duration !== false) {
         window.setTimeout(function() {
             if (Collejo.browser.isFirefox || Collejo.browser.isChrome) {
                 alert.removeClass(Collejo.settings.alertInClass)
@@ -44045,8 +44062,6 @@ Collejo.dynamics.checkRowCount = function(list) {
 
     if (type = 'table') {
         var table = list.find('table');
-
-        console.log(table.html());
 
         if (table.find('tr').length == 1) {
             list.find('.placeholder').show();

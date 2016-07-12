@@ -35,7 +35,7 @@ $(function(){
 
 @section('tab')
 
-<form method="POST" id="edit-grade" class="form-horizontal" action="{{ $grade ? route('grade.detail.edit', $grade->id) : route('grade.new') }}">
+<form method="POST" id="edit-grade" class="form-horizontal" action="{{ $grade ? route('grade.details.edit', $grade->id) : route('grade.new') }}">
 
     <div class="col-xs-6">
         <div class="form-group">

@@ -20,7 +20,7 @@ class StudentController extends BaseController
 
 	public function postStudentClassAssign(AssignClassRequest $request, $studentId)
 	{
-		$this->studentRepository->assignToClass($request->get('class_id'), $request->get('batch_id'), $studentId);
+		$this->studentRepository->assignToClass($request->get('batch_id'),  $request->get('grade_id'), $request->get('class_id'), $studentId);
 
 		return $this->printPartial(view('students::partials.student', [
 				'student' => $this->studentRepository->find($studentId),

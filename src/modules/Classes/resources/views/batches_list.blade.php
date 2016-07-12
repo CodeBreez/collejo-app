@@ -16,6 +16,7 @@
                 
     <tr>
         <th>Name</th>
+        <th>Grades</th>
         <th></th>
     </tr>
 
@@ -26,8 +27,9 @@
             <div>{{ $batch->name }}</div>
             <small class="text-muted">{{ $batch->id }}</small>
         </td>
+        <td>{{ $batch->grades->count() }}</td>
         <td class="tools-column">
-            <a href="{{ route('batch.detail.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
         </td>
     </tr>
 
