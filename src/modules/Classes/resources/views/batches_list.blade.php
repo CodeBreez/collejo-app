@@ -15,9 +15,9 @@
 <table class="table">
                 
     <tr>
-        <th>Name</th>
-        <th>Grades</th>
-        <th></th>
+        <th width="*">Name</th>
+        <th width="20%">Grades</th>
+        <th width="10%"></th>
     </tr>
 
     @foreach($batches as $batch)

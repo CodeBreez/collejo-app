@@ -15,9 +15,9 @@
 <table class="table">
                 
     <tr>
-        <th>Name</th>
-        <th>Number of Classes</th>
-        <th></th>
+        <th width="*">Name</th>
+        <th width="20%">Number of Classes</th>
+        <th width="10%"></th>
     </tr>
 
     @foreach($grades as $grade)
