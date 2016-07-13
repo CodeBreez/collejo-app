@@ -19,7 +19,10 @@
     "autoload": {
         "psr-4": {
             "Collejo\\App\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers/helpers.php"
+        ]
     },
     "minimum-stability": "dev",
     "authors": [{
