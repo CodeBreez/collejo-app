@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\MigrateCopy::class,
         Commands\AdminCreate::class,
         Commands\AssetCopy::class,
+        Commands\RouteCache::class,
+        Commands\ConfigCache::class,
     ];
 
     /**
