@@ -9489,6 +9489,14 @@ label.error {
 .spinner-wrap {
   display: inline-block;
   padding-left: 15px; }
+  .spinner-wrap.inline {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 3; }
+    .spinner-wrap.inline .spinner {
+      border: 0.25rem solid #2487ca;
+      border-top-color: white; }
 
 .progress {
   height: 10px; }
