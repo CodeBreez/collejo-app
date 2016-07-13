@@ -72,7 +72,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		$student = null;
 
 		if (isset($attributes['admitted_on'])) {
-			$attributes['admitted_on'] = $this->userTzConvert($attributes['admitted_on']);
+			$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
 		}
 
 		$studentAttributes = $this->parseFillable($attributes);
@@ -90,7 +90,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	{
 		$student = null;
 		
-		$attributes['admitted_on'] = $this->userTzConvert($attributes['admitted_on']);
+		$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
 
 		$studentAttributes = $this->parseFillable($attributes);
 

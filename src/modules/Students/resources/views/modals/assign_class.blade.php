@@ -21,7 +21,15 @@ $(function(){
     var cls = Collejo.components.dropDown($('#class'));
 
     batch.on('change', function(value){
+        Collejo.templates.spinnerTemplate().addClass('inline').insertAfter($('#grade'));
+        grade.disable();
+        cls.disable();
+
         $.getJSON('{{ route('batch.grades.view') }}?batch_id=' + value, function(response){
+            $('#grade').siblings('.spinner-wrap').remove();
+            grade.enable();
+            cls.enable();
+            
             if (response.success) {
                 grade.clear();
                 grade.clearOptions();
@@ -36,7 +44,13 @@ $(function(){
     });
 
     grade.on('change', function(value){
+        Collejo.templates.spinnerTemplate().addClass('inline').insertAfter($('#class'));
+        cls.disable();
+
         $.getJSON('{{ route('grade.classes.view') }}?grade_id=' + value, function(response){
+            $('#class').siblings('.spinner-wrap').remove();
+            cls.enable();
+
             if (response.success) {
                 cls.clear();
                 cls.clearOptions();

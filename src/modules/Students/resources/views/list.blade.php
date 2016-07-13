@@ -15,12 +15,12 @@
 <table class="table" id="students">
                 
     <tr>
-        <th>Name</th>
-        <th>Admission Date</th>
-        <th>Batch</th>
-        <th>Grade</th>
-        <th>Class</th>
-        <th></th>
+        <th width="*">Name</th>
+        <th width="20%">Admission Date</th>
+        <th width="15%">Batch</th>
+        <th width="10%">Grade</th>
+        <th width="10%">Class</th>
+        <th width="10%"></th>
     </tr>
 
     @foreach($students as $student)

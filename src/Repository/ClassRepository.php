@@ -75,8 +75,8 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
     public function updateTerm(array $attributes, $termId, $batchId)
     {
-        $attributes['start_date'] = $this->userTzConvert($attributes['start_date']);
-        $attributes['end_date'] = $this->userTzConvert($attributes['end_date']);
+        $attributes['start_date'] = toUTC($attributes['start_date']);
+        $attributes['end_date'] = toUTC($attributes['end_date']);
 
         $this->findTerm($termId, $batchId)->update($attributes);
 
@@ -94,8 +94,8 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
         $batch = $this->findBatch($batchId);
 
-        $attributes['start_date'] = $this->userTzConvert($attributes['start_date']);
-        $attributes['end_date'] = $this->userTzConvert($attributes['end_date']);
+        $attributes['start_date'] = toUTC($attributes['start_date']);
+        $attributes['end_date'] = toUTC($attributes['end_date']);
         $attributes['batch_id'] = $batch->id;
 
         DB::transaction(function () use ($attributes, &$term) {

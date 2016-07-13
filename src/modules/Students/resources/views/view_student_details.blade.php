@@ -24,7 +24,7 @@
 	</dl>	
 	<dl class="row">
 		<dt class="col-sm-4">Admission Date</dt>
-		<dd class="col-sm-8">{{ $student->admission_date }}</dd>
+		<dd class="col-sm-8">{{ formatDate(toUserTz($student->admitted_on)) }}</dd>
 	</dl>	
 	<dl class="row">
 		<dt class="col-sm-4">Name</dt>

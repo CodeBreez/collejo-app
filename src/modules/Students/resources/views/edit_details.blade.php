@@ -65,7 +65,7 @@ $(function(){
             <label class="col-sm-4 control-label">Admission Date</label>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input type="text" name="admitted_on" class="form-control" data-toggle="date-input" value="{{ $student ? $student->admitted_on : '' }}">
+                    <input type="text" name="admitted_on" class="form-control" data-toggle="date-input" value="{{ $student ? formatDate(toUserTz($student->admitted_on)) : '' }}">
                     <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
             </div>
