@@ -15,27 +15,35 @@
 
                 @foreach (Menu::getMenuBarItems()->sortBy('order') as $item)
 
-                    @if($item->children->count())
+                    @if($item->isVisible())
 
-                        <li class="dropdown">
-                            <a href="{{ $item->getFullPath() }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{ $item->getIcon() }}"></i> {{ $item->getLabel() }} <b class="caret"></b></a>
+                        @if($item->children->count())
 
-                            <ul class="dropdown-menu">
+                            <li class="dropdown">
+                                <a href="{{ $item->getFullPath() }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{ $item->getIcon() }}"></i> {{ $item->getLabel() }} <b class="caret"></b></a>
 
-                                @foreach($item->children->sortBy('order') as $child)
+                                <ul class="dropdown-menu">
 
-                                    <li><a href="{{ $child->getFullPath() }}">{{ $child->getLabel() }}</a></li>
+                                    @foreach($item->children->sortBy('order') as $child)
 
-                                @endforeach
+                                        @if($item->isVisible())
 
-                            </ul>
-                        </li>
+                                            <li><a href="{{ $child->getFullPath() }}">{{ $child->getLabel() }}</a></li>
 
-                    @else
+                                        @endcan
 
-                        <li><a href="{{ $item->getFullPath() }}"><i class="fa {{ $item->getIcon() }}"></i> {{ $item->getLabel() }}</a></li>
+                                    @endforeach
 
-                    @endif
+                                </ul>
+                            </li>
+
+                        @else
+
+                            <li><a href="{{ $item->getFullPath() }}"><i class="fa {{ $item->getIcon() }}"></i> {{ $item->getLabel() }}</a></li>
+
+                        @endif
+
+                    @endcan
 
                 @endforeach
 

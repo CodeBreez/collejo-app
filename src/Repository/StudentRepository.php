@@ -98,7 +98,10 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 			$user = $this->userRepository->create($attributes);
 
 			$student = parent::create(array_merge($studentAttributes, ['user_id' => $user->id]));
+
+			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('student'));
 		});
+
 
 		return $student;
 	}

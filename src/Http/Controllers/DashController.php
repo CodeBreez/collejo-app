@@ -3,6 +3,8 @@
 namespace Collejo\App\Http\Controllers;
 
 use Collejo\App\Http\Controllers\Controller as BaseController;
+use Gate;
+use Auth;
 
 class DashController extends BaseController
 {
