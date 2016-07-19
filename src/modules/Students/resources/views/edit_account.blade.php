@@ -5,9 +5,9 @@
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-  <li><a href="{{ route('students.list') }}">Students List</a></li>
+  <li><a href="{{ route('students.list') }}">{{ trans('students::student.students_list') }}</a></li>
   <li><a href="{{ route('student.account.view', $student->id) }}">{{ $student->name }}</a></li>
-  <li class="active">Edit Student</li>
+  <li class="active">{{ trans('students::student.edit_student') }}</li>
 </ol>
 
 @endsection
@@ -50,13 +50,13 @@ $(function(){
 
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Email</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.email') }}</label>
             <div class="col-sm-8">
                 <input type="email" name="email" class="form-control" placeholder="name@example.com" value="{{ $student->email }}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">Password</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.password') }}</label>
             <div class="col-sm-8">
                 <input type="password" name="password" class="form-control">
             </div>
@@ -69,7 +69,7 @@ $(function(){
     <div class="col-xs-6">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="Saving...">Save</button>
+                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>
             </div>
         </div>
     </div>

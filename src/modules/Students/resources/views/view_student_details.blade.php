@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-edit"></i> Edit</a>  
+<a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>  
 
 @endsection
 
@@ -19,19 +19,19 @@
 
 <div class="col-sm-6">
 	<dl class="row">
-		<dt class="col-sm-4">Admission Number</dt>
+		<dt class="col-sm-4">{{ trans('students::student.admission_number') }}</dt>
 		<dd class="col-sm-8">{{ $student->admission_number }}</dd>
 	</dl>	
 	<dl class="row">
-		<dt class="col-sm-4">Admission Date</dt>
+		<dt class="col-sm-4">{{ trans('students::student.admission_date') }}</dt>
 		<dd class="col-sm-8">{{ formatDate(toUserTz($student->admitted_on)) }}</dd>
 	</dl>	
 	<dl class="row">
-		<dt class="col-sm-4">Name</dt>
+		<dt class="col-sm-4">{{ trans('students::student.name') }}</dt>
 		<dd class="col-sm-8">{{ $student->name }}</dd>
 	</dl>
 	<dl class="row">
-		<dt class="col-sm-4">Date of birth</dt>
+		<dt class="col-sm-4">{{ trans('students::student.date_of_birth') }}</dt>
 		<dd class="col-sm-8">{{ $student->date_of_birth }}</dd>
 	</dl>
 </div>

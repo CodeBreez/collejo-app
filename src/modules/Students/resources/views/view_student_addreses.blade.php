@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('student.addresses.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-edit"></i> Edit</a>  
+<a href="{{ route('student.addresses.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>  
 
 @endsection
 
@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-md-6">
-        <div class="placeholder">This user does not have any contacts defined.</div>
+        <div class="placeholder">{{ trans('students::address.empty_list') }}</div>
     </div>
 
 

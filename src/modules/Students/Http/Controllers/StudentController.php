@@ -24,7 +24,7 @@ class StudentController extends BaseController
 
 		return $this->printPartial(view('students::partials.student', [
 				'student' => $this->studentRepository->find($studentId),
-			]), 'Student updated');
+			]), trans('students::student.student_updated'));
 	}
 
 	public function getStudentClassAssign($studentId)
@@ -39,7 +39,7 @@ class StudentController extends BaseController
 	{
 		$this->studentRepository->deleteAddress($addressId, $studentId);
 
-		return $this->printJson(true, [], 'Contact Deleted');
+		return $this->printJson(true, [], trans('students::address.address_deleted'));
 	}
 
 	public function postStudentAddressEdit(UpdateAddressRequest $request, $studentId, $addressId)
@@ -49,7 +49,7 @@ class StudentController extends BaseController
 		return $this->printPartial(view('students::partials.address', [
 				'student' => $this->studentRepository->find($studentId),
 				'address' => $address
-			]), 'Contact updated');
+			]), trans('students::address.address_updated'));
 	}
 
 	public function getStudentAddressEdit($studentId, $addressId)
@@ -67,7 +67,7 @@ class StudentController extends BaseController
 		return $this->printPartial(view('students::partials.address', [
 				'student' => $this->studentRepository->find($studentId),
 				'address' => $address
-			]), 'Contact Created');
+			]), trans('students::address.address_created'));
 	}
 
 	public function getStudentAddressNew($studentId)
@@ -87,7 +87,7 @@ class StudentController extends BaseController
 	{
 		$this->studentRepository->update($request->all(), $studentId);
 
-		return $this->printJson(true, [], 'Student updated');
+		return $this->printJson(true, [], trans('students::student.student_updated'));
 	}	
 
 	public function getStudentAddressesView($studentId)
@@ -104,7 +104,7 @@ class StudentController extends BaseController
 	{
 		$this->studentRepository->update($request->all(), $studentId);
 
-		return $this->printJson(true, [], 'Student Updated');
+		return $this->printJson(true, [], trans('students::student.student_updated'));
 	}
 
 	public function getStudentAccountEdit($studentId)

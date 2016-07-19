@@ -1,10 +1,14 @@
 <?php
 
 return [
+	'create_new' => 'Create New',
 	'continue' => 'Continue',
 	'ok' => 'Ok',
+	'save' => 'Save',
+	'saving' => 'Saving...',
 	'try_again' => 'Try Again',
-	'server_responded' => 'The server responded: :msg',
-	'lets_start' => 'Let\'s Start',
-	'login' => 'Log in'
+	'edit' => 'Edit',
+	'delete' => 'Delete'
+
+	'delete_confirm' => 'Are you sure you want to delete this item?'
 ];

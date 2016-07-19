@@ -1,10 +1,10 @@
 @extends('collejo::dash.sections.table_view')
 
-@section('title', 'Students')
+@section('title', trans('students::student.students'))
 
 @section('tools')
 
-<a href="{{ route('student.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create New</a>	
+<a href="{{ route('student.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>	
 
 @endsection
 
@@ -15,11 +15,11 @@
 <table class="table" id="students">
                 
     <tr>
-        <th width="*">Name</th>
-        <th width="20%">Admission Date</th>
-        <th width="15%">Batch</th>
-        <th width="10%">Grade</th>
-        <th width="10%">Class</th>
+        <th width="*">{{ trans('students::student.name') }}</th>
+        <th width="20%">{{ trans('students::student.admission_date') }}</th>
+        <th width="15%">{{ trans('students::student.batch') }}</th>
+        <th width="10%">{{ trans('students::student.grade') }}</th>
+        <th width="10%">{{ trans('students::student.class') }}</th>
         <th width="10%"></th>
     </tr>
 
@@ -33,7 +33,7 @@
 
 @else
 
-<div class="placeholder">There are not students in the system.</div>
+<div class="placeholder">{{ trans('students::student.empty_list') }}</div>
 
 @endif
 

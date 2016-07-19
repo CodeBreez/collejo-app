@@ -1,15 +1,15 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', $student ? 'Edit Student': 'New Student')
+@section('title', $student ? trans('students::student.edit_student') : trans('students::student.new_student'))
 
 @section('breadcrumbs')
 
 @if($student)
 
 <ol class="breadcrumb">
-  <li><a href="{{ route('students.list') }}">Students List</a></li>
+  <li><a href="{{ route('students.list') }}">{{ trans('students::student.students_list') }}</a></li>
   <li><a href="{{ route('student.details.view', $student->id) }}">{{ $student->name }}</a></li>
-  <li class="active">Edit Student</li>
+  <li class="active">trans('students::student.edit_student')</li>
 </ol>
 
 @endif
@@ -56,13 +56,13 @@ $(function(){
 
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Admission Number</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.admission_number') }}</label>
             <div class="col-sm-8">
                 <input type="text" name="admission_number" class="form-control" value="{{ $student ? $student->admission_number : '' }}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">Admission Date</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.admission_date') }}</label>
             <div class="col-sm-8">
                 <div class="input-group">
                     <input type="text" name="admitted_on" class="form-control" data-toggle="date-input" value="{{ $student ? formatDate(toUserTz($student->admitted_on)) : '' }}">
@@ -71,19 +71,19 @@ $(function(){
             </div>
         </div>                        
         <div class="form-group">
-            <label class="col-sm-4 control-label">First Name</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.first_name') }}</label>
             <div class="col-sm-8">
                 <input type="text" name="first_name" class="form-control" placeholder="Jon" value="{{ $student ? $student->first_name : '' }}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">Last Name</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.last_name') }}</label>
             <div class="col-sm-8">
                 <input type="text" name="last_name" class="form-control" placeholder="Doe" value="{{ $student ? $student->last_name : '' }}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">Date of Birth</label>
+            <label class="col-sm-4 control-label">{{ trans('students::student.date_of_birth') }}</label>
             <div class="col-sm-8">
                 <div class="input-group">
                     <input type="text" name="date_of_birth" class="form-control" data-toggle="date-input" value="{{ $student ? $student->date_of_birth : '' }}">
@@ -99,7 +99,7 @@ $(function(){
     <div class="col-xs-6">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="Saving...">Save</button>
+                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>
             </div>
         </div>
     </div>

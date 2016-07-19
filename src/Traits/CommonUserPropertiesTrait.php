@@ -2,6 +2,8 @@
 
 namespace Collejo\App\Traits;
 
+use Collejo\App\Models\User;
+
 trait CommonUserPropertiesTrait{
 
     public function user()
