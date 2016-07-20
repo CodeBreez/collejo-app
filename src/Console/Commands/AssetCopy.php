@@ -34,51 +34,63 @@ class AssetCopy extends Command
 
         $this->info('Copying core assets...');
 
-        $assetDir = realpath(__DIR__ . '/../../resources/assets');
+        $srcDir = realpath(__DIR__ . '/../../resources/assets/');
 
         $assetLocations = [
-            [$assetDir . '/build/js', 'js', true],
-            [$assetDir . '/build/css', 'css', true],
-            [$assetDir . '/fonts', 'fonts', false],
-            [$assetDir . '/images', 'images', true]
+            ['js', true],
+            ['css', true],
+            ['fonts', false],
+            ['images', true]
         ];
 
         $publicDir = base_path('public');
 
         $manifest = [];
 
+        if (!file_exists(base_path('public/build'))) {
+            mkdir(base_path('public/build'), 0755, true);
+        }
+
         foreach ($assetLocations as $location) {
 
-            $src = $location[0];
-            $dest = $location[1];
-            $versioned = $location[2];
+            $dir = $location[0];
+            $versioned = $location[1];
 
-            $destDir = $publicDir . '/' . $dest . '/';
+            $assetDir = $publicDir . '/' . $dir . '/';
+            $buildDir = $publicDir . '/build/' . $dir . '/';
 
-            if (!file_exists($destDir)) {
-                mkdir($destDir, 0755, true);
+            if (!file_exists($assetDir)) {
+                mkdir($assetDir, 0755, true);
             } 
 
-            array_map('unlink', glob($destDir . '/*'));
+            if (!file_exists($buildDir)) {
+                mkdir($buildDir, 0755, true);
+            } 
 
-            foreach (new DirectoryIterator($src) as $fileInfo) {
+            array_map('unlink', glob($assetDir . '/*'));
+            array_map('unlink', glob($buildDir . '/*'));
+
+            foreach (new DirectoryIterator($srcDir . '/' . $dir) as $fileInfo) {
                 if($fileInfo->isDot()) continue;
+
+                $regularFilePath = '/' . $dir . '/' . $fileInfo->getFilename();
 
                 if ($versioned) {
 
-                    $destFileName = md5($fileInfo->getFilename() . microtime(true)) . '-' . $fileInfo->getFilename();
+                    $versionedName = md5($fileInfo->getFilename() . microtime(true)) . '-' . $fileInfo->getFilename();
 
-                    $manifest['/' . $dest . '/' . $fileInfo->getFilename()] = '/' . $dest . '/' . $destFileName;
+                    $manifest[$regularFilePath] = $dir . '/' . $versionedName;
 
                 } else {
-                    $destFileName = $fileInfo->getFilename();
+                    $versionedName = $fileInfo->getFilename();
                 }
 
-                copy($src . '/' . $fileInfo->getFilename(), $destDir . $destFileName);
+                copy($srcDir . '/' . $dir . '/' . $fileInfo->getFilename(), $assetDir . $fileInfo->getFilename());
+                copy($srcDir . '/' . $dir . '/' . $fileInfo->getFilename(), $buildDir . $versionedName);
             }
         }
 
-        $fn = fopen(storage_path('rev-manifest.json'), 'w');
+        $fn = fopen(base_path('public/build/rev-manifest.json'), 'w');
 
         fwrite($fn, json_encode($manifest, JSON_PRETTY_PRINT));
 

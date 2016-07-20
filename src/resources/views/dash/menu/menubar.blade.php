@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand brand-text"><img src="{{ Asset::getVersionedFile('/images/collejo_sml.png') }}"> <span>Collejo</span></a>
+            <a href="/" class="navbar-brand brand-text"><img src="{{ asset(elixir('/images/collejo_sml.png')) }}"> <span>Collejo</span></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-main-navbar-collapse">

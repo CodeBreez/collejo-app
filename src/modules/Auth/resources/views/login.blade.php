@@ -37,7 +37,7 @@ $(function(){
 	<form method="POST" action="{{ route('auth.login') }}" id="login-form">
 
 		<div class="text-center">
-			<img src="{{ Asset::getVersionedFile('/images/collejo_mid.png') }}">
+			<img src="{{ asset(elixir('/images/collejo_mid.png')) }}">
 		</div>
 
         <h2 class="text-center brand-text">Collejo</h2>

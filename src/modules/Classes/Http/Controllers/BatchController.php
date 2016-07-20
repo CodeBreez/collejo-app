@@ -99,6 +99,15 @@ class BatchController extends BaseController
 
 	public function getBatchList()
 	{
+		if (!$this->classRepository->getGrades()->count()) {
+			return view('collejo::dash.landings.action_required', [
+							'message' => trans('classes::batch.no_grades_defined'),
+							'help' => trans('classes::batch.no_grades_defined_help'),
+							'action' => trans('classes::grade.create_grade'),
+							'route' => route('grade.new')
+						]);
+		}
+
 		return view('classes::batches_list', ['batches' => $this->classRepository->getBatches()]);
 	}
 

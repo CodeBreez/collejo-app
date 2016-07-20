@@ -1,10 +1,10 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', 'Edit Grade')
+@section('title', trans('classes::grade.edit_grade'))
 
 @section('tools')
 
-<a href="{{ route('grade.class.new', $grade->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Class</a>  
+<a href="{{ route('grade.class.new', $grade->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('classes::class.new_class') }}</a>  
 
 @endsection
 
@@ -22,7 +22,7 @@
     <table class="table">
 
         <tr>
-            <th>Name</th>
+            <th>{{ trans('classes::class.name') }}</th>
             <th class="text-right"></th>
         </tr>
 
@@ -35,7 +35,7 @@
     </table>
 
 
-    <div class="placeholder">This grade does not have any classes defined.</div>
+    <div class="placeholder">{{ trans('classes::class.empty_list') }}</div>
 
 </div>  
 

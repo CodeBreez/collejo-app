@@ -5,11 +5,12 @@ var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 
 var srcDir = './resources/assets/src/';
+var outDir = './resources/assets/';
 var buildDir = './resources/assets/build/';
 
 elixir(function(mix) {
     mix
-        .sass(srcDir + 'sass/collejo.scss', buildDir + 'css/collejo.css')
+        .sass(srcDir + 'sass/collejo.scss', outDir + 'css/collejo.css')
         .scripts([
             '../../../node_modules/jquery/jquery.js',
             '../../../node_modules/moment/moment.js',
@@ -33,11 +34,15 @@ elixir(function(mix) {
             srcDir + 'js/collejo/dynamics.js',
             srcDir + 'js/collejo/modal.js',
             srcDir + 'js/dashboard.js'
-        ], buildDir + 'js/collejo.js');
+        ], outDir + 'js/collejo.js')
+    /*.version([
+            outDir + 'css/collejo.css',
+            outDir + 'js/collejo.js'
+        ]);*/
 });
 
 gulp.task('copy', function() {
-    return watch([buildDir + '**/*.css', buildDir + '**/*.js'])
+    return watch([outDir + '**/*.css', outDir + '**/*.js'])
         .pipe(shell([
             'php ' + __dirname + '/../../../../artisan asset:copy'
         ]));

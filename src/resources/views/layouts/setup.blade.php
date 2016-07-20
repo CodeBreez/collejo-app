@@ -9,11 +9,10 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a target="_blank" href="https://github.com/codebreez/collejo-docs">{{ trans('collejo::setup.about') }}</a></li>
-            <li role="presentation"><a target="_blank" href="https://github.com/codebreez/collejo-docs/tree/master/installation-guide">{{ trans('collejo::setup.documentation') }}</a></li>
+            <li role="presentation"><a target="_blank" href="https://github.com/codebreez/collejo-docs">{{ trans('setup.documentation') }}</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted"><a href="/" class="brand-text"><img src="{{ Asset::getVersionedFile('/images/collejo_sml.png') }}"> Collejo</a></h3>
+        <h3 class="text-muted"><a href="/" class="brand-text"><img src="{{ asset(elixir('/images/collejo_sml.png')) }}"> Collejo</a></h3>
       </div>
 
       @yield('content')

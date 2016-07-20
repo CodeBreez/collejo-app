@@ -5,6 +5,10 @@ body{background: $gray-lighter;}
 	span{display: inline-block;float: left;padding-left: 10px;font-size: 20px;}
 }
 
+.landing-screen{
+	i.fa{font-size: 100px; color: lighten($gray-light, 50%);margin-top: 50px;margin-bottom: 30px;}
+}
+
 .dash-content{
 	margin-top:50px;padding-top:15px;
 

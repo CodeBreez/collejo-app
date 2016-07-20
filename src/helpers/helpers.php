@@ -47,3 +47,4 @@ if (!function_exists('formatTime')) {
     	return $time->format('H:i');
     }
 }
+

@@ -8,7 +8,8 @@ return [
 	'saving' => 'Saving...',
 	'try_again' => 'Try Again',
 	'edit' => 'Edit',
-	'delete' => 'Delete'
+	'delete' => 'Delete',
 
-	'delete_confirm' => 'Are you sure you want to delete this item?'
+	'delete_confirm' => 'Are you sure you want to delete this item?',
+	'action_required' => 'Action Required'
 ];

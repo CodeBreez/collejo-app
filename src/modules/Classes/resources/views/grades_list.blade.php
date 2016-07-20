@@ -1,10 +1,10 @@
 @extends('collejo::dash.sections.table_view')
 
-@section('title', 'Grades')
+@section('title', trans('classes::grade.grades'))
 
 @section('tools')
 
-<a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create Grade</a>  
+<a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('classes::grade.create_grade') }}</a>  
 
 @endsection
 
@@ -15,8 +15,8 @@
 <table class="table">
                 
     <tr>
-        <th width="*">Name</th>
-        <th width="20%">Number of Classes</th>
+        <th width="*">{{ trans('classes::grade.name') }}</th>
+        <th width="20%">{{ trans('classes::grade.number_of_classes') }}</th>
         <th width="10%"></th>
     </tr>
 
@@ -29,7 +29,7 @@
         </td>
         <td>{{ $grade->classes->count() }}</td>
         <td class="tools-column">
-            <a href="{{ route('grade.details.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('grade.details.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
         </td>
     </tr>
 
@@ -40,7 +40,7 @@
 @else
 
 <div class="placeholder-row">
-    <div class="placeholder">There are no grades in the system.</div>
+    <div class="placeholder">{{ trans('classes::grade.empty_list') }}</div>
 </div>
 
 @endif

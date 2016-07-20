@@ -1,10 +1,10 @@
 @extends('collejo::dash.sections.table_view')
 
-@section('title', 'Batches')
+@section('title', trans('classes::batch.batches'))
 
 @section('tools')
 
-<a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create Batch</a>  
+<a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('classes::batch.create_batch') }}</a>  
 
 @endsection
 
@@ -15,8 +15,8 @@
 <table class="table">
                 
     <tr>
-        <th width="*">Name</th>
-        <th width="20%">Grades</th>
+        <th width="*">{{ trans('classes::batch.name') }}</th>
+        <th width="20%">{{ trans('classes::batch.grades') }}</th>
         <th width="10%"></th>
     </tr>
 
@@ -29,7 +29,7 @@
         </td>
         <td>{{ $batch->grades->count() }}</td>
         <td class="tools-column">
-            <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+            <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
         </td>
     </tr>
 
@@ -40,7 +40,7 @@
 @else
 
 <div class="placeholder-row">
-    <div class="placeholder">There are no batches in the system.</div>
+    <div class="placeholder">{{ trans('classes::batch.empty_list') }}</div>
 </div>
 
 @endif

@@ -1,6 +1,6 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', $batch ? 'Edit Batch': 'New Batch')
+@section('title', $batch ? trans('classes::batch.edit_batch') : trans('classes::batch.new_batch'))
 
 @section('scripts')
 
@@ -39,7 +39,7 @@ $(function(){
 
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Batch Name</label>
+            <label class="col-sm-4 control-label">{{ trans('classes::batch.name') }}</label>
             <div class="col-sm-8">
                 <input type="text" name="name" class="form-control" placeholder="Batch - {{ date('Y', time()) }}" value="{{ $batch ? $batch->name : '' }}">
             </div>
@@ -51,7 +51,7 @@ $(function(){
     <div class="col-xs-6">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="Saving...">Save</button>
+                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>
             </div>
         </div>
     </div>

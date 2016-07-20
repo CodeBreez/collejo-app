@@ -1,6 +1,6 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', $grade ? 'Edit Grade': 'New Grade')
+@section('title', $grade ? trans('classes::grade.edit_grade') : trans('classes::grade.new_grade'))
 
 @section('scripts')
 
@@ -39,7 +39,7 @@ $(function(){
 
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Name</label>
+            <label class="col-sm-4 control-label">{{ trans('classes::grade.name') }}</label>
             <div class="col-sm-8">
                 <input type="text" name="name" class="form-control" placeholder="Grade x" value="{{ $grade ? $grade->name : '' }}">
             </div>
@@ -51,7 +51,7 @@ $(function(){
     <div class="col-xs-6">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="Saving...">Save</button>
+                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>
             </div>
         </div>
     </div>

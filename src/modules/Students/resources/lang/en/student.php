@@ -21,5 +21,7 @@ return [
 	'batch' => 'Batch',
 	'grade' => 'Grade',
 	'class' => 'Class',
+
 	'empty_list' => 'There are no students in the system.'
+	'student_updated' => 'Student updated.',
 ];

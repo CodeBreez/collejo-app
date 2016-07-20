@@ -1,6 +1,6 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', 'Edit Batch')
+@section('title', trans('classes::batch.edit_batch'))
 
 @section('scripts')
 
@@ -16,7 +16,7 @@ function afterDeleteTerm(link, response){
 
 @section('tools')
 
-<a href="{{ route('batch.term.new', $batch->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> New Term</a>  
+<a href="{{ route('batch.term.new', $batch->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('classes::term.new_term') }}</a>  
 
 @endsection
 
@@ -42,7 +42,7 @@ function afterDeleteTerm(link, response){
     @else
 
         <div class="col-md-6">
-            <div class="placeholder">This batch does not have any terms defined.</div>
+            <div class="placeholder">{{ trans('classes::terms.empty_list') }}</div>
         </div>
 
     @endif
