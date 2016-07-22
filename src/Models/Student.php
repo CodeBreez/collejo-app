@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Collejo\App\Traits\CommonUserPropertiesTrait;
 use Collejo\App\Models\User;
 use Collejo\App\Models\Clasis;
+use Collejo\App\Models\StudentCategory;
 use DB;
 
 class Student extends Model
@@ -16,9 +17,14 @@ class Student extends Model
 
     protected $table = 'students';
 
-    protected $fillable = ['user_id', 'admission_number', 'admitted_on'];
+    protected $fillable = ['user_id', 'admission_number', 'admitted_on', 'student_category_id'];
 
     protected $dates = ['admitted_on'];
+
+    public function studentCategory()
+    {
+        return $this->hasOne(StudentCategory::class);
+    }
 
     public function classes()
     {
