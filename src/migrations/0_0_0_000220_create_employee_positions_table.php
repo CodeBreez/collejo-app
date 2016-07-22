@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudentCategoriesTable extends Migration
+class CreateEmployeePositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,18 @@ class CreateStudentCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_categories', function (Blueprint $table) {
+        Schema::create('employee_positions', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->string('name', 20)->unique();
-            $table->string('code', 5)->nullable();
+            $table->string('employee_category_id', 45);
+            $table->string('name', 20);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::table('student_categories', function (Blueprint $table) {
+        Schema::table('employee_positions', function (Blueprint $table) {
+            $table->foreign('employee_category_id')->references('id')->on('employee_categories');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });
@@ -35,6 +36,6 @@ class CreateStudentCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('student_categories');
+        Schema::drop('employee_positions');
     }
 }
