@@ -9,7 +9,7 @@
 <ol class="breadcrumb">
   <li><a href="{{ route('students.list') }}">{{ trans('students::student.students_list') }}</a></li>
   <li><a href="{{ route('student.details.view', $student->id) }}">{{ $student->name }}</a></li>
-  <li class="active">trans('students::student.edit_student')</li>
+  <li class="active">{{ trans('students::student.edit_student') }}</li>
 </ol>
 
 @endif

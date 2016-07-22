@@ -15,8 +15,8 @@
 <table class="table">
                 
     <tr>
-        <th width="*">{{ trans('classes::grade.name') }}</th>
-        <th width="20%">{{ trans('classes::grade.number_of_classes') }}</th>
+        <th width="25%">{{ trans('classes::grade.name') }}</th>
+        <th width="*">{{ trans('classes::grade.classes') }}</th>
         <th width="10%"></th>
     </tr>
 
@@ -24,10 +24,17 @@
 
     <tr>
         <td>
-            <div>{{ $grade->name }}</div>
-            <small class="text-muted">{{ $grade->id }}</small>
+            <div><a href="{{ route('grade.details.view', $grade->id) }}">{{ $grade->name }}</a></div>
         </td>
-        <td>{{ $grade->classes->count() }}</td>
+        <td>
+            @if($grade->classes->count())
+                @foreach($grade->classes as $class)
+                    <span class="label label-default"><a href="#">{{ $class->name }}</a></span>
+                @endforeach
+            @else
+                <a href="{{ route('grade.classes.edit', $grade->id) }}" class="btn btn-xs btn-warning">{{ trans('classes::grade.create_classes') }}</a>
+            @endif
+        </td>
         <td class="tools-column">
             <a href="{{ route('grade.details.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
         </td>

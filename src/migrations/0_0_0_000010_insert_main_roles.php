@@ -18,7 +18,8 @@ class InsertMainRoles extends Migration
         $mainRoles = [
             'admin' => 'Administrator',
             'student' => 'Student',
-            'employee' => 'Employee'
+            'employee' => 'Employee',
+            'guardian' => 'Guardian'
         ];
 
         foreach ($mainRoles as $role => $description) {

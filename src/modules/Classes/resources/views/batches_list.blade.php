@@ -15,8 +15,8 @@
 <table class="table">
                 
     <tr>
-        <th width="*">{{ trans('classes::batch.name') }}</th>
-        <th width="20%">{{ trans('classes::batch.grades') }}</th>
+        <th width="30%">{{ trans('classes::batch.name') }}</th>
+        <th width="*">{{ trans('classes::batch.grades') }}</th>
         <th width="10%"></th>
     </tr>
 
@@ -24,10 +24,17 @@
 
     <tr>
         <td>
-            <div>{{ $batch->name }}</div>
-            <small class="text-muted">{{ $batch->id }}</small>
+            <div><a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a></div>
         </td>
-        <td>{{ $batch->grades->count() }}</td>
+        <td>
+            @if($batch->grades->count())
+                @foreach($batch->grades as $grade)
+                    <span class="label label-default"><a href="#">{{ $grade->name }}</a></span>
+                @endforeach
+            @else
+                <a href="{{ route('batch.grades.edit', $batch->id) }}" class="btn btn-xs btn-warning">{{ trans('classes::batch.assign_grades') }}</a>
+            @endif
+        </td>
         <td class="tools-column">
             <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
         </td>

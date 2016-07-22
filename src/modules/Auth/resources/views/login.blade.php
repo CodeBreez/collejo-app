@@ -1,6 +1,6 @@
 @extends('collejo::layouts.auth')
 
-@section('title', 'Login')
+@section('title', trans('auth::auth.login'))
 
 @section('content')
 

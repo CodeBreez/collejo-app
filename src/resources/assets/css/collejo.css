@@ -9531,6 +9531,10 @@ label.error {
   /*! disable sliding from left/right/top/bottom */
   transform: translate(0, 0); }
 
+.label a {
+  color: #fff;
+  text-decoration: none; }
+
 .checkbox-row {
   position: relative;
   margin: 15px 0; }

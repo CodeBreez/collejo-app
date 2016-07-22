@@ -2,6 +2,16 @@
 
 @section('title', trans('classes::batch.edit_batch'))
 
+@section('breadcrumbs')
+
+<ol class="breadcrumb">
+  <li><a href="{{ route('batches.list') }}">{{ trans('classes::batch.batches_list') }}</a></li>
+  <li><a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a></li>
+  <li class="active">{{ trans('classes::batch.edit_batch') }}</li>
+</ol>
+
+@endsection
+
 @section('scripts')
 
 <script type="text/javascript">
@@ -22,7 +32,7 @@ function afterDeleteTerm(link, response){
 
 @section('tabs')
 
-    @include('classes::partials.batch_tabs')
+    @include('classes::partials.edit_batch_tabs')
 
 @endsection
 
@@ -42,7 +52,7 @@ function afterDeleteTerm(link, response){
     @else
 
         <div class="col-md-6">
-            <div class="placeholder">{{ trans('classes::terms.empty_list') }}</div>
+            <div class="placeholder">{{ trans('classes::term.empty_list') }}</div>
         </div>
 
     @endif

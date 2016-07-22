@@ -2,6 +2,20 @@
 
 @section('title', $batch ? trans('classes::batch.edit_batch') : trans('classes::batch.new_batch'))
 
+@section('breadcrumbs')
+
+@if($batch)
+
+<ol class="breadcrumb">
+  <li><a href="{{ route('batches.list') }}">{{ trans('classes::batch.batches_list') }}</a></li>
+  <li><a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a></li>
+  <li class="active">{{ trans('classes::batch.edit_batch') }}</li>
+</ol>
+
+@endif
+
+@endsection
+
 @section('scripts')
 
 <script type="text/javascript">
@@ -29,7 +43,7 @@ $(function(){
 
 @section('tabs')
 
-    @include('classes::partials.batch_tabs')
+    @include('classes::partials.edit_batch_tabs')
 
 @endsection
 

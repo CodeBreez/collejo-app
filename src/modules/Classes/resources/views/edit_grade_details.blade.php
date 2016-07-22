@@ -2,6 +2,20 @@
 
 @section('title', $grade ? trans('classes::grade.edit_grade') : trans('classes::grade.new_grade'))
 
+@section('breadcrumbs')
+
+@if($grade)
+
+<ol class="breadcrumb">
+  <li><a href="{{ route('grades.list') }}">{{ trans('classes::grade.grades_list') }}</a></li>
+  <li><a href="{{ route('grade.details.view', $grade->id) }}">{{ $grade->name }}</a></li>
+  <li class="active">{{ trans('classes::grade.edit_grade') }}</li>
+</ol>
+
+@endif
+
+@endsection
+
 @section('scripts')
 
 <script type="text/javascript">
@@ -29,7 +43,7 @@ $(function(){
 
 @section('tabs')
 
-    @include('classes::partials.grade_tabs')
+    @include('classes::partials.edit_grade_tabs')
 
 @endsection
 

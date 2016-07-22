@@ -1,16 +1,16 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', trans('classes::grade.edit_grade'))
+@section('title', $grade->name)
 
 @section('tools')
 
-<a href="{{ route('grade.class.new', $grade->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('classes::class.new_class') }}</a>  
+<a href="{{ route('grade.classes.edit', $grade->id) }}" class="btn btn-primary pull-right"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>  
 
 @endsection
 
 @section('tabs')
 
-    @include('classes::partials.grade_tabs')
+    @include('classes::partials.view_grade_tabs')
 
 @endsection
 

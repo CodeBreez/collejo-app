@@ -88,6 +88,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
         return Term::where(['batch_id' => $batchId, 'id' => $termId])->firstOrFail();
     }
 
+    public function assignGradesToBatch(array $gradeIds, $batchId)
+    {
+        $this->findBatch($batchId)->grades()->sync($this->createPrivotIds($gradeIds));
+    }
+
     public function createTerm(array $attributes, $batchId)
     {
         $term = null;

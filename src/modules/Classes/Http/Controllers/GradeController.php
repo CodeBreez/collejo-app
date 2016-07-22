@@ -19,7 +19,7 @@ class GradeController extends BaseController
 	{
 		$this->classRepository->deleteClass($classId, $gradeId);
 
-		return $this->printJson(true, [], 'Class Deleted');
+		return $this->printJson(true, [], trans('classes::class.class_deleted'));
 	}
 
 	public function postGradeClassEdit(UpdateClassRequest $request, $gradeId, $classId)
@@ -29,7 +29,7 @@ class GradeController extends BaseController
 		return $this->printPartial(view('classes::partials.class', [
 				'grade' => $this->classRepository->findGrade($gradeId),
 				'class' => $class
-			]), 'Class Updated');
+			]), trans('classes::class.class_updated'));
 	}
 
 	public function getGradeClassEdit($gradeId, $classId)
@@ -58,33 +58,43 @@ class GradeController extends BaseController
 			]));
 	}
 
+	public function getGradeDetailsView($gradeId)
+	{
+		return view('classes::view_grade_details', ['grade' => $this->classRepository->findGrade($gradeId)]);
+	}
+
 	public function getGradeClassesView($gradeId)
 	{
 		return view('classes::view_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
+	}
+
+	public function getGradeClassesEdit($gradeId)
+	{
+		return view('classes::edit_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
 	}
 
 	public function postGradeDetailsEdit(UpdateGradeRequest $request, $gradeId)
 	{
 		$this->classRepository->updateGrade($request->all(), $gradeId);
 
-		return $this->printJson(true, [], 'Grade Updated');
+		return $this->printJson(true, [], trans('classes::grade.grade_updated'));
 	}
 
 	public function getGradeDetailsEdit($gradeId)
 	{
-		return view('classes::edit_grade', ['grade' => $this->classRepository->findGrade($gradeId)]);
+		return view('classes::edit_grade_details', ['grade' => $this->classRepository->findGrade($gradeId)]);
 	}
 
 	public function postGradeNew(CreateGradeRequest $request)
 	{
 		$grade = $this->classRepository->createGrade($request->all());
 
-		return $this->printRedirect(route('grade.details.edit', $grade->id));
+		return $this->printRedirect(route('grade.classes.edit', $grade->id));
 	}
 
 	public function getGradeNew()
 	{
-		return view('classes::edit_grade', ['grade' => null]);
+		return view('classes::edit_grade_details', ['grade' => null]);
 	}
 
 	public function getGradeList(Request $request)

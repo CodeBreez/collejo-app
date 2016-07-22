@@ -33,7 +33,9 @@
 
 @else
 
-<div class="placeholder">{{ trans('students::student.empty_list') }}</div>
+<div class="placeholder-row">
+    <div class="placeholder">{{ trans('students::student.empty_list') }}</div>
+</div>
 
 @endif
 

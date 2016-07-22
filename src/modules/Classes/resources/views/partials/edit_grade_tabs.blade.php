@@ -11,8 +11,8 @@
     <li class="{{ active_class(if_route(['grade.details.edit'])) }}">
     	<a href="{{ route('grade.details.edit', $grade->id) }}">Grade Details</a>
     </li>
-    <li class="{{ active_class(if_route(['grade.classes.view'])) }}">
-    	<a href="{{ route('grade.classes.view', $grade->id) }}">Classes</a>
+    <li class="{{ active_class(if_route(['grade.classes.edit'])) }}">
+    	<a href="{{ route('grade.classes.edit', $grade->id) }}">Classes</a>
     </li>
 </ul>
 

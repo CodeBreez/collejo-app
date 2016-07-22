@@ -25,7 +25,7 @@ $(function(){
         grade.disable();
         cls.disable();
 
-        $.getJSON('{{ route('batch.grades.view') }}?batch_id=' + value, function(response){
+        $.getJSON('{{ route('batch.grades.list') }}?batch_id=' + value, function(response){
             $('#grade').siblings('.spinner-wrap').remove();
             grade.enable();
             cls.enable();
@@ -47,7 +47,7 @@ $(function(){
         Collejo.templates.spinnerTemplate().addClass('inline').insertAfter($('#class'));
         cls.disable();
 
-        $.getJSON('{{ route('grade.classes.view') }}?grade_id=' + value, function(response){
+        $.getJSON('{{ route('grade.classes.list') }}?grade_id=' + value, function(response){
             $('#class').siblings('.spinner-wrap').remove();
             cls.enable();
 

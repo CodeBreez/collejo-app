@@ -15,21 +15,41 @@ class BatchController extends BaseController
 
 	protected $classRepository;
 
+	public function getBatchTermsView($batchId)
+	{
+		return view('classes::view_batch_terms', ['batch' => $this->classRepository->findBatch($batchId)]);
+	}
+
 	public function getBatchTermsEdit($batchId)
 	{
+		return view('classes::edit_batch_terms', ['batch' => $this->classRepository->findBatch($batchId)]);
+	}
 
+	public function postBatchGradesEdit(Request $request, $batchId)
+	{
+		$this->classRepository->assignGradesToBatch($request::get('grades', []), $batchId);
+
+		return $this->printJson(true, [], trans('classes::batch.batch_updated'));
+	}
+
+	public function getBatchGradesView($batchId)
+	{
+		return view('classes::view_batch_grades', ['batch' => $this->classRepository->findBatch($batchId)]);
 	}
 
 	public function getBatchGradesEdit($batchId)
 	{
-
+		return view('classes::edit_batch_grades', [
+						'batch' => $this->classRepository->findBatch($batchId),
+						'grades' => $this->classRepository->getGrades()
+					]);
 	}
 
 	public function getBatchTermDelete($batchId, $termId)
 	{
 		$this->classRepository->deleteTerm($termId, $batchId);
 
-		return $this->printJson(true, [], 'Term Deleted');
+		return $this->printJson(true, [], trans('classes::term.term_deleted'));
 	}
 
 	public function postBatchTermEdit(UpdateTermRequest $request, $batchId, $termId)
@@ -39,7 +59,7 @@ class BatchController extends BaseController
 		return $this->printPartial(view('classes::partials.term', [
 				'batch' => $this->classRepository->findBatch($batchId),
 				'term' => $term
-			]), 'Term updated');
+			]), trans('classes::term.term_updated'));
 	}
 
 	public function getBatchTermEdit($batchId, $termId)
@@ -57,7 +77,7 @@ class BatchController extends BaseController
 		return $this->printPartial(view('classes::partials.term', [
 				'batch' => $this->classRepository->findBatch($batchId),
 				'term' => $term
-			]), 'Term Created');
+			]), trans('classes::term.term_created'));
 	}
 
 	public function getBatchTermNew($batchId)
@@ -70,19 +90,24 @@ class BatchController extends BaseController
 
 	public function getBatchTerms($batchId)
 	{
-		return view('classes::edit_term', ['batch' => $this->classRepository->findBatch($batchId)]);
+		return view('classes::edit_batch_terms', ['batch' => $this->classRepository->findBatch($batchId)]);
+	}
+
+	public function getBatchDetailsView($batchId)
+	{
+		return view('classes::view_batch_details', ['batch' => $this->classRepository->findBatch($batchId)]);	
 	}
 
 	public function getBatchDetailsEdit($batchId)
 	{
-		return view('classes::edit_batch', ['batch' => $this->classRepository->findBatch($batchId)]);
+		return view('classes::edit_batch_details', ['batch' => $this->classRepository->findBatch($batchId)]);
 	}
 
 	public function postBatchDetailsEdit(UpdateBatchRequest $request, $batchId)
 	{
 		$this->classRepository->updateBatch($request->all(), $batchId);
 
-		return $this->printJson(true, [], 'Batch Updated');
+		return $this->printJson(true, [], trans('classes::batch.batch_updated'));
 	}
 
 	public function postBatchNew(CreateBatchRequest $request)
@@ -94,7 +119,7 @@ class BatchController extends BaseController
 
 	public function getBatchNew()
 	{
-		return view('classes::edit_batch', ['batch' => null]);
+		return view('classes::edit_batch_details', ['batch' => null]);
 	}
 
 	public function getBatchList()
