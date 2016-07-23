@@ -80,7 +80,10 @@ class StudentController extends BaseController
 
 	public function getStudentDetailEdit($studentId)
 	{
-		return view('students::edit_details', ['student' => $this->studentRepository->find($studentId)]);
+		return view('students::edit_details', [
+						'student' => $this->studentRepository->find($studentId),
+						'student_categories' => $this->studentRepository->getStudentCategories()
+					]);
 	}	
 
 	public function postStudentDetailEdit(UpdateStudentRequest $request, $studentId)
@@ -130,7 +133,7 @@ class StudentController extends BaseController
 
 	public function getStudentList()
 	{
-		return view('students::list', [
+		return view('students::students_list', [
 				'students' => $this->studentRepository->getStudents()->paginate()
 			]);
 	}
@@ -144,7 +147,10 @@ class StudentController extends BaseController
 
 	public function getStudentNew()
 	{
-		return view('students::edit_details', ['student' => null]);
+		return view('students::edit_details', [
+						'student' => null,
+						'student_categories' => $this->studentRepository->getStudentCategories()
+					]);
 	}
 
 	public function __construct(StudentRepository $studentRepository, ClassRepository $classRepository)

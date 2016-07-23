@@ -76,7 +76,7 @@ $(function(){
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Batch</label>
                     <div class="col-sm-6">
-                        <select class="form-control" name="batch_id" data-toggle="select-dropdown" id="batch">
+                        <select class="form-control" name="batch_id" id="batch">
                             @foreach($batches as $batch)
                                 <option value="{{ $batch->id }}">{{ $batch->name }}</option>
                             @endforeach
@@ -86,14 +86,14 @@ $(function(){
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Grade</label>
                     <div class="col-sm-6">
-                        <select class="form-control" name="grade_id" data-toggle="select-dropdown" id="grade">
+                        <select class="form-control" name="grade_id" id="grade">
                         </select>
                     </div>
                 </div>       
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Class</label>
                     <div class="col-sm-6">
-                        <select class="form-control" name="class_id" data-toggle="select-dropdown" id="class">
+                        <select class="form-control" name="class_id" id="class">
                         </select>
                     </div>
                 </div>             

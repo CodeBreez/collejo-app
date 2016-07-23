@@ -10,6 +10,8 @@ return [
 	'account_details' => 'Account Details',
 	'assign_class' => 'Assign Class',
 
+	'picture' => 'Picture',
+	'student_category' => 'Student Category',
 	'first_name' => 'First Name',
 	'last_name' => 'Last Name',
 	'name' => 'Name',
@@ -22,6 +24,6 @@ return [
 	'grade' => 'Grade',
 	'class' => 'Class',
 
-	'empty_list' => 'There are no students in the system.',
+	'empty_list' => 'There are no Students in the system.',
 	'student_updated' => 'Student updated.',
 ];

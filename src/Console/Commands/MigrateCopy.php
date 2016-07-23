@@ -32,12 +32,15 @@ class MigrateCopy extends Command
     {
         $this->info('Copying core migrations...');
 
-        $migrationsLocation = realpath(__DIR__ . '/../../migrations');
+        $src = realpath(__DIR__ . '/../../migrations');
+        $dest = base_path('/database/migrations');
 
-        foreach (new DirectoryIterator($migrationsLocation) as $fileInfo) {
+        array_map('unlink', glob($dest . '/*'));
+
+        foreach (new DirectoryIterator($src) as $fileInfo) {
             if($fileInfo->isDot()) continue;
 
-            copy($migrationsLocation . '/' . $fileInfo->getFilename(), base_path() . '/database/migrations/' . $fileInfo->getFilename());
+            copy($src . '/' . $fileInfo->getFilename(), $dest . '/' . $fileInfo->getFilename());
         }
 
         return $this->call('migrate');

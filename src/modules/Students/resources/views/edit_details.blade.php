@@ -56,6 +56,12 @@ $(function(){
 
     <div class="col-xs-6">
         <div class="form-group">
+            <label class="col-sm-4 control-label">{{ trans('students::student.picture') }}</label>
+            <div class="col-sm-8">
+                {{ Uploader::renderUploader() }}
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-4 control-label">{{ trans('students::student.admission_number') }}</label>
             <div class="col-sm-8">
                 <input type="text" name="admission_number" class="form-control" value="{{ $student ? $student->admission_number : '' }}">
@@ -68,6 +74,20 @@ $(function(){
                     <input type="text" name="admitted_on" class="form-control" data-toggle="date-input" value="{{ $student ? formatDate(toUserTz($student->admitted_on)) : '' }}">
                     <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">{{ trans('students::student.student_category') }}</label>
+            <div class="col-sm-8">
+                <select name="student_category_id" class="form-control" data-toggle="select-dropdown">
+                    @foreach($student_categories as $student_category)
+                        @if($student && $student_category->id == $student->student_category_id)
+                            <option selected value="{{ $student_category->id }}">{{ $student_category->name }}</option>
+                        @else
+                            <option value="{{ $student_category->id }}">{{ $student_category->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
         </div>                        
         <div class="form-group">

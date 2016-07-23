@@ -36,3 +36,9 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 	Route::post('/{id}/assign_class', 'StudentController@postStudentClassAssign');
 
 });
+
+Route::group(['prefix' => 'dash/student_categories', 'middleware' => 'auth'], function() {
+
+	Route::get('/list', 'StudentCategoriesController@getStudentCategoriesList')->name('student_categories.list');
+
+});

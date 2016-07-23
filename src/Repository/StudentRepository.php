@@ -7,6 +7,7 @@ use Collejo\Core\Contracts\Repository\StudentRepository as StudentRepositoryCont
 use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Student;
 use Collejo\App\Models\Address;
+use Collejo\App\Models\StudentCategory;
 use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use DB;
 use Carbon;
@@ -104,6 +105,11 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 
 		return $student;
+	}
+
+	public function getStudentCategories()
+	{
+		return StudentCategory::all();
 	}
 
     function model()
