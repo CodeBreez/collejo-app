@@ -3,7 +3,7 @@
 namespace Collejo\App\Models;
 
 use Collejo\Core\Database\Eloquent\Model;
-use Collejo\App\Models\EmployeeCategory;
+use Collejo\App\Models\Employee;
 
 class EmployeeGrade extends Model
 {

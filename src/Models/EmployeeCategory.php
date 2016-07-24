@@ -20,6 +20,6 @@ class EmployeeCategory extends Model
 
     public function employeePositions()
     {
-    	return $this->hasMany(EmployeePosition::class)
+    	return $this->hasMany(EmployeePosition::class);
     }
 }

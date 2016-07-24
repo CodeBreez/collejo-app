@@ -7,6 +7,10 @@ use Collejo\Core\Contracts\Repository\EmployeeRepository as EmployeeRepositoryCo
 use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Employee;
 use Collejo\App\Models\Address;
+use Collejo\App\Models\EmployeeCategory;
+use Collejo\App\Models\EmployeeDepartment;
+use Collejo\App\Models\EmployeeGrade;
+use Collejo\App\Models\EmployeePosition;
 use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use DB;
 use Carbon;
@@ -14,6 +18,94 @@ use Carbon;
 class EmployeeRepository extends BaseRepository implements EmployeeRepositoryContract {
 
 	protected $userRepository;
+
+	public function updateEmployeePosition(array $attributes, $employeePositionId)
+	{
+		$this->findEmployeePosition($employeePositionId)->update($attributes);
+
+		return $this->findEmployeePosition($employeePositionId);
+	}
+
+	public function createEmployeePosition(array $attributes)
+	{
+		return EmployeePosition::create($attributes);
+	}
+
+	public function findEmployeePosition($employeePositionId)
+	{
+		return EmployeePosition::findOrFail($employeePositionId);
+	}
+
+	public function getEmployeePositions()
+	{
+		return EmployeePosition::all();
+	}
+
+	public function updateEmployeeGrade(array $attributes, $employeeGradeId)
+	{
+		$this->findEmployeeGrade($employeeGradeId)->update($attributes);
+
+		return $this->findEmployeeGrade($employeeGradeId);
+	}
+
+	public function createEmployeeGrade(array $attributes)
+	{
+		return EmployeeGrade::create($attributes);
+	}
+
+	public function findEmployeeGrade($employeeGradeId)
+	{
+		return EmployeeGrade::findOrFail($employeeGradeId);
+	}
+
+	public function getEmployeeGrades()
+	{
+		return EmployeeGrade::all();
+	}
+
+	public function updateEmployeeDepartment(array $attributes, $employeeDepartmentId)
+	{
+		$this->findEmployeeDepartment($employeeDepartmentId)->update($attributes);
+
+		return $this->findEmployeeDepartment($employeeDepartmentId);
+	}
+
+	public function createEmployeeDepartment(array $attributes)
+	{
+		return EmployeeDepartment::create($attributes);
+	}
+
+	public function findEmployeeDepartment($employeeDepartmentId)
+	{
+		return EmployeeDepartment::findOrFail($employeeDepartmentId);
+	}
+
+	public function getEmployeeDepartments()
+	{
+		return EmployeeDepartment::all();
+	}
+
+	public function updateEmployeeCategory(array $attributes, $employeeCategoryId)
+	{
+		$this->findEmployeeCategory($employeeCategoryId)->update($attributes);
+
+		return $this->findEmployeeCategory($employeeCategoryId);
+	}
+
+	public function createEmployeeCategory(array $attributes)
+	{
+		return EmployeeCategory::create($attributes);
+	}
+
+	public function findEmployeeCategory($employeeCategoryId)
+	{
+		return EmployeeCategory::findOrFail($employeeCategoryId);
+	}
+
+	public function getEmployeeCategories()
+	{
+		return EmployeeCategory::all();
+	}
 
 	public function getEmployees()
 	{

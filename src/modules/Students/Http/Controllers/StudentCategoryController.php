@@ -7,7 +7,7 @@ use Collejo\App\Repository\StudentRepository;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentCategoryRequest;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentCategoryRequest;
 
-class StudentCategoriesController  extends BaseController
+class StudentCategoryController  extends BaseController
 {
 
 	protected $studentRepository;
