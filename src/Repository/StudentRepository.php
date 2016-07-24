@@ -17,6 +17,23 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	protected $userRepository;
 	protected $classRepository;
 
+	public function updateStudentCategory(array $attributes, $studentCategoryId)
+	{
+		$this->findStudentCategory($studentCategoryId)->update($attributes);
+
+		return $this->findStudentCategory($studentCategoryId);
+	}
+
+	public function createStudentCategory(array $attributes)
+	{
+		return StudentCategory::create($attributes);
+	}
+
+	public function findStudentCategory($studentCategoryId)
+	{
+		return StudentCategory::findOrFail($studentCategoryId);
+	}
+
 	public function assignToClass($batchId, $gradeId, $classId, $studentId)
 	{
 		if (!$this->find($studentId)->classes->contains($classId)) {

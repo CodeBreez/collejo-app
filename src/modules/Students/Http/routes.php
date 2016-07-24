@@ -40,5 +40,13 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 Route::group(['prefix' => 'dash/student_categories', 'middleware' => 'auth'], function() {
 
 	Route::get('/list', 'StudentCategoriesController@getStudentCategoriesList')->name('student_categories.list');
+});
 
+Route::group(['prefix' => 'dash/student_category', 'middleware' => 'auth'], function() {
+
+	Route::get('/new', 'StudentCategoriesController@getStudentCategoryNew')->name('student_category.new');
+	Route::post('/new', 'StudentCategoriesController@postStudentCategoryNew');
+
+	Route::get('/{id}/edit', 'StudentCategoriesController@getStudentCategoryEdit')->name('student_category.edit');
+	Route::post('/{id}/edit', 'StudentCategoriesController@postStudentCategoryEdit');
 });

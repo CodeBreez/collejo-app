@@ -44033,7 +44033,7 @@ Collejo.dynamics.prependRow = function(partial, list) {
         replacing.replaceWith(partial);
     } else {
         if (type == 'table') {
-            partial.hide().insertAfter(list.find('table').find('th').parent()).fadeIn();
+            partial.hide().insertAfter(list.find('th').parent()).fadeIn();
         } else if (type == 'columns') {
             partial.hide().prependTo(list.find('.columns')).fadeIn();
         } else {
@@ -44047,7 +44047,7 @@ Collejo.dynamics.prependRow = function(partial, list) {
 Collejo.dynamics.getListType = function(list) {
     var type;
 
-    if (list.find('table').length) {
+    if (list.find('table').length || list.prop('tagName') == 'TABLE') {
         type = 'table';
     } else if (list.find('columns').length) {
         type = 'columns';

@@ -81,6 +81,7 @@ $(function(){
             <div class="col-sm-8">
                 <select name="student_category_id" class="form-control" data-toggle="select-dropdown">
                     @foreach($student_categories as $student_category)
+                        <option></option>
                         @if($student && $student_category->id == $student->student_category_id)
                             <option selected value="{{ $student_category->id }}">{{ $student_category->name }}</option>
                         @else

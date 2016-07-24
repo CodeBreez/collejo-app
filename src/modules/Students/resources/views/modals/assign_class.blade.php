@@ -77,6 +77,7 @@ $(function(){
                     <label class="col-sm-4 control-label">Batch</label>
                     <div class="col-sm-6">
                         <select class="form-control" name="batch_id" id="batch">
+                            <option></option>
                             @foreach($batches as $batch)
                                 <option value="{{ $batch->id }}">{{ $batch->name }}</option>
                             @endforeach

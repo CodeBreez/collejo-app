@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('student.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>	
+<a href="{{ route('student_category.new') }}" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>	
 
 @endsection
 
@@ -12,7 +12,7 @@
 
 @if($student_categories->count())
 
-<table class="table" id="students">
+<table class="table" id="student_categories">
                 
     <tr>
         <th width="*">{{ trans('students::student_category.name') }}</th>

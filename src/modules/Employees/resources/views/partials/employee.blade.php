@@ -5,6 +5,6 @@
     </td>
     <td>{{ formatDate(toUserTz($employee->joined_on)) }}</td>
     <td class="tools-column">
-        <a href="{{ route('employee.details.edit', $employee->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Edit</a>
+        <a href="{{ route('employee.details.edit', $employee->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
     </td>
 </tr>

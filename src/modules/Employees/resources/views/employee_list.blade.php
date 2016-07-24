@@ -30,7 +30,9 @@
 
 @else
 
-<div class="placeholder">There are not employees in the system.</div>
+<div class="placeholder-row">
+	<div class="placeholder">There are not employees in the system.</div>
+</div>
 
 @endif
 

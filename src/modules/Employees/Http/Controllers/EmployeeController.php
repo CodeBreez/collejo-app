@@ -14,7 +14,7 @@ class EmployeeController extends BaseController
 
 	public function getEmplyeeList()
 	{
-		return view('employees::list', ['employees' => $this->employeeRepository->getEmployees()->paginate()]);
+		return view('employees::employee_list', ['employees' => $this->employeeRepository->getEmployees()->paginate()]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

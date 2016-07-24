@@ -13,5 +13,7 @@ return [
 	'list' => 'List',
 
 	'delete_confirm' => 'Are you sure you want to delete this item?',
-	'action_required' => 'Action Required'
+	'action_required' => 'Action Required',
+	'copyright_text' => 'Powered by <a href=":link" target="_blank">Collejo</a>',
+	'copyright_link' => 'https://github.com/codebreez/collejo-app'
 ];

@@ -24,21 +24,21 @@ class Employee extends Model
 
     public function employeeCategory()
     {
-    	return $this->hasOne(EmployeeCategory::class)
+    	return $this->hasOne(EmployeeCategory::class);
     }
 
     public function employeeDepartment()
     {
-    	return $this->hasOne(EmployeeDepartment::class)
+    	return $this->hasOne(EmployeeDepartment::class);
     }
 
     public function employeePosition()
     {
-    	return $this->hasOne(EmployeePosition::class)
+    	return $this->hasOne(EmployeePosition::class);
     }
 
     public function employeeGrade()
     {
-    	return $this->hasOne(EmployeeGrade::class)
+    	return $this->hasOne(EmployeeGrade::class);
     }
 }
