@@ -1,6 +1,10 @@
 <?php
 
 return [
+	'menu_students' => 'Students',
+	'menu_students_list' => 'All Students',
+	'menu_student_new' => 'New Student',
+	
 	'students' => 'Students',
 	'students_list' => 'Students List',
 	'edit_student' => 'Edit Student',

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
 	'email' => 'Email',
 	'password' => 'Password',
     'failed' => 'These credentials do not match our records.',

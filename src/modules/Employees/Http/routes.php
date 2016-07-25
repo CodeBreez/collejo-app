@@ -12,6 +12,23 @@ Route::group(['prefix' => 'dash/employee', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/edit', 'EmployeeController@getEmployeeDetailsEdit')->name('employee.details.edit');
 	Route::post('/{id}/edit', 'EmployeeController@postEmployeeDetailsEdit');
+
+	Route::get('/{id}/contacts/view', 'EmployeeController@getEmployeeAddressesView')->name('employee.addresses.view');
+	Route::get('/{id}/contacts/edit', 'EmployeeController@getEmployeeAddressesEdit')->name('employee.addresses.edit');
+
+	Route::get('/{id}/contact/new', 'EmployeeController@getEmployeeAddressNew')->name('employee.address.new');
+	Route::post('/{id}/contact/new', 'EmployeeController@postEmployeeAddressNew');
+
+	Route::get('/{id}/contact/{cid}/edit', 'EmployeeController@getEmployeeAddressEdit')->name('employee.address.edit');
+	Route::post('/{id}/contact/{cid}/edit', 'EmployeeController@postEmployeeAddressEdit');
+
+	Route::get('/{id}/contact/{cid}/delete', 'EmployeeController@getEmployeeAddressDelete')->name('employee.address.delete');
+	
+	Route::get('/{id}/account/view', 'EmployeeController@getEmployeeAccountView')->name('employee.account.view');
+
+	Route::get('/{id}/account/edit', 'EmployeeController@getEmployeeAccountEdit')->name('employee.account.edit');
+	Route::post('/{id}/account/edit', 'EmployeeController@postEmployeeAccountEdit');
+
 });
 
 Route::group(['prefix' => 'dash/employee_categories', 'middleware' => 'auth'], function() {

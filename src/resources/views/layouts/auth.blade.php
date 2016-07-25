@@ -13,7 +13,9 @@
 
       </div>
 
-    </div> <!-- /container -->
+    </div>
+
+    @include('collejo::layouts.partials.footer')
 
   </body>
 </html>

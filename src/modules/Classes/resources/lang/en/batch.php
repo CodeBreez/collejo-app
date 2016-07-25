@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'menu_batches' => 'Batches',
 	'batches' => 'Batches',
 	'batches_list' => 'Batches List',
 	'batch_details' => 'Batch Details',

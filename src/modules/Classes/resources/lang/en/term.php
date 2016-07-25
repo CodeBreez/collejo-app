@@ -1,4 +1,5 @@
 <?php
+
 return [
 	'terms' => 'Terms',
 	'new_term' => 'New Term',

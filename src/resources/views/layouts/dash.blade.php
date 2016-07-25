@@ -11,9 +11,7 @@
             @yield('content')
         </div>
 
-        <footer class="text-center text-muted">
-        	{{ date('Y', time()) }} {!! trans('common.copyright_text', ['link' => trans('common.copyright_link')]) !!}
-        </footer>
+        @include('collejo::layouts.partials.footer')
     
     </body>
 </html>

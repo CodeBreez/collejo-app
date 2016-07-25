@@ -9738,6 +9738,10 @@ body {
   background: transparent; }
 
 footer {
-  font-size: 12px; }
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px; }
 
 /*# sourceMappingURL=collejo.css.map */

@@ -4,7 +4,7 @@ namespace Collejo\App\Modules\Students\Http\Requests;
 
 use Collejo\App\Http\Requests\Request;
 
-class CreateEmployeeRequest extends Request
+class CreateEmployeeDetailsRequest extends Request
 {
 
 	public function rules()

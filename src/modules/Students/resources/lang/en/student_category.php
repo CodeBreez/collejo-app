@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'menu_categories' => 'Categories',
 	'student_categories' => 'Student Categories',
 	'name' => 'Name',
 	'code' => 'Code',

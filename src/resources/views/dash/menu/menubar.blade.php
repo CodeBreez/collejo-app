@@ -30,6 +30,8 @@
 
                                             <li><a href="{{ $child->getFullPath() }}">{{ $child->getLabel() }}</a></li>
 
+                                            <li role="separator" class="divider"></li>
+
                                         @endcan
 
                                     @endforeach

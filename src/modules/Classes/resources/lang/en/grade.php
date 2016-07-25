@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'menu_grades' => 'Grades',
 	'grades' => 'Grades',
 	'grades_list' => 'Grades List',
 	'edit_grade' => 'Edit Grade',
