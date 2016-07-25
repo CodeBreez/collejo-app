@@ -24,13 +24,29 @@
 
                                 <ul class="dropdown-menu">
 
-                                    @foreach($item->children->sortBy('order') as $child)
+                                    @foreach($item->children->sortBy('order') as $child1)
 
-                                        @if($item->isVisible())
+                                        @if($child1->isVisible())
 
-                                            <li><a href="{{ $child->getFullPath() }}">{{ $child->getLabel() }}</a></li>
+                                            @if($child1->children->count() && is_null($child1->getLabel()))
 
-                                            <li role="separator" class="divider"></li>
+                                                <li role="separator" class="divider"></li>
+
+                                                @foreach($child1->children->sortBy('order') as $child2)
+
+                                                    @if($child2->isVisible())
+
+                                                        <li><a href="{{ $child2->getFullPath() }}">{{ $child2->getLabel() }}</a></li>
+
+                                                    @endif
+
+                                                @endforeach
+
+                                            @else
+
+                                                <li><a href="{{ $child1->getFullPath() }}">{{ $child1->getLabel() }}</a></li>
+
+                                            @endif
 
                                         @endcan
 
