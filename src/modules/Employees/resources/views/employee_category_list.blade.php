@@ -4,7 +4,7 @@
 
 @section('tools')
 
-<a href="{{ route('employee.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Create New</a>	
+<a href="{{ route('employee_category.new') }}" data-toggle="ajax-modal"  class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('common.create') }}</a>	
 
 @endsection
 
@@ -12,11 +12,11 @@
 
 @if($employee_categories->count())
 
-<table class="table" id="employees">
+<table class="table" id="employee_categories">
                 
     <tr>
-        <th width="*">Name</th>
-        <th width="20%">Joined Date</th>
+        <th width="*">{{ trans('employees::employee_category.name') }}</th>
+        <th width="20%">{{ trans('employees::employee_category.code') }}</th>
         <th width="10%"></th>
     </tr>
 
@@ -31,7 +31,7 @@
 @else
 
 <div class="placeholder-row">
-	<div class="placeholder">There are not employees in the system.</div>
+	<div class="placeholder">{{ trans('employees::employee_category.empty_list') }}</div>
 </div>
 
 @endif

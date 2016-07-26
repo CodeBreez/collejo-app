@@ -12,7 +12,10 @@ class UpdateStudentCategoryRequest extends Request
 
 		$createRequest = new CreateStudentCategoryRequest();
 
-	    return $createRequest->rules();
+	    return array_merge($createRequest->rules(), [
+	    		'name' => 'required|unique:student_categories,name,' . $this->get('scid'),
+	    		'code' => 'required|max:5|unique:student_categories,code,' . $this->get('scid')
+	    	]);
 	}
 
 	public function attributes()

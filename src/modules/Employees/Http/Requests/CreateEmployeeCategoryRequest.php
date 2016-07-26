@@ -1,17 +1,17 @@
 <?php
 
-namespace Collejo\App\Modules\Students\Http\Requests;
+namespace Collejo\App\Modules\Employees\Http\Requests;
 
 use Collejo\App\Http\Requests\Request;
 
-class CreateStudentCategoryRequest extends Request
+class CreateEmployeeCategoryRequest extends Request
 {
 
 	public function rules()
 	{
 	    return [
-	        'name' => 'required|unique:student_categories',
-	        'code' => 'unique:student_categories|max:5',
+	        'name' => 'required|unique:employee_categories',
+	        'code' => 'unique:employee_categories|max:5',
 	    ];
 	}
 

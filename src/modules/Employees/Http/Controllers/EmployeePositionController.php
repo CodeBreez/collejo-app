@@ -40,7 +40,7 @@ class EmployeePositionController extends BaseController
 					]), trans('employees::employee_position.employee_position_updated'));
 	}
 
-	public function getEmplyeeDepartmentList()
+	public function getEmployeeDepartmentList()
 	{
 		return view('employees::employee_position_list', ['employee_positions' => $this->employeeRepository->getEmployeePositions()]);
 	}

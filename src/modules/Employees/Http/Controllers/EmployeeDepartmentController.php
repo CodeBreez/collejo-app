@@ -40,7 +40,7 @@ class EmployeeDepartmentController extends BaseController
 					]), trans('employees::employee_department.employee_department_updated'));
 	}
 
-	public function getEmplyeeDepartmentList()
+	public function getEmployeeDepartmentList()
 	{
 		return view('employees::employee_department_list', ['employee_departments' => $this->employeeRepository->getEmployeeDepartments()]);
 	}

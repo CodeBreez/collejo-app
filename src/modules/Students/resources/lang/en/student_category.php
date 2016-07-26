@@ -3,6 +3,7 @@
 return [
 	'menu_categories' => 'Categories',
 	'student_categories' => 'Student Categories',
+	'new_student_category' => 'New Student Category',
 	'name' => 'Name',
 	'code' => 'Code',
 	

@@ -4,7 +4,7 @@ namespace Collejo\App\Modules\Employees\Http\Requests;
 
 use Collejo\App\Http\Requests\Request;
 
-class UpdateEmployeeDetailsRequest extends Request
+class UpdateEmployeeCategoryRequest extends Request
 {
 
 	public function rules()
@@ -12,7 +12,8 @@ class UpdateEmployeeDetailsRequest extends Request
 		$createRequest = new CreateEmployeeCategoryRequest();
 
 	    return array_merge($createRequest->rules(), [
-	    		'employee_number' => 'required|unique:employees,employee_number,' . $this->get('eid')
+	    		'name' => 'required|unique:employee_categories,name,' . $this->get('ecid'),
+	        	'code' => 'max:5|unique:employee_categories,code,' . $this->get('ecid'),
 	    	]);
 	}
 

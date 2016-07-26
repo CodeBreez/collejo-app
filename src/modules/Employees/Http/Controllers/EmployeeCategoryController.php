@@ -40,7 +40,7 @@ class EmployeeCategoryController extends BaseController
 					]), trans('employees::employee_category.employee_category_updated'));
 	}
 
-	public function getEmplyeeCategoryList()
+	public function getEmployeeCategoryList()
 	{
 		return view('employees::employee_category_list', ['employee_categories' => $this->employeeRepository->getEmployeeCategories()]);
 	}

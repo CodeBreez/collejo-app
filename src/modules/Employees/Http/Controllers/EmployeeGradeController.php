@@ -40,7 +40,7 @@ class EmployeeGradeController extends BaseController
 					]), trans('employees::employee_grade.employee_grade_updated'));
 	}
 
-	public function getEmplyeeDepartmentList()
+	public function getEmployeeDepartmentList()
 	{
 		return view('employees::employee_grade_list', ['employee_grades' => $this->employeeRepository->getEmployeeGrades()]);
 	}

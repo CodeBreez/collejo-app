@@ -33,7 +33,7 @@ Route::group(['prefix' => 'dash/employee', 'middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'dash/employee_categories', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'EmployeeCategoryController@getEmployeeCategoryList')->name('employees_categories.list');
+	Route::get('/list', 'EmployeeCategoryController@getEmployeeCategoryList')->name('employee_categories.list');
 });
 
 Route::group(['prefix' => 'dash/employee_category', 'middleware' => 'auth'], function() {
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'dash/employee_category', 'middleware' => 'auth'], fun
 
 Route::group(['prefix' => 'dash/employee_departments', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'EmployeeDepartmentController@getEmployeeDepartmentList')->name('employees_departments.list');
+	Route::get('/list', 'EmployeeDepartmentController@getEmployeeDepartmentList')->name('employee_departments.list');
 });
 
 Route::group(['prefix' => 'dash/employee_department', 'middleware' => 'auth'], function() {
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'dash/employee_department', 'middleware' => 'auth'], f
 
 Route::group(['prefix' => 'dash/employee_grades', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'EmployeeGradeController@getEmployeeGradeList')->name('employees_grades.list');
+	Route::get('/list', 'EmployeeGradeController@getEmployeeGradeList')->name('employee_grades.list');
 });
 
 Route::group(['prefix' => 'dash/employee_grade', 'middleware' => 'auth'], function() {
@@ -75,7 +75,7 @@ Route::group(['prefix' => 'dash/employee_grade', 'middleware' => 'auth'], functi
 
 Route::group(['prefix' => 'dash/employee_positions', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'EmployeeGradeController@getEmployeePositionList')->name('employees_positions.list');
+	Route::get('/list', 'EmployeeGradeController@getEmployeePositionList')->name('employee_positions.list');
 });
 
 Route::group(['prefix' => 'dash/employee_position', 'middleware' => 'auth'], function() {
