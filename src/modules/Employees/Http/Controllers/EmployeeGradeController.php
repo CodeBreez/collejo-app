@@ -4,8 +4,8 @@ namespace Collejo\App\Modules\Employees\Http\Controllers;
 
 use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\EmployeeRepository;
-use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeeRequest;
-use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeRequest;
+use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeeGradeRequest;
+use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeGradeRequest;
 
 class EmployeeGradeController extends BaseController
 {
@@ -40,7 +40,7 @@ class EmployeeGradeController extends BaseController
 					]), trans('employees::employee_grade.employee_grade_updated'));
 	}
 
-	public function getEmployeeDepartmentList()
+	public function getEmployeeGradeList()
 	{
 		return view('employees::employee_grade_list', ['employee_grades' => $this->employeeRepository->getEmployeeGrades()]);
 	}

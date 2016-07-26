@@ -4,8 +4,8 @@ namespace Collejo\App\Modules\Employees\Http\Controllers;
 
 use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\EmployeeRepository;
-use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeeRequest;
-use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeRequest;
+use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeePositionRequest;
+use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeePositionRequest;
 
 class EmployeePositionController extends BaseController
 {

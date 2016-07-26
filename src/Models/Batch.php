@@ -11,20 +11,11 @@ class Batch extends Model
 
     protected $table = 'batches';
 
-    protected $fillable = ['name', 'is_ended'];
-
-    protected $casts = [
-    	'is_ended' => 'boolean'
-    ];
+    protected $fillable = ['name'];
 
     public function terms()
     {
     	return $this->hasMany(Term::class);
-    }
-
-    public function scopeActive($query)
-    {
-    	return $query->where('is_ended', false);
     }
 
     public function grades()

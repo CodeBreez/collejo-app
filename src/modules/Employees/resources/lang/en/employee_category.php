@@ -3,6 +3,8 @@
 return [
 	'menu_categories' => 'Categories',
 	'employee_categories' => 'Employee Categories',
+	'edit_employee_category' => 'Edit Employee Category',
+	'new_employee_category' => 'New Employee Category',
 
 	'name' => 'Name',
 	'code' => 'Code',
