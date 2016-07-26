@@ -67,20 +67,26 @@ class EmployeeController extends BaseController
 	{
 		return view('employees::edit_employee_details', [
 						'employee' => null,
-						'employee_categories' => $this->employeeRepository->getEmployeeCategories()
+						'employee_positions' => $this->employeeRepository->getEmployeePositions(),
+						'employee_departments' => $this->employeeRepository->getEmployeeDepartments(),
+						'employee_grades' => $this->employeeRepository->getEmployeeGrades(),
 					]);
 	}
 
 	public function postEmployeeNew(CreateEmployeeDetailsRequest $request)
 	{
+		$employee = $this->employeeRepository->create($request->all());
 
+		return $this->printRedirect(route('employee.details.edit', $employee->id));
 	}
 
 	public function getEmployeeDetailsEdit($id)
 	{
 		return view('employees::edit_employee_details', [
-						'employee' => $this->employeeRepository->findEmployee($id),
-						'employee_categories' => $this->employeeRepository->getEmployeeCategories()
+						'employee' => $this->employeeRepository->find($id),
+						'employee_positions' => $this->employeeRepository->getEmployeePositions(),
+						'employee_departments' => $this->employeeRepository->getEmployeeDepartments(),
+						'employee_grades' => $this->employeeRepository->getEmployeeGrades(),
 					]);
 	}
 

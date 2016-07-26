@@ -77,15 +77,45 @@ $(function(){
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">{{ trans('employees::employee.employee_category') }}</label>
+            <label class="col-sm-4 control-label">{{ trans('employees::employee.employee_position') }}</label>
             <div class="col-sm-8">
-                <select name="employee_category_id" class="form-control" data-toggle="select-dropdown">
-                    @foreach($employee_categories as $employee_category)
+                <select name="employee_position_id" class="form-control" data-toggle="select-dropdown">
+                    @foreach($employee_positions as $employee_position)
                         <option></option>
-                        @if($employee && $employee_category->id == $employee->employee_category_id)
-                            <option selected value="{{ $employee_category->id }}">{{ $employee_category->name }}</option>
+                        @if($employee && $employee_position->id == $employee->employee_position_id)
+                            <option selected value="{{ $employee_position->id }}">{{ $employee_position->name }}</option>
                         @else
-                            <option value="{{ $employee_category->id }}">{{ $employee_category->name }}</option>
+                            <option value="{{ $employee_position->id }}">{{ $employee_position->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">{{ trans('employees::employee.employee_department') }}</label>
+            <div class="col-sm-8">
+                <select name="employee_department_id" class="form-control" data-toggle="select-dropdown">
+                    @foreach($employee_departments as $employee_department)
+                        <option></option>
+                        @if($employee && $employee_department->id == $employee->employee_department_id)
+                            <option selected value="{{ $employee_department->id }}">{{ $employee_department->name }}</option>
+                        @else
+                            <option value="{{ $employee_department->id }}">{{ $employee_department->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="col-sm-4 control-label">{{ trans('employees::employee.employee_grade') }}</label>
+            <div class="col-sm-8">
+                <select name="employee_grade_id" class="form-control" data-toggle="select-dropdown">
+                    @foreach($employee_grades as $employee_grade)
+                        <option></option>
+                        @if($employee && $employee_grade->id == $employee->employee_grade_id)
+                            <option selected value="{{ $employee_grade->id }}">{{ $employee_grade->name }}</option>
+                        @else
+                            <option value="{{ $employee_grade->id }}">{{ $employee_grade->name }}</option>
                         @endif
                     @endforeach
                 </select>

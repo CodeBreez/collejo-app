@@ -10,6 +10,7 @@ Route::group(['prefix' => 'dash/employee', 'middleware' => 'auth'], function() {
 	Route::get('/new', 'EmployeeController@getEmployeeNew')->name('employee.new');
 	Route::post('/new', 'EmployeeController@postEmployeeNew');
 
+	Route::get('/{id}/view', 'EmployeeController@getEmployeeDetailsView')->name('employee.details.view');
 	Route::get('/{id}/edit', 'EmployeeController@getEmployeeDetailsEdit')->name('employee.details.edit');
 	Route::post('/{id}/edit', 'EmployeeController@postEmployeeDetailsEdit');
 

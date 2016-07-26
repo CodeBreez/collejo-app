@@ -120,6 +120,8 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 			$attributes['joined_on'] = toUTC($attributes['joined_on']);
 		}
 
+		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
+
 		$employeeAttributes = $this->parseFillable($attributes);
 
 		DB::transaction(function () use ($attributes, $employeeAttributes, &$employee, $employeeId) {
@@ -136,6 +138,8 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		$employee = null;
 		
 		$attributes['joined_on'] = toUTC($attributes['joined_on']);
+
+		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
 
 		$employeeAttributes = $this->parseFillable($attributes);
 
