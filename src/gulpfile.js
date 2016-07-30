@@ -35,10 +35,10 @@ elixir(function(mix) {
             srcDir + 'js/collejo/modal.js',
             srcDir + 'js/dashboard.js'
         ], outDir + 'js/collejo.js')
-    /*.version([
+        .version([
             outDir + 'css/collejo.css',
             outDir + 'js/collejo.js'
-        ]);*/
+        ]);
 });
 
 gulp.task('copy', function() {

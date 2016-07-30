@@ -108,6 +108,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		}
 	}
 
+	public function getRoles()
+	{
+		return Role::all();
+	}
+
 	public function update(array $attributes, $id)
 	{
 		if (isset($attributes['password'])) {

@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  @include('collejo::layouts.partials.head')
+  	@include('collejo::layouts.partials.head')
 
-  <body>
+  	<body>
 
-    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+	  	<div class="col-md-12 auth-row">
 
-      <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
+		    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
 
-      @yield('content')
+		      <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
 
-      </div>
+		      @yield('content')
 
-    </div>
+		      </div>
 
-    @include('collejo::layouts.partials.footer')
+		    </div>
+		</div>
 
-  </body>
+	    @include('collejo::layouts.partials.footer')
+
+  	</body>
 </html>

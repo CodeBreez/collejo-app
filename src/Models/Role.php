@@ -13,6 +13,11 @@ class Role extends Model
 
     protected $fillable = ['role', 'description'];
 
+    public function getNameAttribute()
+    {
+        return str_replace('_', ' ', ucfirst($this->role));
+    }
+
     public function users()
     {
     	return $this->belongsToMany(User::class);
