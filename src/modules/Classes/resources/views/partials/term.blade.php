@@ -17,7 +17,7 @@
         <div class="panel-footer">
             <span class="label"> </span>
             <div class="tools-footer">
-                <a data-toggle="ajax-modal" data-modal-backdrop="static" data-modal-keyboard="false" href="{{ route('batch.term.edit', [$batch->id, $term->id]) }}" class="btn btn-xs btn-default pull-left"><i class="fa fa-edit"></i> Edit</a>
+                <a data-toggle="ajax-modal" data-modal-backdrop="static" data-modal-keyboard="false" href="{{ route('batch.term.edit', [$batch->id, $term->id]) }}" class="btn btn-xs btn-default pull-left"><i class="fa fa-fw fa-edit"></i> Edit</a>
                 <a data-success-callback="afterDeleteTerm" data-toggle="ajax-link" data-confirm="Delete this?" href="{{ route('batch.term.delete', [$batch->id, $term->id]) }}" class="btn btn-xs btn-danger pull-left"><i class="fa fa-trash"></i> Delete</a>
             </div>
         </div>

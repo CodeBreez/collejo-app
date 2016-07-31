@@ -11,6 +11,6 @@ class DashController extends BaseController
 
 	public function getIndex()
 	{
-		return view('collejo::dash.home')->render();
+		return view('collejo::dash.dash')->render();
 	}
 }

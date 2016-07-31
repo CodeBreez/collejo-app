@@ -9545,7 +9545,7 @@ label.error {
 
 footer {
   font-size: 12px;
-  padding-bottom: 10px; }
+  padding-bottom: 15px; }
 
 .checkbox-row {
   position: relative;
@@ -9700,9 +9700,6 @@ body {
   color: #f7f7f7;
   margin-top: 50px;
   margin-bottom: 30px; }
-
-.dashboard-section {
-  padding-top: 15px; }
 
 .dash-content {
   margin-top: 50px;

@@ -20,7 +20,7 @@
                         @if($item->children->count())
 
                             <li class="dropdown">
-                                <a href="{{ $item->getFullPath() }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa {{ $item->getIcon() }}"></i> {{ $item->getLabel() }} <b class="caret"></b></a>
+                                <a href="{{ $item->getFullPath() }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw {{ $item->getIcon() }}"></i> {{ $item->getLabel() }} <b class="caret"></b></a>
 
                                 <ul class="dropdown-menu">
 
@@ -57,7 +57,7 @@
 
                         @else
 
-                            <li><a href="{{ $item->getFullPath() }}"><i class="fa {{ $item->getIcon() }}"></i> {{ $item->getLabel() }}</a></li>
+                            <li><a href="{{ $item->getFullPath() }}"><i class="fa fa-fw {{ $item->getIcon() }}"></i> {{ $item->getLabel() }}</a></li>
 
                         @endif
 

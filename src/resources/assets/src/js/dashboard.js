@@ -25,7 +25,7 @@ $(window).on('resize', function() {
         });
     }
 
-    var section = $('.section-content');
+    var section = $('.section-content,.landing-screen');
     if (section && section.offset()) {
         section.css({
             'min-height': ($(document).height() - section.offset().top - 50) + 'px'

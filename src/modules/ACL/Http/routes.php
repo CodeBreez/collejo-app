@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'acl'], function() {
+Route::group(['prefix' => 'acl', 'middleware' => 'auth'], function() {
 	Route::get('roles', 'RoleController@getRoles')->name('roles.list');
 });
 

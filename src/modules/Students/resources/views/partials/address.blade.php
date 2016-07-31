@@ -33,7 +33,7 @@
                 <span class="label"> </span>
             @endif
             <div class="tools-footer">
-                <a data-toggle="ajax-modal" data-modal-backdrop="static" data-modal-keyboard="false" href="{{ route('student.address.edit', [$student->id, $address->id]) }}" class="btn btn-xs btn-default pull-left"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
+                <a data-toggle="ajax-modal" data-modal-backdrop="static" data-modal-keyboard="false" href="{{ route('student.address.edit', [$student->id, $address->id]) }}" class="btn btn-xs btn-default pull-left"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
                 <a data-success-callback="afterDeleteAddress" data-toggle="ajax-link" data-confirm="{{ trans('common.delete_confirm') }}" href="{{ route('student.address.delete', [$student->id, $address->id]) }}" class="btn btn-xs btn-danger pull-left"><i class="fa fa-trash"></i> {{ trans('common.delete') }} </a>
             </div>
         </div>

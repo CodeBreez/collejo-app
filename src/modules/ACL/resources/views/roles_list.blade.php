@@ -1,10 +1,10 @@
 @extends('collejo::dash.sections.table_view')
 
-@section('title', trans('acl::role.batches'))
+@section('title', trans('acl::role.roles'))
 
 @section('tools')
 
-<a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('acl::role.create_batch') }}</a>  
+<a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('acl::role.create_role') }}</a>  
 
 @endsection
 
@@ -26,7 +26,7 @@
             <div><a href="{{ route('batch.details.view', $role->id) }}">{{ $role->description }}</a></div>
         </td>
         <td class="tools-column">
-            <a href="{{ route('batch.details.edit', $role->id) }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> {{ trans('common.edit') }}</a>
+            <a href="{{ route('batch.details.edit', $role->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
         </td>
     </tr>
 
