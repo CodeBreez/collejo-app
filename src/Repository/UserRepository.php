@@ -67,23 +67,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return $role->permissions->contains($permission->id);
 	}
 
-	public function createPermissionIfNotExists($permission, $description)
+	public function createPermissionIfNotExists($permission)
 	{
 		if (is_null($this->getPermissionByName($permission))) {
 
-			$permission = Permission::create([
-						'permission' => $permission,
-						'description' => $description
-					]);
-		}
-	}
-
-	public function updatePermission($permission, $description)
-	{
-		if (!is_null($this->getPermissionByName($permission))) {
-			$this->getPermissionByName($permission)->update([
-					'description' => $description
-				]);
+			$permission = Permission::create(['permission' => $permission]);
 		}
 	}
 
@@ -97,14 +85,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return Permission::where('permission', $name)->first();
 	}
 
-	public function createRoleIfNotExists($role, $description)
+	public function createRoleIfNotExists($role)
 	{
 		if (is_null($this->getRoleByName($role))) {
 
-			$role = Role::create([
-						'role' => $role,
-						'description' => $description
-					]);
+			$role = Role::create(['role' => $role]);
 		}
 	}
 

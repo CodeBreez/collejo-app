@@ -15,15 +15,10 @@ class InsertMainRoles extends Migration
     {
         $userRepository = app()->make(UserRepositoryContract::class);
 
-        $mainRoles = [
-            'admin' => 'Administrators have access to all features.',
-            'student' => 'Students have access to limited features.',
-            'employee' => 'Employees include teachers, assistants and the head of the institution.',
-            'guardian' => 'Guardians have access to view their children\'s information.'
-        ];
+        $mainRoles = ['admin', 'student', 'employee', 'guardian'];
 
-        foreach ($mainRoles as $role => $description) {
-            $userRepository->createRoleIfNotExists($role, $description);
+        foreach ($mainRoles as $role) {
+            $userRepository->createRoleIfNotExists($role);
         }
     }
 

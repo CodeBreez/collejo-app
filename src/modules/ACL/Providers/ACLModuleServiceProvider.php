@@ -12,9 +12,7 @@ class ACLModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $name = 'acl';
 
-    protected $permissions = [
-    	'manage_permissions' => 'Manage Permissions'
-    ];
+    protected $permissions = ['manage_permissions'];
 
     public function boot(Router $router)
     {

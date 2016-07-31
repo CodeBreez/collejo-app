@@ -11,7 +11,7 @@ class Role extends Model
 
     protected $table = 'roles';
 
-    protected $fillable = ['role', 'description'];
+    protected $fillable = ['role'];
 
     public function getNameAttribute()
     {

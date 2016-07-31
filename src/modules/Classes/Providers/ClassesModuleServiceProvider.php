@@ -11,12 +11,7 @@ class ClassesModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $name = 'classes';
 
-    protected $permissions = [
-        'create_batch' => 'Create batches',
-        'edit_batch' => 'Edit batches',
-        'delete_batch' => 'Delete batches',
-        'view_batch' => 'View batches'
-    ];
+    protected $permissions = ['create_batch', 'edit_batch', 'delete_batch', 'view_batch'];
 
     public function boot()
     {

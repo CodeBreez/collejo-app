@@ -11,13 +11,7 @@ class EmployeesModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $name = 'employees';
 
-    protected $permissions = [
-        'create_employee' => 'Create employees',
-        'edit_employee' => 'Edit employees',
-        'delete_employee' => 'Delete employees',
-        'undelete_employee' => 'Undelete employees',
-        'view_employee' => 'View employees'
-    ];
+    protected $permissions = ['create_employee', 'edit_employee', 'delete_employee', 'undelete_employee', 'view_employee'];
 
     public function boot()
     {

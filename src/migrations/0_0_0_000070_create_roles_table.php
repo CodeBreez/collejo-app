@@ -18,9 +18,6 @@ class CreateRolesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('roles', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('roles');
-        });        
     }
 
     /**
