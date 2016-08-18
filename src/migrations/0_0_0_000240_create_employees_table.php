@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('employee_position_id', 45);
             $table->string('employee_department_id', 45);
             $table->string('employee_grade_id', 45);
+            $table->string('image_id', 45)->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
@@ -31,6 +32,7 @@ class CreateEmployeesTable extends Migration
             $table->foreign('employee_position_id')->references('id')->on('employee_positions');
             $table->foreign('employee_department_id')->references('id')->on('employee_departments');
             $table->foreign('employee_grade_id')->references('id')->on('employee_grades');
+            $table->foreign('image_id')->references('id')->on('media');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

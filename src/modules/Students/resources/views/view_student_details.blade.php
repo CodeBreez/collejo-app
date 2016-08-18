@@ -19,6 +19,9 @@
 
 <div class="col-sm-6">
 	<dl class="row">
+		<dd class="col-sm-12"><img class="img-lazy thumbnail img-responsive" src="{{ $student->picture->url('small') }}"></dd>
+	</dl>	
+	<dl class="row">
 		<dt class="col-sm-4">{{ trans('students::student.admission_number') }}</dt>
 		<dd class="col-sm-8">{{ $student->admission_number }}</dd>
 	</dl>	

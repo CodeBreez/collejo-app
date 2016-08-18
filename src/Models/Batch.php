@@ -22,4 +22,9 @@ class Batch extends Model
     {
         return $this->belongsToMany(Grade::class);
     }
+
+    public function scopeActive()
+    {
+        return $this->whereNull('deleted_at');
+    }
 }

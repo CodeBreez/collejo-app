@@ -42,7 +42,9 @@ class EmployeeGradeController extends BaseController
 
 	public function getEmployeeGradeList()
 	{
-		return view('employees::employee_grade_list', ['employee_grades' => $this->employeeRepository->getEmployeeGrades()]);
+		return view('employees::employee_grade_list', [
+						'employee_grades' => $this->employeeRepository->getEmployeeGrades()->paginate()
+					]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

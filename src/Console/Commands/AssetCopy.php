@@ -3,8 +3,6 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Collejo\Core\Foundation\Application;
-use Module;
 use DirectoryIterator;
 
 class AssetCopy extends Command
@@ -21,14 +19,14 @@ class AssetCopy extends Command
      *
      * @var string
      */
-    protected $description = 'Copies asset files and recreates the asset cache';
+    protected $description = 'Copies asset files from Collejo assets directory and recreates the asset manifest';
 
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle(Module $module)
+    public function handle()
     {
         $startTime = microtime(true);
 

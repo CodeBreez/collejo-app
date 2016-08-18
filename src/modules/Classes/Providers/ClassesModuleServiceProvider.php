@@ -11,8 +11,6 @@ class ClassesModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $name = 'classes';
 
-    protected $permissions = ['create_batch', 'edit_batch', 'delete_batch', 'view_batch'];
-
     public function boot()
     {
         $this->initModule();
@@ -22,4 +20,22 @@ class ClassesModuleServiceProvider extends BaseModuleServiceProvider
     {
 
     }
+
+    public function getPermissions()
+    {
+        return [
+            'create_batch' => function($user){
+                return $user->hasPermission('create_batch');
+            },
+            'edit_batch' => function($user){
+                return $user->hasPermission('edit_batch');
+            },
+            'delete_batch' => function($user){
+                return $user->hasPermission('delete_batch');
+            }, 
+            'view_batch' => function($user){
+                return $user->hasPermission('view_batch');
+            }
+        ];
+    }    
 }

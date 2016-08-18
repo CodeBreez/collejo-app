@@ -76,7 +76,7 @@ Route::group(['prefix' => 'dash/employee_grade', 'middleware' => 'auth'], functi
 
 Route::group(['prefix' => 'dash/employee_positions', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'EmployeeGradeController@getEmployeePositionList')->name('employee_positions.list');
+	Route::get('/list', 'EmployeePositionController@getEmployeePositionList')->name('employee_positions.list');
 });
 
 Route::group(['prefix' => 'dash/employee_position', 'middleware' => 'auth'], function() {

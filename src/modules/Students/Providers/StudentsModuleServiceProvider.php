@@ -11,11 +11,24 @@ class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $name = 'students';
 
-    protected $permissions = ['create_student', 'edit_student', 'delete_student', 'undelete_student', 'view_student'];
-
     public function boot()
     {
         $this->initModule();
+    }
+
+    public function getPermissions()
+    {
+        return [
+            'create_student' => function($user){
+                return $user->hasPermission('create_student');
+            },
+            'edit_student' => function($user){
+                return $user->hasPermission('edit_student');
+            },
+            'view_student' => function($user){
+                return $user->hasPermission('view_student');
+            }
+        ];
     }
 
     public function register()

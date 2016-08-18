@@ -18,8 +18,8 @@ class CreateEmployeeDepartmentRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'name' => trans('students::employee_department.name'),
-	        'code' => trans('students::employee_department.code'),
+	        'name' => trans('employees::employee_department.name'),
+	        'code' => trans('employees::employee_department.code'),
 	    ];
 	}
 }

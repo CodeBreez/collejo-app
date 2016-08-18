@@ -42,7 +42,9 @@ class StudentCategoryController  extends BaseController
 
 	public function getStudentCategoriesList()
 	{
-		return view('students::student_categories_list', ['student_categories' => $this->studentRepository->getStudentCategories()]);
+		return view('students::student_categories_list', [
+					'student_categories' => $this->studentRepository->getStudentCategories()->paginate()
+				]);
 	}
 
 	public function __construct(StudentRepository $studentRepository)

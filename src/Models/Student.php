@@ -17,7 +17,7 @@ class Student extends Model
 
     protected $table = 'students';
 
-    protected $fillable = ['user_id', 'admission_number', 'admitted_on', 'student_category_id'];
+    protected $fillable = ['user_id', 'admission_number', 'admitted_on', 'student_category_id', 'image_id'];
 
     protected $dates = ['admitted_on'];
 
@@ -55,6 +55,11 @@ class Student extends Model
         if ($class = $this->class) {
             return $class->grade;
         }
+    }
+
+    public function picture()
+    {
+        return $this->hasOne(Media::class, 'id', 'image_id');
     }
 }
 

@@ -58,7 +58,7 @@ $(function(){
         <div class="form-group">
             <label class="col-sm-4 control-label">{{ trans('students::student.picture') }}</label>
             <div class="col-sm-8">
-                {{ Uploader::renderUploader() }}
+                {!! Uploader::renderUploader($student ? $student : null, 'picture', 'image_id', 'student_pictures') !!}
             </div>
         </div>
         <div class="form-group">

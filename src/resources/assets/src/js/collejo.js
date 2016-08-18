@@ -10,6 +10,7 @@ var Collejo = Collejo || {
     dynamics: {},
     browser: {},
     components: {},
+    image: {},
     ready: []
 };
 

@@ -149,7 +149,7 @@ class StudentController extends BaseController
 	{
 		return view('students::edit_details', [
 						'student' => null,
-						'student_categories' => $this->studentRepository->getStudentCategories()
+						'student_categories' => $this->studentRepository->getStudentCategories()->paginate()
 					]);
 	}
 

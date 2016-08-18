@@ -105,5 +105,7 @@ return [
     */
 
     'attributes' => [],
-
+    'invalid_file' => 'Invalid File',
+    'invalid_file_size' => 'Invalid File Size',
+    'invalid_file_type' => 'Invalid File Type'
 ];

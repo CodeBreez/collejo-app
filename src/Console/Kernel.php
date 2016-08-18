@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\AssetCopy::class,
         Commands\RouteCache::class,
         Commands\ConfigCache::class,
+        Commands\Install::class,
     ];
 
     /**

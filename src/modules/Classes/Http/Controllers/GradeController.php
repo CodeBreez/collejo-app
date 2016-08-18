@@ -99,7 +99,7 @@ class GradeController extends BaseController
 
 	public function getGradeList(Request $request)
 	{
-		return view('classes::grades_list', ['grades' => $this->classRepository->getGrades()]);
+		return view('classes::grades_list', ['grades' => $this->classRepository->getGrades()->paginate()]);
 	}
 
 	public function getGradeClasses(Request $request)

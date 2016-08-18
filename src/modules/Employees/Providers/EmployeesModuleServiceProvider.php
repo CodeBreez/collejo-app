@@ -11,8 +11,6 @@ class EmployeesModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $name = 'employees';
 
-    protected $permissions = ['create_employee', 'edit_employee', 'delete_employee', 'undelete_employee', 'view_employee'];
-
     public function boot()
     {
         $this->initModule();
@@ -22,4 +20,19 @@ class EmployeesModuleServiceProvider extends BaseModuleServiceProvider
     {
 
     }
+
+    public function getPermissions()
+    {
+        return [
+            'create_employee' => function($user){
+                return $user->hasPermission('create_employee');
+            },
+            'edit_employee' => function($user){
+                return $user->hasPermission('edit_employee');
+            },
+            'view_employee' => function($user){
+                return $user->hasPermission('view_employee');
+            }
+        ];
+    }    
 }

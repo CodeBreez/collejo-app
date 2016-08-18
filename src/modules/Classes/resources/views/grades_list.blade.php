@@ -44,6 +44,8 @@
 
 </table>
 
+<div class="pagination-row">{{ $grades->render() }}</div>
+
 @else
 
 <div class="placeholder-row">

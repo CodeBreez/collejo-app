@@ -42,7 +42,9 @@ class EmployeeCategoryController extends BaseController
 
 	public function getEmployeeCategoryList()
 	{
-		return view('employees::employee_category_list', ['employee_categories' => $this->employeeRepository->getEmployeeCategories()]);
+		return view('employees::employee_category_list', [
+						'employee_categories' => $this->employeeRepository->getEmployeeCategories()->paginate()
+					]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

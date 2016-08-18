@@ -18,7 +18,7 @@ class Employee extends Model
 
     protected $table = 'employees';
 
-    protected $fillable = ['user_id', 'employee_number', 'joined_on', 'employee_category_id', 'employee_position_id', 'employee_department_id', 'employee_grade_id'];
+    protected $fillable = ['user_id', 'employee_number', 'joined_on', 'employee_position_id', 'employee_department_id', 'employee_grade_id', 'image_id'];
 
     protected $dates = ['joined_on'];
 
@@ -40,5 +40,10 @@ class Employee extends Model
     public function employeeGrade()
     {
     	return $this->hasOne(EmployeeGrade::class);
+    }
+
+    public function picture()
+    {
+        return $this->hasOne(Media::class, 'id', 'image_id');
     }
 }

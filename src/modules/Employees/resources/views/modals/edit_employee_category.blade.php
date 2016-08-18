@@ -4,7 +4,7 @@ $(function(){
     $('#edit-employee-category').validate({
         submitHandler: function(form){
             $(form).ajaxSubmit({
-                dataType:  'json',
+                dataType:'json',
                 beforeSubmit:Collejo.form.lock(form),
                 success: function(){
                     Collejo.modal.close(form);

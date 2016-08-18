@@ -22,10 +22,14 @@ elixir(function(mix) {
             '../../../node_modules/d3/d3.js',
             '../../../node_modules/c3/c3.js',
             '../../../node_modules/selectize/dist/js/standalone/selectize.js',
+            '../../../node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
+            '../../../node_modules/blueimp-file-upload/js/jquery.iframe-transport.js',
+            '../../../node_modules/blueimp-file-upload/js/jquery.fileupload.js',
             srcDir + 'js/collejo.js',
             srcDir + 'js/collejo/browser.js',
             srcDir + 'js/collejo/templates.js',
             srcDir + 'js/collejo/ajax_setup.js',
+            srcDir + 'js/collejo/image.js',
             srcDir + 'js/collejo/datetimepicker.js',
             srcDir + 'js/collejo/select.js',
             srcDir + 'js/collejo/ajax_link.js',
@@ -35,10 +39,10 @@ elixir(function(mix) {
             srcDir + 'js/collejo/modal.js',
             srcDir + 'js/dashboard.js'
         ], outDir + 'js/collejo.js')
-        .version([
+    /*.version([
             outDir + 'css/collejo.css',
             outDir + 'js/collejo.js'
-        ]);
+        ]);*/
 });
 
 gulp.task('copy', function() {

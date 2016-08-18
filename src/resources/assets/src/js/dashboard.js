@@ -14,7 +14,7 @@ $(window).on('resize', function() {
     var tab = $('.dash-content .tab-content');
     if (tab && tab.offset()) {
         tab.css({
-            'min-height': ($(document).height() - tab.offset().top - 50) + 'px'
+            'min-height': ($(document).height() - tab.offset().top - 40) + 'px'
         });
     }
 
@@ -28,7 +28,7 @@ $(window).on('resize', function() {
     var section = $('.section-content,.landing-screen');
     if (section && section.offset()) {
         section.css({
-            'min-height': ($(document).height() - section.offset().top - 50) + 'px'
+            'min-height': ($(document).height() - section.offset().top - 40) + 'px'
         });
     }
 });

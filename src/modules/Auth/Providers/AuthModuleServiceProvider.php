@@ -25,4 +25,9 @@ class AuthModuleServiceProvider extends BaseModuleServiceProvider
             return new UserRepository($app); 
         });
     }
+
+    public function getPermissions()
+    {
+        return [];
+    }
 }

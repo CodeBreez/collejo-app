@@ -16,4 +16,8 @@ class Term extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
+    public function batch()
+    {
+    	return $this->belongsTo(Batch::class);
+    }
 }

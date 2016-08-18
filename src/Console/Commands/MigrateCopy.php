@@ -3,8 +3,6 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Collejo\Core\Foundation\Application;
-use Module;
 use DirectoryIterator;
 
 class MigrateCopy extends Command
@@ -28,7 +26,7 @@ class MigrateCopy extends Command
      *
      * @return mixed
      */
-    public function handle(Module $module)
+    public function handle()
     {
         $this->info('Copying core migrations...');
 

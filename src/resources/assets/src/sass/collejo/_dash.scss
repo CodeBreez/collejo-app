@@ -68,3 +68,41 @@ body{background: $gray-lighter;}
 }
 
 .breadcrumb{padding: 8px 0 ;background: transparent;}
+
+.file-uploader{
+	.upload-block{
+		float: left;border:thin solid $gray-lighter;border-radius: 3px;
+		.fileinput-button{
+			padding: 0;text-align: center;opacity: .2;background: $gray-lighter;
+			i.fa{color: $gray-light;}
+			&:hover{opacity:.4}
+		}
+		.progress{height: 5px;margin-right: 5px;margin-left: 5px;position: absolute;bottom: 5px;margin-bottom: 0;}
+	}
+	.uploaded-files{
+		float: left;
+		.block{float: left;border:thin solid $gray-lighter;border-radius: 3px;}
+	}
+	&.single{
+		.upload-block{position: relative;z-index: 10;}
+		.uploaded-files{position: absolute;z-index: 9;}
+	}
+	&.small{
+		.block{width: 80px;}
+		.upload-block,.upload-block .fileinput-button{
+			width: 80px;height: 80px;line-height: 80px;
+			i.fa{font-size:20px;}
+			.progress{width: 80px-10px}
+		}
+	}
+	&.large{
+		.block{width: 160px;}
+		.upload-block,.upload-block .fileinput-button{
+			width: 160px;height: 160px;line-height: 160px;
+			i.fa{font-size:40px;}
+			.progress{width: 160px-10px}
+		}
+	}
+}
+
+.pagination-row{width:100%;text-align: center;}

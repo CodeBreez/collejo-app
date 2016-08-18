@@ -3,7 +3,6 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Routing\RouteCollection;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 
 class ConfigCache extends ConfigCacheCommand

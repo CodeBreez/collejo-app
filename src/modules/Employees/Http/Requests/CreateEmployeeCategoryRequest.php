@@ -18,8 +18,8 @@ class CreateEmployeeCategoryRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'name' => trans('students::employee_category.name'),
-	        'code' => trans('students::employee_category.code')
+	        'name' => trans('employees::employee_category.name'),
+	        'code' => trans('employees::employee_category.code')
 	    ];
 	}
 }

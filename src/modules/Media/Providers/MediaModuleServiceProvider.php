@@ -21,4 +21,9 @@ class MediaModuleServiceProvider extends BaseModuleServiceProvider
     {
 
     }
+
+    public function getPermissions()
+    {
+        return [];
+    }
 }

@@ -42,7 +42,9 @@ class EmployeeDepartmentController extends BaseController
 
 	public function getEmployeeDepartmentList()
 	{
-		return view('employees::employee_department_list', ['employee_departments' => $this->employeeRepository->getEmployeeDepartments()]);
+		return view('employees::employee_department_list', [
+						'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->paginate()
+					]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

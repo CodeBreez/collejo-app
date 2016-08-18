@@ -29,4 +29,5 @@ class MediaServiceProvider extends ServiceProvider
             return new Uploader(); 
         });
     }
+
 }
