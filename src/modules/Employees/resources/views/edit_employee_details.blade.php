@@ -51,8 +51,7 @@ $(function(){
 <form class="form-horizontal" method="POST" id="edit-details-form" action="{{ $employee ? route('employee.details.edit', $employee->id) : route('employee.new') }}">
 
     @if($employee)
-        <input type="hidden" name="sid" value="{{ $employee->id }}">
-        <input type="hidden" name="uid" value="{{ $employee->user->id }}">
+        <input type="hidden" name="eid" value="{{ $employee->id }}">
     @endif
 
     <div class="col-xs-6">

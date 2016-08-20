@@ -94,7 +94,9 @@ class EmployeeController extends BaseController
 
 	public function postEmployeeDetailsEdit(UpdateEmployeeDetailsRequest $request, $id)
 	{
+		$employee = $this->employeeRepository->update($request->all(), $id);
 
+		return $this->printJson(true, [], trans('employees::employee.employee_updated'));
 	}
 
 	public function getEmployeeList()
