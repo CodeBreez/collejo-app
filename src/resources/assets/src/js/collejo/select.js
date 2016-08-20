@@ -8,6 +8,12 @@ Collejo.components.dropDown = function(el) {
     });
 
     if (component.length) {
-        return component[0].selectize;
+        selectize = component[0].selectize;
+
+        selectize.on('change', function() {
+            component.valid();
+        });
+
+        return selectize;
     }
 }

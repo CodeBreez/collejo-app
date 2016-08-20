@@ -126,7 +126,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function getStudentCategories()
 	{
-		return StudentCategory::all();
+		return new StudentCategory();
 	}
 
     function model()

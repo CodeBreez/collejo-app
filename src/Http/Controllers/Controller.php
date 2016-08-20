@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Request;
+use JsValidate;
 
 abstract class Controller extends BaseController
 {
@@ -37,4 +38,8 @@ abstract class Controller extends BaseController
     	return $this->printJson(true, ['partial' => $view->render(), 'target' => Request::get('target', $target)], $msg);
     }
 
+    public function jsValidator($validatorClass)
+    {
+        return JsValidate::create($validatorClass);
+    }
 }

@@ -2,6 +2,7 @@
 $(function(){
 
     $('#edit-employee-department').validate({
+        rules:{!! $department_form_validator->renderRules() !!},
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:  'json',

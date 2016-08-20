@@ -2,6 +2,7 @@
 $(function(){
 
     $('#edit-employee-category').validate({
+        rules:{!! $category_form_validator->renderRules() !!},
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:'json',

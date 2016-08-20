@@ -21,6 +21,7 @@
 <script type="text/javascript">
 $(function(){
     $('#edit-details-form').validate({
+        rules:{!! $employee_form_validator->renderRules() !!},
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:  'json',

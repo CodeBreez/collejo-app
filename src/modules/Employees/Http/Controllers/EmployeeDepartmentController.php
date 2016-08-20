@@ -15,36 +15,38 @@ class EmployeeDepartmentController extends BaseController
 	public function getEmployeeDepartmentNew()
 	{
 		return $this->printModal(view('employees::modals.edit_employee_department', [
-						'employee_department' => null
-					]));
+				'employee_department' => null,
+				'department_form_validator' => $this->jsValidator(CreateEmployeeDepartmentRequest::class)
+			]));
 	}
 
 	public function postEmployeeDepartmentNew(CreateEmployeeDepartmentRequest $request)
 	{
 		return $this->printPartial(view('employees::partials.employee_department', [
-						'employee_department' => $this->employeeRepository->createEmployeeDepartment($request->all()),
-					]), trans('employees::employee_department.employee_department_created'));
+				'employee_department' => $this->employeeRepository->createEmployeeDepartment($request->all()),
+			]), trans('employees::employee_department.employee_department_created'));
 	}
 
 	public function getEmployeeDepartmentEdit($id)
 	{
 		return $this->printModal(view('employees::modals.edit_employee_department', [
-						'employee_department' => $this->employeeRepository->findEmployeeDepartment($id)
-					]));
+				'employee_department' => $this->employeeRepository->findEmployeeDepartment($id),
+				'department_form_validator' => $this->jsValidator(UpdateEmployeeDepartmentRequest::class)
+			]));
 	}
 
 	public function postEmployeeDepartmentEdit(UpdateEmployeeDepartmentRequest $request, $id)
 	{
 		return $this->printPartial(view('employees::partials.employee_department', [
-						'employee_department' => $this->employeeRepository->updateEmployeeDepartment($request->all(), $id),
-					]), trans('employees::employee_department.employee_department_updated'));
+				'employee_department' => $this->employeeRepository->updateEmployeeDepartment($request->all(), $id),
+			]), trans('employees::employee_department.employee_department_updated'));
 	}
 
 	public function getEmployeeDepartmentList()
 	{
 		return view('employees::employee_department_list', [
-						'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->paginate()
-					]);
+				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->paginate(config('collejo.pagination.perpage'))
+			]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

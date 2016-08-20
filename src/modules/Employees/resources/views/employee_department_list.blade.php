@@ -28,6 +28,8 @@
 
 </table>
 
+<div class="pagination-row">{{ $employee_departments->render() }}</div>
+
 @else
 
 <div class="placeholder-row">

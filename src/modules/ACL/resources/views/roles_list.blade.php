@@ -34,5 +34,7 @@
 
 </table>
 
+<div class="pagination-row">{{ $roles->render() }}</div>
+
 @endsection
 

@@ -43,7 +43,7 @@ class EmployeePositionController extends BaseController
 	public function getEmployeePositionList()
 	{
 		return view('employees::employee_position_list', [
-						'employee_positions' => $this->employeeRepository->getEmployeePositions()->paginate()
+						'employee_positions' => $this->employeeRepository->getEmployeePositions()->paginate(config('collejo.pagination.perpage'))
 					]);
 	}
 

@@ -28,6 +28,8 @@
 
 </table>
 
+<div class="pagination-row">{{ $student_categories->render() }}</div>
+
 @else
 
 <div class="placeholder-row">

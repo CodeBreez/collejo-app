@@ -15,36 +15,38 @@ class StudentCategoryController  extends BaseController
 	public function getStudentCategoryNew()
 	{
 		return $this->printModal(view('students::modals.edit_student_category', [
-						'student_category' => null
-					]));
+				'student_category' => null,
+				'category_form_validator' => $this->jsValidator(CreateStudentCategoryRequest::class)
+			]));
 	}
 
 	public function postStudentCategoryNew(CreateStudentCategoryRequest $request)
 	{
 		return $this->printPartial(view('students::partials.student_category', [
-						'student_category' => $this->studentRepository->createStudentCategory($request->all()),
-					]), trans('students::student_category.student_category_created'));
+				'student_category' => $this->studentRepository->createStudentCategory($request->all()),
+			]), trans('students::student_category.student_category_created'));
 	}
 
 	public function getStudentCategoryEdit($id)
 	{
 		return $this->printModal(view('students::modals.edit_student_category', [
-						'student_category' => $this->studentRepository->findStudentCategory($id)
-					]));
+				'student_category' => $this->studentRepository->findStudentCategory($id),
+				'category_form_validator' => $this->jsValidator(UpdateStudentCategoryRequest::class)
+			]));
 	}
 
 	public function postStudentCategoryEdit(UpdateStudentCategoryRequest $request, $id)
 	{
 		return $this->printPartial(view('students::partials.student_category', [
-						'student_category' => $this->studentRepository->updateStudentCategory($request->all(), $id),
-					]), trans('students::student_category.student_category_updated'));
+				'student_category' => $this->studentRepository->updateStudentCategory($request->all(), $id),
+			]), trans('students::student_category.student_category_updated'));
 	}
 
 	public function getStudentCategoriesList()
 	{
 		return view('students::student_categories_list', [
-					'student_categories' => $this->studentRepository->getStudentCategories()->paginate()
-				]);
+				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage'))
+			]);
 	}
 
 	public function __construct(StudentRepository $studentRepository)

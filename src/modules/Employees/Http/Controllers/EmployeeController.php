@@ -66,11 +66,12 @@ class EmployeeController extends BaseController
 	public function getEmployeeNew()
 	{
 		return view('employees::edit_employee_details', [
-						'employee' => null,
-						'employee_positions' => $this->employeeRepository->getEmployeePositions(),
-						'employee_departments' => $this->employeeRepository->getEmployeeDepartments(),
-						'employee_grades' => $this->employeeRepository->getEmployeeGrades(),
-					]);
+				'employee' => null,
+				'employee_positions' => $this->employeeRepository->getEmployeePositions()->all(),
+				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->all(),
+				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->all(),
+				'employee_form_validator' => $this->jsValidator(CreateEmployeeDetailsRequest::class)
+			]);
 	}
 
 	public function postEmployeeNew(CreateEmployeeDetailsRequest $request)
@@ -83,11 +84,12 @@ class EmployeeController extends BaseController
 	public function getEmployeeDetailsEdit($id)
 	{
 		return view('employees::edit_employee_details', [
-						'employee' => $this->employeeRepository->find($id),
-						'employee_positions' => $this->employeeRepository->getEmployeePositions(),
-						'employee_departments' => $this->employeeRepository->getEmployeeDepartments(),
-						'employee_grades' => $this->employeeRepository->getEmployeeGrades(),
-					]);
+				'employee' => $this->employeeRepository->find($id),
+				'employee_positions' => $this->employeeRepository->getEmployeePositions()->all(),
+				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->all(),
+				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->all(),
+				'employee_form_validator' => $this->jsValidator(UpdateEmployeeDetailsRequest::class)
+			]);
 	}
 
 	public function postEmployeeDetailsEdit(UpdateEmployeeDetailsRequest $request, $id)
@@ -97,7 +99,9 @@ class EmployeeController extends BaseController
 
 	public function getEmployeeList()
 	{
-		return view('employees::employee_list', ['employees' => $this->employeeRepository->getEmployees()->paginate()]);
+		return view('employees::employee_list', [
+				'employees' => $this->employeeRepository->getEmployees()->paginate(config('collejo.pagination.perpage'))
+			]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

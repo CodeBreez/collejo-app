@@ -36,7 +36,8 @@ class GradeController extends BaseController
 	{
 		return $this->printModal(view('classes::modals.edit_class', [
 				'class' => $this->classRepository->findClass($classId, $gradeId),
-				'grade' => $this->classRepository->findGrade($gradeId)
+				'grade' => $this->classRepository->findGrade($gradeId),
+				'class_form_validator' => $this->jsValidator(UpdateClassRequest::class)
 			]));
 	}
 
@@ -54,7 +55,8 @@ class GradeController extends BaseController
 	{
 		return $this->printModal(view('classes::modals.edit_class', [
 				'class' => null,
-				'grade' => $this->classRepository->findGrade($gradeId)
+				'grade' => $this->classRepository->findGrade($gradeId),
+				'class_form_validator' => $this->jsValidator(CreateClassRequest::class)
 			]));
 	}
 
@@ -82,7 +84,10 @@ class GradeController extends BaseController
 
 	public function getGradeDetailsEdit($gradeId)
 	{
-		return view('classes::edit_grade_details', ['grade' => $this->classRepository->findGrade($gradeId)]);
+		return view('classes::edit_grade_details', [
+				'grade' => $this->classRepository->findGrade($gradeId),
+				'grade_form_validator' => $this->jsValidator(UpdateGradeRequest::class)
+			]);
 	}
 
 	public function postGradeNew(CreateGradeRequest $request)
@@ -94,12 +99,17 @@ class GradeController extends BaseController
 
 	public function getGradeNew()
 	{
-		return view('classes::edit_grade_details', ['grade' => null]);
+		return view('classes::edit_grade_details', [
+				'grade' => null,
+				'grade_form_validator' => $this->jsValidator(CreateGradeRequest::class)
+			]);
 	}
 
 	public function getGradeList(Request $request)
 	{
-		return view('classes::grades_list', ['grades' => $this->classRepository->getGrades()->paginate()]);
+		return view('classes::grades_list', [
+				'grades' => $this->classRepository->getGrades()->paginate(config('collejo.pagination.perpage'))
+			]);
 	}
 
 	public function getGradeClasses(Request $request)

@@ -17,6 +17,7 @@
 <script type="text/javascript">
 $(function(){
     $('#edit-account-form').validate({
+        rules:{!! $account_form_validator->renderRules() !!},
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:  'json',

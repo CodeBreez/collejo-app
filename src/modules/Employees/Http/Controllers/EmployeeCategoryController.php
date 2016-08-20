@@ -15,36 +15,38 @@ class EmployeeCategoryController extends BaseController
 	public function getEmployeeCategoryNew()
 	{
 		return $this->printModal(view('employees::modals.edit_employee_category', [
-						'employee_category' => null
-					]));
+				'employee_category' => null,
+				'category_form_validator' => $this->jsValidator(CreateEmployeeCategoryRequest::class)
+			]));
 	}
 
 	public function postEmployeeCategoryNew(CreateEmployeeCategoryRequest $request)
 	{
 		return $this->printPartial(view('employees::partials.employee_category', [
-						'employee_category' => $this->employeeRepository->createEmployeeCategory($request->all()),
-					]), trans('employees::employee_category.employee_category_created'));
+				'employee_category' => $this->employeeRepository->createEmployeeCategory($request->all()),
+			]), trans('employees::employee_category.employee_category_created'));
 	}
 
 	public function getEmployeeCategoryEdit($id)
 	{
 		return $this->printModal(view('employees::modals.edit_employee_category', [
-						'employee_category' => $this->employeeRepository->findEmployeeCategory($id)
-					]));
+				'employee_category' => $this->employeeRepository->findEmployeeCategory($id),
+				'category_form_validator' => $this->jsValidator(UpdateEmployeeCategoryRequest::class)
+			]));
 	}
 
 	public function postEmployeeCategoryEdit(UpdateEmployeeCategoryRequest $request, $id)
 	{
 		return $this->printPartial(view('employees::partials.employee_category', [
-						'employee_category' => $this->employeeRepository->updateEmployeeCategory($request->all(), $id),
-					]), trans('employees::employee_category.employee_category_updated'));
+				'employee_category' => $this->employeeRepository->updateEmployeeCategory($request->all(), $id),
+			]), trans('employees::employee_category.employee_category_updated'));
 	}
 
 	public function getEmployeeCategoryList()
 	{
 		return view('employees::employee_category_list', [
-						'employee_categories' => $this->employeeRepository->getEmployeeCategories()->paginate()
-					]);
+				'employee_categories' => $this->employeeRepository->getEmployeeCategories()->paginate(config('collejo.pagination.perpage'))
+			]);
 	}
 
 	public function __construct(EmployeeRepository $employeeRepository)

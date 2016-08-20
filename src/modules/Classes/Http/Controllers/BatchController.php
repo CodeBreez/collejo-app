@@ -133,7 +133,9 @@ class BatchController extends BaseController
 						]);
 		}
 
-		return view('classes::batches_list', ['batches' => $this->classRepository->getBatches()->paginate()]);
+		return view('classes::batches_list', [
+						'batches' => $this->classRepository->getBatches()->paginate(config('collejo.pagination.perpage'))
+					]);
 	}
 
 	public function getBatchGrades(Request $request)

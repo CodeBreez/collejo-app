@@ -22,6 +22,7 @@
 $(function(){
 
     $('#edit-grade').validate({
+        rules:{!! $grade_form_validator->renderRules() !!},
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:  'json',

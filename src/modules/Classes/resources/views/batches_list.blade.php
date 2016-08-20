@@ -44,6 +44,8 @@
 
 </table>
 
+<div class="pagination-row">{{ $batches->render() }}</div>
+
 @else
 
 <div class="placeholder-row">

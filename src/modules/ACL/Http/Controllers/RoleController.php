@@ -11,7 +11,7 @@ class RoleController extends Controller
 
     public function getRoles()
     {
-        return view('acl::roles_list', ['roles' => $this->userRepository->getRoles()]);
+        return view('acl::roles_list', ['roles' => $this->userRepository->getRoles()->paginate(config('collejo.pagination.perpage'))]);
     }
 
     public function __construct(UserRepository $userRepository)

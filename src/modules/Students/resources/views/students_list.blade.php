@@ -31,6 +31,8 @@
 
 </table>
 
+<div class="pagination-row">{{ $students->render() }}</div>
+
 @else
 
 <div class="placeholder-row">

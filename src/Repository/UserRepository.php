@@ -95,7 +95,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 
 	public function getRoles()
 	{
-		return Role::all();
+		return new Role();
 	}
 
 	public function update(array $attributes, $id)

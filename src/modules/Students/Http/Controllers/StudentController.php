@@ -81,9 +81,10 @@ class StudentController extends BaseController
 	public function getStudentDetailEdit($studentId)
 	{
 		return view('students::edit_details', [
-						'student' => $this->studentRepository->find($studentId),
-						'student_categories' => $this->studentRepository->getStudentCategories()
-					]);
+				'student' => $this->studentRepository->find($studentId),
+				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage')),
+				'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class)
+			]);
 	}	
 
 	public function postStudentDetailEdit(UpdateStudentRequest $request, $studentId)
@@ -113,8 +114,9 @@ class StudentController extends BaseController
 	public function getStudentAccountEdit($studentId)
 	{
 		return view('students::edit_account', [
-			'student' => $this->studentRepository->find($studentId)
-		]);
+				'student' => $this->studentRepository->find($studentId),
+				'account_form_validator' => $this->jsValidator(UpdateStudentAccountRequest::class)
+			]);
 	}	
 
 	public function getStudentAccountView($studentId)
@@ -134,7 +136,7 @@ class StudentController extends BaseController
 	public function getStudentList()
 	{
 		return view('students::students_list', [
-				'students' => $this->studentRepository->getStudents()->paginate()
+				'students' => $this->studentRepository->getStudents()->paginate(config('collejo.pagination.perpage'))
 			]);
 	}
 
@@ -148,9 +150,10 @@ class StudentController extends BaseController
 	public function getStudentNew()
 	{
 		return view('students::edit_details', [
-						'student' => null,
-						'student_categories' => $this->studentRepository->getStudentCategories()->paginate()
-					]);
+				'student' => null,
+				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage')),
+				'student_form_validator' => $this->jsValidator(CreateStudentRequest::class)
+			]);
 	}
 
 	public function __construct(StudentRepository $studentRepository, ClassRepository $classRepository)
