@@ -18,7 +18,7 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     status = (response == 0) ? xhr.status : response;
 
     if (status == 403 || status == 401) {
-        Collejo.alert('danger', 'You are not authorized to perform this action', 3000);
+        Collejo.alert('danger', Collejo.lang.ajax_unauthorize, 3000);
         $('.modal,.modal-backdrop').remove();
     }
 
@@ -58,7 +58,7 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
             }
 
             if (response.data != undefined && response.data.errors != undefined) {
-                var msg = '<strong>Validation failed</strong> Please correct them and try again <br/>';
+                var msg = '<strong>' + Collejo.lang.validation_failed + '</strong> ' + Collejo.lang.validation_correct + ' <br/>';
                 $.each(response.data.errors, function(field, err) {
                     $.each(err, function(i, e) {
                         msg = msg + e + '<br/>';

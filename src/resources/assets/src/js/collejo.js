@@ -3,6 +3,7 @@ var Collejo = Collejo || {
         alertInClass: 'bounceInDown',
         alertOutClass: 'fadeOutUp'
     },
+    lang: {},
     templates: {},
     form: {},
     link: {},

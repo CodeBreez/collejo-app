@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
     {
 
         if ($e instanceOf TokenMismatchException) {
-            return response()->json(['success' => false, 'data' => [] , 'message' => 'Could not fulfill your request. Please refresh the page and try again'], 400);
+            return response()->json(['success' => false, 'data' => ['redir' => route('auth.login')] , 'message' => trans('common.ajax_token_mismatch')], 400);
         }
 
         return parent::render($request, $e);

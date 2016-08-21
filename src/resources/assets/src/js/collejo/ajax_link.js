@@ -17,11 +17,11 @@ Collejo.link.ajax = function(link, callback) {
             message: link.data('confirm'),
             buttons: {
                 cancel: {
-                    label: 'No',
+                    label: Collejo.lang.no,
                     className: 'btn-default'
                 },
                 confirm: {
-                    label: 'Yes',
+                    label: Collejo.lang.yes,
                     className: 'btn-danger'
                 }
             },

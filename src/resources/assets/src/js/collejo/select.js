@@ -4,7 +4,7 @@ Collejo.ready.push(function(scope) {
 
 Collejo.components.dropDown = function(el) {
     var component = el.selectize({
-        placeholder: 'Select...'
+        placeholder: Collejo.lang.select
     });
 
     if (component.length) {

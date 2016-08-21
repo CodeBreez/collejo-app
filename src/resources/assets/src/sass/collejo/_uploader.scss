@@ -3,7 +3,7 @@
     float: left;border:thin solid $gray-lighter;border-radius: 3px;
     .fileinput-button{
       padding: 0;text-align: center;opacity: .2;background: $gray-lighter;
-      i.fa{color: $gray-light;opacity: .2;}
+      i.fa{color: $gray-light;opacity: .3;}
       &:hover{opacity:.4}
       &.disabled{
         background:$input-bg-disabled;opacity:1
