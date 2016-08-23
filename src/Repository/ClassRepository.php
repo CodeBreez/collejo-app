@@ -95,19 +95,13 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
     public function createTerm(array $attributes, $batchId)
     {
-        $term = null;
-
         $batch = $this->findBatch($batchId);
 
         $attributes['start_date'] = toUTC($attributes['start_date']);
         $attributes['end_date'] = toUTC($attributes['end_date']);
         $attributes['batch_id'] = $batch->id;
 
-        DB::transaction(function () use ($attributes, &$term) {
-            $term = Term::create($attributes);
-        });
-
-        return $term;
+        return Term::create($attributes);
     }
 
     public function activeBatches()
