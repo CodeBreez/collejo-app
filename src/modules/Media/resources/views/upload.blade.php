@@ -26,6 +26,11 @@ $(function(){
     }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
 
     $('#{{ $id }}-progress').hide();
+
+    $('.delete-img').on('click', function(e){
+        e.preventDefault();
+        $(this).parent('.block').remove();
+    });
 });
 </script>
 

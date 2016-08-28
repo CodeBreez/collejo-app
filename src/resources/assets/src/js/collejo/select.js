@@ -6,6 +6,10 @@ Collejo.components.dropDown = function(el) {
     el.each(function() {
         var element = $(this);
 
+        if (element.data('toggle') == null) {
+            element.data('toggle', 'select-dropdown');
+        }
+
         element.selectize({
             placeholder: Collejo.lang.select
         });
@@ -15,7 +19,10 @@ Collejo.components.dropDown = function(el) {
         selectize.on('change', function() {
             element.valid();
         });
-
-        return selectize;
     });
+
+    if (el.length == 1) {
+        var selectize = el[0].selectize;
+        return selectize;
+    }
 }

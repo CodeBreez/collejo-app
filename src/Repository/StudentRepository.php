@@ -93,6 +93,10 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 			$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
 		}
 
+		if (!isset($attributes['image_id'])) {
+			$attributes['image_id'] = null;
+		}
+
 		$studentAttributes = $this->parseFillable($attributes);
 
 		DB::transaction(function () use ($attributes, $studentAttributes, &$student, $studentId) {
@@ -110,6 +114,10 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		
 		$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
 
+		if (!isset($attributes['image_id'])) {
+			$attributes['image_id'] = null;
+		}
+		
 		$studentAttributes = $this->parseFillable($attributes);
 
 		DB::transaction(function () use ($attributes, $studentAttributes, &$student) {

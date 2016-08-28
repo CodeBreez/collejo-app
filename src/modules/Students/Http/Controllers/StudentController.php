@@ -31,7 +31,8 @@ class StudentController extends BaseController
 	{
 		return $this->printModal(view('students::modals.assign_class', [
 				'student' => $this->studentRepository->find($studentId),
-				'batches' => $this->classRepository->activeBatches()->get()
+				'batches' => $this->classRepository->activeBatches()->get(),
+				'assign_form' => $this->jsValidator(AssignClassRequest::class)
 			]));
 	}
 

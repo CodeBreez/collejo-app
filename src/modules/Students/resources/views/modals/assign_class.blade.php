@@ -2,6 +2,7 @@
 $(function(){
 
     $('#assign-class').validate({
+        rules:{!! $assign_form->renderRules() !!},
         submitHandler: function(form){
             $(form).ajaxSubmit({
                 dataType:  'json',

@@ -120,6 +120,10 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 			$attributes['joined_on'] = toUTC($attributes['joined_on']);
 		}
 
+		if (!isset($attributes['image_id'])) {
+			$attributes['image_id'] = null;
+		}
+
 		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
 
 		$employeeAttributes = $this->parseFillable($attributes);
@@ -138,6 +142,10 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		$employee = null;
 		
 		$attributes['joined_on'] = toUTC($attributes['joined_on']);
+		
+		if (!isset($attributes['image_id'])) {
+			$attributes['image_id'] = null;
+		}
 
 		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
 
