@@ -22,24 +22,19 @@ class Employee extends Model
 
     protected $dates = ['joined_on'];
 
-    public function employeeCategory()
-    {
-    	return $this->hasOne(EmployeeCategory::class);
-    }
-
     public function employeeDepartment()
     {
-    	return $this->hasOne(EmployeeDepartment::class);
+    	return $this->belongsTo(EmployeeDepartment::class);
     }
 
     public function employeePosition()
     {
-    	return $this->hasOne(EmployeePosition::class);
+    	return $this->belongsTo(EmployeePosition::class);
     }
 
     public function employeeGrade()
     {
-    	return $this->hasOne(EmployeeGrade::class);
+    	return $this->belongsTo(EmployeeGrade::class);
     }
 
     public function picture()

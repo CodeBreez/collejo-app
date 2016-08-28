@@ -40,6 +40,7 @@
 
                     @yield('tab')
 
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>

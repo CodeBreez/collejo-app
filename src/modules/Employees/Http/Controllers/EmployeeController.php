@@ -12,6 +12,13 @@ class EmployeeController extends BaseController
 
 	protected $employeeRepository;
 
+	public function getEmployeeDetailsView($employeeId)
+	{
+		return view('employees::view_employee_details', [
+			'employee' => $this->employeeRepository->find($employeeId)
+		]);
+	}
+
 	public function getEmployeeAddressesView()
 	{
 

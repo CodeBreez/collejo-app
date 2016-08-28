@@ -19,7 +19,11 @@
 
 <div class="col-sm-6">
 	<dl class="row">
-		<dd class="col-sm-12"><img class="img-lazy thumbnail img-responsive" src="{{ $student->picture->url('small') }}"></dd>
+		@if($student->picture)
+			<img class="img-lazy thumbnail img-responsive" src="{{ $student->picture->url('small') }}">
+		@else
+			<img class="thumbnail img-responsive" src="{{ asset(elixir('/images/user_avatar_small.png')) }}">
+		@endif
 	</dl>	
 	<dl class="row">
 		<dt class="col-sm-4">{{ trans('students::student.admission_number') }}</dt>
