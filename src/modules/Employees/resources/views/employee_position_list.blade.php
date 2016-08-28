@@ -16,7 +16,7 @@
                 
     <tr>
         <th width="*">{{ trans('employees::employee_position.name') }}</th>
-        <th width="20%">{{ trans('employees::employee_position.code') }}</th>
+        <th width="20%">{{ trans('employees::employee_position.employee_category') }}</th>
         <th width="10%"></th>
     </tr>
 

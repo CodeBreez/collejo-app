@@ -41,7 +41,7 @@ class BatchController extends BaseController
 	{
 		return view('classes::edit_batch_grades', [
 						'batch' => $this->classRepository->findBatch($batchId),
-						'grades' => $this->classRepository->getGrades()
+						'grades' => $this->classRepository->getGrades()->all()
 					]);
 	}
 

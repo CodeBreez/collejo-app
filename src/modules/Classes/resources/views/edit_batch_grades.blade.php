@@ -62,7 +62,7 @@ $(function(){
                             <input type="checkbox" name="grades[]" value="{{ $grade->id }}" id="chk-{{ $grade->id }}">
                         @endif
 
-                        <label for="chk-{{ $grade->id }}"></label> <span>{{ $grade->name }}</span>
+                        <label for="chk-{{ $grade->id }}">  <span>{{ $grade->name }}</span></label>
                     </div> 
 
                 @endforeach

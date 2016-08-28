@@ -81,9 +81,9 @@ Route::group(['prefix' => 'dash/employee_positions', 'middleware' => 'auth'], fu
 
 Route::group(['prefix' => 'dash/employee_position', 'middleware' => 'auth'], function() {
 
-	Route::get('/new', 'EmployeePositionController@getEmployeeGradeNew')->name('employee_position.new');
-	Route::post('/new', 'EmployeePositionController@postEmployeeGradeNew');
+	Route::get('/new', 'EmployeePositionController@getEmployeePositionNew')->name('employee_position.new');
+	Route::post('/new', 'EmployeePositionController@postEmployeePositionNew');
 
-	Route::get('/{id}/edit', 'EmployeePositionController@getEmployeeGradeEdit')->name('employee_position.edit');
-	Route::post('/{id}/edit', 'EmployeePositionController@postEmployeeGradeEdit');
+	Route::get('/{id}/edit', 'EmployeePositionController@getEmployeePositionEdit')->name('employee_position.edit');
+	Route::post('/{id}/edit', 'EmployeePositionController@postEmployeePositionEdit');
 });

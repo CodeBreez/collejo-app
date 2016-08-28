@@ -15,7 +15,9 @@ class EmployeePositionController extends BaseController
 	public function getEmployeePositionNew()
 	{
 		return $this->printModal(view('employees::modals.edit_employee_position', [
-						'employee_position' => null
+						'employee_position' => null,
+						'position_form_validator' => $this->jsValidator(CreateEmployeePositionRequest::class),
+						'employee_categories' => $this->employeeRepository->getEmployeeCategories()->all()
 					]));
 	}
 
@@ -29,7 +31,9 @@ class EmployeePositionController extends BaseController
 	public function getEmployeePositionEdit($id)
 	{
 		return $this->printModal(view('employees::modals.edit_employee_position', [
-						'employee_position' => $this->employeeRepository->findEmployeePosition($id)
+						'employee_position' => $this->employeeRepository->findEmployeePosition($id),
+						'position_form_validator' => $this->jsValidator(UpdateEmployeePositionRequest::class),
+						'employee_categories' => $this->employeeRepository->getEmployeeCategories()->all()
 					]));
 	}
 

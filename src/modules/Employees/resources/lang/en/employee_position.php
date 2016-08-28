@@ -8,6 +8,7 @@ return [
 	'new_employee_position' => 'New Employee Position',
 
 	'name' => 'Name',
+	'employee_category' => 'Employee Category',
 
 	'employee_position_created' => 'Employee Position created.',
 	'employee_position_updated' => 'Employee Position updated.',

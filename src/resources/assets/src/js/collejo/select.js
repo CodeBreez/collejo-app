@@ -3,17 +3,19 @@ Collejo.ready.push(function(scope) {
 });
 
 Collejo.components.dropDown = function(el) {
-    var component = el.selectize({
-        placeholder: Collejo.lang.select
-    });
+    el.each(function() {
+        var element = $(this);
 
-    if (component.length) {
-        selectize = component[0].selectize;
+        element.selectize({
+            placeholder: Collejo.lang.select
+        });
+
+        var selectize = element[0].selectize;
 
         selectize.on('change', function() {
-            component.valid();
+            element.valid();
         });
 
         return selectize;
-    }
+    });
 }
