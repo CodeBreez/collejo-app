@@ -6,6 +6,8 @@ use Collejo\Core\Foundation\Auth\User as Authenticatable;
 use Collejo\App\Models\Role;
 use Collejo\App\Models\Permission;
 use Collejo\App\Models\Student;
+use Collejo\App\Models\Employee;
+use Collejo\App\Models\Guardian;
 use Collejo\App\Models\Address;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -47,6 +49,16 @@ class User extends Authenticatable
     public function student()
     {
         return $this->hasOne(Student::class);
+    }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
+    public function guardian()
+    {
+        return $this->hasOne(Guardian::class);
     }
 
     public function addresses()

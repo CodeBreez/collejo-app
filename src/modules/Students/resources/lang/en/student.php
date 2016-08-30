@@ -13,6 +13,7 @@ return [
 	'contact_details' => 'Contact Details',
 	'account_details' => 'Account Details',
 	'assign_class' => 'Assign Class',
+	'guardians' => 'Guardians/Parents',
 
 	'picture' => 'Picture',
 	'student_category' => 'Student Category',
@@ -27,6 +28,8 @@ return [
 	'batch' => 'Batch',
 	'grade' => 'Grade',
 	'class' => 'Class',
+
+	'assign_guardian' => 'Assign Guardian',
 
 	'empty_list' => 'There are no Students in the system.',
 	'student_updated' => 'Student updated.',

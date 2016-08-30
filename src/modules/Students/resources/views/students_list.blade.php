@@ -20,6 +20,7 @@
         <th width="15%">{{ trans('students::student.batch') }}</th>
         <th width="10%">{{ trans('students::student.grade') }}</th>
         <th width="10%">{{ trans('students::student.class') }}</th>
+        <th width="10%">{{ trans('students::student.guardians') }}</th>
         <th width="10%"></th>
     </tr>
 

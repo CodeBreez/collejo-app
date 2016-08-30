@@ -35,6 +35,9 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 	Route::get('/{id}/assign_class', 'StudentController@getStudentClassAssign')->name('student.assign_class');
 	Route::post('/{id}/assign_class', 'StudentController@postStudentClassAssign');
 
+	Route::get('/{id}/assign_guardian', 'StudentController@getStudentGuardianAssign')->name('student.assign_guardian');
+	Route::post('/{id}/assign_guardian', 'StudentController@postStudentGuardianAssign');
+
 });
 
 Route::group(['prefix' => 'dash/student_categories', 'middleware' => 'auth'], function() {
@@ -54,5 +57,5 @@ Route::group(['prefix' => 'dash/student_category', 'middleware' => 'auth'], func
 
 Route::group(['prefix' => 'dash/guardians', 'middleware' => 'auth'], function() {
 
-	Route::get('/list', 'StudentCategoryController@getStudentCategoriesList')->name('guardians.list');
+	Route::get('/list', 'GuardianController@getGuardiansList')->name('guardians.list');
 });
