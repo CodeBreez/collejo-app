@@ -10,11 +10,6 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
 
 	public function getGuardians()
 	{
-		return new Guardian();
+		return $this->search(Guardian::class);
 	}
-	
-    function model()
-    {
-        return Guardian::class;
-    }
 }

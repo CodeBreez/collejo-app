@@ -38,7 +38,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 
 	public function getEmployeePositions()
 	{
-		return new EmployeePosition();
+		return $this->search(EmployeePosition::class);
 	}
 
 	public function updateEmployeeGrade(array $attributes, $employeeGradeId)
@@ -60,7 +60,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 
 	public function getEmployeeGrades()
 	{
-		return new EmployeeGrade();
+		return $this->search(EmployeeGrade::class);
 	}
 
 	public function updateEmployeeDepartment(array $attributes, $employeeDepartmentId)
@@ -82,7 +82,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 
 	public function getEmployeeDepartments()
 	{
-		return new EmployeeDepartment();
+		return $this->search(EmployeeDepartment::class);
 	}
 
 	public function updateEmployeeCategory(array $attributes, $employeeCategoryId)
@@ -104,12 +104,12 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 
 	public function getEmployeeCategories()
 	{
-		return new EmployeeCategory();
+		return $this->search(EmployeeCategory::class);
 	}
 
 	public function getEmployees()
 	{
-		return $this;
+		return $this->search(Employee::class);
 	}
 
 	public function update(array $attributes, $employeeId)

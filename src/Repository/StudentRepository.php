@@ -82,7 +82,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function getStudents()
 	{
-		return $this;
+		return $this->search(Student::class);
 	}
 
 	public function update(array $attributes, $studentId)
@@ -134,13 +134,8 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function getStudentCategories()
 	{
-		return new StudentCategory();
+		return $this->search(StudentCategory::class);
 	}
-
-    function model()
-    {
-        return Student::class;
-    }
 
     public function boot()
     {

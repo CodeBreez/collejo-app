@@ -95,7 +95,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 
 	public function getRoles()
 	{
-		return new Role();
+		return $this->search(Role::class);
 	}
 
 	public function update(array $attributes, $id)
@@ -120,9 +120,4 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 	{
 		return User::where('email', $email)->first();
 	}
-
-    function model()
-    {
-        return User::class;
-    }
 }
