@@ -9,6 +9,9 @@ Collejo.form.lock = function(form) {
     $(form).find('button[type="submit"]')
         .attr('disabled', true)
         .append(Collejo.templates.spinnerTemplate());
+    $(form).find('input[type="checkbox"]')
+        .attr('disabled', true)
+        .parent('.checkbox-row').addClass('disabled');
 }
 
 Collejo.form.unlock = function(form) {
@@ -23,6 +26,9 @@ Collejo.form.unlock = function(form) {
         .attr('disabled', false)
         .find('.spinner-wrap')
         .remove();
+    $(form).find('input[type="checkbox"]')
+        .attr('disabled', false)
+        .parent('.checkbox-row').removeClass('disabled');
 }
 
 Collejo.ready.push(function(scope) {

@@ -29,12 +29,18 @@ class ClassesModuleServiceProvider extends BaseModuleServiceProvider
             },
             'edit_batch' => function($user){
                 return $user->hasPermission('edit_batch');
-            },
-            'delete_batch' => function($user){
-                return $user->hasPermission('delete_batch');
             }, 
             'view_batch' => function($user){
                 return $user->hasPermission('view_batch');
+            },
+            'create_grade' => function($user){
+                return $user->hasPermission('create_grade');
+            },
+            'edit_grade' => function($user){
+                return $user->hasPermission('edit_grade');
+            }, 
+            'view_grade' => function($user){
+                return $user->hasPermission('view_grade');
             }
         ];
     }    

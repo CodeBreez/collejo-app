@@ -2,6 +2,23 @@
     position: relative;
     margin: 15px 0;
 
+    &.disabled{
+        label {
+            background: $input-bg-disabled !important;
+            cursor: not-allowed;
+            &:after {
+                content: none;
+            }
+            &:hover::after {
+                opacity: 0;
+            }
+        }
+        input[type=checkbox]:checked + label:after {
+            content: '' !important;
+            opacity: 1 !important;
+        } 
+    }
+
     label {
         width: 22px;
         height: 22px;
@@ -25,7 +42,7 @@
             position: absolute;
             top: 6px;
             left: 6px;
-            border: 3px solid #333;
+            border: 3px solid $gray;
             border-top: none;
             border-right: none;
             background: transparent;

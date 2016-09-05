@@ -34,7 +34,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
     public function getGrades()
     {
-        return new Grade();
+        return $this->search(Grade::class);
     }
 
     public function updateClass(array $attributes, $classId, $gradeId)
@@ -58,7 +58,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
     public function getClasses()
     {
-        return new Clasis();
+        return $this->search(Clasis::class);
     }
 
     public function updateBatch(array $attributes, $batchId)
@@ -121,16 +121,6 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
 
 	public function getBatches()
 	{
-		return $this;
+		return $this->search(Batch::class);
 	}
-
-    function model()
-    {
-        return Batch::class;
-    }
-
-    public function boot()
-    {
-    	parent::boot();
-    }
 }

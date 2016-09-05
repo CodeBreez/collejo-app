@@ -68,13 +68,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/my/account">Account</a>
+                            <a href="{{ route('user.profile') }}">Profile</a>
                         </li>
                         <li>
-                            <a href="/auth/logout">Logout</a>
+                            <a href="{{ route('auth.logout') }}">Logout</a>
                         </li>
                     </ul>
                 </li>

@@ -49,5 +49,8 @@ gulp.task('copy', function() {
     return watch([outDir + '**/*.css', outDir + '**/*.js'])
         .pipe(shell([
             'php ' + __dirname + '/../../../../artisan asset:copy'
-        ]));
+        ])).on('error', function(error) {
+            console.log(error.toString())
+            this.emit('end')
+        });
 });

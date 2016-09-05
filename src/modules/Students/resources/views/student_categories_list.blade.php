@@ -17,6 +17,7 @@
     <tr>
         <th width="*">{{ trans('students::student_category.name') }}</th>
         <th width="15%">{{ trans('students::student_category.code') }}</th>
+        <th width="15%">{{ trans('students::student_category.count') }}</th>
         <th width="10%"></th>
     </tr>
 

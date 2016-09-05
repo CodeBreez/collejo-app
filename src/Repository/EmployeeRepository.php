@@ -163,11 +163,6 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		return $employee;
 	}
 
-    function model()
-    {
-        return Employee::class;
-    }
-
     public function boot()
     {
     	parent::boot();

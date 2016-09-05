@@ -18,6 +18,7 @@
         <th width="30%">{{ trans('classes::batch.name') }}</th>
         <th width="*">{{ trans('classes::batch.grades') }}</th>
         <th width="10%"></th>
+        <th width="10%"></th>
     </tr>
 
     @foreach($batches as $batch)
@@ -33,6 +34,13 @@
                 @endforeach
             @else
                 <a href="{{ route('batch.grades.edit', $batch->id) }}" class="btn btn-xs btn-warning">{{ trans('classes::batch.assign_grades') }}</a>
+            @endif
+        </td>
+        <td>
+            @if($batch->trashed())
+                <span class="label label-danger">Inactive</span>
+            @else 
+                <span class="label label-success">Active</span>
             @endif
         </td>
         <td class="tools-column">

@@ -16,6 +16,8 @@ class RoleController extends Controller
 
     public function __construct(UserRepository $userRepository)
 	{
+		$this->authorize('manage_permissions');
+
 		$this->userRepository = $userRepository;
 	}
 }
