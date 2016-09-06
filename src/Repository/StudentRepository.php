@@ -9,6 +9,7 @@ use Collejo\App\Models\Student;
 use Collejo\App\Models\Address;
 use Collejo\App\Models\StudentCategory;
 use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Repository\Criteria\StudentListCriteria;
 use DB;
 use Carbon;
 
@@ -82,7 +83,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function getStudents()
 	{
-		return $this->search(Student::class);
+		return $this->search(Student::class, new StudentListCriteria());
 	}
 
 	public function update(array $attributes, $studentId)

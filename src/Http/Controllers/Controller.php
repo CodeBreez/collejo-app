@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Request;
 use JsValidate;
+use Cache;
 
 abstract class Controller extends BaseController
 {

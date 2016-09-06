@@ -16,7 +16,11 @@
                 
     <tr>
         <th width="*">{{ trans('employees::employee.name') }}</th>
-        <th width="20%">{{ trans('employees::employee.joined_on') }}</th>
+        <th>{{ trans('employees::employee.employee_grade') }}</th>
+        <th>{{ trans('employees::employee.employee_position') }}</th>
+        <th>{{ trans('employees::employee.employee_category') }}</th>
+        <th>{{ trans('employees::employee.employee_department') }}</th>
+        <th>{{ trans('employees::employee.joined_on') }}</th>
         <th width="10%"></th>
     </tr>
 
