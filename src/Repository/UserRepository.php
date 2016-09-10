@@ -104,7 +104,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		 	$attributes['password'] = Hash::make($attributes['password']);
 		}
 
-		return parent::update($attributes, $id);
+		return User::findOrFail($id)->update($attributes, $id);
 	}
 
 	public function create(array $attributes)
@@ -113,7 +113,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		 	$attributes['password'] = Hash::make($attributes['password']);
 		}
 
-		return parent::create($this->parseFillable($attributes));
+		return User::create($this->parseFillable($attributes));
 	}
 
 	public function findByEmail($email)

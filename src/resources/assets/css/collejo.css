@@ -8762,7 +8762,8 @@ footer {
   top: 7px;
   right: 35px;
   z-index: 10;
-  color: #777777; }
+  color: #777777;
+  cursor: pointer; }
   .selectize-control.plugin-allow-clear .clear-selection.disabled {
     color: #eeeeee; }
 

@@ -85,7 +85,7 @@ footer{font-size: 12px;padding-bottom: 5px;padding-top: 10px;clear: both;}
 }
 // selectize clear buttn
 .selectize-control.plugin-allow-clear .clear-selection{
-    position: absolute;top: 7px;right: 35px;z-index: 10;color: $gray-light;
+    position: absolute;top: 7px;right: 35px;z-index: 10;color: $gray-light;cursor: pointer;
     &.disabled{color: $gray-lighter;}
 }
 // min width for inline forms
