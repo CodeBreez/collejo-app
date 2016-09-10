@@ -16,7 +16,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 	{
 		DB::transaction(function () use ($name, $email, $password) {
 
-			$user = $this->create([
+			$user = User::create([
 					'first_name' => $name,
 					'email' => $email,
 					'password' => $password
