@@ -107,9 +107,9 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		return $this->search(EmployeeCategory::class);
 	}
 
-	public function getEmployees()
+	public function getEmployees($criteria)
 	{
-		return $this->search(Employee::class);
+		return $this->search($criteria);
 	}
 
 	public function update(array $attributes, $employeeId)

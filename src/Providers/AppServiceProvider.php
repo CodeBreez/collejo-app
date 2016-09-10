@@ -7,6 +7,8 @@ use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Repository\UserRepository;
 use Collejo\Core\Contracts\Repository\StudentRepository as StudentRepositoryContract;
 use Collejo\App\Repository\StudentRepository;
+use Collejo\Core\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
+use Collejo\App\Repository\EmployeeRepository;
 use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Repository\ClassRepository;
 
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);
         $this->app->bind(StudentRepositoryContract::class, StudentRepository::class);
+        $this->app->bind(EmployeeRepositoryContract::class, EmployeeRepository::class);
         $this->app->bind(ClassRepositoryContract::class, ClassRepository::class);
     }
 }

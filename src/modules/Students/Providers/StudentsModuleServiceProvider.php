@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Students\Providers;
 
 use Collejo\Core\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
+use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 
 class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 {
@@ -33,6 +34,6 @@ class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 
     public function register()
     {
-
+        $this->app->bind(StudentListCriteria::class);
     }
 }

@@ -20,6 +20,8 @@ return [
 	'delete' => 'Delete',
 	'create' => 'Create New',
 	'list' => 'List',
+	'search' => 'Search',
+	'clear_search' => 'Clear',
 
 	'delete_confirm' => 'Are you sure you want to delete this item?',
 	'action_required' => 'Action Required',

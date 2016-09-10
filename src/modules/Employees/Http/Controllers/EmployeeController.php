@@ -6,6 +6,7 @@ use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\EmployeeRepository;
 use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeeDetailsRequest;
 use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeDetailsRequest;
+use Collejo\App\Modules\Employees\Criteria\EmployeeListCriteria;
 
 class EmployeeController extends BaseController
 {
@@ -106,10 +107,11 @@ class EmployeeController extends BaseController
 		return $this->printJson(true, [], trans('employees::employee.employee_updated'));
 	}
 
-	public function getEmployeeList()
+	public function getEmployeeList(EmployeeListCriteria $criteria)
 	{
 		return view('employees::employee_list', [
-				'employees' => $this->employeeRepository->getEmployees()->paginate(config('collejo.pagination.perpage'))
+				'employees' => $this->employeeRepository->getEmployees($criteria)->paginate(config('collejo.pagination.perpage')),
+				'criteria' => $criteria
 			]);
 	}
 

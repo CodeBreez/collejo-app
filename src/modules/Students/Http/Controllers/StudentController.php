@@ -11,11 +11,13 @@ use Collejo\App\Modules\Students\Http\Requests\CreateAddressRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateAddressRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
 use Collejo\App\Modules\Students\Http\Requests\AssignClassRequest;
+use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 
 class StudentController extends BaseController
 {
 
 	protected $studentRepository;
+	
 	protected $classRepository;
 
 	public function postStudentClassAssign(AssignClassRequest $request, $studentId)
@@ -164,12 +166,13 @@ class StudentController extends BaseController
 			]);
 	}
 
-	public function getStudentList()
+	public function getStudentList(StudentListCriteria $criteria)
 	{
 		$this->authorize('view_student');
 
 		return view('students::students_list', [
-				'students' => $this->studentRepository->getStudents()->paginate(config('collejo.pagination.perpage'))
+				'criteria' => $criteria,
+				'students' => $this->studentRepository->getStudents($criteria)->paginate(config('collejo.pagination.perpage'))
 			]);
 	}
 

@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Employees\Providers;
 
 use Collejo\Core\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
+use Collejo\App\Modules\Employees\Criteria\EmployeeListCriteria;
 
 class EmployeesModuleServiceProvider extends BaseModuleServiceProvider
 {
@@ -18,7 +19,7 @@ class EmployeesModuleServiceProvider extends BaseModuleServiceProvider
 
     public function register()
     {
-
+        $this->app->bind(EmployeeListCriteria::class);
     }
 
     public function getPermissions()

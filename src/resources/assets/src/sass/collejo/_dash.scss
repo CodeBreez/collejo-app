@@ -39,6 +39,12 @@ body{background: $gray-lighter;}
 			.tools-column a{display: inline-block;}
 		}
 	}
+
+	.criteria-filter{
+		label{margin-right: 15px;}
+		.form-group{margin-right: 25px;}
+		.btn-col{margin-right: 0;}
+	}
 }
 
 .panel{
