@@ -19,7 +19,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 			$user = User::create([
 					'first_name' => $name,
 					'email' => $email,
-					'password' => $password
+					'password' => Hash::make($password)
 				]);
 
 			$this->syncUserRoles($user, ['admin']);

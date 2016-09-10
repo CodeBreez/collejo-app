@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use Collejo\Core\Http\JsValidatorFactory;
 use Request;
 use JsValidate;
 use Cache;
@@ -41,6 +42,6 @@ abstract class Controller extends BaseController
 
     public function jsValidator($validatorClass)
     {
-        return JsValidate::create($validatorClass);
+        return JsValidatorFactory::create($validatorClass);
     }
 }

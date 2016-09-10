@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->timestamp('admitted_on');
             $table->string('student_category_id', 45);
             $table->string('image_id', 45)->nullable();
-            $table->string('created_by')->->nullable();
+            $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
