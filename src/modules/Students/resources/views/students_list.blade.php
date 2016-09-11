@@ -32,7 +32,7 @@
 
 </table>
 
-<div class="pagination-row">{{ $students->render() }}</div>
+<div class="pagination-row">{{ $students->appends(Request::except('page'))->render() }}</div>
 
 @else
 
