@@ -4,11 +4,17 @@ namespace Collejo\App\Modules\Students\Http\Controllers;
 
 use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\GuardianRepository;
+use Collejo\App\Modules\Students\Criteria\GuardiansSearchCriteria;
 
 class GuardianController  extends BaseController
 {
 
 	protected $guardianRepository;
+
+	public function getGuardiansSearch(GuardiansSearchCriteria $criteria)
+	{
+		return $this->guardianRepository->search($criteria)->get(['id', 'name']);
+	}
 
 	public function getGuardiansList()
 	{

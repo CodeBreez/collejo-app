@@ -11,6 +11,7 @@ use Collejo\App\Modules\Students\Http\Requests\CreateAddressRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateAddressRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
 use Collejo\App\Modules\Students\Http\Requests\AssignClassRequest;
+use Collejo\App\Modules\Students\Http\Requests\AssignGuardianRequest;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 
 class StudentController extends BaseController
@@ -27,8 +28,18 @@ class StudentController extends BaseController
 		$this->studentRepository->assignToClass($request->get('batch_id'),  $request->get('grade_id'), $request->get('class_id'), $studentId);
 
 		return $this->printPartial(view('students::partials.student', [
-				'student' => $this->studentRepository->find($studentId),
+				'student' => $this->studentRepository->findStudent($studentId),
 			]), trans('students::student.student_updated'));
+	}
+
+	public function getStudentGuardianAssign($studentId)
+	{
+		$this->authorize('edit_grade');
+
+		return $this->printModal(view('students::modals.assign_guardian', [
+				'student' => $this->studentRepository->findStudent($studentId),
+				'assign_form' => $this->jsValidator(AssignGuardianRequest::class)
+			]));		
 	}
 
 	public function getStudentClassAssign($studentId)
@@ -36,7 +47,7 @@ class StudentController extends BaseController
 		$this->authorize('edit_grade');
 
 		return $this->printModal(view('students::modals.assign_class', [
-				'student' => $this->studentRepository->find($studentId),
+				'student' => $this->studentRepository->findStudent($studentId),
 				'batches' => $this->classRepository->activeBatches()->get(),
 				'assign_form' => $this->jsValidator(AssignClassRequest::class)
 			]));
@@ -58,7 +69,7 @@ class StudentController extends BaseController
 		$address = $this->studentRepository->updateAddress($request->all(), $addressId, $studentId);
 
 		return $this->printPartial(view('students::partials.address', [
-				'student' => $this->studentRepository->find($studentId),
+				'student' => $this->studentRepository->findStudent($studentId),
 				'address' => $address
 			]), trans('students::address.address_updated'));
 	}
@@ -69,7 +80,7 @@ class StudentController extends BaseController
 
 		return $this->printModal(view('students::modals.edit_address', [
 				'address' => $this->studentRepository->findAddress($addressId, $studentId),
-				'student' => $this->studentRepository->find($studentId)
+				'student' => $this->studentRepository->findStudent($studentId)
 			]));
 	}
 
@@ -80,7 +91,7 @@ class StudentController extends BaseController
 		$address = $this->studentRepository->createAddress($request->all(), $studentId);
 
 		return $this->printPartial(view('students::partials.address', [
-				'student' => $this->studentRepository->find($studentId),
+				'student' => $this->studentRepository->findStudent($studentId),
 				'address' => $address
 			]), trans('students::address.address_created'));
 	}
@@ -91,7 +102,7 @@ class StudentController extends BaseController
 
 		return $this->printModal(view('students::modals.edit_address', [
 				'address' => null,
-				'student' => $this->studentRepository->find($studentId)
+				'student' => $this->studentRepository->findStudent($studentId)
 			]));
 	}
 
@@ -100,7 +111,7 @@ class StudentController extends BaseController
 		$this->authorize('edit_grade');
 
 		return view('students::edit_details', [
-				'student' => $this->studentRepository->find($studentId),
+				'student' => $this->studentRepository->findStudent($studentId),
 				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage')),
 				'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class)
 			]);
@@ -119,14 +130,14 @@ class StudentController extends BaseController
 	{
 		$this->authorize('edit_grade');
 
-		return view('students::view_student_addreses', ['student' => $this->studentRepository->find($studentId)]);
+		return view('students::view_student_addreses', ['student' => $this->studentRepository->findStudent($studentId)]);
 	}		
 
 	public function getStudentAddressesEdit($studentId)
 	{
 		$this->authorize('edit_grade');
 
-		return view('students::edit_student_addreses', ['student' => $this->studentRepository->find($studentId)]);
+		return view('students::edit_student_addreses', ['student' => $this->studentRepository->findStudent($studentId)]);
 	}	
 
 	public function postStudentAccountEdit(UpdateStudentAccountRequest $request, $studentId)
@@ -143,7 +154,7 @@ class StudentController extends BaseController
 		$this->authorize('edit_grade');
 
 		return view('students::edit_account', [
-				'student' => $this->studentRepository->find($studentId),
+				'student' => $this->studentRepository->findStudent($studentId),
 				'account_form_validator' => $this->jsValidator(UpdateStudentAccountRequest::class)
 			]);
 	}	
@@ -153,7 +164,7 @@ class StudentController extends BaseController
 		$this->authorize('view_student');
 
 		return view('students::view_student_account', [
-				'student' => $this->studentRepository->find($studentId)
+				'student' => $this->studentRepository->findStudent($studentId)
 			]);
 	}
 
@@ -162,7 +173,7 @@ class StudentController extends BaseController
 		$this->authorize('view_student');
 
 		return view('students::view_student_details', [
-				'student' => $this->studentRepository->find($studentId)
+				'student' => $this->studentRepository->findStudent($studentId)
 			]);
 	}
 

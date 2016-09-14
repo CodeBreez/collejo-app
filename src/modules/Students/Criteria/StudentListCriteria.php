@@ -3,7 +3,6 @@
 namespace Collejo\App\Modules\Students\Criteria;
 
 use Collejo\Core\Foundation\Repository\BaseCriteria;
-use DB;
 use Collejo\App\Models\Student;
 use Collejo\Core\Contracts\Repository\StudentRepository;
 

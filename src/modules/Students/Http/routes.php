@@ -57,5 +57,20 @@ Route::group(['prefix' => 'dash/student_category', 'middleware' => 'auth'], func
 
 Route::group(['prefix' => 'dash/guardians', 'middleware' => 'auth'], function() {
 
+	Route::get('/search', 'GuardianController@getGuardiansSearch')->middleware('ajax')->name('guardians.search');
+
 	Route::get('/list', 'GuardianController@getGuardiansList')->name('guardians.list');
+});
+
+Route::group(['prefix' => 'dash/guardian', 'middleware' => 'auth'], function() {
+
+	Route::get('/{id}/details/view', 'GuardianController@getGuardianDetailView')->name('guardian.details.view');
+
+	Route::get('/{id}/details/edit', 'GuardianController@getGuardianDetailEdit')->name('guardian.details.edit');
+	Route::post('/{id}/details/edit', 'GuardianController@postGuardianDetailEdit');
+
+	Route::get('/{id}/account/view', 'GuardianController@getGuardianAccountView')->name('guardian.account.view');
+
+	Route::get('/{id}/account/edit', 'GuardianController@getGuardianAccountEdit')->name('guardian.account.edit');
+	Route::post('/{id}/account/edit', 'GuardianController@postGuardianAccountEdit');	
 });

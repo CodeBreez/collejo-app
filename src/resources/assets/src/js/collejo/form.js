@@ -37,7 +37,7 @@ Collejo.ready.push(function(scope) {
         errorPlacement: function(error, element) {
             if ($(element).parents('.input-group').length) {
                 error.insertAfter($(element).parents('.input-group'));
-            } else if ($(element).data('toggle') == 'select-dropdown') {
+            } else if ($(element).data('toggle') == 'select-dropdown' || $(element).data('toggle') == 'search-dropdown') {
                 error.insertAfter($(element).siblings('.selectize-control'));
             } else {
                 error.insertAfter(element);
@@ -46,7 +46,7 @@ Collejo.ready.push(function(scope) {
         highlight: function(element, errorClass, validClass) {
             if (element.type === "radio") {
                 this.findByName(element.name).addClass(errorClass).removeClass(validClass);
-            } else if ($(element).data('toggle') == 'select-dropdown') {
+            } else if ($(element).data('toggle') == 'select-dropdown' || $(element).data('toggle') == 'search-dropdown') {
                 $(element).siblings('.selectize-control').addClass(errorClass).removeClass(validClass)
             } else {
                 $(element).addClass(errorClass).removeClass(validClass);
@@ -55,7 +55,7 @@ Collejo.ready.push(function(scope) {
         unhighlight: function(element, errorClass, validClass) {
             if (element.type === "radio") {
                 this.findByName(element.name).removeClass(errorClass).addClass(validClass);
-            } else if ($(element).data('toggle') == 'select-dropdown') {
+            } else if ($(element).data('toggle') == 'select-dropdown' || $(element).data('toggle') == 'search-dropdown') {
                 $(element).siblings('.selectize-control').removeClass(errorClass).addClass(validClass);
             } else {
                 $(element).removeClass(errorClass).addClass(validClass);

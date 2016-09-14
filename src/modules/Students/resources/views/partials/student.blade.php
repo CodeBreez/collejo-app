@@ -23,7 +23,9 @@
     </td>
     <td>
         @if($student->guardians)
-            {{ $student->class->name }}
+            @foreach($student->guardians as $guardian)
+                <a href="#">{{ $guardian->name }}</a><br>
+            @endforeach                
         @else
             <a class="btn btn-xs btn-warning" href="{{ route('student.assign_guardian', $student->id) }}" data-toggle="ajax-modal">{{ trans('students::student.assign_guardian') }}</a>
         @endif

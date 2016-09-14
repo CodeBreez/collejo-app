@@ -32,7 +32,11 @@ Selectize.define('allow-clear', function(options) {
 });
 
 Collejo.ready.push(function(scope) {
+
     Collejo.components.dropDown($(scope).find('[data-toggle="select-dropdown"]'));
+
+    Collejo.components.searchDropDown($(scope).find('[data-toggle="search-dropdown"]'));
+
 });
 
 Collejo.components.dropDown = function(el) {
@@ -52,6 +56,68 @@ Collejo.components.dropDown = function(el) {
         element.selectize({
             placeholder: Collejo.lang.select,
             plugins: plugins
+        });
+
+        var selectize = element[0].selectize;
+
+        selectize.on('change', function() {
+            element.valid();
+        });
+    });
+
+    if (el.length == 1) {
+        var selectize = el[0].selectize;
+        return selectize;
+    }
+}
+
+Collejo.components.searchDropDown = function(el) {
+    el.each(function() {
+        var element = $(this);
+
+        if (element.data('toggle') == null) {
+            element.data('toggle', 'search-dropdown');
+        }
+
+        var plugins = [];
+
+        if (element.data('allow-clear') == true) {
+            plugins.push('allow-clear');
+        }
+
+        element.selectize({
+            placeholder: Collejo.lang.search,
+            valueField: 'id',
+            labelField: 'name',
+            searchField: 'name',
+            options: [],
+            create: false,
+            plugins: plugins,
+            render: {
+                option: function(item, escape) {
+                    return '<div>' + item.name + '</div>';
+                },
+                item: function(item, escape) {
+                    return '<div>' + item.name + '</div>';
+                }
+            },
+            load: function(query, callback) {
+                if (!query.length) return callback();
+                $.ajax({
+                    url: element.data('url'),
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        q: query
+                    },
+                    error: function() {
+                        callback();
+                    },
+                    success: function(res) {
+                        callback(res.data);
+                    }
+                });
+            }
         });
 
         var selectize = element[0].selectize;

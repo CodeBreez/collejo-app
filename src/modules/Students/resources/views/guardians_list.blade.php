@@ -9,8 +9,8 @@
 <table class="table" id="students">
                 
     <tr>
-        <th width="*">{{ trans('students::guardian.name') }}</th>
-        <th width="10%">{{ trans('students::guardian.ssn') }}</th>
+        <th width="30%">{{ trans('students::guardian.name') }}</th>
+        <th width="*">{{ trans('students::guardian.students') }}</th>
         <th width="10%"></th>
     </tr>
 

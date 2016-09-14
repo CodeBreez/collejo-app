@@ -30,6 +30,7 @@ return [
 	'class' => 'Class',
 
 	'assign_guardian' => 'Assign Guardian',
+	'find_guardians' => 'Find Guardians/Parents',
 
 	'empty_list' => 'There are no Students in the system.',
 	'student_updated' => 'Student updated.',

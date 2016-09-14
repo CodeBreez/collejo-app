@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Collejo\App\Traits\CommonUserPropertiesTrait;
 use Collejo\App\Models\User;
 use Collejo\App\Models\Clasis;
+use Collejo\App\Models\Guardian;
 use Collejo\App\Models\StudentCategory;
 use DB;
 
@@ -21,6 +22,11 @@ class Student extends Model
 
     protected $dates = ['admitted_on'];
 
+    public function guardians()
+    {
+        return $this->belongsToMany(Guardian::class, 'guardian_student', 'student_id', 'guardian_id');
+    }
+    
     public function studentCategory()
     {
         return $this->hasOne(StudentCategory::class);

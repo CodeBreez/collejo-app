@@ -8,7 +8,7 @@ Route::group(['prefix' => 'dash/batches', 'middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'dash/batch', 'middleware' => 'auth'], function() {
 
-	Route::get('/grades', 'BatchController@getBatchGrades')->middleware('ajax')->name('batch.grades.list');
+	Route::get('/grades', 'BatchController@getBatchGrades')->middleware('ajax')->name('batch.grades.search');
 
 	Route::get('/new', 'BatchController@getBatchNew')->name('batch.new');
 	Route::post('/new', 'BatchController@postBatchNew');
@@ -61,5 +61,5 @@ Route::group(['prefix' => 'dash/grade', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/class/{tid}/delete', 'GradeController@getGradeClassDelete')->name('grade.class.delete');
 
-	Route::get('/classes', 'GradeController@getGradeClasses')->middleware('ajax')->name('grade.classes.list');
+	Route::get('/classes', 'GradeController@getGradeClasses')->middleware('ajax')->name('grade.classes.search');
 });

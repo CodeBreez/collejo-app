@@ -37,8 +37,8 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function assignToClass($batchId, $gradeId, $classId, $studentId)
 	{
-		if (!$this->find($studentId)->classes->contains($classId)) {
-			$this->find($studentId)->classes()->attach($this->classRepository->findClass($classId, $gradeId), [
+		if (!$this->findStudent($studentId)->classes->contains($classId)) {
+			$this->findStudent($studentId)->classes()->attach($this->classRepository->findClass($classId, $gradeId), [
 					'batch_id' => $this->classRepository->findBatch($batchId)->id,
 					'id' => $this->newUUID(),
 					'updated_at' => Carbon::now()
@@ -64,7 +64,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	{
 		$address = null;
 
-		$student = $this->find($studentId);
+		$student = $this->findStudent($studentId);
 
 		$attributes['user_id'] = $student->user->id;
 		$attributes['is_emergency'] = isset($attributes['is_emergency']);
@@ -78,7 +78,12 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function findAddress($addressId, $studentId)
 	{
-		return Address::where(['user_id' => $this->find($studentId)->user->id, 'id' => $addressId])->firstOrFail();
+		return Address::where(['user_id' => $this->findStudent($studentId)->user->id, 'id' => $addressId])->firstOrFail();
+	}
+
+	public function findStudent($id)
+	{
+		return Student::findOrFail($id);
 	}
 
 	public function getStudents($criteria)
