@@ -37,7 +37,7 @@ Collejo.ready.push(function(scope) {
 
     Collejo.components.searchDropDown($(scope).find('[data-toggle="search-dropdown"]'));
 
-});
+}, true);
 
 Collejo.components.dropDown = function(el) {
     el.each(function() {

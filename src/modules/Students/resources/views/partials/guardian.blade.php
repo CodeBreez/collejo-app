@@ -4,7 +4,7 @@
         <small class="text-muted">{{ $guardian->ssn }}</small>
     </td>
     <td>
-        @if($guardian->students)
+        @if($guardian->students->count())
             @foreach($guardian->students as $student)
                 <a href="#">{{ $student->name }}</a>
             @endforeach

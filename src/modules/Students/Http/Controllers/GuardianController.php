@@ -13,7 +13,12 @@ class GuardianController  extends BaseController
 
 	public function getGuardiansSearch(GuardiansSearchCriteria $criteria)
 	{
-		return $this->guardianRepository->search($criteria)->get(['id', 'name']);
+		return $this->printJson(true, $this->guardianRepository->search($criteria)->get(['id'])->map(function($item){
+			return [
+				'id' => $item->id,
+				'name' => $item->name
+			];
+		}));
 	}
 
 	public function getGuardiansList()

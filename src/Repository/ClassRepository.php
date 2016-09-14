@@ -10,8 +10,8 @@ use Collejo\App\Models\Clasis;
 use Collejo\App\Models\Term;
 use DB;
 
-class ClassRepository extends BaseRepository implements ClassRepositoryContract {
-
+class ClassRepository extends BaseRepository implements ClassRepositoryContract
+{
     public function deleteClass($classId, $gradeId)
     {
         $this->findClass($classId, $gradeId)->delete();
@@ -119,8 +119,8 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract 
         return Batch::create($attributes);
     }
 
-	public function getBatches()
-	{
-		return $this->search(Batch::class);
-	}
+    public function getBatches()
+    {
+        return $this->search(Batch::class);
+    }
 }

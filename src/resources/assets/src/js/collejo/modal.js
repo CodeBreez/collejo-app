@@ -18,7 +18,7 @@ Collejo.modal.open = function(link) {
     modal.on('show.bs.modal', function() {
         $.ajax({
             url: link.attr('href'),
-            type: 'get',
+            type: 'GET',
             success: function(response) {
                 if (response.success == true && response.data && response.data.content) {
                     modal.find('.modal-dialog').html(response.data.content);
@@ -28,9 +28,7 @@ Collejo.modal.open = function(link) {
                         loader.remove();
                     }
 
-                    $.each(Collejo.ready, function(i, f) {
-                        f(modal);
-                    });
+                    Collejo.ready.recall(modal);
                 }
             }
         });

@@ -22,7 +22,7 @@
         @endif
     </td>
     <td>
-        @if($student->guardians)
+        @if($student->guardians->count())
             @foreach($student->guardians as $guardian)
                 <a href="#">{{ $guardian->name }}</a><br>
             @endforeach                

@@ -45989,13 +45989,45 @@ var Collejo = Collejo || {
     browser: {},
     components: {},
     image: {},
-    ready: []
+    ready: {
+        push: function(callback, recall) {
+            this.funcs.push({
+                callback: callback,
+                recall: recall === true ? true : false
+            })
+        },
+        call: function(ns) {
+            $.each(Collejo.ready.funcs, function(i, func) {
+                func.callback(ns);
+            })
+        },
+        recall: function(ns) {
+            $.each(Collejo.ready.funcs, function(i, func) {
+                if (func.recall) {
+                    func.callback(ns);
+                }
+            })
+        },
+        funcs: []
+    }
 };
 
+jQuery.events = function(expr) {
+    var rez = [],
+        evo;
+    jQuery(expr).each(
+        function() {
+            if (evo = jQuery._data(this, "events"))
+                rez.push({
+                    element: this,
+                    events: evo
+                });
+        });
+    return rez.length > 0 ? rez : null;
+}
+
 $(function() {
-    $.each(Collejo.ready, function(i, f) {
-        f($(document));
-    });
+    Collejo.ready.call($(document));
 });
 // Opera 8.0+
 Collejo.browser.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -46196,7 +46228,7 @@ Collejo.ready.push(function(scope) {
 
     Collejo.components.searchDropDown($(scope).find('[data-toggle="search-dropdown"]'));
 
-});
+}, true);
 
 Collejo.components.dropDown = function(el) {
     el.each(function() {
@@ -46565,7 +46597,7 @@ Collejo.modal.open = function(link) {
     modal.on('show.bs.modal', function() {
         $.ajax({
             url: link.attr('href'),
-            type: 'get',
+            type: 'GET',
             success: function(response) {
                 if (response.success == true && response.data && response.data.content) {
                     modal.find('.modal-dialog').html(response.data.content);
@@ -46575,9 +46607,7 @@ Collejo.modal.open = function(link) {
                         loader.remove();
                     }
 
-                    $.each(Collejo.ready, function(i, f) {
-                        f(modal);
-                    });
+                    Collejo.ready.recall(modal);
                 }
             }
         });

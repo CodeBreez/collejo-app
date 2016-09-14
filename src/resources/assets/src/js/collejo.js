@@ -12,11 +12,43 @@ var Collejo = Collejo || {
     browser: {},
     components: {},
     image: {},
-    ready: []
+    ready: {
+        push: function(callback, recall) {
+            this.funcs.push({
+                callback: callback,
+                recall: recall === true ? true : false
+            })
+        },
+        call: function(ns) {
+            $.each(Collejo.ready.funcs, function(i, func) {
+                func.callback(ns);
+            })
+        },
+        recall: function(ns) {
+            $.each(Collejo.ready.funcs, function(i, func) {
+                if (func.recall) {
+                    func.callback(ns);
+                }
+            })
+        },
+        funcs: []
+    }
 };
 
+jQuery.events = function(expr) {
+    var rez = [],
+        evo;
+    jQuery(expr).each(
+        function() {
+            if (evo = jQuery._data(this, "events"))
+                rez.push({
+                    element: this,
+                    events: evo
+                });
+        });
+    return rez.length > 0 ? rez : null;
+}
+
 $(function() {
-    $.each(Collejo.ready, function(i, f) {
-        f($(document));
-    });
+    Collejo.ready.call($(document));
 });

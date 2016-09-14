@@ -31,8 +31,11 @@ $(function(){
                 <div class="form-group">
                     <label class="col-sm-4 control-label">{{ trans('students::student.find_guardians') }}</label>
                     <div class="col-sm-6">
-                        <select class="form-control" data-toggle="search-dropdown" data-url="{{ route('guardians.search') }}" name="guardian_id" id="guardian">
-                        </select>
+                        <div class="input-group">
+                            <select class="form-control" data-toggle="search-dropdown" data-url="{{ route('guardians.search') }}" name="guardian_id" id="guardian">
+                            </select>
+                            <span class="input-group-btn"><a href="" class="btn btn-default"><i class="fa fa-fw fa-plus"></i></a></span>
+                        </div>
                     </div>
                 </div>             
 
