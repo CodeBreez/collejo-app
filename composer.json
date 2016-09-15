@@ -1,5 +1,9 @@
 {
     "name": "codebreez/collejo-app",
+    "authors": [{
+        "name": "Anuradha Jayathilaka",
+        "email": "astroanu2004@gmail.com"
+    }],
     "license": "MIT",
     "require": {
         "php": ">=5.5.9",
@@ -25,9 +29,5 @@
             "src/helpers/helpers.php"
         ]
     },
-    "minimum-stability": "dev",
-    "authors": [{
-        "name": "Anuradha Jayathilaka",
-        "email": "astroanu2004@gmail.com"
-    }]
+    "minimum-stability": "dev"
 }
