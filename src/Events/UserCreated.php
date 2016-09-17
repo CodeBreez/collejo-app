@@ -7,7 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Collejo\App\Models\User;
 
-class UserPermissionsChanged extends Event {
+class UserCreated extends Event {
 
     use SerializesModels;
 

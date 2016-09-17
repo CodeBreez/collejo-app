@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Collejo\App\Events\UserPermissionsChanged' => [
             'Collejo\App\Listeners\ClearUserPermissionsCache',
         ],
+        'Collejo\App\Events\UserCreated' => [
+            'Collejo\App\Listeners\SendPasswordCreateRequestEmail',
+        ],
     ];
 
     /**

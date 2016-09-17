@@ -13,7 +13,7 @@ class CreateGuardianRequest extends Request
 	        'first_name' => 'required',
 	        'last_name' => 'required',
 	        'ssn' => 'required|unique:guardians',
-	        'email' => 'unique:users'
+	        'email' => 'email|unique:users'
 	    ];
 	}
 

@@ -5,10 +5,11 @@ namespace Collejo\App\Repository;
 use Collejo\Core\Foundation\Repository\BaseRepository;
 use Collejo\Core\Contracts\Repository\StudentRepository as StudentRepositoryContract;
 use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
+use Collejo\Core\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
+use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Models\Student;
 use Collejo\App\Models\Address;
 use Collejo\App\Models\StudentCategory;
-use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
 use DB;
 use Carbon;
 
@@ -33,6 +34,16 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	public function findStudentCategory($studentCategoryId)
 	{
 		return StudentCategory::findOrFail($studentCategoryId);
+	}
+
+	public function assignGuardian($guardianId, $studentId)
+	{
+		if (!$this->findStudent($studentId)->guardians->contains($guardianId)) {
+			$this->findStudent($studentId)->guardians()->attach($this->guardiansRepository->findGuardian($guardianId), [
+					'id' => $this->newUUID(),
+					'updated_at' => Carbon::now()
+				]);
+		}
 	}
 
 	public function assignToClass($batchId, $gradeId, $classId, $studentId)
@@ -149,5 +160,6 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
     	$this->userRepository = app()->make(UserRepositoryContract::class);
     	$this->classRepository = app()->make(ClassRepositoryContract::class);
+    	$this->guardiansRepository = app()->make(GuardianRepositoryContract::class);
     }
 }

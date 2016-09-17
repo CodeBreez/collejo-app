@@ -28,6 +28,11 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
 		return $guardian;
 	}
 
+	public function findGuardian($id)
+	{
+		return Guardian::findOrFail($id);
+	}
+
 	public function getGuardians()
 	{
 		return $this->search(Guardian::class);

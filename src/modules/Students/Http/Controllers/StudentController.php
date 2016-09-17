@@ -32,16 +32,6 @@ class StudentController extends BaseController
 			]), trans('students::student.student_updated'));
 	}
 
-	public function getStudentGuardianAssign($studentId)
-	{
-		$this->authorize('edit_grade');
-
-		return $this->printModal(view('students::modals.assign_guardian', [
-				'student' => $this->studentRepository->findStudent($studentId),
-				'assign_form' => $this->jsValidator(AssignGuardianRequest::class)
-			]));		
-	}
-
 	public function getStudentClassAssign($studentId)
 	{
 		$this->authorize('edit_grade');
@@ -51,6 +41,27 @@ class StudentController extends BaseController
 				'batches' => $this->classRepository->activeBatches()->get(),
 				'assign_form' => $this->jsValidator(AssignClassRequest::class)
 			]));
+	}
+
+	public function postStudentGuardianAssign(AssignGuardianRequest $request, $studentId)
+	{
+		$this->authorize('edit_grade');
+
+		$this->studentRepository->assignGuardian($request->get('guardian_id'), $studentId);
+
+		return $this->printPartial(view('students::partials.student', [
+				'student' => $this->studentRepository->findStudent($studentId),
+			]), trans('students::student.student_updated'));
+	}
+
+	public function getStudentGuardianAssign($studentId)
+	{
+		$this->authorize('edit_grade');
+
+		return $this->printModal(view('students::modals.assign_guardian', [
+				'student' => $this->studentRepository->findStudent($studentId),
+				'assign_form' => $this->jsValidator(AssignGuardianRequest::class)
+			]));		
 	}
 
 	public function getStudentAddressDelete($studentId, $addressId)
