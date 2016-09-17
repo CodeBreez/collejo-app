@@ -12,11 +12,11 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    /*protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+    protected $listen = [
+        'Collejo\App\Events\UserPermissionsChanged' => [
+            'Collejo\App\Listeners\ClearUserPermissionsCache',
         ],
-    ];*/
+    ];
 
     /**
      * Register any other events for your application.
