@@ -14,7 +14,7 @@ var Collejo = Collejo || {
     image: {},
     ready: {
         push: function(callback, recall) {
-            this.funcs.push({
+            Collejo.ready.funcs.push({
                 callback: callback,
                 recall: recall === true ? true : false
             })

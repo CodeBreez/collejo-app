@@ -16,6 +16,7 @@ Collejo.modal.open = function(link) {
     $('body').append(modal);
 
     modal.on('show.bs.modal', function() {
+
         $.ajax({
             url: link.attr('href'),
             type: 'GET',
@@ -48,5 +49,22 @@ Collejo.ready.push(function(scope) {
     $(scope).on('click', '[data-toggle="ajax-modal"]', function(e) {
         e.preventDefault();
         Collejo.modal.open($(this));
+    });
+
+    $(scope).on('DOMNodeInserted', '.modal-backdrop', function(e) {
+        if ($('.modal-backdrop').length > 1) {
+
+            $('.modal-backdrop').last().css({
+                'z-index': parseInt($('.modal').last().prev().css('z-index')) + 10
+            })
+        }
+    });
+
+    $(scope).on('DOMNodeInserted', '.modal', function(e) {
+        if ($('.modal').length > 1) {
+            $('.modal').last().css({
+                'z-index': parseInt($('.modal-backdrop').last().prev().css('z-index')) + 10
+            })
+        }
     });
 });

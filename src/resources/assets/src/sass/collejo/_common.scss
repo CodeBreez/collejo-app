@@ -13,15 +13,21 @@ label.error{color: $brand-danger;font-size: 10px;}
 }
 
 .spinner-wrap{
-  display: inline-block;padding-left: 15px;
+  display: inline-block;
     &.inline{
-        position: absolute;left: 10px;top: 10px;z-index: 3;
+        position: absolute;right: -10px;top: 10px;z-index: 3;
         .spinner{border: .25rem solid  $brand-primary;border-top-color: white;}
     }
+}
+.input-group{
+    .spinner-wrap.inline{right: -25px;}
 }
 
 .progress{height: 10px;}
 
+.btn{ text-transform: uppercase;}
+
+// spinenr
 .spinner {
     display: inline-block;
     border-radius: 50%;
@@ -33,8 +39,6 @@ label.error{color: $brand-danger;font-size: 10px;}
     
 }
 
-.btn{ text-transform: uppercase;}
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -44,6 +48,41 @@ label.error{color: $brand-danger;font-size: 10px;}
   }
 }
 
+// loading overlay
+.loading-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loading-wrap .dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
+  float: left;
+  margin: 0 5px;
+  transform: scale(0);
+  animation: dotfx 1000ms ease infinite 0ms;
+}
+.loading-wrap .dot:nth-child(2) {
+  animation: dotfx 1000ms ease infinite 300ms;
+}
+.loading-wrap .dot:nth-child(3) {
+  animation: dotfx 1000ms ease infinite 600ms;
+}
+@keyframes dotfx {
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+// modal animation
 .modal {
     /*! adjust transition time */
     -webkit-transition: all ease-out !important;
@@ -90,6 +129,7 @@ footer{font-size: 12px;padding-bottom: 5px;padding-top: 10px;clear: both;}
 }
 // min width for inline forms
 .form-inline .selectize-control{min-width: 225px;}
+.selectize-dropdown.form-control{position: absolute;}
 // input sm
 .selectize-control.input-sm{
      .selectize-input{

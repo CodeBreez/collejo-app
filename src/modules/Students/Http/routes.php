@@ -64,6 +64,9 @@ Route::group(['prefix' => 'dash/guardians', 'middleware' => 'auth'], function() 
 
 Route::group(['prefix' => 'dash/guardian', 'middleware' => 'auth'], function() {
 
+	Route::get('/new', 'GuardianController@getGuardianNew')->name('guardian.new');
+	Route::post('/new', 'GuardianController@postGuardianNew');
+	
 	Route::get('/{id}/details/view', 'GuardianController@getGuardianDetailView')->name('guardian.details.view');
 
 	Route::get('/{id}/details/edit', 'GuardianController@getGuardianDetailEdit')->name('guardian.details.edit');

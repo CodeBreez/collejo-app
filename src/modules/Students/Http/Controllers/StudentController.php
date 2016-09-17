@@ -112,7 +112,7 @@ class StudentController extends BaseController
 
 		return view('students::edit_details', [
 				'student' => $this->studentRepository->findStudent($studentId),
-				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage')),
+				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
 				'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class)
 			]);
 	}	
@@ -183,7 +183,9 @@ class StudentController extends BaseController
 
 		return view('students::students_list', [
 				'criteria' => $criteria,
-				'students' => $this->studentRepository->getStudents($criteria)->paginate(config('collejo.pagination.perpage'))
+				'students' => $this->studentRepository->getStudents($criteria)
+								->with('classes', 'guardians', 'user')
+								->paginate()
 			]);
 	}
 
@@ -202,7 +204,7 @@ class StudentController extends BaseController
 
 		return view('students::edit_details', [
 				'student' => null,
-				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage')),
+				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
 				'student_form_validator' => $this->jsValidator(CreateStudentRequest::class)
 			]);
 	}

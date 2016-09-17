@@ -103,7 +103,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 			$attributes['image_id'] = null;
 		}
 
-		$studentAttributes = $this->parseFillable($attributes);
+		$studentAttributes = $this->parseFillable($attributes, Student::class);
 
 		DB::transaction(function () use ($attributes, $studentAttributes, &$student, $studentId) {
 			$student = parent::update($studentAttributes, $studentId);
@@ -124,7 +124,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 			$attributes['image_id'] = null;
 		}
 		
-		$studentAttributes = $this->parseFillable($attributes);
+		$studentAttributes = $this->parseFillable($attributes, Student::class);
 
 		DB::transaction(function () use ($attributes, $studentAttributes, &$student) {
 			$user = $this->userRepository->create($attributes);

@@ -38,9 +38,7 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
 
                 Collejo.dynamics.prependRow(partial, target);
 
-                $.each(Collejo.ready, function(i, f) {
-                    f(partial);
-                });
+                Collejo.ready.recall(partial);
             }
 
             if (response.data != undefined && response.data.redir != undefined) {

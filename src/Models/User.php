@@ -10,6 +10,7 @@ use Collejo\App\Models\Employee;
 use Collejo\App\Models\Guardian;
 use Collejo\App\Models\Address;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cache;
 
 class User extends Authenticatable
 {
@@ -34,11 +35,13 @@ class User extends Authenticatable
 
     public function getPermissionsAttribute()
     {
-        return Permission::join('permission_role', 'permission_role.permission_id', '=' ,'permissions.id')
+        return Cache::remember('user-perms-' . $this->id, config('collejo.caching.user_permissions'), function(){
+            return Permission::join('permission_role', 'permission_role.permission_id', '=' ,'permissions.id')
                             ->join('roles', 'permission_role.role_id', '=', 'roles.id')
                             ->join('role_user', 'permission_role.role_id', '=', 'role_user.role_id')
                             ->where('role_user.user_id', $this->id)
                             ->get();
+        });
     }
 
     public function roles()

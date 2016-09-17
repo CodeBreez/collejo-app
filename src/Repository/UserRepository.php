@@ -113,7 +113,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		 	$attributes['password'] = Hash::make($attributes['password']);
 		}
 
-		return User::create($this->parseFillable($attributes));
+		return User::create($this->parseFillable($attributes, User::class));
 	}
 
 	public function findByEmail($email)

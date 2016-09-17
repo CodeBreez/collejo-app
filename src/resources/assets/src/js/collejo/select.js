@@ -103,6 +103,7 @@ Collejo.components.searchDropDown = function(el) {
             },
             load: function(query, callback) {
                 if (!query.length) return callback();
+                Collejo.templates.spinnerTemplate().addClass('inline').insertAfter(element);
                 $.ajax({
                     url: element.data('url'),
                     type: 'GET',
@@ -112,9 +113,11 @@ Collejo.components.searchDropDown = function(el) {
                     },
                     error: function() {
                         callback();
+                        element.siblings('.spinner-wrap').remove();
                     },
                     success: function(res) {
                         callback(res.data);
+                        element.siblings('.spinner-wrap').remove();
                     }
                 });
             }

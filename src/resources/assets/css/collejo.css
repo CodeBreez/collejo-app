@@ -8686,19 +8686,24 @@ label.error {
     box-shadow: inset 0 1px 1px rgba(192, 57, 43, 0.075), 0 0 8px rgba(192, 57, 43, 0.6); }
 
 .spinner-wrap {
-  display: inline-block;
-  padding-left: 15px; }
+  display: inline-block; }
   .spinner-wrap.inline {
     position: absolute;
-    left: 10px;
+    right: -10px;
     top: 10px;
     z-index: 3; }
     .spinner-wrap.inline .spinner {
       border: 0.25rem solid #2487ca;
       border-top-color: white; }
 
+.input-group .spinner-wrap.inline {
+  right: -25px; }
+
 .progress {
   height: 10px; }
+
+.btn {
+  text-transform: uppercase; }
 
 .spinner {
   display: inline-block;
@@ -8709,14 +8714,40 @@ label.error {
   border-top-color: white;
   animation: spin 1s infinite linear; }
 
-.btn {
-  text-transform: uppercase; }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+.loading-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.loading-wrap .dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
+  float: left;
+  margin: 0 5px;
+  transform: scale(0);
+  animation: dotfx 1000ms ease infinite 0ms; }
+
+.loading-wrap .dot:nth-child(2) {
+  animation: dotfx 1000ms ease infinite 300ms; }
+
+.loading-wrap .dot:nth-child(3) {
+  animation: dotfx 1000ms ease infinite 600ms; }
+
+@keyframes dotfx {
+  50% {
+    transform: scale(1);
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
 .modal {
   /*! adjust transition time */
@@ -8768,6 +8799,9 @@ footer {
 
 .form-inline .selectize-control {
   min-width: 225px; }
+
+.selectize-dropdown.form-control {
+  position: absolute; }
 
 .selectize-control.input-sm .selectize-input, .input-group-sm > .selectize-control.form-control .selectize-input,
 .input-group-sm > .selectize-control.input-group-addon .selectize-input,

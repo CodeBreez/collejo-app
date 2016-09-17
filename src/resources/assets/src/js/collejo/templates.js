@@ -17,7 +17,7 @@ Collejo.templates.alertContainer = function() {
 }
 
 Collejo.templates.ajaxLoader = function() {
-    return null;
+    return $('<div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>');
 }
 
 Collejo.templates.dateTimePickerIcons = function() {

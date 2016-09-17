@@ -45991,7 +45991,7 @@ var Collejo = Collejo || {
     image: {},
     ready: {
         push: function(callback, recall) {
-            this.funcs.push({
+            Collejo.ready.funcs.push({
                 callback: callback,
                 recall: recall === true ? true : false
             })
@@ -46062,7 +46062,7 @@ Collejo.templates.alertContainer = function() {
 }
 
 Collejo.templates.ajaxLoader = function() {
-    return null;
+    return $('<div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>');
 }
 
 Collejo.templates.dateTimePickerIcons = function() {
@@ -46118,9 +46118,7 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
 
                 Collejo.dynamics.prependRow(partial, target);
 
-                $.each(Collejo.ready, function(i, f) {
-                    f(partial);
-                });
+                Collejo.ready.recall(partial);
             }
 
             if (response.data != undefined && response.data.redir != undefined) {
@@ -46294,6 +46292,7 @@ Collejo.components.searchDropDown = function(el) {
             },
             load: function(query, callback) {
                 if (!query.length) return callback();
+                Collejo.templates.spinnerTemplate().addClass('inline').insertAfter(element);
                 $.ajax({
                     url: element.data('url'),
                     type: 'GET',
@@ -46303,9 +46302,11 @@ Collejo.components.searchDropDown = function(el) {
                     },
                     error: function() {
                         callback();
+                        element.siblings('.spinner-wrap').remove();
                     },
                     success: function(res) {
                         callback(res.data);
+                        element.siblings('.spinner-wrap').remove();
                     }
                 });
             }
@@ -46595,6 +46596,7 @@ Collejo.modal.open = function(link) {
     $('body').append(modal);
 
     modal.on('show.bs.modal', function() {
+
         $.ajax({
             url: link.attr('href'),
             type: 'GET',
@@ -46627,6 +46629,23 @@ Collejo.ready.push(function(scope) {
     $(scope).on('click', '[data-toggle="ajax-modal"]', function(e) {
         e.preventDefault();
         Collejo.modal.open($(this));
+    });
+
+    $(scope).on('DOMNodeInserted', '.modal-backdrop', function(e) {
+        if ($('.modal-backdrop').length > 1) {
+
+            $('.modal-backdrop').last().css({
+                'z-index': parseInt($('.modal').last().prev().css('z-index')) + 10
+            })
+        }
+    });
+
+    $(scope).on('DOMNodeInserted', '.modal', function(e) {
+        if ($('.modal').length > 1) {
+            $('.modal').last().css({
+                'z-index': parseInt($('.modal-backdrop').last().prev().css('z-index')) + 10
+            })
+        }
     });
 });
 $(function() {
