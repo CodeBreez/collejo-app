@@ -14,16 +14,15 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 
 	public function createAdminUser($name, $email, $password)
 	{
-		DB::transaction(function () use ($name, $email, $password) {
+		$user = User::create([
+				'first_name' => $name,
+				'email' => $email,
+				'password' => Hash::make($password)
+			]);
+		
+		$this->addRoleToUser($user, $this->getRoleByName('admin'));
 
-			$user = User::create([
-					'first_name' => $name,
-					'email' => $email,
-					'password' => Hash::make($password)
-				]);
-
-			$this->syncUserRoles($user, ['admin']);
-		});
+		return $user;
 	}
 
 	public function getAdminUsers()
@@ -70,7 +69,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 	public function createPermissionIfNotExists($permission)
 	{
 		if (is_null($this->getPermissionByName($permission))) {
-
 			$permission = Permission::create(['permission' => $permission]);
 		}
 	}
@@ -88,7 +86,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 	public function createRoleIfNotExists($role)
 	{
 		if (is_null($this->getRoleByName($role))) {
-
 			$role = Role::create(['role' => $role]);
 		}
 	}
@@ -104,7 +101,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		 	$attributes['password'] = Hash::make($attributes['password']);
 		}
 
-		return User::findOrFail($id)->update($attributes, $id);
+		return User::findOrFail($id)->update($attributes);
 	}
 
 	public function create(array $attributes)

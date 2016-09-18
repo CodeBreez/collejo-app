@@ -24,10 +24,23 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
 			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('guardian'));
 		});
 
-
 		return $guardian;
 	}
 
+	public function updateGuardian(array $attributes, $guardianId)
+	{
+		$guardian = $this->findGuardian($guardianId);
+
+		$guardianAttributes = $this->parseFillable($attributes, Guardian::class);
+
+		DB::transaction(function () use ($attributes, $guardianAttributes, &$guardian, $guardianId) {
+			$guardian->update($guardianAttributes);
+
+			$user = $this->userRepository->update($attributes, $guardian->user->id);
+		});
+
+		return $guardian;
+	}
 	public function findGuardian($id)
 	{
 		return Guardian::findOrFail($id);

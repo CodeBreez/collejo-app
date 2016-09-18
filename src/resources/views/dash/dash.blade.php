@@ -18,6 +18,7 @@
 				<div class="panel-footer text-right">
 					<a class="btn btn-info btn-xs"><i class="fa fa-fw fa-edit"></i></a>
 				</div>
+
 			</div>
 
 		</div>

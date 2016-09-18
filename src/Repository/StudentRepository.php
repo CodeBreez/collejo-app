@@ -89,7 +89,10 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 
 	public function findAddress($addressId, $studentId)
 	{
-		return Address::where(['user_id' => $this->findStudent($studentId)->user->id, 'id' => $addressId])->firstOrFail();
+		return Address::where([
+					'user_id' => $this->findStudent($studentId)->user->id, 
+					'id' => $addressId]
+				)->firstOrFail();
 	}
 
 	public function findStudent($id)
@@ -102,9 +105,9 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		return $this->search($criteria);
 	}
 
-	public function update(array $attributes, $studentId)
+	public function updateStudent(array $attributes, $studentId)
 	{
-		$student = null;
+		$student = $this->findStudent($studentId);
 
 		if (isset($attributes['admitted_on'])) {
 			$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
@@ -117,7 +120,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		$studentAttributes = $this->parseFillable($attributes, Student::class);
 
 		DB::transaction(function () use ($attributes, $studentAttributes, &$student, $studentId) {
-			$student = parent::update($studentAttributes, $studentId);
+			$student->update($studentAttributes);
 
 			$user = $this->userRepository->update($attributes, $student->user->id);
 		});
@@ -125,7 +128,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		return $student;
 	}
 
-	public function create(array $attributes)
+	public function createStudent(array $attributes)
 	{
 		$student = null;
 		
@@ -140,7 +143,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		DB::transaction(function () use ($attributes, $studentAttributes, &$student) {
 			$user = $this->userRepository->create($attributes);
 
-			$student = parent::create(array_merge($studentAttributes, ['user_id' => $user->id]));
+			$student = Student::create(array_merge($studentAttributes, ['user_id' => $user->id]));
 
 			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('student'));
 		});

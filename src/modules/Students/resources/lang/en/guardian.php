@@ -9,6 +9,7 @@ return [
 
 	'first_name' => 'First Name',
 	'last_name' => 'Last Name',
+	'name' => 'Name',
 	'email' => 'Email',
 	'ssn' => 'Social Security Number',
 	

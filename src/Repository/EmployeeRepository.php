@@ -112,9 +112,14 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		return $this->search($criteria);
 	}
 
-	public function update(array $attributes, $employeeId)
+	public function findEmployee($id)
 	{
-		$employee = null;
+		return Employee::findOrFail($id);
+	}
+
+	public function updateEmployee(array $attributes, $employeeId)
+	{
+		$employee = $this->findEmployee($employeeId);
 
 		if (isset($attributes['joined_on'])) {
 			$attributes['joined_on'] = toUTC($attributes['joined_on']);
@@ -126,10 +131,10 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 
 		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
 
-		$employeeAttributes = $this->parseFillable($attributes);
+		$employeeAttributes = $this->parseFillable($attributes, Employee::class);
 
 		DB::transaction(function () use ($attributes, $employeeAttributes, &$employee, $employeeId) {
-			$employee = parent::update($employeeAttributes, $employeeId);
+			$employee->update($employeeAttributes);
 
 			$user = $this->userRepository->update($attributes, $employee->user->id);
 		});
@@ -137,7 +142,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		return $employee;
 	}
 
-	public function create(array $attributes)
+	public function createEmployee(array $attributes)
 	{
 		$employee = null;
 		
@@ -149,12 +154,12 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 
 		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
 
-		$employeeAttributes = $this->parseFillable($attributes);
+		$employeeAttributes = $this->parseFillable($attributes, Employee::class);
 
 		DB::transaction(function () use ($attributes, $employeeAttributes, &$employee) {
 			$user = $this->userRepository->create($attributes);
 
-			$employee = parent::create(array_merge($employeeAttributes, ['user_id' => $user->id]));
+			$employee = Employee::create(array_merge($employeeAttributes, ['user_id' => $user->id]));
 
 			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('employee'));
 		});

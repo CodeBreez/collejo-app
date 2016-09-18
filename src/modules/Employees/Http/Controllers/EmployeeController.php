@@ -16,7 +16,7 @@ class EmployeeController extends BaseController
 	public function getEmployeeDetailsView($employeeId)
 	{
 		return view('employees::view_employee_details', [
-			'employee' => $this->employeeRepository->find($employeeId)
+			'employee' => $this->employeeRepository->findEmployee($employeeId)
 		]);
 	}
 
@@ -92,7 +92,7 @@ class EmployeeController extends BaseController
 	public function getEmployeeDetailsEdit($id)
 	{
 		return view('employees::edit_employee_details', [
-				'employee' => $this->employeeRepository->find($id),
+				'employee' => $this->employeeRepository->findEmployee($id),
 				'employee_positions' => $this->employeeRepository->getEmployeePositions()->all(),
 				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->all(),
 				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->all(),
@@ -102,7 +102,7 @@ class EmployeeController extends BaseController
 
 	public function postEmployeeDetailsEdit(UpdateEmployeeDetailsRequest $request, $id)
 	{
-		$employee = $this->employeeRepository->update($request->all(), $id);
+		$employee = $this->employeeRepository->updateEmployee($request->all(), $id);
 
 		return $this->printJson(true, [], trans('employees::employee.employee_updated'));
 	}
@@ -110,7 +110,7 @@ class EmployeeController extends BaseController
 	public function getEmployeeList(EmployeeListCriteria $criteria)
 	{
 		return view('employees::employee_list', [
-				'employees' => $this->employeeRepository->getEmployees($criteria)->paginate(config('collejo.pagination.perpage')),
+				'employees' => $this->employeeRepository->getEmployees($criteria)->paginate(),
 				'criteria' => $criteria
 			]);
 	}
