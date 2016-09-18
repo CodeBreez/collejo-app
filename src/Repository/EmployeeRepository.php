@@ -164,7 +164,6 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('employee'));
 		});
 
-
 		return $employee;
 	}
 

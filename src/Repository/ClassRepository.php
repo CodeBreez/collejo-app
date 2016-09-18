@@ -19,7 +19,9 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 
     public function updateGrade(array $attributes, $id)
     {
-        return $this->findGrade($id)->update($attributes);
+        $this->findGrade($id)->update($attributes);
+
+        return $this->findGrade($id);
     }
 
     public function findGrade($id)

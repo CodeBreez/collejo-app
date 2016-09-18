@@ -39,21 +39,25 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 	public function assignGuardian($guardianId, $studentId)
 	{
 		if (!$this->findStudent($studentId)->guardians->contains($guardianId)) {
-			$this->findStudent($studentId)->guardians()->attach($this->guardiansRepository->findGuardian($guardianId), [
-					'id' => $this->newUUID(),
-					'updated_at' => Carbon::now()
-				]);
+			$this->findStudent($studentId)
+				->guardians()
+				->attach($this->guardiansRepository->findGuardian($guardianId), [
+							'id' => $this->newUUID(),
+							'updated_at' => Carbon::now()
+						]);
 		}
 	}
 
 	public function assignToClass($batchId, $gradeId, $classId, $studentId)
 	{
 		if (!$this->findStudent($studentId)->classes->contains($classId)) {
-			$this->findStudent($studentId)->classes()->attach($this->classRepository->findClass($classId, $gradeId), [
-					'batch_id' => $this->classRepository->findBatch($batchId)->id,
-					'id' => $this->newUUID(),
-					'updated_at' => Carbon::now()
-				]);
+			$this->findStudent($studentId)
+				->classes()
+				->attach($this->classRepository->findClass($classId, $gradeId), [
+							'batch_id' => $this->classRepository->findBatch($batchId)->id,
+							'id' => $this->newUUID(),
+							'updated_at' => Carbon::now()
+						]);
 		}
 	}
 
