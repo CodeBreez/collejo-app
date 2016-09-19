@@ -8704,6 +8704,8 @@ label.error {
 
 .btn {
   text-transform: uppercase; }
+  .btn .spinner-wrap {
+    margin-left: 10px; }
 
 .spinner {
   display: inline-block;

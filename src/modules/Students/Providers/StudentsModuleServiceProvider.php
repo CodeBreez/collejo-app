@@ -28,6 +28,9 @@ class StudentsModuleServiceProvider extends BaseModuleServiceProvider
             },
             'view_student' => function($user){
                 return $user->hasPermission('view_student');
+            },
+            'view_own_students' => function(){
+                return $user->hasPermission('view_own_students');
             }
         ];
     }

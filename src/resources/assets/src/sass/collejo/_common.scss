@@ -25,7 +25,10 @@ label.error{color: $brand-danger;font-size: 10px;}
 
 .progress{height: 10px;}
 
-.btn{ text-transform: uppercase;}
+.btn{ 
+  text-transform: uppercase;
+  .spinner-wrap{margin-left: 10px;}
+}
 
 // spinenr
 .spinner {

@@ -20,6 +20,7 @@
     "d3": "^3.5.17",
     "eonasdan-bootstrap-datetimepicker": "^4.15.35",
     "font-awesome": "^4.6.3",
+    "gulp-exec": "^2.1.2",
     "jquery": "1.9.1",
     "jquery-form": "^3.50.0",
     "jquery-validation": "^1.15.0",

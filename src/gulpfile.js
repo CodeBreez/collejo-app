@@ -1,6 +1,7 @@
 var elixir = require('laravel-elixir');
 var gulp = require('gulp');
-var shell = require('gulp-shell');
+var gutil = require('gulp-util');
+var exec = require('gulp-exec');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 
@@ -47,10 +48,12 @@ elixir(function(mix) {
 
 gulp.task('copy', function() {
     return watch([outDir + '**/*.css', outDir + '**/*.js'])
-        .pipe(shell([
-            'php ' + __dirname + '/../../../../artisan asset:copy'
-        ])).on('error', function(error) {
-            console.log(error.toString())
-            this.emit('end')
-        });
+        .pipe(exec('php ' + __dirname + '/../../../../artisan asset:copy', {
+            continueOnError: true
+        })).pipe(exec.reporter({
+            err: true, // default = true, false means don't write err
+            stderr: true, // default = true, false means don't write stderr
+            stdout: true // default = true, false means don't write stdout
+        }))
+        .on('error', gutil.log)
 });
