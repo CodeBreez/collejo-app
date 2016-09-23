@@ -33,6 +33,5 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app->singleton('modules', function ($app) {
             return new ModuleCollection($app);
         });
-
     }
 }

@@ -9118,6 +9118,8 @@ body {
         margin-top: -15px; }
   .dash-content .section-content {
     background: #fff; }
+    .dash-content .section-content.section-content-transparent {
+      background: transparent; }
   .dash-content .table td.tools-column {
     width: 150px;
     height: 40px; }

@@ -28,7 +28,10 @@ body{background: $gray-lighter;}
 		}
 	}
 
-	.section-content{background: #fff;}
+	.section-content{
+		background: #fff;
+		&.section-content-transparent{background:transparent;}
+	}
 
 	.table{
 		td.tools-column{

@@ -11,7 +11,7 @@ class DashController extends BaseController
 
 	public function getIndex()
 	{
-		event(new \Collejo\App\Events\UserPermissionsChanged(Auth::user()));
+		//event(new \Collejo\App\Events\UserPermissionsChanged(Auth::user()));
 		return view('collejo::dash.dash')->render();
 	}
 }

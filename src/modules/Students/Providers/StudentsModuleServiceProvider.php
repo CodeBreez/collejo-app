@@ -4,6 +4,7 @@ namespace Collejo\App\Modules\Students\Providers;
 
 use Collejo\Core\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
+use Collejo\App\Modules\Students\Widgets\GuardianStudentsWidget;
 
 class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 {
@@ -11,6 +12,10 @@ class StudentsModuleServiceProvider extends BaseModuleServiceProvider
     protected $namespace = 'Collejo\App\Modules\Students\Http\Controllers';
 
     protected $name = 'students';
+
+    protected $widgets = [
+        GuardianStudentsWidget::class
+    ];
 
     public function boot()
     {
