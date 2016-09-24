@@ -24,23 +24,38 @@ class ClassesModuleServiceProvider extends BaseModuleServiceProvider
     public function getPermissions()
     {
         return [
-            'create_batch' => function($user){
-                return $user->hasPermission('create_batch');
+            'add_edit_batch' => function($user){
+                return $user->hasPermission('add_edit_batch');
             },
-            'edit_batch' => function($user){
-                return $user->hasPermission('edit_batch');
+            'add_edit_class' => function($user){
+                return $user->hasPermission('add_edit_class');
             }, 
-            'view_batch' => function($user){
-                return $user->hasPermission('view_batch');
+            'add_edit_grade' => function($user){
+                return $user->hasPermission('add_edit_grade');
             },
-            'create_grade' => function($user){
-                return $user->hasPermission('create_grade');
+            'list_batches' => function($user){
+                return $user->hasPermission('list_batches');
             },
-            'edit_grade' => function($user){
-                return $user->hasPermission('edit_grade');
+            'view_batch_details' => function($user){
+                return $user->hasPermission('view_batch_details');
             }, 
-            'view_grade' => function($user){
-                return $user->hasPermission('view_grade');
+            'list_grades' => function($user){
+                return $user->hasPermission('list_grades');
+            }, 
+            'list_classes' => function($user){
+                return $user->hasPermission('list_classes');
+            }, 
+            'view_class_details' => function($user){
+                return $user->hasPermission('view_class_details');
+            }, 
+            'list_class_students' => function($user){
+                return $user->hasPermission('list_class_students');
+            }, 
+            'transfer_batch' => function($user){
+                return $user->hasPermission('transfer_batch');
+            }, 
+            'graduate_batch' => function($user){
+                return $user->hasPermission('graduate_batch');
             }
         ];
     }    
