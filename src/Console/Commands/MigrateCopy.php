@@ -31,7 +31,7 @@ class MigrateCopy extends Command
         $this->info('Copying core migrations...');
 
         $src = realpath(__DIR__ . '/../../migrations');
-        $dest = base_path('/database/migrations');
+        $dest = base_path('database/migrations');
 
         array_map('unlink', glob($dest . '/*'));
 
