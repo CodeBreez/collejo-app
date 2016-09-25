@@ -13,20 +13,22 @@
 <table class="table">
                 
     <tr>
-        <th width="30%">{{ trans('acl::role.name') }}</th>
-        <th width="30%">{{ trans('acl::role.description') }}</th>
+        <th width="10%">{{ trans('acl::role.name') }}</th>
+        <th width="*">{{ trans('acl::role.permissions') }}</th>
         <th width="10%"></th>
     </tr>
 
     @foreach($roles as $role)
 
     <tr>
-        <td>{{ $role->name }}</td>
+        <td><a href="{{ route('role.permissions.edit', [$role->id, $module->name]) }}">{{ $role->name }}</a></td>
         <td>
-            <div><a href="{{ route('batch.details.view', $role->id) }}">{{ $role->description }}</a></div>
+            @foreach($role->permissions as $permission)
+                <span class="label label-default">{{ $permission->name }}</span>
+            @endforeach
         </td>
         <td class="tools-column">
-            <a href="{{ route('batch.details.edit', $role->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+            <a href="{{ route('role.permissions.edit', [$role->id, $module->name]) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
         </td>
     </tr>
 

@@ -8830,6 +8830,9 @@ footer {
   border-top-right-radius: 0;
   border-right: 0; }
 
+ul.list-indented > li {
+  margin-left: 25px; }
+
 .file-uploader .upload-block {
   float: left;
   border: thin solid #eeeeee;
@@ -8971,7 +8974,7 @@ footer {
   .checkbox-row span {
     font-weight: normal;
     margin-left: 30px;
-    width: 100px;
+    width: 290px;
     position: absolute; }
   .checkbox-row input[type=checkbox] {
     visibility: hidden; }

@@ -10,8 +10,6 @@ class MediaModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $namespace = 'Collejo\App\Modules\Media\Http\Controllers';
 
-    protected $name = 'media';
-
     public function boot(Router $router)
     {
         $this->initModule();

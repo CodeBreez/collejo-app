@@ -12,8 +12,6 @@ class AuthModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $namespace = 'Collejo\App\Modules\Auth\Http\Controllers';
 
-    protected $name = 'auth';
-
     public function boot(Router $router)
     {
         $this->initModule();
@@ -24,10 +22,5 @@ class AuthModuleServiceProvider extends BaseModuleServiceProvider
         $this->app->bind(UserRepositoryContract::class, function($app) { 
             return new UserRepository($app); 
         });
-    }
-
-    public function getPermissions()
-    {
-        return [];
     }
 }

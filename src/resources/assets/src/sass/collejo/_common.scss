@@ -145,6 +145,8 @@ footer{font-size: 12px;padding-bottom: 5px;padding-top: 10px;clear: both;}
     border-bottom-right-radius: 0;border-top-right-radius:0;border-right:0;
 }
 
+ul.list-indented > li {margin-left: 25px;}
+
 @media (max-width: $screen-xs-max) {
 
 }

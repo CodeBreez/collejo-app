@@ -46440,7 +46440,7 @@ Collejo.form.lock = function(form) {
         .attr('disabled', true)
         .append(Collejo.templates.spinnerTemplate());
     $(form).find('input[type="checkbox"]')
-        .attr('disabled', true)
+        .attr('readonly', true)
         .parent('.checkbox-row').addClass('disabled');
 }
 
@@ -46457,7 +46457,7 @@ Collejo.form.unlock = function(form) {
         .find('.spinner-wrap')
         .remove();
     $(form).find('input[type="checkbox"]')
-        .attr('disabled', false)
+        .attr('readonly', false)
         .parent('.checkbox-row').removeClass('disabled');
 }
 

@@ -48,10 +48,21 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return $user->roles->contains($role->id);
 	}
 
-	public function syncRolePermissions(Role $role, $permissions)
+	public function syncRolePermissions(Role $role, $permissions, $module = null)
 	{
-		$permissionsIds = Permission::whereIn('permission', (array) $permissions)->get(['id'])->pluck('id')->all();
-		$role->permissions()->sync($this->createPrivotIds($permissionsIds));
+		if (!is_null($module)) {
+
+			$otherPermissions = $role->permissions()
+					->where('module', '!=', strtolower($module))->get()
+					->pluck('permission')->all();
+
+			$permissions = array_merge($otherPermissions, $permissions);
+		}
+
+		$permissionIds = Permission::whereIn('permission', (array) $permissions)->get(['id'])
+								->pluck('id')->all();
+
+		$role->permissions()->sync($this->createPrivotIds($permissionIds));
 	}
 
 	public function addPermissionToRole(Role $role, Permission $permission)
@@ -66,11 +77,15 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return $role->permissions->contains($permission->id);
 	}
 
-	public function createPermissionIfNotExists($permission)
+	public function createPermissionIfNotExists($permission, $module = null)
 	{
-		if (is_null($this->getPermissionByName($permission))) {
-			$permission = Permission::create(['permission' => $permission]);
+		$perm = $this->getPermissionByName($permission);
+
+		if (is_null($perm)) {
+			$perm = Permission::create(['permission' => $permission, 'module' => $module]);
 		}
+		
+		return $perm;
 	}
 
 	public function getRoleByName($name)
@@ -83,6 +98,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return Permission::where('permission', $name)->first();
 	}
 
+	public function getPermissionsByModule($name)
+	{
+		return Permission::where('module', strtolower($name))->get();
+	}
+
 	public function createRoleIfNotExists($role)
 	{
 		if (is_null($this->getRoleByName($role))) {
@@ -92,7 +112,12 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 
 	public function getRoles()
 	{
-		return $this->search(Role::class);
+		return new Role();
+	}
+
+	public function findRole($id)
+	{
+		return Role::findOrFail($id);
 	}
 
 	public function update(array $attributes, $id)
