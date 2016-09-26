@@ -23,16 +23,9 @@ class ClassesModuleServiceProvider extends BaseModuleServiceProvider
     {
         return [
             'view_batch_details' => ['add_edit_batch', 'list_batches'],
-            'add_edit_batch' => [],
             'list_batches' => ['transfer_batch', 'graduate_batch'],
-            'transfer_batch' => [],
-            'graduate_batch' => [],
             'view_class_details' => ['add_edit_class', 'list_classes', 'list_class_students'],
-            'add_edit_class' => [],
-            'list_classes' => [],
-            'list_class_students' => [],
-            'list_grades' => ['add_edit_grade'],
-            'add_edit_grade' => [],
+            'view_grade_details' => ['add_edit_grade', 'list_grades'],
         ];
     }    
 }

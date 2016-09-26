@@ -1,0 +1,37 @@
+body.error-layout {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  
+  .header {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 40px;
+      a{text-decoration: none;color: $gray-light;}
+    }
+  }
+  
+.error-page{
+  min-height: 350px;
+  i.fa{font-size: 100px; color: lighten($gray-light, 50%);margin-top: 50px;margin-bottom: 30px;}
+}
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 730px;
+    }
+  }
+  .container-narrow > hr {
+    margin: 30px 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .header,
+    .marketing,
+    .footer {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+}

@@ -28,6 +28,11 @@ class User extends Authenticatable
         return (bool) $this->permissions->where('permission', $permission)->count();
     }
 
+    public function hasRole($role)
+    {
+        return (bool) $this->roles->where('role', $role)->count();
+    }
+
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;

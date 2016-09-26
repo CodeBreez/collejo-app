@@ -4,7 +4,9 @@
 
 @section('tools')
 
-<a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('classes::grade.create_grade') }}</a>  
+    @can('add_edit_grade')
+        <a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('classes::grade.create_grade') }}</a>  
+    @endcan
 
 @endsection
 
@@ -36,7 +38,9 @@
             @endif
         </td>
         <td class="tools-column">
-            <a href="{{ route('grade.details.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+            @can('add_edit_grade')
+                <a href="{{ route('grade.details.edit', $grade->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+            @endcan
         </td>
     </tr>
 

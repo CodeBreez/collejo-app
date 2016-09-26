@@ -6,6 +6,7 @@ use Collejo\App\Repository\UserRepository;
 use Validator;
 use Collejo\App\Http\Controllers\Controller;
 use Collejo\Core\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Session;
 
 class AuthController extends Controller
 {
@@ -27,7 +28,7 @@ class AuthController extends Controller
 
     public function authenticated()
     {
-        return $this->printJson(true, ['redir' => '/dash']);
+        return $this->printJson(true, ['redir' => Session::get('url.intended', '/dash')]);
     }
 
     public function __construct()

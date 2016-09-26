@@ -9083,6 +9083,35 @@ body.setup-layout {
     body.setup-layout .jumbotron {
       border-bottom: 0; } }
 
+body.error-layout {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  body.error-layout .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px; }
+    body.error-layout .header h3 a {
+      text-decoration: none;
+      color: #777777; }
+  body.error-layout .error-page {
+    min-height: 350px; }
+    body.error-layout .error-page i.fa {
+      font-size: 100px;
+      color: #f7f7f7;
+      margin-top: 50px;
+      margin-bottom: 30px; }
+  @media (min-width: 768px) {
+    body.error-layout .container {
+      max-width: 730px; } }
+  body.error-layout .container-narrow > hr {
+    margin: 30px 0; }
+  @media screen and (min-width: 768px) {
+    body.error-layout .header,
+    body.error-layout .marketing,
+    body.error-layout .footer {
+      padding-right: 0;
+      padding-left: 0; } }
+
 body {
   background: #eeeeee; }
 

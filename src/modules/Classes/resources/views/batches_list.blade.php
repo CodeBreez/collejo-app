@@ -4,7 +4,9 @@
 
 @section('tools')
 
-<a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('classes::batch.create_batch') }}</a>  
+    @can('add_edit_batch')
+        <a href="{{ route('batch.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('classes::batch.create_batch') }}</a>  
+    @endcan
 
 @endsection
 
@@ -33,7 +35,9 @@
                     <span class="label label-default"><a href="#">{{ $grade->name }}</a></span>
                 @endforeach
             @else
-                <a href="{{ route('batch.grades.edit', $batch->id) }}" class="btn btn-xs btn-warning">{{ trans('classes::batch.assign_grades') }}</a>
+                @can('add_edit_batch')
+                    <a href="{{ route('batch.grades.edit', $batch->id) }}" class="btn btn-xs btn-warning">{{ trans('classes::batch.assign_grades') }}</a>
+                @endcan
             @endif
         </td>
         <td>
@@ -44,7 +48,9 @@
             @endif
         </td>
         <td class="tools-column">
-            <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+            @can('add_edit_batch')
+                <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+            @endcan
         </td>
     </tr>
 

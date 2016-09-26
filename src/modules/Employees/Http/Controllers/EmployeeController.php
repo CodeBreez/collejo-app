@@ -75,9 +75,9 @@ class EmployeeController extends BaseController
 	{
 		return view('employees::edit_employee_details', [
 				'employee' => null,
-				'employee_positions' => $this->employeeRepository->getEmployeePositions()->all(),
-				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->all(),
-				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->all(),
+				'employee_positions' => $this->employeeRepository->getEmployeePositions()->get(),
+				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->get(),
+				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->get(),
 				'employee_form_validator' => $this->jsValidator(CreateEmployeeDetailsRequest::class)
 			]);
 	}
@@ -93,9 +93,9 @@ class EmployeeController extends BaseController
 	{
 		return view('employees::edit_employee_details', [
 				'employee' => $this->employeeRepository->findEmployee($id),
-				'employee_positions' => $this->employeeRepository->getEmployeePositions()->all(),
-				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->all(),
-				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->all(),
+				'employee_positions' => $this->employeeRepository->getEmployeePositions()->get(),
+				'employee_departments' => $this->employeeRepository->getEmployeeDepartments()->get(),
+				'employee_grades' => $this->employeeRepository->getEmployeeGrades()->get(),
 				'employee_form_validator' => $this->jsValidator(UpdateEmployeeDetailsRequest::class)
 			]);
 	}

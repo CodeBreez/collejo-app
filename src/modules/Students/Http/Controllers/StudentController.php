@@ -23,7 +23,7 @@ class StudentController extends BaseController
 
 	public function postStudentClassAssign(AssignClassRequest $request, $studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('assign_student_to_class');
 
 		$this->studentRepository->assignToClass($request->get('batch_id'),  $request->get('grade_id'), $request->get('class_id'), $studentId);
 
@@ -34,7 +34,7 @@ class StudentController extends BaseController
 
 	public function getStudentClassAssign($studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('assign_student_to_class');
 
 		return $this->printModal(view('students::modals.assign_class', [
 				'student' => $this->studentRepository->findStudent($studentId),
@@ -45,7 +45,7 @@ class StudentController extends BaseController
 
 	public function postStudentGuardianAssign(AssignGuardianRequest $request, $studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('assign_guardian_to_student');
 
 		$this->studentRepository->assignGuardian($request->get('guardian_id'), $studentId);
 
@@ -56,7 +56,7 @@ class StudentController extends BaseController
 
 	public function getStudentGuardianAssign($studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('assign_guardian_to_student');
 
 		return $this->printModal(view('students::modals.assign_guardian', [
 				'student' => $this->studentRepository->findStudent($studentId),
@@ -66,8 +66,6 @@ class StudentController extends BaseController
 
 	public function getStudentAddressDelete($studentId, $addressId)
 	{
-		$this->authorize('edit_grade');
-
 		$this->studentRepository->deleteAddress($addressId, $studentId);
 
 		return $this->printJson(true, [], trans('students::address.address_deleted'));
@@ -75,8 +73,6 @@ class StudentController extends BaseController
 
 	public function postStudentAddressEdit(UpdateAddressRequest $request, $studentId, $addressId)
 	{
-		$this->authorize('edit_grade');
-
 		$address = $this->studentRepository->updateAddress($request->all(), $addressId, $studentId);
 
 		return $this->printPartial(view('students::partials.address', [
@@ -87,8 +83,6 @@ class StudentController extends BaseController
 
 	public function getStudentAddressEdit($studentId, $addressId)
 	{
-		$this->authorize('edit_grade');
-
 		return $this->printModal(view('students::modals.edit_address', [
 				'address' => $this->studentRepository->findAddress($addressId, $studentId),
 				'student' => $this->studentRepository->findStudent($studentId)
@@ -97,8 +91,6 @@ class StudentController extends BaseController
 
 	public function postStudentAddressNew(CreateAddressRequest $request, $studentId)
 	{
-		$this->authorize('edit_grade');
-
 		$address = $this->studentRepository->createAddress($request->all(), $studentId);
 
 		return $this->printPartial(view('students::partials.address', [
@@ -109,8 +101,6 @@ class StudentController extends BaseController
 
 	public function getStudentAddressNew($studentId)
 	{
-		$this->authorize('edit_grade');
-
 		return $this->printModal(view('students::modals.edit_address', [
 				'address' => null,
 				'student' => $this->studentRepository->findStudent($studentId)
@@ -119,7 +109,7 @@ class StudentController extends BaseController
 
 	public function getStudentDetailEdit($studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('edit_student_general_details');
 
 		return view('students::edit_details', [
 				'student' => $this->studentRepository->findStudent($studentId),
@@ -130,7 +120,7 @@ class StudentController extends BaseController
 
 	public function postStudentDetailEdit(UpdateStudentRequest $request, $studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('edit_student_general_details');
 
 		$this->studentRepository->update($request->all(), $studentId);
 
@@ -146,14 +136,12 @@ class StudentController extends BaseController
 
 	public function getStudentAddressesEdit($studentId)
 	{
-		$this->authorize('edit_grade');
-
 		return view('students::edit_student_addreses', ['student' => $this->studentRepository->findStudent($studentId)]);
 	}	
 
 	public function postStudentAccountEdit(UpdateStudentAccountRequest $request, $studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('edit_user_account_info');
 
 		$this->studentRepository->update($request->all(), $studentId);
 
@@ -162,7 +150,7 @@ class StudentController extends BaseController
 
 	public function getStudentAccountEdit($studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('edit_user_account_info');
 
 		return view('students::edit_account', [
 				'student' => $this->studentRepository->findStudent($studentId),
@@ -172,7 +160,7 @@ class StudentController extends BaseController
 
 	public function getStudentAccountView($studentId)
 	{
-		$this->authorize('view_student');
+		$this->authorize('view_user_account_info');
 
 		return view('students::view_student_account', [
 				'student' => $this->studentRepository->findStudent($studentId)
@@ -181,16 +169,18 @@ class StudentController extends BaseController
 
 	public function getStudentDetailView($studentId)
 	{
-		$this->authorize('view_student');
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('view_student_general_details', $student);
 
 		return view('students::view_student_details', [
-				'student' => $this->studentRepository->findStudent($studentId)
+				'student' => $student
 			]);
 	}
 
 	public function getStudentList(StudentListCriteria $criteria)
 	{
-		$this->authorize('view_student');
+		$this->authorize('list_students');
 
 		return view('students::students_list', [
 				'criteria' => $criteria,

@@ -14,6 +14,8 @@ class StudentCategoryController  extends BaseController
 
 	public function getStudentCategoryNew()
 	{
+		$this->authorize('add_edit_student_category');
+
 		return $this->printModal(view('students::modals.edit_student_category', [
 				'student_category' => null,
 				'category_form_validator' => $this->jsValidator(CreateStudentCategoryRequest::class)
@@ -22,6 +24,9 @@ class StudentCategoryController  extends BaseController
 
 	public function postStudentCategoryNew(CreateStudentCategoryRequest $request)
 	{
+		$this->authorize('add_edit_student_category');
+
+
 		return $this->printPartial(view('students::partials.student_category', [
 				'student_category' => $this->studentRepository->createStudentCategory($request->all()),
 			]), trans('students::student_category.student_category_created'));
@@ -29,6 +34,8 @@ class StudentCategoryController  extends BaseController
 
 	public function getStudentCategoryEdit($id)
 	{
+		$this->authorize('add_edit_student_category');
+
 		return $this->printModal(view('students::modals.edit_student_category', [
 				'student_category' => $this->studentRepository->findStudentCategory($id),
 				'category_form_validator' => $this->jsValidator(UpdateStudentCategoryRequest::class)
@@ -37,6 +44,8 @@ class StudentCategoryController  extends BaseController
 
 	public function postStudentCategoryEdit(UpdateStudentCategoryRequest $request, $id)
 	{
+		$this->authorize('add_edit_student_category');
+
 		return $this->printPartial(view('students::partials.student_category', [
 				'student_category' => $this->studentRepository->updateStudentCategory($request->all(), $id),
 			]), trans('students::student_category.student_category_updated'));
@@ -44,6 +53,8 @@ class StudentCategoryController  extends BaseController
 
 	public function getStudentCategoriesList()
 	{
+		$this->authorize('list_student_categories');
+
 		return view('students::student_categories_list', [
 				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage'))
 			]);

@@ -16,6 +16,8 @@ class GuardianController  extends BaseController
 
     public function getGuardianNew()
     {
+        $this->authorize('create_guardian');
+        
     	return $this->printModal(view('students::modals.edit_guardian', [
 				'guardian' => null,
 				'guradian_form_validator' => $this->jsValidator(CreateGuardianRequest::class)
@@ -24,6 +26,8 @@ class GuardianController  extends BaseController
 
     public function postGuardianNew(CreateGuardianRequest $request)
     {
+        $this->authorize('create_guardian');
+        
         $guardian = $this->guardianRepository->createGuardian($request->all());
 
         return $this->printJson(true, ['guardian' => [
@@ -35,35 +39,49 @@ class GuardianController  extends BaseController
     public function getGuardianDetailView()
     {
 
+        $this->authorize('list_student_categories');
+
     }
 
     public function getGuardianDetailEdit()
     {
+
+        $this->authorize('list_student_categories');
 
     }
 
     public function postGuardianDetailEdit(UpdateGuardianRequest $request)
     {
 
+        $this->authorize('list_student_categories');
+
     }
 
     public function getGuardianAccountView()
     {
+
+        $this->authorize('list_student_categories');
 
     }
 
     public function getGuardianAccountEdit()
     {
 
+        $this->authorize('list_student_categories');
+
     }
 
     public function postGuardianAccountEdit(UpdateGuardianAccountRequest $request)
     {
 
+        $this->authorize('list_student_categories');
+
     }
 
 	public function getGuardiansSearch(GuardiansSearchCriteria $criteria)
 	{
+        $this->authorize('list_student_categories');
+        
 		return $this->printJson(true, $this->guardianRepository->search($criteria)->get(['id'])
 										->map(function($item){
 											return ['id' => $item->id, 'name' => $item->name];
@@ -73,6 +91,8 @@ class GuardianController  extends BaseController
 
 	public function getGuardiansList()
 	{
+        $this->authorize('list_student_categories');
+        
 		return view('students::guardians_list', [
 				'guardians' => $this->guardianRepository->getGuardians()->paginate(config('collejo.pagination.perpage'))
 			]);		

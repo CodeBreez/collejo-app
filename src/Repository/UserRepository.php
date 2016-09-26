@@ -48,7 +48,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return $user->roles->contains($role->id);
 	}
 
-	public function syncRolePermissions(Role $role, $permissions, $module = null)
+	public function syncRolePermissions(Role $role, array $permissions, $module = null)
 	{
 		if (!is_null($module)) {
 

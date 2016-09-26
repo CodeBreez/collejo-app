@@ -13,7 +13,9 @@ class RoleController extends Controller
 
 	public function postRolePermmissionsEdit(Request $request, $roleId, $moduleName)
 	{
-		$this->userRepository->syncRolePermissions($this->userRepository->findRole($roleId), $request::get('permissions'), $moduleName);
+		$this->userRepository->syncRolePermissions($this->userRepository->findRole($roleId), $request::get('permissions', []), $moduleName);
+
+		return $this->printJson(true, [], trans('acl::role.updated'));
 	}
 
 	public function getRolePermmissionsEdit($roleId, $moduleName)

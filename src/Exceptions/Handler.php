@@ -49,6 +49,21 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
+        if ($e instanceOf AuthorizationException) {
+
+            if ($request->ajax()) {
+
+                return response()->json(['success' => false, 'data' => [] , 'message' => trans('common.authorization_failed')], 403);
+
+            } else {
+                return response()->make(view('collejo::errors.403'), 403);
+            }
+        }        
+
+        if ($e instanceOf HttpException) {
+            return response()->make(view('collejo::errors.404'), 404);
+        }
+
         if ($e instanceOf TokenMismatchException) {
             return response()->json(['success' => false, 'data' => ['redir' => route('auth.login')] , 'message' => trans('common.ajax_token_mismatch')], 400);
         }
