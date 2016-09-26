@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Modules\Students\Widgets;
 
-use Collejo\Core\Foundation\Widget\Widget as BaseWidget;
+use Collejo\App\Foundation\Widget\Widget as BaseWidget;
 
 class GuardianStudents extends BaseWidget {
 

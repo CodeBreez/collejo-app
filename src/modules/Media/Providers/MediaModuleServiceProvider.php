@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Modules\Media\Providers;
 
-use Collejo\Core\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
+use Collejo\App\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
 use Illuminate\Routing\Router;
 
 class MediaModuleServiceProvider extends BaseModuleServiceProvider

@@ -3,7 +3,7 @@
 namespace Collejo\App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Collejo\Core\Foundation\Console\Kernel as ConsoleKernel;
+use Collejo\App\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {

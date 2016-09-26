@@ -3,8 +3,8 @@
 namespace Collejo\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Collejo\Core\Contracts\Media\Uploader as UploaderInterface;
-use Collejo\Core\Foundation\Media\Uploader;
+use Collejo\App\Contracts\Media\Uploader as UploaderInterface;
+use Collejo\App\Foundation\Media\Uploader;
 
 class MediaServiceProvider extends ServiceProvider
 {

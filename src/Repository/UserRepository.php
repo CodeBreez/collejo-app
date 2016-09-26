@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Repository;
 
-use Collejo\Core\Foundation\Repository\BaseRepository;
-use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Foundation\Repository\BaseRepository;
+use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Models\User;
 use Collejo\App\Models\Permission;
 use Collejo\App\Models\Role;

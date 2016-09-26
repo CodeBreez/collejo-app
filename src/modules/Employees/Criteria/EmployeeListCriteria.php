@@ -2,10 +2,10 @@
 
 namespace Collejo\App\Modules\Employees\Criteria;
 
-use Collejo\Core\Foundation\Repository\BaseCriteria;
+use Collejo\App\Foundation\Repository\BaseCriteria;
 use DB;
 use Collejo\App\Models\Employee;
-use Collejo\Core\Contracts\Repository\EmployeeRepository;
+use Collejo\App\Contracts\Repository\EmployeeRepository;
 
 class EmployeeListCriteria extends BaseCriteria{
 

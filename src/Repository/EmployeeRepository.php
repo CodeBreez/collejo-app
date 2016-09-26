@@ -2,16 +2,16 @@
 
 namespace Collejo\App\Repository;
 
-use Collejo\Core\Foundation\Repository\BaseRepository;
-use Collejo\Core\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
-use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
+use Collejo\App\Foundation\Repository\BaseRepository;
+use Collejo\App\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
+use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Employee;
 use Collejo\App\Models\Address;
 use Collejo\App\Models\EmployeeCategory;
 use Collejo\App\Models\EmployeeDepartment;
 use Collejo\App\Models\EmployeeGrade;
 use Collejo\App\Models\EmployeePosition;
-use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
 use DB;
 use Carbon;
 

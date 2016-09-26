@@ -5,7 +5,7 @@ namespace Collejo\App\Modules\Auth\Http\Controllers;
 use Collejo\App\Repository\UserRepository;
 use Validator;
 use Collejo\App\Http\Controllers\Controller;
-use Collejo\Core\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Collejo\App\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Session;
 
 class AuthController extends Controller

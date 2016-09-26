@@ -3,7 +3,7 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Collejo\Core\Foundation\Application;
+use Collejo\App\Foundation\Application;
 
 class CheckInstalation
 {

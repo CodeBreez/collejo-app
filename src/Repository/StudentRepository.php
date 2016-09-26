@@ -2,11 +2,11 @@
 
 namespace Collejo\App\Repository;
 
-use Collejo\Core\Foundation\Repository\BaseRepository;
-use Collejo\Core\Contracts\Repository\StudentRepository as StudentRepositoryContract;
-use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
-use Collejo\Core\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
-use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Foundation\Repository\BaseRepository;
+use Collejo\App\Contracts\Repository\StudentRepository as StudentRepositoryContract;
+use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
+use Collejo\App\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
+use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Models\Student;
 use Collejo\App\Models\Address;
 use Collejo\App\Models\StudentCategory;

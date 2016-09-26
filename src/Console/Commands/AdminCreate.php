@@ -3,7 +3,7 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Collejo\Core\Contracts\Repository\UserRepository;
+use Collejo\App\Contracts\Repository\UserRepository;
 
 class AdminCreate extends Command
 {

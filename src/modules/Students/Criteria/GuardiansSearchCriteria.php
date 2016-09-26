@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Modules\Students\Criteria;
 
-use Collejo\Core\Foundation\Repository\BaseCriteria;
+use Collejo\App\Foundation\Repository\BaseCriteria;
 use Collejo\App\Models\Guardian;
 
 class GuardiansSearchCriteria extends BaseCriteria{

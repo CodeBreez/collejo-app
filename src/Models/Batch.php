@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Models;
 
-use Collejo\Core\Database\Eloquent\Model;
+use Collejo\App\Database\Eloquent\Model;
 use Collejo\App\Models\Term;
 use Collejo\App\Models\Grade;
 use Illuminate\Database\Eloquent\SoftDeletes;

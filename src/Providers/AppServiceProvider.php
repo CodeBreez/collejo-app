@@ -3,15 +3,15 @@
 namespace Collejo\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Repository\UserRepository;
-use Collejo\Core\Contracts\Repository\StudentRepository as StudentRepositoryContract;
+use Collejo\App\Contracts\Repository\StudentRepository as StudentRepositoryContract;
 use Collejo\App\Repository\StudentRepository;
-use Collejo\Core\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
+use Collejo\App\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
 use Collejo\App\Repository\EmployeeRepository;
-use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
+use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Repository\ClassRepository;
-use Collejo\Core\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
+use Collejo\App\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
 use Collejo\App\Repository\GuardianRepository;
 
 class AppServiceProvider extends ServiceProvider

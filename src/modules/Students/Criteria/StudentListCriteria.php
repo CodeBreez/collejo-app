@@ -2,9 +2,9 @@
 
 namespace Collejo\App\Modules\Students\Criteria;
 
-use Collejo\Core\Foundation\Repository\BaseCriteria;
+use Collejo\App\Foundation\Repository\BaseCriteria;
 use Collejo\App\Models\Student;
-use Collejo\Core\Contracts\Repository\StudentRepository;
+use Collejo\App\Contracts\Repository\StudentRepository;
 
 class StudentListCriteria extends BaseCriteria{
 

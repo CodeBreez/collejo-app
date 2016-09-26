@@ -3,9 +3,9 @@
 namespace Collejo\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Collejo\Core\Contracts\Module\Module as ModuleInterface;
-use Collejo\Core\Foundation\Module\Module;
-use Collejo\Core\Foundation\Module\ModuleCollection;
+use Collejo\App\Contracts\Module\Module as ModuleInterface;
+use Collejo\App\Foundation\Module\Module;
+use Collejo\App\Foundation\Module\ModuleCollection;
 
 class ModuleServiceProvider extends ServiceProvider
 {

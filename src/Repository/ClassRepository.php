@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Repository;
 
-use Collejo\Core\Foundation\Repository\BaseRepository;
-use Collejo\Core\Contracts\Repository\ClassRepository as ClassRepositoryContract;
+use Collejo\App\Foundation\Repository\BaseRepository;
+use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Models\Batch;
 use Collejo\App\Models\Grade;
 use Collejo\App\Models\Clasis;

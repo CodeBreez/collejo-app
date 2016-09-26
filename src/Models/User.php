@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Models;
 
-use Collejo\Core\Foundation\Auth\User as Authenticatable;
+use Collejo\App\Foundation\Auth\User as Authenticatable;
 use Collejo\App\Models\Role;
 use Collejo\App\Models\Permission;
 use Collejo\App\Models\Student;

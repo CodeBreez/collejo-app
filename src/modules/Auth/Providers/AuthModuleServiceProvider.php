@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Modules\Auth\Providers;
 
-use Collejo\Core\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
-use Collejo\Core\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
+use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Repository\UserRepository;
 use Illuminate\Routing\Router;
 

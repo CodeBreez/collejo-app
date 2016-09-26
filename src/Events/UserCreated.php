@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Events;
 
-use Collejo\Core\Foundation\Events\Event;
+use Collejo\App\Foundation\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Collejo\App\Models\User;

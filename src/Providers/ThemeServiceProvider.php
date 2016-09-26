@@ -3,12 +3,12 @@
 namespace Collejo\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Collejo\Core\Contracts\Theme\Menu as MenuInterface;
-use Collejo\Core\Foundation\Theme\Menu;
-use Collejo\Core\Foundation\Theme\MenuCollection;
-use Collejo\Core\Contracts\Theme\Theme as ThemeInterface;
-use Collejo\Core\Foundation\Theme\Theme;
-use Collejo\Core\Foundation\Theme\ThemeCollection;
+use Collejo\App\Contracts\Theme\Menu as MenuInterface;
+use Collejo\App\Foundation\Theme\Menu;
+use Collejo\App\Foundation\Theme\MenuCollection;
+use Collejo\App\Contracts\Theme\Theme as ThemeInterface;
+use Collejo\App\Foundation\Theme\Theme;
+use Collejo\App\Foundation\Theme\ThemeCollection;
 
 class ThemeServiceProvider extends ServiceProvider
 {
