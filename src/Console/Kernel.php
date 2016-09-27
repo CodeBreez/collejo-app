@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
         Commands\Install::class,
         Commands\ModuleList::class,
         Commands\WidgetList::class,
+        Commands\ThemeList::class,
     ];
 
     /**

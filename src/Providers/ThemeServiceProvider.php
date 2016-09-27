@@ -19,7 +19,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot(ThemeCollection $themes)
     {
-
+        $themes->loadThemes();
     }
 
     /**

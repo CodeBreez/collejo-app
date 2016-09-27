@@ -42,10 +42,6 @@ abstract class ModuleServiceProvider extends ServiceProvider implements ModuleSe
 	        require_once $menusFile;
 	    }
 
-	    if (config('collejo.modules.check_permissions')) {
-	    	$this->createPermissions();
-	    }
-
 	    $this->defineAbilities(app()->make(GateContract::class));
 	}
 

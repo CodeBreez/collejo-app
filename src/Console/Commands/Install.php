@@ -38,5 +38,9 @@ class Install extends ConfigCacheCommand
         $this->info('Creating Admin Account');
 
         $this->call('admin:create');
+
+        $this->info('Creating Permissions');
+
+        $this->call('admin:permissions');
     }
 }

@@ -3,6 +3,7 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Theme;
 use DirectoryIterator;
 
 class AssetCopy extends Command
@@ -85,6 +86,37 @@ class AssetCopy extends Command
 
                 copy($srcDir . '/' . $dir . '/' . $fileInfo->getFilename(), $assetDir . $fileInfo->getFilename());
                 copy($srcDir . '/' . $dir . '/' . $fileInfo->getFilename(), $buildDir . $versionedName);
+            }
+        }
+
+        if (($theme = Theme::current())) {
+            $srcFiles = $theme->getStyles()->map(function($style) use ($theme) {
+                return base_path('themes/' . $theme->name) . '/css/' . $style;
+            });
+
+            $assetDir = base_path('public/theme/css/');
+            $buildDir = base_path('public/build/theme/css/');
+
+            if (!file_exists($assetDir)) {
+                mkdir($assetDir, 0755, true);
+            } 
+
+            if (!file_exists($buildDir)) {
+                mkdir($buildDir, 0755, true);
+            } 
+
+            array_map('unlink', glob($assetDir . '/*'));
+            array_map('unlink', glob($buildDir . '/*'));
+
+            foreach ($theme->getStyles() as $file) {
+
+                $versionedName = md5($file . microtime(true)) . '-' . $file;
+                $regularFilePath = '/theme/css/' . $file;
+
+                $manifest[$regularFilePath] = 'theme/css/' . $versionedName;
+
+                copy(base_path('themes/' . $theme->name) . '/css/' . $file, $assetDir . $file);
+                copy(base_path('themes/' . $theme->name) . '/build/css/' . $file, $buildDir . $versionedName);
             }
         }
 

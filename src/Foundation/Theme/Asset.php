@@ -2,6 +2,8 @@
 
 namespace Collejo\App\Foundation\Theme;
 
+use Theme as ThemeCollection;
+
 class Asset {
 
 	public static $styles = [
@@ -14,23 +16,29 @@ class Asset {
 
 	public static function renderAssets()
 	{
+		if (ThemeCollection::current()) {
+			self::$styles = array_merge(self::$styles, ThemeCollection::current()->getStyles()->map(function($style){
+				return '/theme/css/' . $style;
+			})->all());
+		}
+
 		foreach (self::$styles as $file) {
-			echo self::getStyleTag($file);
+			echo self::getStyleTag(config('collejo.assets.minified') ? asset(elixir($file)) : asset($file));
 		}
 
 		foreach (self::$scripts as $file) {
-			echo self::getScriptTag($file);
+			echo self::getScriptTag(config('collejo.assets.minified') ? asset(elixir($file)) : asset($file));
 		}
 	}
 
 	private static function getStyleTag($file)
 	{
-		return '<link rel="stylesheet" href="' . (config('collejo.assets.minified') ? asset(elixir($file)) : asset($file)) . '">';
+		return '<link rel="stylesheet" href="' . $file . '">';
 	}
 
 	private static function getScriptTag($file)
 	{
-		return '<script type="text/javascript" src="' . (config('collejo.assets.minified') ? asset(elixir($file)) : asset($file)) . '"></script>';
+		return '<script type="text/javascript" src="' . $file . '"></script>';
 	}
 
 }
