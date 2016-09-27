@@ -1,12 +1,18 @@
 <?php
 
-Route::group(['prefix' => 'acl', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'dash/acl', 'middleware' => 'auth'], function() {
 
 	Route::get('roles', 'RoleController@getRoles')->name('roles.list');
 
-	Route::get('roles/{rid}/{mname}/permissions/edit', 'RoleController@getRolePermmissionsEdit')->name('role.permissions.edit');
 
-	Route::post('roles/{rid}/{mname}/permissions/edit', 'RoleController@postRolePermmissionsEdit');
+	Route::group(['prefix' => 'role', 'middleware' => 'auth'], function() {
 
+		Route::get('{rid}/{mname}/permissions/edit', 'RoleController@getRolePermmissionsEdit')->name('role.permissions.edit');
+
+		Route::post('{rid}/{mname}/permissions/edit', 'RoleController@postRolePermmissionsEdit');
+
+		Route::get('new', 'RoleController@getRoleNew')->name('role.new');
+		
+	});
 });
 
