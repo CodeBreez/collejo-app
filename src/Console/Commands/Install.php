@@ -29,11 +29,14 @@ class Install extends ConfigCacheCommand
     public function handle()
     {
         if (app()->isInstalled()) {
-            $this->error('Collejo is already installed. Exiting...');
+            $this->error('Collejo is already installed. Exiting.');
             exit();
         }
 
         $this->call('migrate:copy');
+
+        $this->info('Creating Admin Account');
+
         $this->call('admin:create');
     }
 }

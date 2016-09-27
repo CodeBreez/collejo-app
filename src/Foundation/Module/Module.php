@@ -3,8 +3,9 @@
 namespace Collejo\App\Foundation\Module;
 
 use Collejo\App\Contracts\Repository\UserRepository;
+use Illuminate\Contracts\Support\Arrayable;
 
-class Module {
+class Module implements Arrayable {
 
 	public $name;
 
@@ -24,9 +25,22 @@ class Module {
 	public function __get($req)
 	{
 		if (property_exists($this, $req)) {
+
 			return $this->$req;
+
 		} elseif(method_exists($this, $req)) {
+
 			return $this->$req();
 		}
+	}
+
+	public function toArray()
+	{
+		return [
+			'name' => $this->name,
+			'displayName' => $this->displayName,
+			'provider' => $this->provider,
+			'path' => $this->path
+		];
 	}
 }

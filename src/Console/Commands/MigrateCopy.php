@@ -28,7 +28,7 @@ class MigrateCopy extends Command
      */
     public function handle()
     {
-        $this->info('Copying core migrations...');
+        $this->info('Copying core migrations');
 
         $src = realpath(__DIR__ . '/../../migrations');
         $dest = base_path('database/migrations');

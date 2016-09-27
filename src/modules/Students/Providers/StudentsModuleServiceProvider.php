@@ -11,10 +11,6 @@ class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 
     protected $namespace = 'Collejo\App\Modules\Students\Http\Controllers';
 
-    protected $widgets = [
-        GuardianStudentsWidget::class
-    ];
-
     public function boot()
     {
         $this->initModule();

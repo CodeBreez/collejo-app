@@ -8,7 +8,7 @@ class GuardianStudents extends BaseWidget {
 
 	public $location = 'dash.col1';
 
-	public $permissions = [];
+	public $permissions = ['view_student_general_details'];
 
 	public $view = 'students::widgets.guardian_students';
 }

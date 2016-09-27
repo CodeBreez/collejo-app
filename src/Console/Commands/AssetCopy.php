@@ -30,7 +30,7 @@ class AssetCopy extends Command
     {
         $startTime = microtime(true);
 
-        $this->info('Copying core assets...');
+        $this->info('Copying core assets');
 
         $srcDir = realpath(__DIR__ . '/../../resources/assets/');
 

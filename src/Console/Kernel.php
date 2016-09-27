@@ -15,10 +15,13 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\MigrateCopy::class,
         Commands\AdminCreate::class,
+        Commands\AdminPermissions::class,
         Commands\AssetCopy::class,
         Commands\RouteCache::class,
         Commands\ConfigCache::class,
         Commands\Install::class,
+        Commands\ModuleList::class,
+        Commands\WidgetList::class,
     ];
 
     /**

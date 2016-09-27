@@ -77,7 +77,7 @@ abstract class ModuleServiceProvider extends ServiceProvider implements ModuleSe
 		$gate->define($permission, $closure);
 	}
 
-	private function createPermissions()
+	public function createPermissions()
 	{
 		if (is_array($this->getPermissions()) && $this->app->isInstalled()) {
 
