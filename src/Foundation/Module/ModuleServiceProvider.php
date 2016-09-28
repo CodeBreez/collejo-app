@@ -15,7 +15,6 @@ abstract class ModuleServiceProvider extends ServiceProvider implements ModuleSe
 	
 	public function initModule()
 	{
-		$this->name = basename($this->getModuleDirectory());
 
 		$viewsDir = $this->getModuleDirectory('resources/views');
 		$langDir = $this->getModuleDirectory('resources/lang');
@@ -116,5 +115,11 @@ abstract class ModuleServiceProvider extends ServiceProvider implements ModuleSe
 	public function getGates()
 	{
 		return [];
+	}
+
+	public function __construct($app)
+	{
+		parent::__construct($app);
+		$this->name = basename($this->getModuleDirectory());
 	}
 }

@@ -115,6 +115,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return new Role();
 	}
 
+	public function getPermissions()
+	{
+		return new Permission();
+	}
+
 	public function findRole($id)
 	{
 		return Role::findOrFail($id);
