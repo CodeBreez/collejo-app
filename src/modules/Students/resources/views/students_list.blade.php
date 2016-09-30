@@ -4,7 +4,9 @@
 
 @section('tools')
 
-<a href="{{ route('student.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>	
+@can('create_student')
+    <a href="{{ route('student.new') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>
+@endcan
 
 @endsection
 

@@ -4,7 +4,9 @@
 
 @section('tools')
 
-<a href="{{ route('student_category.new') }}" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>	
+@can('add_edit_student_category')
+    <a href="{{ route('student_category.new') }}" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('common.create_new') }}</a>	
+@endcan
 
 @endsection
 

@@ -194,7 +194,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('create_student');
 
-		$student = $this->studentRepository->create($request->all());
+		$student = $this->studentRepository->createStudent($request->all());
 
 		return $this->printRedirect(route('student.details.edit', $student->id));
 	}

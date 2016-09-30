@@ -39,48 +39,48 @@ class GuardianController  extends BaseController
     public function getGuardianDetailView()
     {
 
-        $this->authorize('list_student_categories');
+        $this->authorize('list_guardians');
 
     }
 
     public function getGuardianDetailEdit()
     {
 
-        $this->authorize('list_student_categories');
+        $this->authorize('edit_guardian');
 
     }
 
     public function postGuardianDetailEdit(UpdateGuardianRequest $request)
     {
 
-        $this->authorize('list_student_categories');
+        $this->authorize('edit_guardian');
 
     }
 
     public function getGuardianAccountView()
     {
 
-        $this->authorize('list_student_categories');
+        $this->authorize('view_user_account_info');
 
     }
 
     public function getGuardianAccountEdit()
     {
 
-        $this->authorize('list_student_categories');
+        $this->authorize('edit_user_account_info');
 
     }
 
     public function postGuardianAccountEdit(UpdateGuardianAccountRequest $request)
     {
 
-        $this->authorize('list_student_categories');
+        $this->authorize('edit_user_account_info');
 
     }
 
 	public function getGuardiansSearch(GuardiansSearchCriteria $criteria)
 	{
-        $this->authorize('list_student_categories');
+        $this->authorize('list_guardians');
         
 		return $this->printJson(true, $this->guardianRepository->search($criteria)->get(['id'])
 										->map(function($item){
@@ -91,7 +91,7 @@ class GuardianController  extends BaseController
 
 	public function getGuardiansList()
 	{
-        $this->authorize('list_student_categories');
+        $this->authorize('list_guardians');
         
 		return view('students::guardians_list', [
 				'guardians' => $this->guardianRepository->getGuardians()->paginate(config('collejo.pagination.perpage'))

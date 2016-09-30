@@ -4,7 +4,9 @@
 
 @section('tools')
 
-<a href="{{ route('student.account.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>  
+@can('edit_user_account_info')
+	<a href="{{ route('student.account.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>  
+@endcan
 
 @endsection
 

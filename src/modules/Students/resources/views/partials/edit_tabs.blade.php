@@ -15,9 +15,11 @@
     <li class="{{ active_class(if_route(['student.addresses.edit'])) }}">
     	<a href="{{ route('student.addresses.edit', $student->id) }}">{{ trans('students::student.contact_details') }}</a>
     </li>
-    <li class="{{ active_class(if_route(['student.account.edit'])) }}">
-    	<a href="{{ route('student.account.edit', $student->id) }}">{{ trans('students::student.account_details') }}</a>
-    </li>
+    @can('edit_user_account_info')
+        <li class="{{ active_class(if_route(['student.account.edit'])) }}">
+        	<a href="{{ route('student.account.edit', $student->id) }}">{{ trans('students::student.account_details') }}</a>
+        </li>
+    @endcan
 </ul>
 
 @endif

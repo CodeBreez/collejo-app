@@ -31,6 +31,8 @@
         @endif
     </td>    
     <td class="tools-column">
-        <a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+        @can('edit_student_general_details')
+            <a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-xs btn-default"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>
+        @endcan
     </td>
 </tr>
