@@ -6,6 +6,6 @@
     	<a href="{{ route('batch.terms.view', $batch->id) }}">{{ trans('classes::batch.batch_terms') }}</a>
     </li>
     <li class="{{ active_class(if_route(['batch.grades.view'])) }}">
-    	<a href="{{ route('batch.grades.view', $batch->id) }}">{{ trans('classes::batch.batch_grades') }}</a>
+	   <a href="{{ route('batch.grades.view', $batch->id) }}">{{ trans('classes::batch.batch_grades') }}</a>
     </li>
 </ul>

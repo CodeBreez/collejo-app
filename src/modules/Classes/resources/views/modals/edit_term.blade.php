@@ -37,7 +37,7 @@ $(function(){
                     <label class="col-sm-4 control-label">Start Date</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input type="text" name="start_date" class="form-control" data-toggle="date-input" value="{{ $term ? $term->start_date : '' }}">
+                            <input type="text" name="start_date" class="form-control" data-toggle="date-input" value="{{ $term ? toUserTz($term->start_date) : '' }}">
                             <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ $(function(){
                     <label class="col-sm-4 control-label">End Date</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input type="text" name="end_date" class="form-control" data-toggle="date-input" value="{{ $term ? $term->end_date : '' }}">
+                            <input type="text" name="end_date" class="form-control" data-toggle="date-input" value="{{ $term ? toUserTz($term->end_date) : '' }}">
                             <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                         </div>
                     </div>

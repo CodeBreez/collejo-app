@@ -14,7 +14,7 @@ class AdminPermissions extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:permissions';
+    protected $signature = 'admin:permissions {--module=}';
 
     /**
      * The console command description.
@@ -30,16 +30,29 @@ class AdminPermissions extends Command
      */
     public function handle(Application $app)
     {
-        foreach (Module::all() as $module) {
+        $module = $this->option('module');
 
-            $provider = $module->provider;
-
-            $provider = new $provider($app);
-
-            $provider->createPermissions();
-
-            $this->info('Processing ' . $module->name);
+        if (is_null($module)) {
+            foreach (Module::all() as $module) {
+                $this->processModule($app, $module);
+            }
+        } else {
+            if (($module = Module::find($module))) {
+                $this->processModule($app, $module);
+            } else {
+                $this->error('specified module not found');
+            }
         }
-        
+    }
+
+    private function processModule($app, $module)
+    {
+        $provider = $module->provider;
+
+        $provider = new $provider($app);
+
+        $provider->createPermissions();
+
+        $this->info('Processing ' . $module->name);
     }
 }

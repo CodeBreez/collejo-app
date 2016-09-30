@@ -27,7 +27,14 @@
 
     <tr>
         <td>
-            <div><a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a></div>
+            <div>
+                @can('view_batch_details')
+                    <a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a>
+                @endcan
+                @cannot('view_batch_details')
+                    {{ $batch->name }}
+                @endcan
+            </div>
         </td>
         <td>
             @if($batch->grades->count())

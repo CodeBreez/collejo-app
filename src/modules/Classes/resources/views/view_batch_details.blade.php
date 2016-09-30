@@ -4,7 +4,11 @@
 
 @section('tools')
 
-<a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-primary pull-right"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>  
+    @can('add_edit_batch')
+
+		<a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-primary pull-right"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>  
+
+	@endcan
 
 @endsection
 

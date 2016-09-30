@@ -7,11 +7,11 @@
             </div>
             <div class="row">
                 <div class="col-xs-3"><label>Start Date</label></div>
-                <div class="col-xs-9">{{ $term->start_date }}</div>
+                <div class="col-xs-9">{{ formatDate(toUserTz($term->start_date)) }}</div>
             </div>
             <div class="row">
                 <div class="col-xs-3"><label>End Date</label></div>
-                <div class="col-xs-9">{{ $term->end_date }}</div>
+                <div class="col-xs-9">{{ formatDate(toUserTz($term->end_date)) }}</div>
             </div>
         </div>
         <div class="panel-footer">

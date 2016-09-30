@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Session;
 
 class Handler extends ExceptionHandler
 {
@@ -53,19 +54,30 @@ class Handler extends ExceptionHandler
 
             if ($request->ajax()) {
 
-                return response()->json(['success' => false, 'data' => [] , 'message' => trans('common.authorization_failed')], 403);
+                return response()->json([
+                                'success' => false, 
+                                'data' => [] , 
+                                'message' => trans('common.authorization_failed')
+                            ], 403);
 
             } else {
+
                 return response()->make(view('collejo::errors.403'), 403);
             }
         }        
 
         if ($e instanceOf HttpException) {
+
             return response()->make(view('collejo::errors.404'), 404);
         }
 
         if ($e instanceOf TokenMismatchException) {
-            return response()->json(['success' => false, 'data' => ['redir' => route('auth.login')] , 'message' => trans('common.ajax_token_mismatch')], 400);
+
+            return response()->json([
+                                'success' => false, 
+                                'data' => ['redir' => Session::get('url.intended', route('auth.login'))] , 
+                                'message' => trans('common.ajax_token_mismatch')
+                            ], 400);
         }
 
         return parent::render($request, $e);

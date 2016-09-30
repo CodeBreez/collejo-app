@@ -14,4 +14,5 @@ return [
 	'name' => 'Name',
 	'permissions' => 'Permissions',
 
+	'updated' => 'Permissions updated'
 ];

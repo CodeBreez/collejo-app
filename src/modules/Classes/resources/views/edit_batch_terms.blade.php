@@ -17,7 +17,7 @@
 <script type="text/javascript">
 function afterDeleteTerm(link, response){
     if (response.success) {
-        $(link).closest('.term-block').remove();
+        Collejo.dynamics.delete(link);
     }
 }
 </script>
@@ -51,7 +51,7 @@ function afterDeleteTerm(link, response){
 
     @else
 
-        <div class="col-md-6">
+        <div class="col-md-12 table-list">
             <div class="placeholder">{{ trans('classes::term.empty_list') }}</div>
         </div>
 

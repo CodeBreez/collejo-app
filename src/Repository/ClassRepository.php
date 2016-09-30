@@ -77,9 +77,6 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 
     public function updateTerm(array $attributes, $termId, $batchId)
     {
-        $attributes['start_date'] = toUTC($attributes['start_date']);
-        $attributes['end_date'] = toUTC($attributes['end_date']);
-
         $this->findTerm($termId, $batchId)->update($attributes);
 
         return $this->findTerm($termId, $batchId);

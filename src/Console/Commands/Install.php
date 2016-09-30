@@ -35,6 +35,10 @@ class Install extends ConfigCacheCommand
 
         $this->call('migrate:copy');
 
+        $this->info('=======');
+        $this->info('COLLEJO');
+        $this->info('=======');
+        
         $this->info('Creating Admin Account');
 
         $this->call('admin:create');
@@ -42,5 +46,7 @@ class Install extends ConfigCacheCommand
         $this->info('Creating Permissions');
 
         $this->call('admin:permissions');
+        
+        $this->info('Setup complete');
     }
 }

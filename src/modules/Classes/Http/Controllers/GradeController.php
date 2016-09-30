@@ -79,14 +79,14 @@ class GradeController extends BaseController
 
 	public function getGradeClassesView($gradeId)
 	{
-		$this->authorize('view_grade_details');
+		$this->authorize('list_classes');
 		
 		return view('classes::view_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
 	}
 
 	public function getGradeClassesEdit($gradeId)
 	{
-		$this->authorize('add_edit_grade');
+		$this->authorize('add_edit_class');
 		
 		return view('classes::edit_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
 	}
@@ -140,7 +140,7 @@ class GradeController extends BaseController
 
 	public function getGradeClasses(Request $request)
 	{
-		$this->authorize('add_edit_grade');
+		$this->authorize('list_classes');
 		
 		return $this->printJson(true, $this->classRepository->findGrade($request::get('grade_id'))->classes->pluck('name', 'id'));
 	}

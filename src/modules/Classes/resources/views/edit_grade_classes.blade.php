@@ -14,7 +14,10 @@
 
 @section('tools')
 
-<a href="{{ route('grade.class.new', $grade->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('classes::class.new_class') }}</a>  
+@can('add_edit_class')
+  <a href="{{ route('grade.class.new', $grade->id) }}" data-modal-backdrop="static" data-modal-keyboard="false" class="btn btn-primary pull-right" data-toggle="ajax-modal"><i class="fa fa-plus"></i> {{ trans('classes::class.new_class') }}</a>  
+@endcan
+  
 
 @endsection
 
