@@ -68,7 +68,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('edit_student_general_details');
 
-		return view('students::edit_details', [
+		return view('students::edit_student_details', [
 				'student' => $this->studentRepository->findStudent($studentId),
 				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
 				'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class)
@@ -109,7 +109,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('edit_user_account_info');
 
-		return view('students::edit_account', [
+		return view('students::edit_student_account', [
 				'student' => $this->studentRepository->findStudent($studentId),
 				'account_form_validator' => $this->jsValidator(UpdateStudentAccountRequest::class)
 			]);
@@ -160,7 +160,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('create_student');
 
-		return view('students::edit_details', [
+		return view('students::edit_student_details', [
 				'student' => null,
 				'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
 				'student_form_validator' => $this->jsValidator(CreateStudentRequest::class)

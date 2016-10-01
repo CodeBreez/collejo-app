@@ -12,7 +12,7 @@
 
 @section('tabs')
 
-    @include('students::partials.view_tabs')
+    @include('students::partials.view_student_tabs')
 
 @endsection
 

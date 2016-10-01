@@ -38,7 +38,7 @@ $(function(){
 
 @section('tabs')
 
-    @include('students::partials.edit_tabs')
+    @include('students::partials.edit_student_tabs')
 
 @endsection
 
