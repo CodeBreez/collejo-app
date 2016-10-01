@@ -53,8 +53,8 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		if (!is_null($module)) {
 
 			$otherPermissions = $role->permissions()
-					->where('module', '!=', strtolower($module))->get()
-					->pluck('permission')->all();
+								->where('module', '!=', strtolower($module))->get()
+								->pluck('permission')->all();
 
 			$permissions = array_merge($otherPermissions, $permissions);
 		}

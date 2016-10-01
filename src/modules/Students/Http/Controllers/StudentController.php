@@ -64,49 +64,6 @@ class StudentController extends BaseController
 			]));		
 	}
 
-	public function getStudentAddressDelete($studentId, $addressId)
-	{
-		$this->studentRepository->deleteAddress($addressId, $studentId);
-
-		return $this->printJson(true, [], trans('students::address.address_deleted'));
-	}
-
-	public function postStudentAddressEdit(UpdateAddressRequest $request, $studentId, $addressId)
-	{
-		$address = $this->studentRepository->updateAddress($request->all(), $addressId, $studentId);
-
-		return $this->printPartial(view('students::partials.address', [
-				'student' => $this->studentRepository->findStudent($studentId),
-				'address' => $address
-			]), trans('students::address.address_updated'));
-	}
-
-	public function getStudentAddressEdit($studentId, $addressId)
-	{
-		return $this->printModal(view('students::modals.edit_address', [
-				'address' => $this->studentRepository->findAddress($addressId, $studentId),
-				'student' => $this->studentRepository->findStudent($studentId)
-			]));
-	}
-
-	public function postStudentAddressNew(CreateAddressRequest $request, $studentId)
-	{
-		$address = $this->studentRepository->createAddress($request->all(), $studentId);
-
-		return $this->printPartial(view('students::partials.address', [
-				'student' => $this->studentRepository->findStudent($studentId),
-				'address' => $address
-			]), trans('students::address.address_created'));
-	}
-
-	public function getStudentAddressNew($studentId)
-	{
-		return $this->printModal(view('students::modals.edit_address', [
-				'address' => null,
-				'student' => $this->studentRepository->findStudent($studentId)
-			]));
-	}
-
 	public function getStudentDetailEdit($studentId)
 	{
 		$this->authorize('edit_student_general_details');
@@ -122,7 +79,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('edit_student_general_details');
 
-		$this->studentRepository->update($request->all(), $studentId);
+		$this->studentRepository->updateStudent($request->all(), $studentId);
 
 		return $this->printJson(true, [], trans('students::student.student_updated'));
 	}	
@@ -143,7 +100,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('edit_user_account_info');
 
-		$this->studentRepository->update($request->all(), $studentId);
+		$this->studentRepository->updateStudent($request->all(), $studentId);
 
 		return $this->printJson(true, [], trans('students::student.student_updated'));
 	}

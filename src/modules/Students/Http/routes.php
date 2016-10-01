@@ -15,17 +15,6 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/details/edit', 'StudentController@getStudentDetailEdit')->name('student.details.edit');
 	Route::post('/{id}/details/edit', 'StudentController@postStudentDetailEdit');
-
-	Route::get('/{id}/contacts/view', 'StudentController@getStudentAddressesView')->name('student.addresses.view');
-	Route::get('/{id}/contacts/edit', 'StudentController@getStudentAddressesEdit')->name('student.addresses.edit');
-
-	Route::get('/{id}/contact/new', 'StudentController@getStudentAddressNew')->name('student.address.new');
-	Route::post('/{id}/contact/new', 'StudentController@postStudentAddressNew');
-
-	Route::get('/{id}/contact/{cid}/edit', 'StudentController@getStudentAddressEdit')->name('student.address.edit');
-	Route::post('/{id}/contact/{cid}/edit', 'StudentController@postStudentAddressEdit');
-
-	Route::get('/{id}/contact/{cid}/delete', 'StudentController@getStudentAddressDelete')->name('student.address.delete');
 	
 	Route::get('/{id}/account/view', 'StudentController@getStudentAccountView')->name('student.account.view');
 
@@ -71,6 +60,17 @@ Route::group(['prefix' => 'dash/guardian', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/details/edit', 'GuardianController@getGuardianDetailEdit')->name('guardian.details.edit');
 	Route::post('/{id}/details/edit', 'GuardianController@postGuardianDetailEdit');
+
+	Route::get('/{id}/contacts/view', 'GuardianController@getGuardianAddressesView')->name('guardian.addresses.view');
+	Route::get('/{id}/contacts/edit', 'GuardianController@getGuardianAddressesEdit')->name('guardian.addresses.edit');
+
+	Route::get('/{id}/contact/new', 'GuardianController@getGuardianAddressNew')->name('guardian.address.new');
+	Route::post('/{id}/contact/new', 'GuardianController@postGuardianAddressNew');
+
+	Route::get('/{id}/contact/{cid}/edit', 'GuardianController@getGuardianAddressEdit')->name('guardian.address.edit');
+	Route::post('/{id}/contact/{cid}/edit', 'GuardianController@postGuardianAddressEdit');
+
+	Route::get('/{id}/contact/{cid}/delete', 'GuardianController@getGuardianAddressDelete')->name('guardian.address.delete');
 
 	Route::get('/{id}/account/view', 'GuardianController@getGuardianAccountView')->name('guardian.account.view');
 

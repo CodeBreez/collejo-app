@@ -18,7 +18,9 @@
         @if($student->class)
             {{ $student->class->name }}
         @else
-            <a class="btn btn-xs btn-warning" href="{{ route('student.assign_class', $student->id) }}" data-toggle="ajax-modal">{{ trans('students::student.assign_class') }}</a>
+            @can('assign_student_to_class')
+                <a class="btn btn-xs btn-warning" href="{{ route('student.assign_class', $student->id) }}" data-toggle="ajax-modal">{{ trans('students::student.assign_class') }}</a>
+            @endcan
         @endif
     </td>
     <td>
@@ -27,7 +29,9 @@
                 <a href="#">{{ $guardian->name }}</a><br>
             @endforeach                
         @else
-            <a class="btn btn-xs btn-warning" href="{{ route('student.assign_guardian', $student->id) }}" data-toggle="ajax-modal">{{ trans('students::student.assign_guardian') }}</a>
+            @can('assign_guardian_to_student')
+                <a class="btn btn-xs btn-warning" href="{{ route('student.assign_guardian', $student->id) }}" data-toggle="ajax-modal">{{ trans('students::student.assign_guardian') }}</a>
+            @endcan
         @endif
     </td>    
     <td class="tools-column">
