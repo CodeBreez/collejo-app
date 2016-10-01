@@ -77,7 +77,7 @@ class Handler extends ExceptionHandler
                                 'success' => false, 
                                 'data' => ['redir' => Session::get('url.intended', route('auth.login'))] , 
                                 'message' => trans('common.ajax_token_mismatch')
-                            ], 400);
+                            ], 401);
         }
 
         return parent::render($request, $e);
