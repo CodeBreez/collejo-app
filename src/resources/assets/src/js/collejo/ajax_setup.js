@@ -20,6 +20,8 @@ Collejo.ajaxComplete = function(event, xhr, settings) {
     if (status == 403 || status == 401) {
         Collejo.alert('danger', Collejo.lang.ajax_unauthorize, 3000);
         $('.modal,.modal-backdrop').remove();
+
+        window.location = settings.url;
     }
 
     if (status == 400) {

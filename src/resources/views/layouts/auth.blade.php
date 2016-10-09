@@ -3,7 +3,7 @@
 
   	@include('collejo::layouts.partials.head')
 
-  	<body>
+  	<body class="auth-body">
 
 	  	<div class="col-md-12 auth-row">
 
