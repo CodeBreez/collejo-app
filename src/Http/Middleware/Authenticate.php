@@ -3,7 +3,7 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class Authenticate
 {
@@ -22,8 +22,7 @@ class Authenticate
                 return response('Unauthorized.', 401);
             } else {
 
-                return redirect()->guest(route('auth.login'))
-                        ->with(['_redir' => urlencode($request->getRequestUri())]);
+                return redirect()->guest(route('auth.login'));
             }
         }
 
