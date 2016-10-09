@@ -16,11 +16,14 @@ class CreateBatchGradeTable extends Migration
             $table->string('id', 45)->primary();
             $table->string('batch_id', 45);
             $table->string('grade_id', 45);
+            $table->string('created_by')->nullable();
+            $table->timestamp('created_at');
         });
 
         Schema::table('batch_grade', function (Blueprint $table) {
             $table->foreign('batch_id')->references('id')->on('batches');
             $table->foreign('grade_id')->references('id')->on('grades');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

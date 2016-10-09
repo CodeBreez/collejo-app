@@ -17,7 +17,7 @@ class CreateClassEmployeeTable extends Migration
             $table->string('class_id', 45);
             $table->string('employee_id', 45);
             $table->string('batch_id', 45);
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
 
         Schema::table('class_employee', function (Blueprint $table) {

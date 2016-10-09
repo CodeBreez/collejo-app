@@ -20,14 +20,12 @@ class CreateEmployeeGradesTable extends Migration
             $table->integer('max_sessions_per_day')->default(0);
             $table->integer('max_sessions_per_week')->default(0);
             $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at');
             $table->softDeletes();
         });
 
         Schema::table('employee_grades', function (Blueprint $table) {
             $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

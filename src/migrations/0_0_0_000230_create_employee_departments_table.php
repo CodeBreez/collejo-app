@@ -17,14 +17,12 @@ class CreateEmployeeDepartmentsTable extends Migration
             $table->string('name', 20);
             $table->string('code', 10)->nullable();
             $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at');
             $table->softDeletes();
         });
 
         Schema::table('employee_departments', function (Blueprint $table) {
             $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 
