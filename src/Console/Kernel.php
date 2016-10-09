@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\AdminCreate::class,
         Commands\AdminPermissions::class,
         Commands\PermissionList::class,
+        Commands\ImageResize::class,
         Commands\AssetCopy::class,
         Commands\RouteCache::class,
         Commands\ConfigCache::class,
