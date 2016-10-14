@@ -34,6 +34,8 @@ return [
 	'assign_guardian' => 'Assign Guardian',
 	'find_guardians' => 'Find Guardians/Parents',
 
+	'guardian_remove_confirm' => 'Are you sure you want to remove this guardian?',
+
 	'empty_list' => 'There are no Students in the system.',
 	'student_updated' => 'Student updated.',
 ];

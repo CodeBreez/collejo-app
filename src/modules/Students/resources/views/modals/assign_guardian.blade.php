@@ -20,7 +20,7 @@ $(function(){
 </script>
 
 <div class="modal-content">
-    <form method="POST" id="assign-guardian" class="form-horizontal" action="{{ route('student.assign_guardian', $student->id) }}?target=students">
+    <form method="POST" id="assign-guardian" class="form-horizontal" action="{{ route('student.assign_guardian', $student->id) }}?target={{ Request::get('target', 'students') }}">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <h4 class="modal-title">{{ trans('students::student.assign_guardian') }}</h4>

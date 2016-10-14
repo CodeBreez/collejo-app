@@ -5,6 +5,7 @@ namespace Collejo\App\Modules\Students\Http\Controllers;
 use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\StudentRepository;
 use Collejo\App\Repository\ClassRepository;
+use Collejo\App\Repository\GuardianRepository;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\CreateAddressRequest;
@@ -20,6 +21,8 @@ class StudentController extends BaseController
 	protected $studentRepository;
 	
 	protected $classRepository;
+
+	protected $guardianRepository;
 
 	public function postStudentClassAssign(AssignClassRequest $request, $studentId)
 	{
@@ -57,6 +60,12 @@ class StudentController extends BaseController
 		$this->authorize('assign_guardian_to_student');
 
 		$this->studentRepository->assignGuardian($request->get('guardian_id'), $studentId);
+
+		if ($request->get('target') == 'guardians') {
+			return $this->printPartial(view('students::partials.student_guardian', [
+				'guardian' => $this->guardianRepository->findGuardian($request->get('guardian_id')),
+			]), trans('students::student.student_updated'));
+		}
 
 		return $this->printPartial(view('students::partials.student', [
 				'student' => $this->studentRepository->findStudent($studentId),
@@ -198,9 +207,10 @@ class StudentController extends BaseController
 			]);
 	}
 
-	public function __construct(StudentRepository $studentRepository, ClassRepository $classRepository)
+	public function __construct(StudentRepository $studentRepository, ClassRepository $classRepository, GuardianRepository $guardianRepository)
 	{
 		$this->studentRepository = $studentRepository;
 		$this->classRepository = $classRepository;
+		$this->guardianRepository = $guardianRepository;
 	}
 }
