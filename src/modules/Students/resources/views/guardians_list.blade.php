@@ -6,7 +6,7 @@
 
 @if($guardians->count())
 
-<table class="table" id="students">
+<table class="table" id="guardians">
                 
     <tr>
         <th width="30%">{{ trans('students::guardian.name') }}</th>

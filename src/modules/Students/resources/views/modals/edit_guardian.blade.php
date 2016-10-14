@@ -40,17 +40,18 @@ $(function(){
         <div class="modal-body"> 
 
             <div class="form-group">
-                <label class="col-sm-4 control-label">{{ trans('students::guardian.first_name') }}</label>
+                <label class="col-sm-4 control-label">{{ trans('students::guardian.name') }}</label>
                 <div class="col-sm-8">
-                    <input type="text" name="first_name" class="form-control" placeholder="Jon">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="first_name" class="form-control" placeholder="Jon">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="last_name" class="form-control" placeholder="Doe">
+                        </div>
+                    </div>
                 </div>
             </div>            
-            <div class="form-group">
-                <label class="col-sm-4 control-label">{{ trans('students::guardian.last_name') }}</label>
-                <div class="col-sm-8">
-                    <input type="text" name="last_name" class="form-control" placeholder="Doe">
-                </div>
-            </div>
             <div class="form-group">
                 <label class="col-sm-4 control-label">{{ trans('students::guardian.ssn') }}</label>
                 <div class="col-sm-8">
@@ -62,7 +63,55 @@ $(function(){
                 <div class="col-sm-8">
                     <input type="text" name="email" class="form-control" placeholder="name@example.com">
                 </div>
-            </div>            
+            </div>         
+
+            
+            <div class="modal-section row">
+                <h4>{{ trans('students::guardian.contact_details') }}</h4>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ trans('students::address.name') }}</label>
+                <div class="col-sm-8">
+                    <input type="text" name="full_name" class="form-control">
+                </div>
+            </div>  
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ trans('students::address.address') }}</label>
+                <div class="col-sm-8">
+                    <input type="text" name="address" class="form-control">
+                </div>
+            </div>  
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ trans('students::address.city') }} / {{ trans('students::address.postal_code') }}</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="city" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="postal_code" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ trans('students::address.phone') }}</label>
+                <div class="col-sm-6">
+                    <input type="text" name="phone" class="form-control">
+                </div>
+            </div>  
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{ trans('students::address.notes') }}</label>
+                <div class="col-sm-8">
+                    <textarea name="notes" class="form-control"></textarea>
+                </div>
+            </div>  
+
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                     <button type="submit" class="btn btn-lg btn-primary" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>

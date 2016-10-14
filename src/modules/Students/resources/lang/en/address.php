@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'empty_list' => 'This student does not have any contacts defined.',
+	'empty_list' => 'This user does not have any contacts defined.',
 	'new_address' => 'New Contact',
 	'name' => 'Name',
 	'address' => 'Address',

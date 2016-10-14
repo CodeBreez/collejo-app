@@ -6,6 +6,7 @@ use Collejo\App\Foundation\Repository\BaseRepository;
 use Collejo\App\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
 use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
 use Collejo\App\Models\Guardian;
+use Collejo\App\Models\Address;
 use DB;
 
 class GuardianRepository extends BaseRepository implements GuardianRepositoryContract {
@@ -15,11 +16,13 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
 		$guardian = null;
 		
 		$guardianAttributes = $this->parseFillable($attributes, Guardian::class);
+		$addressAttributes = $this->parseFillable($attributes, Address::class);
 
-		DB::transaction(function () use ($attributes, $guardianAttributes, &$guardian) {
+		DB::transaction(function () use ($attributes, $guardianAttributes, $addressAttributes, &$guardian) {
 			$user = $this->userRepository->create($attributes);
 
 			$guardian = Guardian::create(array_merge($guardianAttributes, ['user_id' => $user->id]));
+			$address = Address::create(array_merge($addressAttributes, ['user_id' => $user->id, 'is_emergency' => true]));
 
 			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('guardian'));
 		});

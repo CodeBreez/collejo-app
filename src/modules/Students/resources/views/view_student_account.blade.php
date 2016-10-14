@@ -18,6 +18,11 @@
 
 @section('tab')
 
-
+<div class="col-sm-6">
+	<dl class="row">
+		<dt class="col-sm-4">{{ trans('students::student.email') }}</dt>
+		<dd class="col-sm-8">{{ $student->user->email }}</dd>
+	</dl>	
+</div>
 
 @endsection

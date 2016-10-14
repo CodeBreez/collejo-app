@@ -43,6 +43,15 @@ class StudentController extends BaseController
 			]));
 	}
 
+	public function getStudentGuardianRemove($studentId, $guardianId)
+	{
+		$this->authorize('assign_guardian_to_student');
+
+		$this->studentRepository->removeGuardian($guardianId, $studentId);
+
+		return $this->printJson(true, [], trans('students::student.student_updated'));
+	}
+
 	public function postStudentGuardianAssign(AssignGuardianRequest $request, $studentId)
 	{
 		$this->authorize('assign_guardian_to_student');
@@ -124,6 +133,28 @@ class StudentController extends BaseController
 			]);
 	}
 
+	public function getStudentGuardiansEdit($studentId)
+	{
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('view_student_guardian_details', $student);
+
+		return view('students::edit_student_guardians', [
+				'student' => $student
+			]);
+	}
+
+	public function getStudentGuardiansView($studentId)
+	{
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('view_student_guardian_details', $student);
+
+		return view('students::view_guardians_details', [
+				'student' => $student
+			]);
+	}
+	
 	public function getStudentDetailView($studentId)
 	{
 		$student = $this->studentRepository->findStudent($studentId);

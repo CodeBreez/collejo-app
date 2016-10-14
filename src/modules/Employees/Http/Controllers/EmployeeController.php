@@ -62,12 +62,12 @@ class EmployeeController extends BaseController
 
 	public function getEmployeeAccountEdit()
 	{
-
+		$this->middleware('reauth');
 	}
 
 	public function postEmployeeAccountEdit()
 	{
-
+		$this->middleware('reauth');
 	}
 
 

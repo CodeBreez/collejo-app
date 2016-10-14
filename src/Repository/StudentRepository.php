@@ -12,6 +12,7 @@ use Collejo\App\Models\Address;
 use Collejo\App\Models\StudentCategory;
 use DB;
 use Carbon;
+use Auth;
 
 class StudentRepository extends BaseRepository implements StudentRepositoryContract {
 
@@ -36,6 +37,11 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		return StudentCategory::findOrFail($studentCategoryId);
 	}
 
+	public function removeGuardian($guardianId, $studentId)
+	{
+		$this->findStudent($studentId)->guardians()->detach($this->guardiansRepository->findGuardian($guardianId));
+	}
+
 	public function assignGuardian($guardianId, $studentId)
 	{
 		if (!$this->findStudent($studentId)->guardians->contains($guardianId)) {
@@ -43,7 +49,8 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 				->guardians()
 				->attach($this->guardiansRepository->findGuardian($guardianId), [
 							'id' => $this->newUUID(),
-							'updated_at' => Carbon::now()
+							'created_by' => Auth::user()->id,
+							'created_at' => Carbon::now(),
 						]);
 		}
 	}
@@ -56,7 +63,8 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 				->attach($this->classRepository->findClass($classId, $gradeId), [
 							'batch_id' => $this->classRepository->findBatch($batchId)->id,
 							'id' => $this->newUUID(),
-							'updated_at' => Carbon::now()
+							'created_by' => Auth::user()->id,
+							'created_at' => Carbon::now(),
 						]);
 		}
 	}

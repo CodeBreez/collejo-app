@@ -16,16 +16,22 @@ Route::group(['prefix' => 'dash/student', 'middleware' => 'auth'], function() {
 	Route::get('/{id}/details/edit', 'StudentController@getStudentDetailEdit')->name('student.details.edit');
 	Route::post('/{id}/details/edit', 'StudentController@postStudentDetailEdit');
 	
-	Route::get('/{id}/account/view', 'StudentController@getStudentAccountView')->name('student.account.view');
+	Route::get('/{id}/guardians/view', 'StudentController@getStudentGuardiansView')->name('student.guardians.view');
+	Route::get('/{id}/guardians/edit', 'StudentController@getStudentGuardiansEdit')->name('student.guardians.edit');
+	Route::post('/{id}/guardians/edit', 'StudentController@postStudentGuardiansEdit');
+	
+	Route::get('/{id}/account/view', 'StudentController@getStudentAccountView')->name('student.account.view')->middleware('reauth');
 
-	Route::get('/{id}/account/edit', 'StudentController@getStudentAccountEdit')->name('student.account.edit');
-	Route::post('/{id}/account/edit', 'StudentController@postStudentAccountEdit');
+	Route::get('/{id}/account/edit', 'StudentController@getStudentAccountEdit')->name('student.account.edit')->middleware('reauth');
+	Route::post('/{id}/account/edit', 'StudentController@postStudentAccountEdit')->middleware('reauth');
 
 	Route::get('/{id}/assign_class', 'StudentController@getStudentClassAssign')->name('student.assign_class');
 	Route::post('/{id}/assign_class', 'StudentController@postStudentClassAssign');
 
 	Route::get('/{id}/assign_guardian', 'StudentController@getStudentGuardianAssign')->name('student.assign_guardian');
 	Route::post('/{id}/assign_guardian', 'StudentController@postStudentGuardianAssign');
+
+	Route::get('/{id}/remove_guardian/{gid}', 'StudentController@getStudentGuardianRemove')->name('student.remove_guardian');
 
 });
 
@@ -72,8 +78,8 @@ Route::group(['prefix' => 'dash/guardian', 'middleware' => 'auth'], function() {
 
 	Route::get('/{id}/contact/{cid}/delete', 'GuardianController@getGuardianAddressDelete')->name('guardian.address.delete');
 
-	Route::get('/{id}/account/view', 'GuardianController@getGuardianAccountView')->name('guardian.account.view');
+	Route::get('/{id}/account/view', 'GuardianController@getGuardianAccountView')->name('guardian.account.view')->middleware('reauth');
 
-	Route::get('/{id}/account/edit', 'GuardianController@getGuardianAccountEdit')->name('guardian.account.edit');
-	Route::post('/{id}/account/edit', 'GuardianController@postGuardianAccountEdit');	
+	Route::get('/{id}/account/edit', 'GuardianController@getGuardianAccountEdit')->name('guardian.account.edit')->middleware('reauth');
+	Route::post('/{id}/account/edit', 'GuardianController@postGuardianAccountEdit')->middleware('reauth');	
 });

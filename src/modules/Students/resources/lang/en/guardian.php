@@ -12,6 +12,8 @@ return [
 	'name' => 'Name',
 	'email' => 'Email',
 	'ssn' => 'Social Security Number',
+
+	'contact_details' => 'Contact Details',
 	
 	'empty_list' => 'There are no Guardians in the system.'
 ];

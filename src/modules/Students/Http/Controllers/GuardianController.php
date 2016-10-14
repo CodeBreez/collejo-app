@@ -102,14 +102,16 @@ class GuardianController  extends BaseController
 
     public function getGuardianAccountView()
     {
-
+        $this->middleware('reauth');
+        
         $this->authorize('view_user_account_info');
 
     }
 
     public function getGuardianAccountEdit()
     {
-
+        $this->middleware('reauth');
+        
         $this->authorize('edit_user_account_info');
 
     }

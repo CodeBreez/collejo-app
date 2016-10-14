@@ -7,6 +7,10 @@ use Validator;
 use Collejo\App\Http\Controllers\Controller;
 use Collejo\App\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Session;
+use Request;
+use Hash;
+use Auth;
+use URL;
 
 class AuthController extends Controller
 {
@@ -33,7 +37,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'postReauth']]);
     }
 
     protected function validator(array $data)
@@ -52,5 +56,19 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function postReauth(Request $request, Session $session)
+    {
+        if (Hash::check($request::get('password'), Auth::user()->password)) {
+            $session::put('reauth-token', [
+                    'email' => Auth::user()->email,
+                    'ts' => time()
+                ]);
+
+            return $this->printJson(true, ['redir' => URL::previous()]); 
+        }
+
+        return $this->printJson(false, [], trans('auth::auth.failed'));
     }
 }

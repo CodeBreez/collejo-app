@@ -18,6 +18,7 @@ return [
 	'try_again' => 'Try Again',
 	'edit' => 'Edit',
 	'delete' => 'Delete',
+	'remove' => 'Remove',
 	'create' => 'Create New',
 	'list' => 'List',
 	'search' => 'Search',
