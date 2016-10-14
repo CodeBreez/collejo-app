@@ -28,7 +28,7 @@ class StudentController extends BaseController
 	{
 		$this->authorize('assign_student_to_class');
 
-		$this->studentRepository->assignToClass($request->get('batch_id'),  $request->get('grade_id'), $request->get('class_id'), $studentId);
+		$this->studentRepository->assignToClass($request->get('batch_id'),  $request->get('grade_id'), $request->get('class_id'), $request->get('current') == 'true', $studentId);
 
 		return $this->printPartial(view('students::partials.student', [
 				'student' => $this->studentRepository->findStudent($studentId),
@@ -163,7 +163,47 @@ class StudentController extends BaseController
 				'student' => $student
 			]);
 	}
+
+	public function getStudentClassChange($studentId)
+	{
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('assign_student_to_class', $student);
+
+
+	}
+
+	public function postStudentClassChange($studentId)
+	{
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('assign_student_to_class', $student);
+
+
+	}
 	
+	public function getStudentClassesEdit($studentId)
+	{
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('assign_student_to_class', $student);
+
+		return view('students::edit_classes_details', [
+				'student' => $student
+			]);
+	}	
+
+	public function getStudentClassesView($studentId)
+	{
+		$student = $this->studentRepository->findStudent($studentId);
+
+		$this->authorize('view_student_class_details', $student);
+
+		return view('students::view_classes_details', [
+				'student' => $student
+			]);
+	}	
+
 	public function getStudentDetailView($studentId)
 	{
 		$student = $this->studentRepository->findStudent($studentId);

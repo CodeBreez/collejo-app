@@ -34,7 +34,9 @@ class Student extends Model
 
     public function classes()
     {
-        return $this->belongsToMany(Clasis::class, 'class_student', 'student_id', 'class_id');
+        return $this->belongsToMany(Clasis::class, 'class_student', 'student_id', 'class_id')
+                    ->withPivot('created_at')
+                    ->orderBy('pivot_created_at', 'desc');
     }
 
     private function currentClassRow()

@@ -11,10 +11,12 @@ return [
 	'edit_student' => 'Edit Student',
 	'new_student' => 'New Student',
 	'student_details' => 'Student Details',
+	'classes_details' => 'Class Details',
 	'guardians_details' => 'Guardian Details',
 	'contact_details' => 'Contact Details',
 	'account_details' => 'Account Details',
 	'assign_class' => 'Assign Class',
+	'change_class' => 'Change Current Class',
 	'guardians' => 'Guardians/Parents',
 
 	'picture' => 'Picture',

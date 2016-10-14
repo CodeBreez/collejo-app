@@ -67,7 +67,7 @@ $(function(){
 </script>
 
 <div class="modal-content">
-    <form method="POST" id="assign-class" class="form-horizontal" action="{{ route('student.assign_class', $student->id) }}?target=students">
+    <form method="POST" id="assign-class" class="form-horizontal" action="{{ route('student.assign_class', $student->id) }}?target=students&current={{ Request::get('current') }}">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <h4 class="modal-title">{{ trans('students::student.assign_class') }}</h4>
