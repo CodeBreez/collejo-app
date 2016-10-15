@@ -9050,7 +9050,8 @@ ul.list-indented > li {
     margin-top: 30px; } }
 
 body.auth-body {
-  background: url("/images/auth-bg.jpg"); }
+  background: url("/images/auth-bg.jpg");
+  background-size: cover; }
 
 body.setup-layout {
   padding-top: 20px;

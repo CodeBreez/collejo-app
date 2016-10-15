@@ -62,12 +62,6 @@ abstract class BaseRepository implements RepositoryInterface {
 			$attributes['created_by'] = Auth::user()->id;
 		}
 
-		if (Auth::user()) {
-			$attributes['updated_by'] = Auth::user()->id;
-		}
-
-		$attributes['updated_at'] = Carbon::now();
-
 		return $attributes;
 	}
 
