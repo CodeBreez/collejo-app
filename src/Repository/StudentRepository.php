@@ -47,11 +47,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 		if (!$this->findStudent($studentId)->guardians->contains($guardianId)) {
 			$this->findStudent($studentId)
 				->guardians()
-				->attach($this->guardiansRepository->findGuardian($guardianId), [
-							'id' => $this->newUUID(),
-							'created_by' => Auth::user()->id,
-							'created_at' => Carbon::now(),
-						]);
+				->attach($this->guardiansRepository->findGuardian($guardianId), $this->includePivotMetaData());
 		}
 	}
 
@@ -66,12 +62,9 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 			} 
 
 			$student->classes()
-					->attach($this->classRepository->findClass($classId, $gradeId), [
+					->attach($this->classRepository->findClass($classId, $gradeId), $this->includePivotMetaData([
 						'batch_id' => $this->classRepository->findBatch($batchId)->id,
-						'id' => $this->newUUID(),
-						'created_by' => Auth::user()->id,
-						'created_at' => Carbon::now(),
-					]);
+					]));
 		}
 	}
 

@@ -18,7 +18,7 @@ class CreateClassStudentTable extends Migration
             $table->string('student_id', 45);
             $table->string('batch_id', 45);
             $table->string('created_by')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
 
         Schema::table('class_student', function (Blueprint $table) {

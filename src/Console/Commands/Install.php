@@ -41,15 +41,22 @@ class Install extends ConfigCacheCommand
         $this->info("'  '--'\ ' '-' ' |  | |  | \   --.   |  | ' '-' ' ");
         $this->info(" `-----'  `---'  `--' `--'  `----' .-'  /  `---'  ");
         $this->info("                                   '---'          ");
+
+        $this->info('Done');
         
         $this->info('Creating Admin Account');
 
         $this->call('admin:create');
 
+        $this->info('Done');
+
         $this->info('Creating Permissions');
 
         $this->call('admin:permissions');
+
+        $this->info('Done');
         
         $this->info('Setup complete');
+        $this->info('Documentation can be found at https://github.com/codebreez/collejo-docs');
     }
 }

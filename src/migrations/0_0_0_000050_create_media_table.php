@@ -21,6 +21,11 @@ class CreateMediaTable extends Migration
             $table->string('updated_by')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('media', function (Blueprint $table) {
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+        });
     }
 
     /**

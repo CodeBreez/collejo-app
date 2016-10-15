@@ -42,10 +42,33 @@ abstract class BaseRepository implements RepositoryInterface {
 		$collection = collect($ids);
 
 		$collection = $collection->map(function(){
-			return ['id' => $this->newUUID()];
+			return $this->includePivotMetaData();
 		});
 
 		return array_combine($ids, $collection->all());
+	}
+
+	public function includePivotMetaData(array $attributes = [])
+	{
+		if (!isset($attributes['id'])) {
+			$attributes['id'] = $this->newUuid();
+		}		
+
+		if (!isset($attributes['created_at'])) {
+			$attributes['created_at'] = Carbon::now();
+		}
+
+		if (!isset($attributes['created_by']) && Auth::user()) {
+			$attributes['created_by'] = Auth::user()->id;
+		}
+
+		if (Auth::user()) {
+			$attributes['updated_by'] = Auth::user()->id;
+		}
+
+		$attributes['updated_at'] = Carbon::now();
+
+		return $attributes;
 	}
 
 	public function boot()
