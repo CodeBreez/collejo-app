@@ -69,6 +69,11 @@ class Handler extends ExceptionHandler
         if ($e instanceOf HttpException) {
 
             return response()->make(view('collejo::errors.404'), 404);
+        }        
+
+        if ($e instanceOf ModelNotFoundException) {
+
+            return response()->make(view('collejo::errors.400'), 400);
         }
 
         if ($e instanceOf TokenMismatchException) {

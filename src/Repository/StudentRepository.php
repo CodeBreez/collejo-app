@@ -69,7 +69,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
 					->attach($this->classRepository->findClass($classId, $gradeId), [
 						'batch_id' => $this->classRepository->findBatch($batchId)->id,
 						'id' => $this->newUUID(),
-						//'created_by' => Auth::user()->id,
+						'created_by' => Auth::user()->id,
 						'created_at' => Carbon::now(),
 					]);
 		}

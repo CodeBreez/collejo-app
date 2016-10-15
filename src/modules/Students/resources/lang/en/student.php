@@ -29,9 +29,10 @@ return [
 	'admission_date' => 'Admission Date',
 	'admission_number' => 'Admission Number',
 	'date_of_birth' => 'Date of Birth',
+
 	'batch' => 'Batch',
-	'grade' => 'Grade',
 	'class' => 'Class',
+	'grade' => trans('entities.grade.singular'),
 
 	'assign_guardian' => 'Assign Guardian',
 	'find_guardians' => 'Find Guardians/Parents',

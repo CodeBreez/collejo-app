@@ -17,6 +17,7 @@ class CreateClassStudentTable extends Migration
             $table->string('class_id', 45);
             $table->string('student_id', 45);
             $table->string('batch_id', 45);
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
 
@@ -24,6 +25,7 @@ class CreateClassStudentTable extends Migration
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->foreign('batch_id')->references('id')->on('batches')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

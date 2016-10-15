@@ -200,7 +200,8 @@ class StudentController extends BaseController
 		$this->authorize('view_student_class_details', $student);
 
 		return view('students::view_classes_details', [
-				'student' => $student
+				'student' => $student,
+				'classRepository' => $this->classRepository
 			]);
 	}	
 

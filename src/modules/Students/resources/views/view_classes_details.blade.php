@@ -19,13 +19,23 @@
 @section('tab')
 
 
-<div class="col-sm-6">
+<div class="col-sm-12">
 
 	@foreach($student->classes as $class)
 
 		<dl class="row">
-			<dt class="col-sm-4">{{ $class->name }}</dt>
-			<dd class="col-sm-8">{{ formatDate(toUserTz($class->pivot->created_at)) }}</dd>
+			<dd class="col-sm-3">
+				@can('view_batch_details')
+					<a href="{{ route('batch.details.view', $class->pivot->batch_id) }}">{{ $classRepository->findBatch($class->pivot->batch_id)->name }}</a>
+				@endcan
+
+				@cannot('view_batch_details')
+					{{ $classRepository->findBatch($class->pivot->batch_id)->name }}
+				@endcannot
+			</dd>
+			<dd class="col-sm-3">{{ $class->grade->name }}</dd>
+			<dd class="col-sm-3">{{ $class->name }}</dd>
+			<dd class="col-sm-3">{{ formatDate(toUserTz($class->pivot->created_at)) }}</dd>
 		</dl>	
 	
 	@endforeach

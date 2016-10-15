@@ -39,7 +39,7 @@ function afterDeleteTerm(link, response){
 @section('tab')
 
 
-<div id="addreses" class="columns">
+<div id="terms" class="columns">
 
     @if($batch->terms->count())
 

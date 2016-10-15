@@ -1,10 +1,10 @@
 <?php
 
 return [
-	'terms' => 'Terms',
-	'new_term' => 'New Term',
-	'empty_list' => 'This Batch does not have any Terms defined.',
-	'term_created' => 'Term created',
-	'term_deleted' => 'Term deleted',
-	'term_updated' => 'Term updated'
+	'terms' => trans('entities.term.plural'),
+	'new_term' => 'New ' . trans('entities.grade.singular'),
+	'empty_list' => 'This Batch does not have any ' . trans('entities.grade.plural') . ' defined.',
+	'term_created' => trans('entities.grade.singular') . ' created',
+	'term_deleted' => trans('entities.grade.singular') . ' deleted',
+	'term_updated' => trans('entities.grade.singular') . ' updated'
 ];

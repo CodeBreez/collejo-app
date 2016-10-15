@@ -34,10 +34,13 @@ class Install extends ConfigCacheCommand
         }
 
         $this->call('migrate:copy');
-
-        $this->info('=======');
-        $this->info('COLLEJO');
-        $this->info('=======');
+                                                  
+        $this->info(" ,-----.         ,--. ,--.           ,--.         ");
+        $this->info("'  .--./  ,---.  |  | |  |  ,---.    `--'  ,---.  ");
+        $this->info("|  |     | .-. | |  | |  | | .-. :   ,--. | .-. | ");
+        $this->info("'  '--'\ ' '-' ' |  | |  | \   --.   |  | ' '-' ' ");
+        $this->info(" `-----'  `---'  `--' `--'  `----' .-'  /  `---'  ");
+        $this->info("                                   '---'          ");
         
         $this->info('Creating Admin Account');
 

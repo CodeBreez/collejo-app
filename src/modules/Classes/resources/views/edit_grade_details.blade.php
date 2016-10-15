@@ -56,7 +56,7 @@ $(function(){
         <div class="form-group">
             <label class="col-sm-4 control-label">{{ trans('classes::grade.name') }}</label>
             <div class="col-sm-8">
-                <input type="text" name="name" class="form-control" placeholder="Grade x" value="{{ $grade ? $grade->name : '' }}">
+                <input type="text" name="name" class="form-control" placeholder="{{ trans('classes::grade.name_placeholder') }}" value="{{ $grade ? $grade->name : '' }}">
             </div>
         </div>               
     </div>
