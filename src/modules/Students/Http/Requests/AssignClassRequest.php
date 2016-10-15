@@ -18,8 +18,8 @@ class AssignClassRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'class_id' => 'Class',
-	        'batch_id' => 'Batch'
+	        'class_id' => trans('students::student.class'),
+	        'batch_id' => trans('students::student.batch')
 	    ];
 	}
 }

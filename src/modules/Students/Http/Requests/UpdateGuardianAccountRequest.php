@@ -4,7 +4,7 @@ namespace Collejo\App\Modules\Students\Http\Requests;
 
 use Collejo\App\Http\Requests\Request;
 
-class UpdateStudentAccountRequest extends Request
+class UpdateGuardianAccountRequest extends Request
 {
 
 	public function rules()
@@ -18,8 +18,8 @@ class UpdateStudentAccountRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'email' => trans('students::student.email'),
-	        'password' => trans('students::student.password')
+	        'email' => trans('students::guardian.email'),
+	        'password' => trans('students::guardian.password')
 	    ];
 	}
 }

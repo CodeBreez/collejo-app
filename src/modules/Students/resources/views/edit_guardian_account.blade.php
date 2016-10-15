@@ -1,13 +1,13 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', trans('students::student.edit_student'))
+@section('title', trans('students::guardian.edit_guardian'))
 
 @section('breadcrumbs')
 
 <ol class="breadcrumb">
-  <li><a href="{{ route('students.list') }}">{{ trans('students::student.students_list') }}</a></li>
-  <li><a href="{{ route('student.account.view', $student->id) }}">{{ $student->name }}</a></li>
-  <li class="active">{{ trans('students::student.edit_student') }}</li>
+  <li><a href="{{ route('guardians.list') }}">{{ trans('students::guardian.guardians_list') }}</a></li>
+  <li><a href="{{ route('guardian.account.view', $guardian->id) }}">{{ $guardian->name }}</a></li>
+  <li class="active">{{ trans('students::guardian.edit_guardian') }}</li>
 </ol>
 
 @endsection
@@ -38,26 +38,26 @@ $(function(){
 
 @section('tabs')
 
-    @include('students::partials.edit_student_tabs')
+    @include('students::partials.edit_guardian_tabs')
 
 @endsection
 
 @section('tab')
 
-<form class="form-horizontal" method="POST" id="edit-account-form" action="{{ route('student.account.edit', $student->id) }}">
+<form class="form-horizontal" method="POST" id="edit-account-form" action="{{ route('guardian.account.edit', $guardian->id) }}">
 
-    <input type="hidden" name="sid" value="{{ $student->id }}">
-    <input type="hidden" name="uid" value="{{ $student->user->id }}">
+    <input type="hidden" name="sid" value="{{ $guardian->id }}">
+    <input type="hidden" name="uid" value="{{ $guardian->user->id }}">
 
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="col-sm-4 control-label">{{ trans('students::student.email') }}</label>
+            <label class="col-sm-4 control-label">{{ trans('students::guardian.email') }}</label>
             <div class="col-sm-8">
-                <input type="email" name="email" class="form-control" placeholder="name@example.com" value="{{ $student->email }}">
+                <input type="email" name="email" class="form-control" placeholder="name@example.com" value="{{ $guardian->email }}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">{{ trans('students::student.password') }}</label>
+            <label class="col-sm-4 control-label">{{ trans('students::guardian.password') }}</label>
             <div class="col-sm-8">
                 <input type="password" name="password" class="form-control">
             </div>

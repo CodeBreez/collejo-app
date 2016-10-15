@@ -159,7 +159,7 @@ class StudentController extends BaseController
 
 		$this->authorize('view_student_guardian_details', $student);
 
-		return view('students::view_guardians_details', [
+		return view('students::view_student_guardians_details', [
 				'student' => $student
 			]);
 	}

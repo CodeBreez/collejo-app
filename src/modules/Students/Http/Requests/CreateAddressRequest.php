@@ -18,12 +18,12 @@ class CreateAddressRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'full_name' => 'Contact Person Name',
-	        'address' => 'Address',
-	        'city' => 'City',
-	        'postal_code' => 'Postal Code',
-	        'phone' => 'Phone',
-	        'note	' => 'Note'
+	        'full_name' => trans('student::address.full_name'),
+	        'address' => trans('student::address.address'),
+	        'city' => trans('student::address.city'),
+	        'postal_code' => trans('student::address.postal_code'),
+	        'phone' => trans('student::address.phone'),
+	        'note' => trans('student::address.note'),
 	    ];
 	}
 }

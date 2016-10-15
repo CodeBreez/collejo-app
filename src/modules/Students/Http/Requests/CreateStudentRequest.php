@@ -22,12 +22,12 @@ class CreateStudentRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'admission_number' => 'Admission Number',
-	        'admitted_on' => 'Admission Date',
-	        'student_category_id' => 'Student Category',
-	        'first_name' => 'First Name',
-	        'last_name' => 'Last Name',
-	        'date_of_birth' => 'Date of Birth'
+	        'admission_number' => trans('students::student.admission_number'),
+	        'admitted_on' => trans('students::student.admitted_on'),
+	        'student_category_id' => trans('students::student.student_category_id'),
+	        'first_name' => trans('students::student.first_name'),
+	        'last_name' => trans('students::student.last_name'),
+	        'date_of_birth' => trans('students::student.date_of_birth'),
 	    ];
 	}
 }

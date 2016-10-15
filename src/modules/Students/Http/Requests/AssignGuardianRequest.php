@@ -18,8 +18,8 @@ class AssignGuardianRequest extends Request
 	public function attributes()
 	{
 		return [
-	        'student_id' => 'Student',
-	        'guardian_id' => 'Guardian'
+	        'student_id' => trans('students::student.student'),
+	        'guardian_id' => trans('students::student.guardian')
 	    ];
 	}
 }

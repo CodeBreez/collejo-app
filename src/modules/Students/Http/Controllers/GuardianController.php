@@ -79,48 +79,64 @@ class GuardianController  extends BaseController
             ]]);
     }
 
-    public function getGuardianDetailView()
+    public function getGuardianDetailView($guardianId)
     {
-
         $this->authorize('list_guardians');
 
+        return view('students::view_guardian_details', [
+                'guardian' => $this->guardianRepository->findGuardian($guardianId)
+            ]); 
     }
 
-    public function getGuardianDetailEdit()
+    public function getGuardianDetailEdit($guardianId)
     {
-
         $this->authorize('edit_guardian');
 
+        return view('students::edit_guardian_details', [
+                'guardian' => $this->guardianRepository->findGuardian($guardianId),
+                'guardian_form_validator' => $this->jsValidator(UpdateGuardianRequest::class)
+            ]); 
     }
 
-    public function postGuardianDetailEdit(UpdateGuardianRequest $request)
+    public function postGuardianDetailEdit(UpdateGuardianRequest $request, $guardianId)
     {
-
         $this->authorize('edit_guardian');
 
+        $this->guardianRepository->updateGuardian($request->all(), $guardianId);
+
+        return $this->printJson(true, [], trans('students::guardian.guardian_updated'));
     }
 
-    public function getGuardianAccountView()
+    public function getGuardianAccountView($guardianId)
     {
         $this->middleware('reauth');
         
         $this->authorize('view_user_account_info');
 
+        return view('students::view_guardian_account', [
+                'guardian' => $this->guardianRepository->findGuardian($guardianId)
+            ]); 
     }
 
-    public function getGuardianAccountEdit()
+    public function getGuardianAccountEdit($guardianId)
     {
         $this->middleware('reauth');
         
         $this->authorize('edit_user_account_info');
 
+        return view('students::edit_guardian_account', [
+                'guardian' => $this->guardianRepository->findGuardian($guardianId),
+                'account_form_validator' => $this->jsValidator(UpdateGuardianAccountRequest::class)
+            ]); 
     }
 
-    public function postGuardianAccountEdit(UpdateGuardianAccountRequest $request)
+    public function postGuardianAccountEdit(UpdateGuardianAccountRequest $request, $guardianId)
     {
-
         $this->authorize('edit_user_account_info');
 
+        $this->guardianRepository->updateGuardian($request->all(), $guardianId);
+
+        return $this->printJson(true, [], trans('students::student.student_updated'));
     }
 
 	public function getGuardiansSearch(GuardiansSearchCriteria $criteria)
