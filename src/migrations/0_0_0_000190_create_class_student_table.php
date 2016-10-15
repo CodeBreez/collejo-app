@@ -21,9 +21,9 @@ class CreateClassStudentTable extends Migration
         });
 
         Schema::table('class_student', function (Blueprint $table) {
-            $table->foreign('class_id')->references('id')->on('classes');
-            $table->foreign('batch_id')->references('id')->on('batches');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('batch_id')->references('id')->on('batches')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
     }
 

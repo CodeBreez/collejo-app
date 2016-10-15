@@ -17,12 +17,12 @@ class CreateGuardianStudentTable extends Migration
             $table->string('guardian_id', 45);
             $table->string('student_id', 45);
             $table->string('created_by')->nullable();
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
 
         Schema::table('guardian_student', function (Blueprint $table) {
-            $table->foreign('guardian_id')->references('id')->on('guardians');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('guardian_id')->references('id')->on('guardians')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
         });
     }

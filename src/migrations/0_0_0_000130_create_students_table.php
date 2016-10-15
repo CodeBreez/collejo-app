@@ -26,7 +26,7 @@ class CreateStudentsTable extends Migration
         });
 
         Schema::table('students', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('student_category_id')->references('id')->on('student_categories');
             $table->foreign('image_id')->references('id')->on('media');
             $table->foreign('created_by')->references('id')->on('users');

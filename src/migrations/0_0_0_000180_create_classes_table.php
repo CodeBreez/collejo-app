@@ -23,7 +23,7 @@ class CreateClassesTable extends Migration
         });
 
         Schema::table('classes', function (Blueprint $table) {
-            $table->foreign('grade_id')->references('id')->on('grades');
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

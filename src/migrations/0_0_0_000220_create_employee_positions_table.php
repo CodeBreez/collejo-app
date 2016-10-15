@@ -17,12 +17,12 @@ class CreateEmployeePositionsTable extends Migration
             $table->string('employee_category_id', 45);
             $table->string('name', 20);
             $table->string('created_by')->nullable();
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->softDeletes();
         });
 
         Schema::table('employee_positions', function (Blueprint $table) {
-            $table->foreign('employee_category_id')->references('id')->on('employee_categories');
+            $table->foreign('employee_category_id')->references('id')->on('employee_categories')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
         });
     }

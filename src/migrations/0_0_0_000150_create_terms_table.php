@@ -25,7 +25,7 @@ class CreateTermsTable extends Migration
         });
 
         Schema::table('terms', function (Blueprint $table) {
-            $table->foreign('batch_id')->references('id')->on('batches');
+            $table->foreign('batch_id')->references('id')->on('batches')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

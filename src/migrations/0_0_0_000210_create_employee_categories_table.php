@@ -17,7 +17,7 @@ class CreateEmployeeCategoriesTable extends Migration
             $table->string('name', 20);
             $table->string('code', 10)->nullable();
             $table->string('created_by')->nullable();
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->softDeletes();
         });
 

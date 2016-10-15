@@ -28,7 +28,7 @@ class CreateEmployeesTable extends Migration
         });
 
         Schema::table('employees', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('employee_position_id')->references('id')->on('employee_positions');
             $table->foreign('employee_department_id')->references('id')->on('employee_departments');
             $table->foreign('employee_grade_id')->references('id')->on('employee_grades');

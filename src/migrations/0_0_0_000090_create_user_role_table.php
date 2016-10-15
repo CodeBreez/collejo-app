@@ -17,12 +17,12 @@ class CreateUserRoleTable extends Migration
             $table->string('user_id');
             $table->string('role_id');
             $table->string('created_by')->nullable();
-            $table->timestamp('created_at');            
+            $table->timestamps();            
         });
 
         Schema::table('role_user', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users');
         });
     }

@@ -20,7 +20,7 @@ class CreateEmployeeGradesTable extends Migration
             $table->integer('max_sessions_per_day')->default(0);
             $table->integer('max_sessions_per_week')->default(0);
             $table->string('created_by')->nullable();
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->softDeletes();
         });
 
