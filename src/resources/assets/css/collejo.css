@@ -8832,6 +8832,9 @@ footer {
 ul.list-indented > li {
   margin-left: 25px; }
 
+.label {
+  margin: 0 2px; }
+
 .file-uploader .upload-block {
   float: left;
   border: thin solid #eeeeee;

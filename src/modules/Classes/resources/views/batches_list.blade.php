@@ -39,7 +39,15 @@
         <td>
             @if($batch->grades->count())
                 @foreach($batch->grades as $grade)
-                    <span class="label label-default"><a href="#">{{ $grade->name }}</a></span>
+                    <span class="label label-default">
+                        @can('view_grade_details')
+                            <a href="{{ route('grade.details.view', $grade->id) }}">{{ $grade->name }}</a>
+                        @endcan
+
+                        @cannot('view_grade_details')
+                            {{ $grade->name }}
+                        @endcannot
+                    </span>
                 @endforeach
             @else
                 @can('add_edit_batch')
