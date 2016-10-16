@@ -23,7 +23,7 @@ abstract class BaseCriteria implements CriteriaInterface {
 	{
 		$model = $this->getModel();
 
-		$model = $model->select($model->getTable() . '.*')
+		$builder = $model->select($model->getTable() . '.*')
 					->join(DB::raw('(' . $this->getSubquery($model)->toSql() . ') as tmp'), $model->getTable() . '.id', '=', 'tmp.id');
 
 		foreach ($this->criteria() as $params) {
@@ -34,25 +34,25 @@ abstract class BaseCriteria implements CriteriaInterface {
 
 				switch ($params[1]) {
 					case '%LIKE':
-						$model = $model->orWhere('tmp.' . $params[0], 'LIKE', '%' . Request::get($input));
+						$builder = $builder->orWhere('tmp.' . $params[0], 'LIKE', '%' . Request::get($input));
 						break;					
 
 					case 'LIKE%':
-						$model = $model->orWhere('tmp.' . $params[0], 'LIKE', Request::get($input) . '%');
+						$builder = $builder->orWhere('tmp.' . $params[0], 'LIKE', Request::get($input) . '%');
 						break;
 
 					case '%LIKE%':
-						$model = $model->orWhere('tmp.' . $params[0], 'LIKE', '%' . Request::get($input) . '%');
+						$builder = $builder->orWhere('tmp.' . $params[0], 'LIKE', '%' . Request::get($input) . '%');
 						break;
 					
 					default:
-						$model = $model->orWhere('tmp.' . $params[0], $params[1], Request::get($input));
+						$builder = $builder->orWhere('tmp.' . $params[0], $params[1], Request::get($input));
 						break;
 				}
 			}
 		}
 
-		return $model;
+		return $builder->orderBy($model->getTable() . '.created_at', 'DESC');
 	}
 
 	private function getModel()

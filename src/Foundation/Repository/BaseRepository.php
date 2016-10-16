@@ -23,7 +23,7 @@ abstract class BaseRepository implements RepositoryInterface {
 			$criteria = new $criteria();
 		}
 
-		return new CacheableResult($criteria->orderBy('created_at', 'DESC'));
+		return new CacheableResult($criteria);
 	}
 
 	public function parseFillable(array $attributes, $class)

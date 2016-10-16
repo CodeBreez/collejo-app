@@ -53,8 +53,7 @@ class CacheableResult {
 
 	public function count()
 	{
-		$this->builder->count();
-		return $this;
+		return $this->builder->count();
 	}
 
 	private function getResult($columns)
