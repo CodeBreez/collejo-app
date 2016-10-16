@@ -1,7 +1,7 @@
 @if(Auth::user()->guardian)
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Children In School</h3>
+            <h3 class="panel-title">{{ trans('students::guardian.widget_children_in_school') }}</h3>
         </div>
         <div class="panel-body">
 

@@ -21,5 +21,7 @@ return [
 	'contact_details' => 'Contact Details',
 	
 	'guardians_list' => 'Guardians List',
-	'empty_list' => 'There are no Guardians in the system.'
+	'empty_list' => 'There are no Guardians in the system.',
+
+	'widget_children_in_school' => 'Children In School'
 ];

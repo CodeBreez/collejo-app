@@ -4,7 +4,6 @@ namespace Collejo\App\Modules\Students\Providers;
 
 use Collejo\App\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProvider;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
-use Collejo\App\Modules\Students\Widgets\GuardianStudentsWidget;
 
 class StudentsModuleServiceProvider extends BaseModuleServiceProvider
 {
