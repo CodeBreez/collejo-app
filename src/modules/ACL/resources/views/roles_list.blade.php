@@ -12,6 +12,12 @@
 
 @section('table')
 
+<script type="text/javascript">
+function afterRoleChange(){
+    location.reload();
+}
+</script>
+
 <table class="table" id="roles">
                 
     <tr>
@@ -24,7 +30,14 @@
 
     <tr>
         <td>
-            <a href="{{ route('role.permissions.edit', [$role->id, $module->name]) }}">{{ $role->name }}</a></td>
+            <a href="{{ route('role.permissions.edit', [$role->id, $module->name]) }}">
+            @if($role->trashed())
+                <span class="text-muted">{{ $role->name }}</span>
+            @else
+                {{ $role->name }}
+            @endif
+            </a>
+        </td>
         <td>
             @foreach($role->permissions as $permission)
                 <span class="label label-default">{{ $permission->name }}</span>
@@ -36,7 +49,13 @@
 
                 @if(!in_array($role->role, app()->majorUserRoles))
 
-                    <a href="{{ route('role.permissions.edit', [$role->id, $module->name]) }}" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-edit"></i> {{ trans('common.delete') }}</a>
+                    
+                    @if($role->trashed())
+                        <a href="{{ route('role.enable', $role->id) }}" data-toggle="ajax-link" data-confirm="{{ trans('acl::role.enable_confirm') }}" data-success-callback="afterRoleChange" class="btn btn-xs btn-warning"><i class="fa fa-fw fa-edit"></i>{{ trans('common.enable') }}</a>
+                    @else
+                        <a href="{{ route('role.disable', $role->id) }}" data-toggle="ajax-link" data-confirm="{{ trans('acl::role.disable_confirm') }}" data-success-callback="afterRoleChange" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-edit"></i>{{ trans('common.disable') }}</a>
+                    @endif
+                    
                     
                 @endif
 

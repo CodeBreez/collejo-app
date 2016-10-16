@@ -17,5 +17,11 @@ return [
 	'name' => 'Name',
 	'permissions' => 'Permissions',
 
+	'enable_confirm' => 'Are you sure you want to enable this Role?',
+	'disable_confirm' => 'Are you sure you want to disable this Role?',
+
+	'enabled' => 'Role enabled',
+	'disabled' => 'Role disabled',
+
 	'updated' => 'Permissions updated'
 ];

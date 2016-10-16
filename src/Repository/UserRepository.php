@@ -88,6 +88,16 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		return $perm;
 	}
 
+	public function disableRole($roleId)
+	{
+		$this->findRole($roleId)->delete();
+	}
+
+	public function enableRole($roleId)
+	{
+		Role::withTrashed()->findOrFail($roleId)->restore();
+	}
+
 	public function getRoleByName($name)
 	{
 		return Role::where('role', $name)->first();

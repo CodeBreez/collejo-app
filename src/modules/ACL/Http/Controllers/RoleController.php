@@ -12,6 +12,20 @@ class RoleController extends Controller
 {	
 	private $userRepository;
 
+	public function getRoleEnable($roleId)
+	{
+		$this->userRepository->enableRole($roleId);
+
+		return $this->printJson(true, [], trans('acl::role.enabled'));
+	}
+
+	public function getRoleDisable($roleId)
+	{
+		$this->userRepository->disableRole($roleId);
+
+		return $this->printJson(true, [], trans('acl::role.disabled'));
+	}
+
 	public function postRoleNew(CreateRoleRequest $request)
 	{
 		$role = $this->userRepository->createRoleIfNotExists($request->get('role'));
@@ -48,7 +62,7 @@ class RoleController extends Controller
     {
         return view('acl::roles_list', [
         		'module' => Module::first(),
-        		'roles' => $this->userRepository->getRoles()->orderBy('created_at')->paginate()
+        		'roles' => $this->userRepository->getRoles()->orderBy('created_at')->withTrashed()->paginate()
         	]);
     }
 
