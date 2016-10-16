@@ -4,12 +4,29 @@ namespace Collejo\App\Modules\ACL\Http\Controllers;
 
 use Collejo\App\Http\Controllers\Controller;
 use Collejo\App\Repository\UserRepository;
+use Collejo\App\Modules\ACL\Http\Requests\CreateRoleRequest;
 use Module;
 use Request;
 
 class RoleController extends Controller
 {	
 	private $userRepository;
+
+	public function postRoleNew(CreateRoleRequest $request)
+	{
+		$role = $this->userRepository->createRoleIfNotExists($request->get('role'));
+
+		return $this->printRedirect(route('role.permissions.edit', [$role->id, Module::first()->name]));
+	}
+
+	public function getRoleNew()
+	{
+		return $this->printModal(view('acl::modals.edit_role', [
+        		'module' => Module::first(),
+        		'role' => null,
+        		'role_form_validator' => $this->jsValidator(CreateRoleRequest::class)
+        	]));
+	}
 
 	public function postRolePermmissionsEdit(Request $request, $roleId, $moduleName)
 	{
@@ -31,7 +48,7 @@ class RoleController extends Controller
     {
         return view('acl::roles_list', [
         		'module' => Module::first(),
-        		'roles' => $this->userRepository->getRoles()->paginate()
+        		'roles' => $this->userRepository->getRoles()->orderBy('created_at')->paginate()
         	]);
     }
 

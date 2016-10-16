@@ -19,6 +19,8 @@ return [
 	'edit' => 'Edit',
 	'delete' => 'Delete',
 	'remove' => 'Remove',
+	'disable' => 'Disable',
+	'enable' => 'Enable',
 	'create' => 'Create New',
 	'list' => 'List',
 	'search' => 'Search',
