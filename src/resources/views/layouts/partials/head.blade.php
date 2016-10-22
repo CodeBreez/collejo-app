@@ -12,11 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
-    {{ Asset::renderAssets() }}
-
-    <script type="text/javascript">
-        Collejo.lang = {!! json_encode(Lang::get('common')) !!}
-    </script>
+    {{ Asset::renderStyles() }}
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

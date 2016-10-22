@@ -223,7 +223,7 @@ class StudentController extends BaseController
 		return view('students::students_list', [
 				'criteria' => $criteria,
 				'students' => $this->studentRepository->getStudents($criteria)
-								->with('classes', 'guardians', 'user')
+								->with('guardians', 'user')
 								->paginate()
 			]);
 	}

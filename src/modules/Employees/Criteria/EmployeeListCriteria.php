@@ -32,6 +32,8 @@ class EmployeeListCriteria extends BaseCriteria{
 			]
 		];
 
+	protected $eagerLoads = ['department'];
+
 	public function callbackEmployeeDepartments()
 	{
 		return app()->make(EmployeeRepository::class)->getEmployeeDepartments()->get();

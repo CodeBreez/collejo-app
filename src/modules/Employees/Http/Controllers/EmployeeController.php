@@ -110,7 +110,8 @@ class EmployeeController extends BaseController
 	public function getEmployeeList(EmployeeListCriteria $criteria)
 	{
 		return view('employees::employee_list', [
-				'employees' => $this->employeeRepository->getEmployees($criteria)->paginate(),
+				'employees' => $this->employeeRepository->getEmployees($criteria)
+									->with('user', 'employeeDepartment', 'employeePosition', 'employeeGrade')->paginate(),
 				'criteria' => $criteria
 			]);
 	}

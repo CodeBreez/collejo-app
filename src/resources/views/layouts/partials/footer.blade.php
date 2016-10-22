@@ -7,3 +7,9 @@
 		</pre-->
 	@endif
 </footer>
+
+{{ Asset::renderScripts() }}
+
+<script type="text/javascript">
+    Collejo.lang = {!! json_encode(Lang::get('common')) !!}
+</script>
