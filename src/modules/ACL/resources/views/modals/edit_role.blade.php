@@ -1,5 +1,5 @@
 <script type="text/javascript">
-C.ready(function(){
+$(function(){
 
     $('#role-form').validate({
         rules:{!! $role_form_validator->renderRules() !!},

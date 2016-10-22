@@ -49,9 +49,9 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
 		return Guardian::findOrFail($id);
 	}
 
-	public function getGuardians()
+	public function getGuardians($criteria)
 	{
-		return $this->search(Guardian::class);
+		return $this->search($criteria);
 	}
 
     public function boot()

@@ -10,8 +10,8 @@ class GuardiansSearchCriteria extends BaseCriteria{
 	protected $model = Guardian::class;
 
 	protected $criteria = [
-			['ssn', '%LIKE%', 'q'],
-			['name', '%LIKE%', 'q']
+			['ssn', '%LIKE%', 'ssn'],
+			['name', '%LIKE%', 'name']
 		];
 
 	protected $selects = [
@@ -21,4 +21,11 @@ class GuardiansSearchCriteria extends BaseCriteria{
 	protected $joins = [
 			['users', 'guardians.user_id', 'users.id']
 		];	
+
+	protected $form = [
+			'ssn' => [
+				'type' => 'text',
+				'label' => 'SSN'
+			]
+		];		
 }

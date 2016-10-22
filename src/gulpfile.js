@@ -3,7 +3,8 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var exec = require('gulp-exec');
 var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
+var minify = require('gulp-minify');
+var cleanCSS = require('gulp-clean-css');
 
 var srcDir = './resources/assets/src/';
 var outDir = './resources/assets/';
@@ -39,11 +40,18 @@ elixir(function(mix) {
             srcDir + 'js/collejo/dynamics.js',
             srcDir + 'js/collejo/modal.js',
             srcDir + 'js/dashboard.js'
-        ], outDir + 'js/collejo.js')
-        /*.version([
-            outDir + 'css/collejo.css',
-            outDir + 'js/collejo.js'
-        ]);*/
+        ], outDir + 'js/collejo.js');
+
+    gulp.src(outDir + 'js/collejo.js')
+        .pipe(minify())
+        .pipe(gulp.dest(buildDir + 'js'));
+
+    gulp.src(outDir + 'css/*.css')
+        .pipe(cleanCSS({
+            compatibility: 'ie8',
+            keepSpecialComments: false
+        }))
+        .pipe(gulp.dest(buildDir + 'css'));
 });
 
 gulp.task('copy', function() {

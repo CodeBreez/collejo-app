@@ -2,6 +2,8 @@
 
 @section('title', trans('classes::batch.batches'))
 
+@section('count', $batches->total())
+
 @section('tools')
 
     @can('add_edit_batch')
@@ -19,6 +21,7 @@
     <tr>
         <th width="30%">{{ trans('classes::batch.name') }}</th>
         <th width="*">{{ trans('classes::batch.grades') }}</th>
+        <th width="10%"></th>
         <th width="10%"></th>
         <th width="10%"></th>
     </tr>
@@ -57,10 +60,15 @@
         </td>
         <td>
             @if($batch->trashed())
-                <span class="label label-danger">Inactive</span>
+                <span class="label label-danger">{{ trans('common.active') }}</span>
             @else 
-                <span class="label label-success">Active</span>
+                <span class="label label-success">{{ trans('common.inactive') }}</span>
             @endif
+        </td>
+        <td>
+            @can('list_students')
+                <a href="{{ route('students.list') }}?batch={{ $batch->id }}" class="btn btn-xs btn-default">{{ trans('classes::batch.view_students') }}</a>
+            @endcan
         </td>
         <td class="tools-column">
             @can('add_edit_batch')

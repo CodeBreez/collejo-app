@@ -13,6 +13,7 @@ return [
 	'name' => 'Batch Name',
 	'grades' => trans('entities.grade.plural'),
 	'assign_grades' => 'Assign ' . trans('entities.grade.plural'),
+	'view_students' => 'View Students',
 
 	'empty_list' => 'There are no Batches in the system',
 	'no_grades_defined' => 'No ' . trans('entities.grade.plural') . ' or Batches defined.',

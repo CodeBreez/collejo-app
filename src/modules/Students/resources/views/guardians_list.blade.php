@@ -2,6 +2,8 @@
 
 @section('title', trans('students::guardian.guardians'))
 
+@section('count', $guardians->total())
+
 @section('table')
 
 @if($guardians->count())

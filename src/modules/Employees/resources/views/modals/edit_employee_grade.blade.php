@@ -1,5 +1,5 @@
 <script type="text/javascript">
-C.ready(function(){
+$(function(){
 
     $('#edit-employee-grade').validate({
         rules:{!! $grade_form_validator->renderRules() !!},

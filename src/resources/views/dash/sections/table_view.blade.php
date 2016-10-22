@@ -6,7 +6,11 @@
 
     @yield('tools')
 
-    <h2>@yield('title')</h2>
+    <h2>@yield('title') 
+        @hasSection('count')
+            <small>(@yield('count'))</small>
+        @endif
+    </h2>
 
     @if(isset($criteria))
 

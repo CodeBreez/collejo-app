@@ -7,6 +7,8 @@ return [
 	'name' => 'Name',
 	'code' => 'Code',
 	'count' => 'Total Students',
+
+	'view_students' => 'View Students',
 	
 	'empty_list' => 'There are no Student Categries in the system.',
 	'student_category_created' => 'Student Category created.',

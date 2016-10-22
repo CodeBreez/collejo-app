@@ -2,6 +2,8 @@
 
 @section('title', trans('employees::employee_department.employee_departments'))
 
+@section('count', $employee_departments->total())
+
 @section('tools')
 
 <a href="{{ route('employee_department.new') }}" data-toggle="ajax-modal"  class="btn btn-primary pull-right"><i class="fa fa-plus"></i> {{ trans('common.create') }}</a>	

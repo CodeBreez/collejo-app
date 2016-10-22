@@ -2,6 +2,8 @@
 
 @section('title', trans('students::student.students'))
 
+@section('count', $students->total())
+
 @section('tools')
 
 @can('create_student')

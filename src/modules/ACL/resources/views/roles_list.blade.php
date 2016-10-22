@@ -2,6 +2,8 @@
 
 @section('title', trans('acl::role.roles'))
 
+@section('count', $roles->total())
+
 @section('tools')
 
 @can('add_edit_role')

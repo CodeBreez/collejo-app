@@ -150,12 +150,14 @@ class GuardianController  extends BaseController
 								);
 	}
 
-	public function getGuardiansList()
+	public function getGuardiansList(GuardiansSearchCriteria $criteria)
 	{
         $this->authorize('list_guardians');
         
 		return view('students::guardians_list', [
-				'guardians' => $this->guardianRepository->getGuardians()->paginate(config('collejo.pagination.perpage'))
+                'criteria' => $criteria,
+				'guardians' => $this->guardianRepository->getGuardians($criteria)->with('user', 'students')
+                                ->paginate(config('collejo.pagination.perpage'))
 			]);		
 	}
 

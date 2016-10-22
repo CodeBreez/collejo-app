@@ -2,6 +2,8 @@
 
 @section('title', trans('classes::grade.grades'))
 
+@section('count', $grades->total())
+
 @section('tools')
 
     @can('add_edit_grade')

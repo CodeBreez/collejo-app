@@ -1,6 +1,5 @@
 <script type="text/javascript">
-C.ready(function(){
-
+$(function(){
     $('#edit-employee-positiion').validate({
         rules:{!! $position_form_validator->renderRules() !!},
         submitHandler: function(form){

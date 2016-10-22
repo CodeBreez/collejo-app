@@ -1,5 +1,5 @@
 <script type="text/javascript">
-C.ready(function(){
+$(function(){
 
     $('#assign-class').validate({
         rules:{!! $assign_form->renderRules() !!},

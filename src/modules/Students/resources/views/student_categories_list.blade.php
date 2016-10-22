@@ -2,6 +2,8 @@
 
 @section('title', trans('students::student_category.student_categories'))
 
+@section('count', $student_categories->total())
+
 @section('tools')
 
 @can('add_edit_student_category')
@@ -20,6 +22,7 @@
         <th width="*">{{ trans('students::student_category.name') }}</th>
         <th width="15%">{{ trans('students::student_category.code') }}</th>
         <th width="15%">{{ trans('students::student_category.count') }}</th>
+        <th></th>
         <th width="10%"></th>
     </tr>
 
