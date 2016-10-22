@@ -5,22 +5,22 @@ namespace Collejo\App\Events;
 use Collejo\App\Foundation\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Collejo\App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 
-class UserCreated extends Event {
+class CriteriaDataChanged extends Event {
 
     use SerializesModels;
 
-    public $user;
+    public $model;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Model $model)
     {
-        $this->user = $user;
+        $this->model = $model;
     }
     
     /**

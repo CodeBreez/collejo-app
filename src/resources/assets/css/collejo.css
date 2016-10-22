@@ -9167,8 +9167,11 @@ body {
     display: inline-block; }
   .dash-content .criteria-filter label {
     margin-right: 15px; }
+  .dash-content .criteria-filter .panel-body {
+    padding: 15px 15px 5px 15px; }
   .dash-content .criteria-filter .form-group {
-    margin-right: 25px; }
+    margin-right: 25px;
+    margin-bottom: 10px; }
   .dash-content .criteria-filter .btn-col {
     margin-right: 0; }
 

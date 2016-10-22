@@ -13,21 +13,13 @@
     <div class="panel panel-default criteria-filter">
     	<div class="panel-body">
 
-    		<form class="form-inline" action="{{ url()->current() }}" method="GET">
-
-				<div class="form-group pull-right btn-col">
-				    <a class="btn btn-sm btn-link" href="{{ url(Request::path()) }}">{{ trans('common.clear_search') }}</a>
-				</div>
-
-    			<div class="form-group pull-right btn-col">
-				    <button class="btn btn-sm btn-default" type="submit">{{ trans('common.search') }}</button>
-				</div>    			
+    		<form class="form-inline" action="{{ url()->current() }}" method="GET"> 			
 
     			@foreach($criteria->formElements() as $element)
 
     				@if($element['type'] == 'text')
 
-		    		<div class="form-group pull-right">
+		    		<div class="form-group">
 					    <label>{{ $element['label'] }}</label>
 					    <input type="text" class="form-control input-sm" name="{{ $element['name'] }}" value="{{ Request::get($element['name']) }}"> 
 					</div>
@@ -36,7 +28,7 @@
 
                     @if($element['type'] == 'select')
 
-                    <div class="form-group pull-right">
+                    <div class="form-group">
                         <label>{{ $element['label'] }}</label>
                         <select class="form-control input-sm" name="{{ $element['name'] }}" data-toggle="select-dropdown" data-allow-clear="true">
                             <option></option>
@@ -53,6 +45,14 @@
                     @endif
 
     			@endforeach
+
+                <div class="form-group pull-right btn-col">
+                    <a class="btn btn-sm btn-link" href="{{ url(Request::path()) }}">{{ trans('common.clear_search') }}</a>
+                </div>
+
+                <div class="form-group pull-right btn-col">
+                    <button class="btn btn-sm btn-default" type="submit">{{ trans('common.search') }}</button>
+                </div>                   
 
 	    	</form>
     	</div>

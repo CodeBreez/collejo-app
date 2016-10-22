@@ -12,25 +12,38 @@ class CacheableResult {
 
 	private $builder;
 
+	private $columns;
+
 	public function get($columns = ['*'])
 	{
+		$this->columns = $columns;
+		
 		return $this->getResult($columns);
 	}
 
 	public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
 	{
+		$this->columns = $columns;
+
 		$page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $perPage = $perPage ?: $this->builder->getPerPage();
 
         $query = $this->builder->toBase();
 
-        $total = $query->getCountForPagination();
+        $key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':count';
+
+        if (!Cache::has($key)) {
+			Cache::put($key, $query->getCountForPagination(), config('collejo.pagination.perpage'));
+		}
+
+        $total = Cache::get($key);
+
         $results = new Collection;
 
         if ($total) {
         	$this->builder->forPage($page, $perPage);
-        	$results = $this->getResult($columns);
+        	$results = $this->getResult();
         }
 
         return new LengthAwarePaginator($results, $total, $perPage, $page, [
@@ -56,15 +69,20 @@ class CacheableResult {
 		return $this->builder->count();
 	}
 
-	private function getResult($columns)
+	private function getResult()
 	{
-		$key = 'criteria-' . md5($this->builder->toSql() . '|' . implode(',', $columns));
+		$key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':result';
 
 		if (!Cache::has($key)) {
 			Cache::put($key, $this->builder->get(), config('collejo.pagination.perpage'));
 		}
 
 		return Cache::get($key);
+	}
+
+	private function getQueryHash()
+	{
+		return md5($this->builder->toSql() . '|' . implode(',', $this->columns));
 	}
 
 	public function __construct(Builder $builder)

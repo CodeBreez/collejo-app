@@ -26,6 +26,6 @@ class UserPermissionsCacheClear implements ShouldQueue{
      */
     public function handle(UserPermissionsChanged $event)
     {
-        return Cache::forget('user-perms-' . $event->user->id);
+        return Cache::forget('user-perms:' . $event->user->id);
     }
 }

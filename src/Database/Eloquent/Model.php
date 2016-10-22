@@ -3,6 +3,7 @@
 namespace Collejo\App\Database\Eloquent;
 
 use Illuminate\Database\Eloquent\Model as Base;
+use Collejo\App\Events\CriteriaDataChanged;
 use Uuid;
 use Auth;
 use Schema;
@@ -15,9 +16,11 @@ abstract class Model extends Base {
     {
         parent::boot();
 
-        static::creating(function ($model) {
+        static::creating(function($model) {
 
-            $model->{$model->getKeyName()} = $model->newUuid();
+            $keyName = $model->getKeyName();
+
+            $model->$keyName = $model->newUuid();
 
             $attributes = $model->getAllColumnsNames();
 
@@ -32,7 +35,7 @@ abstract class Model extends Base {
 
         });
 
-        static::saving(function ($model) {
+        static::saving(function($model) {
 
             $attributes = $model->getAllColumnsNames();
 
@@ -40,6 +43,14 @@ abstract class Model extends Base {
                 $model->attributes['updated_by'] = Auth::user()->id;
             }
             
+        });
+
+        static::created(function($model){
+            event(new CriteriaDataChanged($model));
+        });
+
+        static::updated(function($model){
+            event(new CriteriaDataChanged($model));
         });
     }
 

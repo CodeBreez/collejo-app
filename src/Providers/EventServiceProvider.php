@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'Collejo\App\Events\UserCreated' => [
             'Collejo\App\Listeners\SendPasswordCreateRequestEmail',
         ],
+        'Collejo\App\Events\CriteriaDataChanged' => [
+            'Collejo\App\Listeners\ClearCriteriaCache',
+        ],
     ];
 
     /**

@@ -90,7 +90,7 @@ abstract class BaseCriteria implements CriteriaInterface {
 		$query = $query->select(DB::raw(implode(', ', $selects)));
 
 		foreach ($this->joins() as $join) {
-			$query = $query->join($join[0], $join[1], '=', $join[2]);
+			$query = $query->leftJoin($join[0], $join[1], '=', $join[2]);
 		}
 
 		return $query;
@@ -99,7 +99,14 @@ abstract class BaseCriteria implements CriteriaInterface {
 	public function callback($callback)
 	{
 		$callback = 'callback' . ucfirst($callback);
-		return $this->$callback();
+
+		$key = 'criteria:' . $this->model . ':callbacks:' . md5(get_class($this) . '|' . $callback);
+
+		if (!Cache::has($key)) {
+			Cache::put($key, $this->$callback(), config('collejo.pagination.perpage'));
+		}
+
+		return Cache::get($key);
 	}
 
 	public function selects()
