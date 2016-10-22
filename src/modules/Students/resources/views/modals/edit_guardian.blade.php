@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#create-guardian').validate({
         rules:{!! $guradian_form_validator->renderRules() !!},
         submitHandler: function(form){

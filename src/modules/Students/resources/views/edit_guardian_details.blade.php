@@ -19,7 +19,7 @@
 @section('scripts')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#edit-details-form').validate({
         rules:{!! $guardian_form_validator->renderRules() !!},
         submitHandler: function(form){

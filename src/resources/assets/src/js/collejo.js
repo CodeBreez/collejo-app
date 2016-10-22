@@ -14,24 +14,23 @@ var Collejo = Collejo || {
     image: {},
     ready: {
         push: function(callback, recall) {
-            Collejo.ready.funcs.push({
+            C.f.push({
                 callback: callback,
                 recall: recall === true ? true : false
             })
         },
         call: function(ns) {
-            $.each(Collejo.ready.funcs, function(i, func) {
+            $.each(C.f, function(i, func) {
                 func.callback(ns);
             })
         },
         recall: function(ns) {
-            $.each(Collejo.ready.funcs, function(i, func) {
+            $.each(C.f, function(i, func) {
                 if (func.recall) {
                     func.callback(ns);
                 }
             })
-        },
-        funcs: []
+        }
     }
 };
 

@@ -5,7 +5,7 @@
 @section('content')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#reauth-form').validate({
         rules:{
             password:{

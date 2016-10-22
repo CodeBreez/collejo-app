@@ -19,7 +19,7 @@
 @section('scripts')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#edit-batch').validate({
         submitHandler: function(form){

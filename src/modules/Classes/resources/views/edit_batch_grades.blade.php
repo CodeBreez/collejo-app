@@ -15,7 +15,7 @@
 @section('scripts')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#batch-grades').validate({
         submitHandler: function(form){

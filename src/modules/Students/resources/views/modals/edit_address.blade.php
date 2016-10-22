@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#edit-contact').validate({
         submitHandler: function(form){

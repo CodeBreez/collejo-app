@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#edit-term').validate({
         submitHandler: function(form){

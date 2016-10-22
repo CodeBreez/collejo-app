@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#edit-employee-department').validate({
         rules:{!! $department_form_validator->renderRules() !!},

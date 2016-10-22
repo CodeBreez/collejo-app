@@ -19,7 +19,7 @@
 @section('scripts')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#edit-details-form').validate({
         rules:{!! $employee_form_validator->renderRules() !!},
         submitHandler: function(form){
@@ -35,7 +35,7 @@ $(function(){
             });
         }
     });
-});    
+});
 </script>
 
 @endsection

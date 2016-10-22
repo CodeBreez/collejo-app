@@ -15,7 +15,7 @@
 @section('scripts')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#edit-account-form').validate({
         rules:{!! $account_form_validator->renderRules() !!},
         submitHandler: function(form){

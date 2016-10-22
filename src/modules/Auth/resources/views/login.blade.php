@@ -5,7 +5,7 @@
 @section('content')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#login-form').validate({
         rules:{
             email:{

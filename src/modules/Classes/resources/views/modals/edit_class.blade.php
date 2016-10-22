@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#edit-class').validate({
         rules:{!! $class_form_validator->renderRules() !!},

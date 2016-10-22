@@ -18,7 +18,7 @@
 @section('scripts')
 
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 	$('.chk-permission').change(function(){
 		try{
 			if ($(this).is(':checked')) {

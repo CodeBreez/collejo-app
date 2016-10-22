@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
 
     $('#edit-employee-category').validate({
         rules:{!! $category_form_validator->renderRules() !!},

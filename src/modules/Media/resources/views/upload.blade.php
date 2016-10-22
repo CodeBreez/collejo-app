@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+C.ready(function(){
     $('#{{ $id }}-fileupload').fileupload({
         url: '{{ route('media.upload') }}',
         formData:{
