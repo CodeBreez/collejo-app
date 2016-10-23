@@ -15,7 +15,7 @@ class CreateEmployeePositionsTable extends Migration
         Schema::create('employee_positions', function (Blueprint $table) {
             $table->string('id', 45)->primary();
             $table->string('employee_category_id', 45);
-            $table->string('name', 20);
+            $table->string('name', 60);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

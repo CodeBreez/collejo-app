@@ -1,5 +1,5 @@
 <script type="text/javascript">
-C.ready(function(){
+$(function(){
 
     $('#edit-student-category').validate({
         rules:{!! $category_form_validator->renderRules() !!},

@@ -42,7 +42,7 @@ C.ready(function(){
 
 @section('tabs')
 
-    @include('employees::partials.edit_tabs')
+    @include('employees::partials.edit_employee_tabs')
 
 @endsection
 

@@ -14,7 +14,7 @@ class CreateEmployeeDepartmentsTable extends Migration
     {
         Schema::create('employee_departments', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->string('name', 20);
+            $table->string('name', 60);
             $table->string('code', 10)->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

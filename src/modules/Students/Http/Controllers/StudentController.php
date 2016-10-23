@@ -104,19 +104,23 @@ class StudentController extends BaseController
 
 	public function getStudentAddressesView($studentId)
 	{
-		$this->authorize('edit_grade');
+		$this->authorize('view_student_contact_details');
 
 		return view('students::view_student_addreses', ['student' => $this->studentRepository->findStudent($studentId)]);
 	}		
 
 	public function getStudentAddressesEdit($studentId)
 	{
+		$this->authorize('edit_student_contact_details');
+		
 		return view('students::edit_student_addreses', ['student' => $this->studentRepository->findStudent($studentId)]);
 	}	
 
 	public function postStudentAccountEdit(UpdateStudentAccountRequest $request, $studentId)
 	{
 		$this->authorize('edit_user_account_info');
+
+		$this->middleware('reauth');
 
 		$this->studentRepository->updateStudent($request->all(), $studentId);
 
@@ -127,6 +131,8 @@ class StudentController extends BaseController
 	{
 		$this->authorize('edit_user_account_info');
 
+		$this->middleware('reauth');
+
 		return view('students::edit_student_account', [
 				'student' => $this->studentRepository->findStudent($studentId),
 				'account_form_validator' => $this->jsValidator(UpdateStudentAccountRequest::class)
@@ -136,6 +142,8 @@ class StudentController extends BaseController
 	public function getStudentAccountView($studentId)
 	{
 		$this->authorize('view_user_account_info');
+
+		$this->middleware('reauth');
 
 		return view('students::view_student_account', [
 				'student' => $this->studentRepository->findStudent($studentId)

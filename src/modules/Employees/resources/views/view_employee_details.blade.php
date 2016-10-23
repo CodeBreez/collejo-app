@@ -10,7 +10,7 @@
 
 @section('tabs')
 
-    @include('employees::partials.view_tabs')
+    @include('employees::partials.view_employee_tabs')
 
 @endsection
 

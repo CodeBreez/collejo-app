@@ -18,6 +18,8 @@ return [
 	'picture' => 'Picture',
 	'employee_number' => 'Employee Number',
 	'name' => 'Name',
+	'email' => 'Email',
+	'password' => 'Password',
 	'first_name' => 'First Name',
 	'last_name' => 'Last Name',
 	'joined_on' => 'Joined Date',
@@ -27,5 +29,6 @@ return [
 	'employee_department' => 'Employee Department',
 	'date_of_birth' => 'Date of Birth',
 
-	'empty_list' => 'There are no Employees in the system.'
+	'empty_list' => 'There are no Employees in the system.',
+	'employee_updated' => 'Employee updated',
 ];

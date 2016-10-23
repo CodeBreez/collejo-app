@@ -25,7 +25,7 @@ class EmployeesModuleServiceProvider extends BaseModuleServiceProvider
         return [
             'view_employee_general_details' => ['edit_employee_general_details', 'view_employee_class_details', 'view_employee_contact_details', 'view_employee_recrutement_details', 'list_employees'],
             'view_employee_class_details' => ['assign_employee_to_class'],
-            'view_employee_contact_details' => ['edit_employee_contacts'],
+            'view_employee_contact_details' => ['edit_employee_contact_details'],
             'view_employee_recrutement_details' => ['edit_employee_recrutement_details'],
             'list_employees' => ['create_employee'],
             'list_employee_positions' => ['add_edit_employee_position'],

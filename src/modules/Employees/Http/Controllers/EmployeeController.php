@@ -6,6 +6,9 @@ use Collejo\App\Http\Controllers\Controller as BaseController;
 use Collejo\App\Repository\EmployeeRepository;
 use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeeDetailsRequest;
 use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeDetailsRequest;
+use Collejo\App\Modules\Employees\Http\Requests\CreateAddressRequest;
+use Collejo\App\Modules\Employees\Http\Requests\UpdateAddressRequest;
+use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeAccountRequest;
 use Collejo\App\Modules\Employees\Criteria\EmployeeListCriteria;
 
 class EmployeeController extends BaseController
@@ -20,54 +23,85 @@ class EmployeeController extends BaseController
 		]);
 	}
 
-	public function getEmployeeAddressesView()
+	public function getEmployeeAddressesView($employeeId)
+	{
+		$this->authorize('view_employee_contact_details');
+
+		return view('employees::view_employee_addreses', ['employee' => $this->employeeRepository->findEmployee($employeeId)]);
+	}
+
+	public function getEmployeeAddressesEdit($employeeId)
+	{
+		$this->authorize('edit_employee_contact_details');
+		
+		return view('employees::edit_employee_addreses', ['employee' => $this->employeeRepository->findEmployee($employeeId)]);
+	}
+
+	public function getEmployeeAddressNew($employeeId)
+	{
+        return $this->printModal(view('employees::modals.edit_address', [
+                'address' => null,
+                'employee' => $this->employeeRepository->findEmployee($employeeId)
+            ]));
+	}
+
+	public function postEmployeeAddressNew(CreateAddressRequest $request, $employeeId)
+	{
+        $address = $this->employeeRepository->createAddress($request->all(), $employeeId);
+
+        return $this->printPartial(view('employees::partials.address', [
+                'employee' => $this->employeeRepository->findEmployee($employeeId),
+                'address' => $address
+            ]), trans('employees::address.address_created'));
+	}
+
+	public function getEmployeeAddressEdit($employeeId)
 	{
 
 	}
 
-	public function getEmployeeAddressesEdit()
+	public function postEmployeeAddressEdit(UpdateAddressRequest $request, $employeeId)
 	{
 
 	}
 
-	public function getEmployeeAddressNew()
+	public function getEmployeeAddressDelete($employeeId)
 	{
 
 	}
 
-	public function postEmployeeAddressNew()
+	public function getEmployeeAccountView($employeeId)
 	{
+		$this->authorize('view_user_account_info');
 
-	}
-
-	public function getEmployeeAddressEdit()
-	{
-
-	}
-
-	public function postEmployeeAddressEdit()
-	{
-
-	}
-
-	public function getEmployeeAddressDelete()
-	{
-
-	}
-
-	public function getEmployeeAccountView()
-	{
-
-	}
-
-	public function getEmployeeAccountEdit()
-	{
 		$this->middleware('reauth');
+
+		return view('employees::view_employee_account', [
+				'employee' => $this->employeeRepository->findEmployee($employeeId)
+			]);
 	}
 
-	public function postEmployeeAccountEdit()
+	public function getEmployeeAccountEdit($employeeId)
 	{
+		$this->authorize('edit_user_account_info');
+		
 		$this->middleware('reauth');
+
+		return view('employees::edit_employee_account', [
+				'employee' => $this->employeeRepository->findEmployee($employeeId),
+				'account_form_validator' => $this->jsValidator(UpdateEmployeeAccountRequest::class)
+			]);		
+	}
+
+	public function postEmployeeAccountEdit(UpdateEmployeeAccountRequest $request, $employeeId)
+	{
+		$this->authorize('edit_user_account_info');
+
+		$this->middleware('reauth');
+
+		$this->employeeRepository->updateEmployee($request->all(), $employeeId);
+
+		return $this->printJson(true, [], trans('employees::employee.employee_updated'));		
 	}
 
 
@@ -84,7 +118,7 @@ class EmployeeController extends BaseController
 
 	public function postEmployeeNew(CreateEmployeeDetailsRequest $request)
 	{
-		$employee = $this->employeeRepository->create($request->all());
+		$employee = $this->employeeRepository->createEmployee($request->all());
 
 		return $this->printRedirect(route('employee.details.edit', $employee->id));
 	}
@@ -111,7 +145,8 @@ class EmployeeController extends BaseController
 	{
 		return view('employees::employee_list', [
 				'employees' => $this->employeeRepository->getEmployees($criteria)
-									->with('user', 'employeeDepartment', 'employeePosition', 'employeeGrade')->paginate(),
+									->with('user', 'employeeDepartment', 'employeePosition', 'employeeGrade')
+									->paginate(),
 				'criteria' => $criteria
 			]);
 	}

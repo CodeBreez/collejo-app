@@ -112,6 +112,44 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 		return $this->search($criteria);
 	}
 
+	public function deleteAddress($addressId, $employeeId)
+	{
+		$this->findAddress($addressId, $employeeId)->delete();
+	}
+
+	public function updateAddress(array $attributes, $addressId, $employeeId)
+	{
+		$attributes['is_emergency'] = isset($attributes['is_emergency']);
+
+		$this->findAddress($addressId, $employeeId)->update($attributes);
+
+		return $this->findAddress($addressId, $employeeId);
+	}
+
+	public function createAddress(array $attributes, $employeeId)
+	{
+		$address = null;
+
+		$employee = $this->findEmployee($employeeId);
+
+		$attributes['user_id'] = $employee->user->id;
+		$attributes['is_emergency'] = isset($attributes['is_emergency']);
+
+		DB::transaction(function () use ($attributes, &$address) {
+			$address = Address::create($attributes);
+		});
+
+		return $address;
+	}
+
+	public function findAddress($addressId, $employeeId)
+	{
+		return Address::where([
+					'user_id' => $this->findEmployee($employeeId)->user->id, 
+					'id' => $addressId]
+				)->firstOrFail();
+	}
+
 	public function findEmployee($id)
 	{
 		return Employee::findOrFail($id);
@@ -129,7 +167,9 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
 			$attributes['image_id'] = null;
 		}
 
-		$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
+		if (isset($attributes['employee_position_id'])) {
+			$attributes['employee_category_id'] = $this->findEmployeePosition($attributes['employee_position_id'])->employeeCategory->id;
+		}
 
 		$employeeAttributes = $this->parseFillable($attributes, Employee::class);
 
