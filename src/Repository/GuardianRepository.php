@@ -44,6 +44,45 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
 
 		return $guardian;
 	}
+
+	public function deleteAddress($addressId, $guardianId)
+	{
+		$this->findAddress($addressId, $guardianId)->delete();
+	}
+
+	public function updateAddress(array $attributes, $addressId, $guardianId)
+	{
+		$attributes['is_emergency'] = isset($attributes['is_emergency']);
+
+		$this->findAddress($addressId, $guardianId)->update($attributes);
+
+		return $this->findAddress($addressId, $guardianId);
+	}
+
+	public function createAddress(array $attributes, $guardianId)
+	{
+		$address = null;
+
+		$guardian = $this->findGuardian($guardianId);
+
+		$attributes['user_id'] = $guardian->user->id;
+		$attributes['is_emergency'] = isset($attributes['is_emergency']);
+
+		DB::transaction(function () use ($attributes, &$address) {
+			$address = Address::create($attributes);
+		});
+
+		return $address;
+	}
+
+	public function findAddress($addressId, $guardianId)
+	{
+		return Address::where([
+					'user_id' => $this->findGuardian($guardianId)->user->id, 
+					'id' => $addressId]
+				)->firstOrFail();
+	}
+
 	public function findGuardian($id)
 	{
 		return Guardian::findOrFail($id);

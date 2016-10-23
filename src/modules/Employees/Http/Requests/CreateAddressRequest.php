@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\App\Modules\Employee\Http\Requests;
+namespace Collejo\App\Modules\Employees\Http\Requests;
 
 use Collejo\App\Http\Requests\Request;
 

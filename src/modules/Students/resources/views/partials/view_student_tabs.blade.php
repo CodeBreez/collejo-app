@@ -8,8 +8,13 @@
         </li>
     @endcan    
     @can('view_student_guardian_details')
-	    <li class="{{ active_class(if_route(['student.guardians.view'])) }}">
-	    	<a href="{{ route('student.guardians.view', $student->id) }}">{{ trans('students::student.guardians_details') }}</a>
+        <li class="{{ active_class(if_route(['student.guardians.view'])) }}">
+            <a href="{{ route('student.guardians.view', $student->id) }}">{{ trans('students::student.guardians_details') }}</a>
+        </li>
+    @endcan    
+    @can('edit_student_contact_details')
+	    <li class="{{ active_class(if_route(['student.addresses.view'])) }}">
+	    	<a href="{{ route('student.addresses.view', $student->id) }}">{{ trans('students::student.contact_details') }}</a>
 	    </li>
     @endcan
     @can('view_user_account_info')

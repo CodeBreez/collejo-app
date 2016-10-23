@@ -22,7 +22,12 @@
         <li class="{{ active_class(if_route(['student.guardians.edit'])) }}">
             <a href="{{ route('student.guardians.edit', $student->id) }}">{{ trans('students::student.guardians_details') }}</a>
         </li>
-    @endcan    
+    @endcan   
+     @can('edit_student_contact_details')
+        <li class="{{ active_class(if_route(['student.addresses.edit'])) }}">
+            <a href="{{ route('student.addresses.edit', $student->id) }}">{{ trans('students::student.contact_details') }}</a>
+        </li>
+    @endcan
     @can('edit_user_account_info')
         <li class="{{ active_class(if_route(['student.account.edit'])) }}">
         	<a href="{{ route('student.account.edit', $student->id) }}">{{ trans('students::student.account_details') }}</a>

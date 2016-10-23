@@ -1,16 +1,16 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', $guardian->name)
+@section('title', $student->name)
 
 @section('tools')
 
-<a href="{{ route('guardian.addresses.edit', $guardian->id) }}" class="btn btn-primary pull-right"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>  
+<a href="{{ route('student.addresses.edit', $student->id) }}" class="btn btn-primary pull-right"><i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}</a>  
 
 @endsection
 
 @section('tabs')
 
-    @include('students::partials.view_guardian_tabs')
+    @include('students::partials.view_student_tabs')
 
 @endsection
 
@@ -21,9 +21,9 @@
 
     <div class="columns">
 
-        @foreach($guardian->addresses as $address)
+        @foreach($student->addresses as $address)
 
-            @include('students::partials.guardian_address')
+            @include('students::partials.student_address')
 
         @endforeach
 

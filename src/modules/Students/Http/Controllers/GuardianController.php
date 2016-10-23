@@ -8,6 +8,7 @@ use Collejo\App\Modules\Students\Criteria\GuardiansSearchCriteria;
 use Collejo\App\Modules\Students\Http\Requests\UpdateGuardianRequest;
 use Collejo\App\Modules\Students\Http\Requests\CreateGuardianRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateGuardianAccountRequest;
+use Collejo\App\Modules\Students\Http\Requests\CreateAddressRequest;
 
 class GuardianController  extends BaseController
 {
@@ -16,46 +17,70 @@ class GuardianController  extends BaseController
 
     public function getGuardianAddressDelete($studentId, $addressId)
     {
-        $this->studentRepository->deleteAddress($addressId, $studentId);
+        $this->authorize('edit_guardian_contact_details');
+
+        $this->guardianRepository->deleteAddress($addressId, $studentId);
 
         return $this->printJson(true, [], trans('students::address.address_deleted'));
     }
 
     public function postGuardianAddressEdit(UpdateAddressRequest $request, $studentId, $addressId)
     {
-        $address = $this->studentRepository->updateAddress($request->all(), $addressId, $studentId);
+        $this->authorize('edit_guardian_contact_details');
 
-        return $this->printPartial(view('students::partials.address', [
-                'student' => $this->studentRepository->findStudent($studentId),
+        $address = $this->guardianRepository->updateAddress($request->all(), $addressId, $studentId);
+
+        return $this->printPartial(view('students::partials.guardian_address', [
+                'guardian' => $this->guardianRepository->findGuardian($studentId),
                 'address' => $address
             ]), trans('students::address.address_updated'));
     }
 
     public function getGuardianAddressEdit($studentId, $addressId)
     {
+        $this->authorize('edit_guardian_contact_details');
+
         return $this->printModal(view('students::modals.edit_address', [
-                'address' => $this->studentRepository->findAddress($addressId, $studentId),
-                'student' => $this->studentRepository->findStudent($studentId)
+                'address' => $this->guardianRepository->findAddress($addressId, $studentId),
+                'guardian' => $this->guardianRepository->findGuardian($studentId)
             ]));
     }
 
     public function postGuardianAddressNew(CreateAddressRequest $request, $studentId)
     {
-        $address = $this->studentRepository->createAddress($request->all(), $studentId);
+        $this->authorize('edit_guardian_contact_details');
 
-        return $this->printPartial(view('students::partials.address', [
-                'student' => $this->studentRepository->findStudent($studentId),
+        $address = $this->guardianRepository->createAddress($request->all(), $studentId);
+
+        return $this->printPartial(view('students::partials.guardian_address', [
+                'guardian' => $this->guardianRepository->findGuardian($studentId),
                 'address' => $address
             ]), trans('students::address.address_created'));
     }
 
     public function getGuardianAddressNew($studentId)
     {
-        return $this->printModal(view('students::modals.edit_address', [
+        $this->authorize('edit_guardian_contact_details');
+
+        return $this->printModal(view('students::modals.edit_guardian_address', [
                 'address' => null,
-                'student' => $this->studentRepository->findStudent($studentId)
+                'guardian' => $this->guardianRepository->findGuardian($studentId)
             ]));
     }
+
+    public function getGuardianAddressesView($studentId)
+    {
+        $this->authorize('view_guardian_contact_details');
+
+        return view('students::view_guardian_addreses', ['guardian' => $this->guardianRepository->findGuardian($studentId)]);
+    }       
+
+    public function getGuardianAddressesEdit($studentId)
+    {
+        $this->authorize('view_guardian_contact_details');
+        
+        return view('students::edit_guardian_addreses', ['guardian' => $this->guardianRepository->findGuardian($studentId)]);
+    }   
 
     public function getGuardianNew()
     {

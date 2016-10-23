@@ -1,6 +1,6 @@
 @extends('collejo::dash.sections.tab_view')
 
-@section('title', 'Edit Student')
+@section('title', $student->name)
 
 @section('breadcrumbs')
 
@@ -33,7 +33,7 @@
 
         @foreach($student->addresses as $address)
 
-            @include('students::partials.address')
+            @include('students::partials.student_address')
 
         @endforeach
 

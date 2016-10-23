@@ -116,6 +116,59 @@ class StudentController extends BaseController
 		return view('students::edit_student_addreses', ['student' => $this->studentRepository->findStudent($studentId)]);
 	}	
 
+	public function getStudentAddressNew($studentId)
+	{
+		$this->authorize('edit_student_contact_details');
+
+        return $this->printModal(view('students::modals.edit_student_address', [
+                'address' => null,
+                'student' => $this->studentRepository->findStudent($studentId)
+            ]));
+	}
+
+	public function postStudentAddressNew(CreateAddressRequest $request, $studentId)
+	{
+		$this->authorize('edit_student_contact_details');
+
+        $address = $this->studentRepository->createAddress($request->all(), $studentId);
+
+        return $this->printPartial(view('students::partials.student_address', [
+                'student' => $this->studentRepository->findStudent($studentId),
+                'address' => $address
+            ]), trans('students::address.address_created'));
+	}
+
+	public function getStudentAddressEdit($studentId, $addressId)
+	{
+		$this->authorize('edit_student_contact_details');
+
+        return $this->printModal(view('students::modals.edit_address', [
+                'address' => $this->studentRepository->findAddress($addressId, $studentId),
+                'student' => $this->studentRepository->findStudent($studentId)
+            ]));
+	}
+
+	public function postStudentAddressEdit(UpdateAddressRequest $request, $studentId, $addressId)
+	{
+		$this->authorize('edit_student_contact_details');
+
+        $address = $this->studentRepository->updateAddress($request->all(), $addressId, $studentId);
+
+        return $this->printPartial(view('students::partials.student_address', [
+                'student' => $this->studentRepository->findStudent($studentId),
+                'address' => $address
+            ]), trans('students::address.address_updated'));
+	}
+
+	public function getStudentAddressDelete($studentId, $addressId)
+	{
+		$this->authorize('edit_student_contact_details');
+
+        $this->studentRepository->deleteAddress($addressId, $studentId);
+
+        return $this->printJson(true, [], trans('students::address.address_deleted'));
+	}
+
 	public function postStudentAccountEdit(UpdateStudentAccountRequest $request, $studentId)
 	{
 		$this->authorize('edit_user_account_info');
