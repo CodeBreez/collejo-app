@@ -14,6 +14,8 @@ class Guardian extends Model
     protected $table = 'guardians';
 
     protected $fillable = ['user_id', 'ssn'];
+	
+	protected $with = ['user'];
 
     public function students()
     {

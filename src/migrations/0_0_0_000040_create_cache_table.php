@@ -14,9 +14,10 @@ class CreateCacheTable extends Migration
     {
         Schema::create('cache', function (Blueprint $table) {
             $table->string('key')->unique();
-            $table->blob('value');
             $table->integer('expiration');
         });
+
+        DB::statement('ALTER TABLE cache ADD value MEDIUMBLOB');
     }
 
     /**

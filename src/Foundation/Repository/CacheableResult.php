@@ -10,22 +10,22 @@ use Cache;
 
 class CacheableResult {
 
-	private $builder;
+    private $builder;
 
-	private $columns;
+    private $columns;
 
-	public function get($columns = ['*'])
-	{
-		$this->columns = $columns;
-		
-		return $this->getResult($columns);
-	}
+    public function get($columns = ['*'])
+    {
+        $this->columns = $columns;
+        
+        return $this->getResult($columns);
+    }
 
-	public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
-	{
-		$this->columns = $columns;
+    public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    {
+        $this->columns = $columns;
 
-		$page = $page ?: Paginator::resolveCurrentPage($pageName);
+        $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $perPage = $perPage ?: $this->builder->getPerPage();
 
@@ -33,60 +33,58 @@ class CacheableResult {
 
         $key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':count';
 
-        if (!Cache::has($key)) {
-			Cache::put($key, $query->getCountForPagination(), config('collejo.pagination.perpage'));
-		}
-
-        $total = Cache::get($key);
+        $total = Cache::remember($key, config('collejo.pagination.perpage'), function() use ($key, $query){
+            return $query->getCountForPagination();
+        });
 
         $results = new Collection;
 
         if ($total) {
-        	$this->builder->forPage($page, $perPage);
-        	$results = $this->getResult();
+            $this->builder->forPage($page, $perPage);
+            $results = $this->getResult();
         }
 
         return new LengthAwarePaginator($results, $total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]); 
-	}
+    }
 
-	public function with()
-	{
-		$this->builder->with(func_get_args());
-		return $this;
-	}
+    public function with()
+    {
+        $this->builder->with(func_get_args());
+        return $this;
+    }
 
-	public function withTrashed()
-	{
-		$this->builder->withTrashed(func_get_args());
-		return $this;
-	}	
+    public function withTrashed()
+    {
+        $this->builder->withTrashed(func_get_args());
+        return $this;
+    }   
 
-	public function count()
-	{
-		return $this->builder->count();
-	}
+    public function count()
+    {
+        return $this->builder->count();
+    }
 
-	private function getResult()
-	{
-		$key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':result';
+    private function getResult()
+    {
+        $key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':result';
 
-		if (!Cache::has($key)) {
-			Cache::put($key, $this->builder->get(), config('collejo.pagination.perpage'));
-		}
+        $builder = $this->builder;
 
-		return Cache::get($key);
-	}
+        return Cache::remember($key, config('collejo.pagination.perpage'), function() use ($builder){
+            return $this->builder->get();
+        });
+    }
 
-	private function getQueryHash()
-	{
-		return md5($this->builder->toSql() . '|' . implode(',', $this->columns));
-	}
+    private function getQueryHash()
+    {
+        return md5($this->builder->toSql() . '|' . implode(',', $this->columns));
+    }
 
-	public function __construct(Builder $builder)
-	{
-		$this->builder = $builder;
-	}
+    public function __construct(Builder $builder)
+    {
+        $this->builder = $builder;
+    }
 }

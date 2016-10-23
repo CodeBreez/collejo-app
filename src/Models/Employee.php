@@ -22,6 +22,8 @@ class Employee extends Model
 
     protected $dates = ['joined_on'];
 
+    protected $with = ['user'];
+
     public function employeeDepartment()
     {
     	return $this->belongsTo(EmployeeDepartment::class);
