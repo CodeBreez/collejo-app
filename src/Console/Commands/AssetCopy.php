@@ -94,8 +94,8 @@ class AssetCopy extends Command
                 return base_path('themes/' . $theme->name) . '/css/' . $style;
             });
 
-            $assetDir = base_path('public/theme/css/');
-            $buildDir = base_path('public/build/theme/css/');
+            $assetDir = base_path('public/themes/'. $theme->name . '/css/');
+            $buildDir = base_path('public/build/themes/'. $theme->name . '/css/');
 
             if (!file_exists($assetDir)) {
                 mkdir($assetDir, 0755, true);
@@ -111,9 +111,9 @@ class AssetCopy extends Command
             foreach ($theme->getStyles() as $file) {
 
                 $versionedName = md5($file . microtime(true)) . '-' . $file;
-                $regularFilePath = '/theme/css/' . $file;
+                $regularFilePath = '/themes/'. $theme->name . '/css/' . $file;
 
-                $manifest[$regularFilePath] = 'theme/css/' . $versionedName;
+                $manifest[$regularFilePath] = 'themes/'. $theme->name . '/css/' . $versionedName;
 
                 copy(base_path('themes/' . $theme->name) . '/css/' . $file, $assetDir . $file);
                 copy(base_path('themes/' . $theme->name) . '/build/css/' . $file, $buildDir . $versionedName);

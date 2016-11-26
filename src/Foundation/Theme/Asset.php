@@ -17,9 +17,9 @@ class Asset {
 	public static function renderStyles()
 	{
 		if (ThemeCollection::current()) {
-			self::$styles = array_merge(self::$styles, ThemeCollection::current()->getStyles()->map(function($style){
-				return '/theme/css/' . $style;
-			})->all());
+			self::$styles = ThemeCollection::current()->getStyles()->map(function($style){
+				return '/themes/' . ThemeCollection::current()->name . '/css/' . $style;
+			})->all();
 		}
 
 		foreach (self::$styles as $file) {
