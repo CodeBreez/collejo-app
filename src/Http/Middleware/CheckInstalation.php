@@ -10,7 +10,7 @@ class CheckInstalation
 
     public function handle($request, Closure $next, $guard = null)
     {
-        if (!app()->isInstalled()) {
+        if (!app()->isInstalled() && !env('MULTI_TENANT_MODE')) {
             return view('collejo::setup.incomplete');
         }
 
