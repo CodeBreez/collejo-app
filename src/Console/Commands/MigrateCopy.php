@@ -33,6 +33,10 @@ class MigrateCopy extends Command
         $src = realpath(__DIR__ . '/../../migrations');
         $dest = base_path('database/migrations');
 
+        if (!file_exists($dest)) {
+            mkdir($dest);
+        }
+
         array_map('unlink', glob($dest . '/*'));
 
         foreach (new DirectoryIterator($src) as $fileInfo) {
