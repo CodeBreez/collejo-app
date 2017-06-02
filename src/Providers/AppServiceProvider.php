@@ -13,6 +13,8 @@ use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Repository\ClassRepository;
 use Collejo\App\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
 use Collejo\App\Repository\GuardianRepository;
+use Collejo\App\Contracts\Repository\SubjectRepository as SubjectRepositoryContract;
+use Collejo\App\Repository\SubjectRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,5 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(GuardianRepositoryContract::class, GuardianRepository::class);
         $this->app->bind(EmployeeRepositoryContract::class, EmployeeRepository::class);
         $this->app->bind(ClassRepositoryContract::class, ClassRepository::class);
+        $this->app->bind(ClassRepositoryContract::class, ClassRepository::class);
+        $this->app->bind(SubjectRepositoryContract::class, SubjectRepository::class);
     }
 }
