@@ -30,6 +30,7 @@ class Install extends ConfigCacheCommand
     {
         if (app()->isInstalled()) {
             $this->error('Collejo is already installed. Exiting.');
+            $this->info('Use artisan command `php artisan admin:create` to create an admin account.');
             exit();
         }
 
