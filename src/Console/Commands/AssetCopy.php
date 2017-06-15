@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ */
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Theme;
 use DirectoryIterator;
 
+/**
+ * Class AssetCopy
+ * @package Collejo\App\Console\Commands
+ */
 class AssetCopy extends Command
 {
     /**
@@ -60,11 +67,11 @@ class AssetCopy extends Command
 
             if (!file_exists($assetDir)) {
                 mkdir($assetDir, 0755, true);
-            } 
+            }
 
             if (!file_exists($buildDir)) {
                 mkdir($buildDir, 0755, true);
-            } 
+            }
 
             array_map('unlink', glob($assetDir . '/*'));
             array_map('unlink', glob($buildDir . '/*'));
@@ -89,6 +96,7 @@ class AssetCopy extends Command
             }
         }
 
+        // if a theme is set copy those asset files too
         if (($theme = Theme::current())) {
             $srcFiles = $theme->getStyles()->map(function($style) use ($theme) {
                 return base_path('themes/' . $theme->name) . '/css/' . $style;
@@ -99,11 +107,11 @@ class AssetCopy extends Command
 
             if (!file_exists($assetDir)) {
                 mkdir($assetDir, 0755, true);
-            } 
+            }
 
             if (!file_exists($buildDir)) {
                 mkdir($buildDir, 0755, true);
-            } 
+            }
 
             array_map('unlink', glob($assetDir . '/*'));
             array_map('unlink', glob($buildDir . '/*'));

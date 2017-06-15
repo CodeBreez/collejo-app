@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ */
+
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Collejo\App\Contracts\Repository\UserRepository;
 
+/**
+ * Class AdminCreate
+ * @package Collejo\App\Console\Commands
+ */
 class AdminCreate extends Command
 {
     /**
@@ -53,16 +61,35 @@ class AdminCreate extends Command
         $this->userRepository->createAdminUser($name, $email, $password);
     }
 
+    /**
+     * Checks if a given email is valid
+     *
+     * @param $email
+     *
+     * @return bool
+     */
     private function isValidEmail($email)
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    /**
+     * Checks if an account is already there in the database for the given email
+     *
+     * @param $email
+     *
+     * @return bool
+     */
     private function accountExists($email)
     {
         return (bool) $this->userRepository->findByEmail($email);
     }
 
+    /**
+     * AdminCreate constructor.
+     *
+     * @param UserRepository $userRepository
+     */
     public function __construct(UserRepository $userRepository)
     {
         parent::__construct();

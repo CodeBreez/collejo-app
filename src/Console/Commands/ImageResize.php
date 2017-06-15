@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ */
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Filesystem\Filesystem;
@@ -10,6 +13,10 @@ use Image;
 use Storage;
 use Exception;
 
+/**
+ * Class ImageResize
+ * @package Collejo\App\Console\Commands
+ */
 class ImageResize extends ConfigCacheCommand
 {
     /**
@@ -40,11 +47,11 @@ class ImageResize extends ConfigCacheCommand
                 $disk = Storage::disk($config['disk']);
 
                 $this->info('Processing ' . $bucket);
-                
+
                 foreach (Media::where('bucket', $bucket)->get() as $image) {
-                    
+
                     $srcFile = $config['path'] . '/original/' . $image->fileName;
-                    
+
                     $this->info('Source File ' . $srcFile);
 
                     try {
@@ -58,11 +65,11 @@ class ImageResize extends ConfigCacheCommand
                             $temp = tempnam(storage_path('tmp'), 'tmp');
 
                             $file = $disk->get($srcFile);
-                            
+
                             Image::make($file)->fit($size[0], $size[1])->save($temp);
-                            
+
                             $destName = $config['path'] . '/' . $name . '/' . $image->fileName;
-                            
+
                             $disk->put($destName, File::get($temp));
 
                             unlink($temp);
@@ -72,7 +79,7 @@ class ImageResize extends ConfigCacheCommand
                         }
 
                     } catch (Exception $e) {
-                        
+
                         $this->error('Failed to process image. ERR:' . $e->getMessage());
                     }
 

@@ -26,6 +26,7 @@
     "jquery-form": "^3.50.0",
     "jquery-validation": "^1.15.0",
     "moment": "^2.13.0",
-    "selectize": "^0.12.1"
+    "selectize": "^0.12.1",
+    "vue": "^2.3.4"
   }
 }

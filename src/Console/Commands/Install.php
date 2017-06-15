@@ -1,10 +1,17 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ */
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 
+/**
+ * Class Install
+ * @package Collejo\App\Console\Commands
+ */
 class Install extends ConfigCacheCommand
 {
     /**
@@ -35,7 +42,7 @@ class Install extends ConfigCacheCommand
         }
 
         $this->call('migrate:copy');
-                                                  
+
         $this->info(" ,-----.         ,--. ,--.           ,--.         ");
         $this->info("'  .--./  ,---.  |  | |  |  ,---.    `--'  ,---.  ");
         $this->info("|  |     | .-. | |  | |  | | .-. :   ,--. | .-. | ");
@@ -44,7 +51,7 @@ class Install extends ConfigCacheCommand
         $this->info("                                   '---'          ");
 
         $this->info('Done');
-        
+
         $this->info('Creating Admin Account');
 
         $this->call('admin:create');
@@ -56,7 +63,7 @@ class Install extends ConfigCacheCommand
         $this->call('admin:permissions');
 
         $this->info('Done');
-        
+
         $this->info('Setup complete');
         $this->info('Documentation can be found at https://github.com/codebreez/collejo-docs');
     }

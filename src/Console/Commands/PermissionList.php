@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ */
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DirectoryIterator;
 use Collejo\App\Contracts\Repository\UserRepository;
 
+/**
+ * Class PermissionList
+ * @package Collejo\App\Console\Commands
+ */
 class PermissionList extends Command
 {
     /**
