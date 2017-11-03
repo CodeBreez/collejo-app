@@ -3,9 +3,9 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Request;
 
-class RedirectIfAuthenticated
+class Ajax
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/dash');
+
+        if (!$request->ajax()) {
+            abort(404);
         }
 
         return $next($request);

@@ -1,7 +1,7 @@
 <template>
     <div class="form-auth">
 
-        <vf-form :action="route('home')" method="POST">
+        <b-form @submit.prevent="onSubmit">
 
             <div class="text-center">
                 <div class="auth-logo"></div>
@@ -9,18 +9,23 @@
 
             <h2 class="text-center brand-text">Collejo</h2>
 
-            <vf-text :label="trans('auth::auth.email')" required name="email" ref="email"></vf-text>
+            <b-form-group :label="trans('auth::auth.email')" label-for="emailInput">
+                <b-form-input id="emailInput" type="email" v-model="loginForm.email" required></b-form-input>
+            </b-form-group>
 
-            <vf-password :label="trans('auth::auth.password')" required name="password" ref="password"></vf-password>
+            <b-form-group :label="trans('auth::auth.password')" label-for="passwordInput">
+                <b-form-input id="passwordInput" type="password" v-model="loginForm.password" required></b-form-input>
+            </b-form-group>
 
             <div class="checkbox-row">
-                <input type="checkbox" name="remember" id="remember-me">
-                <label for="remember-me"> <span>{{ trans('auth::auth.remember_me') }}</span></label>
+                <b-form-checkbox v-model="loginForm.remember_me">
+                    {{ trans('auth::auth.remember_me') }}
+                </b-form-checkbox>
             </div>
 
-            <vf-submit class="btn-block">{{ trans('auth::auth.login') }}</vf-submit>
+            <b-button type="submit" variant="primary" block>{{ trans('auth::auth.login') }}</b-button>
 
-        </vf-form>
+        </b-form>
 
     </div>
 </template>
@@ -29,8 +34,21 @@
 
     export default {
 	    mixins: [ C.mixins.Routes, C.mixins.Trans ],
-        mounted() {
-            console.log('Component mounted.')
+        data(){
+	    	return {
+			    loginForm:{
+				    email:'',
+				    password:'',
+				    remember_me:false
+			    }
+		    }
+        },
+        methods:{
+	        onSubmit(){
+		        axios.post(this.route('auth.login'), this.loginForm)
+			        .then(response => console.log(response))
+			        .catch(errors => console.log(errors));
+	        }
         }
     }
 </script>

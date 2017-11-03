@@ -5,7 +5,7 @@
 
     <body>
 
-        @include('base::dash.menu.menubar')
+        @include('dashboard::menu.menubar')
 
         <div class="dash-content container-fluid">
             @yield('content')

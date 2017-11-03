@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="bs-main-navbar-collapse">
             <ul class="nav navbar-nav">
 
-                @foreach (Menu::getMenuBarItems()->sortBy('order') as $item)
+                @foreach (Menus::getMenuBarItems()->sortBy('order') as $item)
 
                     @if($item->isVisible())
 

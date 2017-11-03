@@ -3,11 +3,15 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class JsonRequest
 {
-    /**
+
+	const PARSED_METHODS = [
+		'POST', 'PUT', 'PATCH'
+	];
+
+	/**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -17,10 +21,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/dash');
-        }
 
-        return $next($request);
+	    if (in_array($request->getMethod(), self::PARSED_METHODS)) {
+		    $request->merge((array)json_decode($request->getContent()));
+	    }
+
+	    return $next($request);
     }
 }

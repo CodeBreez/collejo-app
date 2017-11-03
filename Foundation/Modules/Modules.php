@@ -5,7 +5,7 @@ namespace Collejo\Foundation\Modules;
 use Illuminate\Support\Facades\Route;
 
 /**
- * @file Application.php
+ * @file Modules.php
  * Description.
  *
  * @author Anuradha Jayathilaka <anuradha@collejo.com>
@@ -94,5 +94,10 @@ class Modules{
 		}
 
 		return $currentPath = Route::getFacadeRoot()->current()->getName();
+	}
+
+	public function __construct($app){
+
+		$this->app = $app;
 	}
 }

@@ -3,9 +3,9 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
-class RedirectIfAuthenticated
+class Authenticate
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/dash');
+        if (Auth::guard($guard)->guest()) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Unauthorized.', 401);
+            } else {
+
+                return redirect()->guest(route('auth.login'));
+            }
         }
 
         return $next($request);

@@ -3,9 +3,11 @@
 namespace Collejo\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use Session;
+use Carbon;
 
-class RedirectIfAuthenticated
+class SetUserTime
 {
     /**
      * Handle an incoming request.
@@ -17,8 +19,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/dash');
+        $userTime = $request->header('X-User-Time');
+
+        if (!is_null($userTime)) {
+            
+            $time = Carbon::parse(substr($userTime, 0, 34));
+
+            Session::put('user-tz', $time->timezoneName);
         }
 
         return $next($request);

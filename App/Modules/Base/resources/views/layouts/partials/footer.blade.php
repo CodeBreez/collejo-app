@@ -1,5 +1,5 @@
 <footer class="text-center text-muted">
-	{{ date('Y', time()) }} {!! trans('common.copyright_text', ['link' => trans('common.copyright_link')]) !!}
+	{{ date('Y', time()) }} {!! trans('base::common.copyright_text', ['link' => trans('base::common.copyright_link')]) !!}
 
 	@if(env('APP_DEBUG') && Auth::user())
 		<!--pre>

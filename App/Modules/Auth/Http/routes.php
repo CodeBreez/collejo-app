@@ -21,6 +21,6 @@ Route::group(['prefix' => 'password'], function() {
 
 Route::group(['prefix' => 'dash'], function() {
 
-	//Route::get('profile', 'ProfileController@getProfile')->name('user.profile');
+	Route::get('profile', 'ProfileController@getProfile')->name('user.profile');
 
 });

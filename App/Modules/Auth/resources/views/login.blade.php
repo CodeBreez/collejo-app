@@ -1,4 +1,4 @@
-@extends('base::layouts.auth')
+@extends('auth::layouts.auth')
 
 @section('title', trans('auth::auth.login'))
 
