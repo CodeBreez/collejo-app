@@ -1,4 +1,8 @@
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+
+// BS4 Beta alias
+$gray-lighter:$gray-200;
+$gray-light:$gray-100;
 
 // Body
 $body-bg: #f5f8fa;

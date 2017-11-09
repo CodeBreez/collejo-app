@@ -2,10 +2,6 @@
 
 @section('title', 'Dashboard')
 
-@section('styles')
-	<link href="{{ mix('/assets/dashboard/css/module.css') }}" rel="stylesheet" type="text/css">
-@endsection
-
 @section('content')
 
 <section class="section section-content section-content-transparent">
