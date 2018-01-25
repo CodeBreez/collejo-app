@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div id="app">
+<div id="login">
     <login></login>
 </div>
 

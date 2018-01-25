@@ -2,6 +2,8 @@
 
 namespace Collejo\Foundation;
 
+require_once ('helpers.php');
+
 /**
  * @file Application.php
  * Description.

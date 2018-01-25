@@ -81,8 +81,6 @@ class Modules{
 	{
 		$router = app()->make('router');
 
-		$route = Route::getFacadeRoot()->current();
-
 		foreach($router->getRoutes() as $route){
 
 			if ($route->getName() == Route::getFacadeRoot()->current()->getName()) {
@@ -92,8 +90,6 @@ class Modules{
 				return snake_case($parts[0]);
 			}
 		}
-
-		return $currentPath = Route::getFacadeRoot()->current()->getName();
 	}
 
 	public function __construct($app){

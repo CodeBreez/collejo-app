@@ -10,5 +10,6 @@ return [
     'reauth' => 'Security Check',
 
     'reauth_msg' => 'Enter your password again',
-    'reauth_expired' => 'Authentication must be confirmed to save data'
+    'reauth_expired' => 'Authentication must be confirmed to save data',
+
 ];

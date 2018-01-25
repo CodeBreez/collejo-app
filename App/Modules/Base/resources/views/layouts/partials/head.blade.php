@@ -14,6 +14,6 @@
     @yield('styles')
 
     <script type="text/javascript" src="{{ mix('/assets/base/js/bootstrap.js') }}"></script>
-    <script type="text/javascript" src="/js/routes.js"></script>
+    <script type="text/javascript" src="{{ mix('/assets/base/js/routes.js') }}"></script>
 
 </head>
