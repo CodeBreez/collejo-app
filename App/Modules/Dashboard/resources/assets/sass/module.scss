@@ -21,8 +21,12 @@ body{background: $gray-lighter;}
 	margin-top:50px;padding-top:15px;
 
 	.section{
-		h2{margin: 0;font-family: $font-family-brand;}
-		.tab-content{background: #fff;}
+		h2{
+			margin: 0;font-family: $font-family-brand;
+		}
+		.tab-content{
+			background: #fff;
+		}
 		.tab-pane{
 			padding: 15px;
 			.form-horizontal, .columns{

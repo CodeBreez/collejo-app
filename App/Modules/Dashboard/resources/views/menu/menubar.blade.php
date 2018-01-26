@@ -1,5 +1,5 @@
 <script>
-    window.C.menus = {!! json_encode(Menus::getMenuBarItems(), JSON_PRETTY_PRINT) !!};
+    window.C.menus = {!! json_encode(Menus::getMenuBarItems()) !!};
 </script>
 
 <div id="navbar">

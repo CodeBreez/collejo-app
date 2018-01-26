@@ -167,7 +167,7 @@ class MenuItem implements ArrayAccess, Arrayable{
 			'name' =>  $this->getName(),
 			'label' =>  $this->getLabel(),
 			'icon' =>  $this->getIcon(),
-			'path' =>  $this->getPath(),
+			'path' =>  $this->getFullPath(),
 			'parent' =>  $this->getParent(),
 			'position' => $this->getPosition(),
 			'children' => $this->children->values()
