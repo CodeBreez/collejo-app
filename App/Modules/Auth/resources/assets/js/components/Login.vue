@@ -45,7 +45,7 @@
         },
         methods:{
 	        onSubmit(){
-		        axios.post(this.route('auth.login'), this.loginForm)
+		        axios.post(this.route('login'), this.loginForm)
 			        .then(response => console.log(response))
 			        .catch(errors => console.log(errors));
 	        }

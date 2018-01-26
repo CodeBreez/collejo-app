@@ -2,7 +2,9 @@
 
 Route::group(['prefix' => 'auth'], function() {
 
-	Route::get('login', 'LoginController@showLoginForm')->name('auth.login');
+	// We've defined login twice to get pass Laravel being hard coding the login route name
+	Route::get('login', 'LoginController@showLoginForm')->name('login');
+
 	Route::post('login', 'LoginController@login');
 
 	//Route::get('reauth', 'AuthController@getReauth')->name('auth.reauth');
