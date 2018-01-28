@@ -22,19 +22,15 @@ abstract class Model extends Base {
 
             $model->$keyName = $model->newUuid();
 
-            print_r(json_encode($model));
-
             $attributes = $model->getAllColumnsNames();
 
             if (Auth::user() && in_array('updated_by', $attributes)) {
                 $model->attributes['updated_by'] = Auth::user()->id;
             }
 
-
             if (Auth::user() && in_array('created_by', $attributes)) {
                 $model->attributes['created_by'] = Auth::user()->id;
             }
-
         });
 
         static::saving(function($model) {
@@ -44,7 +40,6 @@ abstract class Model extends Base {
             if (Auth::user() && in_array('updated_by', $attributes)) {
                 $model->attributes['updated_by'] = Auth::user()->id;
             }
-
         });
 
         static::created(function($model){
@@ -56,11 +51,21 @@ abstract class Model extends Base {
         });
     }
 
+    /**
+     * Generates a new UUID
+     *
+     * @return string
+     */
     public function newUuid()
     {
         return (string) Uuid::generate(4);
     }
 
+    /**
+     * Returns an array of columns for this model
+     *
+     * @return mixed
+     */
     public function getAllColumnsNames()
     {
         return Schema::getColumnListing($this->table);

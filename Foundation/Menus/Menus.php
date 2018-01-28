@@ -16,6 +16,15 @@ class Menus{
 
 	private $menus;
 
+    /**
+     * Create a new menu group
+     *
+     * A menu group could be initialized with just a closure
+     * or could also be initialized with label, icon and closure
+     *
+     * @return MenuItem
+     * @throws \Exception
+     */
 	public function group()
 	{
 		if (func_num_args() == 3) {
@@ -50,6 +59,14 @@ class Menus{
 		throw new \Exception('Invalid Arguments');
 
 	}
+
+    /**
+     * Creates a new menu item
+     *
+     * @param $name
+     * @param $label
+     * @return MenuItem
+     */
 	public function create($name, $label)
 	{
 		$menu = new MenuItem();
@@ -58,11 +75,21 @@ class Menus{
 		return $menu;
 	}
 
+    /**
+     * Returns a collection of menu items
+     *
+     * @return \Illuminate\Support\Collection
+     */
 	public function getItems()
 	{
 		return $this->menus;
 	}
 
+    /**
+     * Returns a collection of menu items sorted and ready for rendering
+     *
+     * @return static
+     */
 	public function getMenuBarItems()
 	{
 		$groups = $this->getItems()->where('type', 'g');

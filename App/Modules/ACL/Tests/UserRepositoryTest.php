@@ -10,6 +10,7 @@ use Collejo\App\Modules\ACL\Models\User;
 use Faker\Generator;
 use Illuminate\Database\Eloquent\Factory;
 use Hash;
+use Auth;
 
 class UserRepositoryTest extends TestCase
 {

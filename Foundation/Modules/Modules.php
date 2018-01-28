@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 class Modules{
 
+    /**
+     * Returns an array of paths to load modules from
+     *
+     * @return array
+     */
 	public function getModulePaths()
 	{
 		return array_merge([realpath(__DIR__ . '/../../App/Modules')], array_map(function($path){
@@ -24,7 +29,9 @@ class Modules{
 		}, config('collejo.module_paths')));
 	}
 
-
+    /**
+     * Load all modules from all paths
+     */
 	public function loadModules()
 	{
 		foreach ($this->getModulePaths() as $path) {
@@ -42,6 +49,12 @@ class Modules{
 		}
 	}
 
+    /**
+     * Registers a module using the provider
+     *
+     * @param $dir
+     * @throws \Exception
+     */
 	private function registerModule($dir)
 	{
 		$provider = 'Collejo\App\Modules\\' . $dir . '\Providers\\' . $dir . 'ModuleServiceProvider';
@@ -54,6 +67,12 @@ class Modules{
 		app()->register($provider);
 	}
 
+    /**
+     * Scans a given directory
+     *
+     * @param $path
+     * @return array
+     */
 	public function scanDir($path)
 	{
 		return array_filter(scandir($path), function($item) {
@@ -62,6 +81,11 @@ class Modules{
 		});
 	}
 
+    /**
+     * Get an array of language script files for the module
+     *
+     * @return array
+     */
 	public function getLangScriptFiles()
 	{
 		$files = [];
@@ -77,6 +101,11 @@ class Modules{
 		return $files;
 	}
 
+    /**
+     * Returns the module name by the given path
+     *
+     * @return string
+     */
 	public function getModuleNameByPath()
 	{
 		$router = app()->make('router');

@@ -6,7 +6,7 @@ use Collejo\App\Modules\Students\Models\Student;
 use Collejo\App\Modules\Employees\Models\Employee;
 use Collejo\App\Modules\Guardians\Models\Guardian;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Collejo\Foundation\Auth\User as Authenticatable;
 use Cache;
 
 class User extends Authenticatable

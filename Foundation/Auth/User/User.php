@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Auth;
+namespace Collejo\Foundation\Auth;
 
 use Illuminate\Auth\Authenticatable;
 use Collejo\Foundation\Database\Eloquent\Model;
