@@ -19,7 +19,8 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
 
 		$viewsDir = $this->getModuleDirectory('resources/views');
 		$langDir = $this->getModuleDirectory('resources/lang');
-		$routesFile = $this->getModuleDirectory('Http/routes.php');
+        $migrationsDir = $this->getModuleDirectory('migrations');
+        $routesFile = $this->getModuleDirectory('Http/routes.php');
 		$menusFile = $this->getModuleDirectory('Http/menus.php');
 
 		if (file_exists($viewsDir)) {
@@ -31,6 +32,11 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
 
 	        $this->loadTranslationsFrom($langDir, strtolower($this->getModuleName()));
 	    }
+
+        if (file_exists($migrationsDir)) {
+
+            $this->loadMigrationsFrom($migrationsDir);
+        }
 
 		if (file_exists($routesFile)) {
 
