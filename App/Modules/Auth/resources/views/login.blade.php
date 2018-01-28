@@ -1,6 +1,6 @@
 @extends('auth::layouts.auth')
 
-@section('title', trans('auth::login'))
+@section('title', trans('auth::auth.login'))
 
 @section('styles')
     <link href="{{ mix('/assets/auth/css/module.css') }}" rel="stylesheet" type="text/css">

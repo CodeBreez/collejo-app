@@ -2,11 +2,11 @@
 
 namespace Collejo\Foundation\Repository;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Cache;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class CacheableResult {
 
@@ -73,7 +73,7 @@ class CacheableResult {
 
         $builder = $this->builder;
 
-        return Cache::remember($key, config('collejo.perpage'), function() use ($builder){
+        return Cache::remember($key, config('collejo.pagination.perpage'), function () use ($builder) {
             return $this->builder->get();
         });
     }
