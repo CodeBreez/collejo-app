@@ -19,7 +19,10 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
     {
         $this->initModule();
 
-        $this->createPermissions();
+        if (config('collejo.tweak.check_module_permissions_on_module_init')) {
+
+            $this->createPermissions();
+        }
     }
 
     /**
