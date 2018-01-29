@@ -14,11 +14,9 @@ namespace Collejo\Foundation\Console;
 use Illuminate\Foundation\Console\Kernel as IlluminateConsoleKernel;
 use Illuminate\Console\Application as Artisan;
 use Symfony\Component\Finder\Finder;
-use Illuminate\Support\Str;
 
 class Kernel extends IlluminateConsoleKernel
 {
-
 
 	/**
 	 * Register all of the commands in the given directory.

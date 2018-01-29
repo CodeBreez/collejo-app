@@ -1,6 +1,6 @@
 @extends('auth::layouts.auth')
 
-@section('title', trans('auth::login'))
+@section('title', trans('auth::auth.login'))
 
 @section('styles')
     @parent
