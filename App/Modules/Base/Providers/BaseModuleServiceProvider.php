@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Modules\Base\Providers;
 
-use Collejo\App\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
+use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 
 class BaseModuleServiceProvider extends ModuleServiceProvider
 {

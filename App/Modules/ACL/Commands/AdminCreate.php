@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Modules\ACL\Commands;
 
-use Illuminate\Console\Command;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
+use Illuminate\Console\Command;
 
 class AdminCreate extends Command
 {
@@ -36,13 +36,15 @@ class AdminCreate extends Command
      */
     public function handle()
     {
+
         $name = $this->ask('Enter name');
-        $email = false;
+        $email = null;
 
         do{
             $email = $this->ask('Enter email');
 
             if (!$this->isValidEmail($email)) {
+
                 $this->error('Enter a valid email address');
             }
 
@@ -50,6 +52,7 @@ class AdminCreate extends Command
 
         do{
             if ($this->accountExists($email)) {
+
                 $this->error('There is already an account by this email');
                 $email = $this->ask('Enter email');
             }
@@ -61,13 +64,27 @@ class AdminCreate extends Command
         $this->userRepository->createAdminUser($name, $email, $password);
     }
 
+    /**
+     * Checks if the given email is valid
+     *
+     * @param $email
+     * @return mixed
+     */
     private function isValidEmail($email)
     {
+
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    /**
+     * Checks if there's already an account by the given email
+     *
+     * @param $email
+     * @return bool
+     */
     private function accountExists($email)
     {
+
         return (bool) $this->userRepository->findByEmail($email);
     }
 }

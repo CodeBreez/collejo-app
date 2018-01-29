@@ -2,7 +2,7 @@
 
 namespace Collejo\App\Modules\Dashboard\Providers;
 
-use Collejo\App\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
+use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 use View;
 
 class DashboardModuleServiceProvider extends ModuleServiceProvider

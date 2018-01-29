@@ -4,15 +4,6 @@ namespace Collejo\Foundation\Modules;
 
 use Illuminate\Support\Facades\Route;
 
-/**
- * @file Modules.php
- * Description.
- *
- * @author Anuradha Jayathilaka <anuradha@collejo.com>
- * @copyright © 2017 CodeBreez, all rights reserved.
- * @version 1.0.0
- */
-
 class Modules{
 
     /**

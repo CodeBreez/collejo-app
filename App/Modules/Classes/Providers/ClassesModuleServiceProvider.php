@@ -2,25 +2,23 @@
 
 namespace Collejo\App\Modules\Classes\Providers;
 
-use Collejo\App\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Modules\Classes\Repository\ClassRepository;
+use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 
 class ClassesModuleServiceProvider extends ModuleServiceProvider
 {
-
-    protected $namespace = 'Collejo\App\Modules\Classes\Http\Controllers';
-
-    public function boot()
-    {
-        $this->initModule();
-    }
 
 	public function register()
 	{
 		$this->app->bind(ClassRepositoryContract::class, ClassRepository::class);
 	}
 
+    /**
+     * Returns an array of permissions for the current module
+     *
+     * @return array
+     */
     public function getPermissions()
     {
         return [
