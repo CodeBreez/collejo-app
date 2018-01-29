@@ -38,13 +38,13 @@ class CacheableResult {
 	 *
 	 * @return LengthAwarePaginator
 	 */
-    public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $this->columns = $columns;
 
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
-        $perPage = $perPage ?: $this->builder->getPerPage();
+        $perPage = $perPage ?: config('collejo.pagination.perpage');
 
         $query = $this->builder->toBase();
 

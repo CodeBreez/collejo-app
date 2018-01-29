@@ -2,6 +2,16 @@
 
 @section('title', $grade ? trans('classes::grade.edit_grade') : trans('classes::grade.new_grade'))
 
+@section('styles')
+    @parent
+    <link href="{{ mix('/assets/classes/css/module.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
+@section('scripts')
+    @parent
+    <script type="text/javascript" src="{{ mix('/assets/classes/js/editGrade.js') }}"></script>
+@endsection
+
 @section('breadcrumbs')
 
 @if($grade)
@@ -24,30 +34,8 @@
 
 @section('tab')
 
-<form method="POST" id="edit-grade" class="form-horizontal" action="{{ $grade ? route('grade.details.edit', $grade->id) : route('grade.new') }}">
-
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label class="col-sm-4 control-label">{{ trans('classes::grade.name') }}</label>
-            <div class="col-sm-8">
-                <input type="text" name="name" class="form-control" placeholder="{{ trans('classes::grade.name_placeholder') }}" value="{{ $grade ? $grade->name : '' }}">
-            </div>
-        </div>
+    <div id="editGrade">
+        <edit-grade :validation="{!! $grade_form_validator->renderRules() !!}"></edit-grade>
     </div>
-
-    <div class="clearfix"></div>
-
-    <div class="col-xs-6">
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="clearfix"></div>
-
-
-</form>
 
 @endsection

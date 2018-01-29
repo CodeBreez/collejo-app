@@ -1,5 +1,5 @@
 Vue.component('login', require('./components/Login'));
 
-const login = new Vue({
+new Vue({
 	el: '#login'
 });

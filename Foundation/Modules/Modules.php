@@ -88,21 +88,21 @@ class Modules{
      */
 	public function getLangScriptFiles()
 	{
-		$files = [
-			'/js/trans/base/en.js'
-		];
+		$files = [];
 
 		if(config('app.locale') !== 'en'){
 
 			$files[] = '/js/trans/' . $this->getModuleNameByPath() . '/en.js';
-
+			$files[] = '/js/trans/base/en.js';
 		}
 
 		$files[] = '/js/trans/' . $this->getModuleNameByPath() . '/' . config('app.locale') . '.js';
+		$files[] = '/js/trans/base/' . config('app.locale') . '.js';
 
 		return array_filter($files, function($file){
-
-			return file_exists(app_path() . $file);
+			echo realpath(app_path() . $file);
+			return true;
+			return file_exists(realpath(app_path() . $file));
 		});
 	}
 

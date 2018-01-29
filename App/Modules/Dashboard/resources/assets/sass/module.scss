@@ -1,16 +1,28 @@
-@import "../../../../Base/resources/assets/sass/variables";
+@import "../../../../Base/resources/assets/sass/bs";
 
 body{
 	background: $gray-lighter;
 }
 
 .dash-content{
+
+	h2{
+		margin: 15px 0;
+		color: $gray-600;
+	}
+
 	.tab-card{
+
 		.nav{
 			margin: 10px;
 		}
 	}
 
+	.tab-content{
+		@extend .card;
+		padding: 15px;
+		min-height:70vh;
+	}
 }
 
 .landing-screen{

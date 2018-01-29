@@ -27,23 +27,21 @@
 
     @endif
 
-    <div class="card tab-card">
-        <div class="col-md-12">
-            <div class="row">
+    <div class="col-md-12">
+        <div class="row">
 
-                <div class="col-xs-2">
+            <div class="col-md-2">
 
-                    @yield('tabs')
+                @yield('tabs')
 
-                </div>
-                <div class="col-xs-10">
-                    <div class="tab-content">
-                        <div class="tab-pane active">
+            </div>
+            <div class="col-md-10">
+                <div class="tab-content">
+                    <div class="tab-pane active">
 
-                            @yield('tab')
+                        @yield('tab')
 
-                            <div class="clearfix"></div>
-                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>

@@ -171,11 +171,18 @@ class BatchController extends Controller
 		return view('classes::edit_batch_details', ['batch' => null]);
 	}
 
+	/**
+	 * Render a list of batches
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Illuminate\Auth\Access\AuthorizationException
+	 */
 	public function getBatchList()
 	{
 		$this->authorize('list_batches');
 
 		if (!$this->classRepository->getGrades()->count()) {
+
 			return view('dashboard::landings.action_required', [
 							'message' => trans('classes::batch.no_grades_defined'),
 							'help' => trans('classes::batch.no_grades_defined_help'),
