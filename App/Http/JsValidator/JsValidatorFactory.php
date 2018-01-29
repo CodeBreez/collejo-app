@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Foundation\Http\JsValidator;
+namespace Collejo\App\Http\JsValidator;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -11,10 +11,6 @@ const Trans = {
 			return _.get(this.getModuleLangObject(module), path, '');
 		},
 
-		getLocaleStrings(language){
-			return JSON.parse('<<ROUTES_OBJECT>>');
-		},
-
 		getModuleLangObject(module){
 
 			if(this.getCurrentLanguage() !== 'en'){

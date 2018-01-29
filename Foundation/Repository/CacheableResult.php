@@ -14,6 +14,13 @@ class CacheableResult {
 
     private $columns;
 
+	/**
+	 * Get entities
+	 *
+	 * @param array $columns
+	 *
+	 * @return mixed
+	 */
     public function get($columns = ['*'])
     {
         $this->columns = $columns;
@@ -21,6 +28,16 @@ class CacheableResult {
         return $this->getResult($columns);
     }
 
+	/**
+	 * Paginate result
+	 *
+	 * @param int $perPage
+	 * @param array $columns
+	 * @param string $pageName
+	 * @param null $page
+	 *
+	 * @return LengthAwarePaginator
+	 */
     public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $this->columns = $columns;
@@ -34,6 +51,7 @@ class CacheableResult {
         $key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':count';
 
         $total = Cache::remember($key, config('collejo.pagination.perpage'), function() use ($key, $query){
+
             return $query->getCountForPagination();
         });
 
@@ -50,23 +68,45 @@ class CacheableResult {
         ]);
     }
 
+	/**
+	 * Return relationships
+	 *
+	 * @return $this
+	 */
     public function with()
     {
         $this->builder->with(func_get_args());
+
         return $this;
     }
 
+	/**
+	 * Return deletes entities
+	 *
+	 * @return $this
+	 */
     public function withTrashed()
     {
         $this->builder->withTrashed(func_get_args());
+
         return $this;
     }
 
+	/**
+	 * Count entities
+	 *
+	 * @return int
+	 */
     public function count()
     {
         return $this->builder->count();
     }
 
+	/**
+	 * Return the result for the query and cache it
+	 *
+	 * @return mixed
+	 */
     private function getResult()
     {
         $key = 'criteria:' . get_class($this->builder->getModel()) . ':' . $this->getQueryHash() . ':result';
@@ -74,10 +114,16 @@ class CacheableResult {
         $builder = $this->builder;
 
         return Cache::remember($key, config('collejo.pagination.perpage'), function () use ($builder) {
+
             return $this->builder->get();
         });
     }
 
+	/**
+	 * Generates a hash for the current query
+	 *
+	 * @return string
+	 */
     private function getQueryHash()
     {
         return md5($this->builder->toSql() . '|' . implode(',', $this->columns));

@@ -1,6 +1,6 @@
 @extends('dashboard::layouts.dash')
 
-@section('title', trans('common.action_required'))
+@section('title', trans('base::common.action_required'))
 
 @section('content')
 

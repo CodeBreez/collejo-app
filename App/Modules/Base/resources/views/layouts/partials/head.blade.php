@@ -9,6 +9,7 @@
 
     <title>@yield('title') - Collejo</title>
 
+    <link href="{{ mix('/assets/base/css/app.css') }}" rel="stylesheet" type="text/css">
     @yield('styles')
 
     <script type="text/javascript" src="{{ mix('/assets/base/js/bootstrap.js') }}"></script>

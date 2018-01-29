@@ -88,7 +88,9 @@ class Modules{
      */
 	public function getLangScriptFiles()
 	{
-		$files = [];
+		$files = [
+			'/js/trans/base/en.js'
+		];
 
 		if(config('app.locale') !== 'en'){
 
@@ -98,7 +100,10 @@ class Modules{
 
 		$files[] = '/js/trans/' . $this->getModuleNameByPath() . '/' . config('app.locale') . '.js';
 
-		return $files;
+		return array_filter($files, function($file){
+
+			return file_exists(app_path() . $file);
+		});
 	}
 
     /**
