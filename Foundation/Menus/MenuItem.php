@@ -2,19 +2,10 @@
 
 namespace Collejo\Foundation\Menus;
 
-/**
- * @file MenuItem.php
- * Description.
- *
- * @author Anuradha Jayathilaka <anuradha@collejo.com>
- * @copyright © 2017 CodeBreez, all rights reserved.
- * @version 1.0.0
- */
-
 use ArrayAccess;
+use Gate;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
-use Gate;
 
 class MenuItem implements ArrayAccess, Arrayable{
 

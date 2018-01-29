@@ -2,17 +2,8 @@
 
 namespace Collejo\Foundation\Console;
 
-/**
- * @file Application.php
- * Description.
- *
- * @author Anuradha Jayathilaka <anuradha@collejo.com>
- * @copyright © 2017 CodeBreez, all rights reserved.
- * @version 1.0.0
- */
-
-use Illuminate\Foundation\Console\Kernel as IlluminateConsoleKernel;
 use Illuminate\Console\Application as Artisan;
+use Illuminate\Foundation\Console\Kernel as IlluminateConsoleKernel;
 use Symfony\Component\Finder\Finder;
 
 class Kernel extends IlluminateConsoleKernel
