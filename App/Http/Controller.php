@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Collejo\Foundation\Http\JsValidator\JsValidatorFactory;
 use Request;
 
 class Controller extends BaseController
@@ -35,4 +36,9 @@ class Controller extends BaseController
     {
         return $this->printJson(true, ['partial' => $view->render(), 'target' => Request::get('target', $target)], $msg);
     }
+
+	public function jsValidator($validatorClass)
+	{
+		return JsValidatorFactory::create($validatorClass);
+	}
 }

@@ -23,7 +23,7 @@
                 </b-form-checkbox>
             </div>
 
-            <b-button type="submit" variant="primary" block>{{ trans('auth::auth.login') }}</b-button>
+            <b-button type="submit" :disabled="submitDisabled" variant="primary" block>{{ trans('auth::auth.login') }}</b-button>
 
         </b-form>
 
@@ -40,14 +40,23 @@
 				    email:'',
 				    password:'',
 				    remember_me:false
-			    }
+			    },
+                submitDisabled:false
 		    }
         },
         methods:{
 	        onSubmit(){
+	        	this.submitDisabled = true;
+
 		        axios.post(this.route('login'), this.loginForm)
-			        .then(response => console.log(response))
-			        .catch(errors => console.log(errors));
+			        .then(response => {
+
+				        console.log(response)
+                    })
+			        .catch(errors => {
+				        this.submitDisabled = false;
+				        console.log(errors)
+                    });
 	        }
         }
     }

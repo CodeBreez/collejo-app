@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 
-    @include('base::layouts.partials.head')
-
     @section('styles')
         @parent
         <link href="{{ mix('/assets/dashboard/css/module.css') }}" rel="stylesheet" type="text/css">
     @endsection
 
+    @include('base::layouts.partials.head')
+
     <body>
 
         @include('dashboard::menu.menubar')
 
+        <div class="breadcrumbs">
+
+            @yield('breadcrumbs')
+
+        </div>
+
         <div class="dash-content container-fluid">
-            <div class="section">
-                @yield('content')
-            </div>
+
+            @yield('content')
+
         </div>
 
         @section('scripts')
