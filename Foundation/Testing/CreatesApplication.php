@@ -7,6 +7,9 @@ use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
 {
+
+	protected $factory;
+
     /**
      * Creates the application.
      *

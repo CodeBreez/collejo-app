@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Collejo\App\Modules\ACL\Repositories\UserRepository;
 use Collejo\App\Modules\ACL\Models\User;
 use Faker\Generator;
-use Illuminate\Database\Eloquent\Factory;
 use Hash;
 use Auth;
 
@@ -18,8 +17,6 @@ class UserRepositoryTest extends TestCase
     use DatabaseMigrations, DatabaseTransactions;
 
     private $userRepository;
-
-    private $factory;
 
     public function testUserCreate()
     {
@@ -33,6 +30,7 @@ class UserRepositoryTest extends TestCase
     public function testUserLogin()
     {
         $user = factory(User::class)->make();
+
         $model = $this->userRepository->createAdminUser($user->first_name, $user->email, '123');
 
         $result = Auth::attempt(['email' => $user->email, 'password' => '123']);
@@ -45,7 +43,6 @@ class UserRepositoryTest extends TestCase
         parent::setup();
 
         $this->userRepository = $this->app->make(UserRepository::class);
-        $this->factory = $this->app->make(Factory::class);
 
         $this->factory->define(User::class, function (Generator $faker) {
             return [
