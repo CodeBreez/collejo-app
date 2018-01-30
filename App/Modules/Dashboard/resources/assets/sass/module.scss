@@ -30,6 +30,10 @@ body{
 		color: $gray-600;
 	}
 
+	.breadcrumb {
+		margin: 0 -$box-padding;
+	}
+
 	.tab-card{
 
 		.nav{
