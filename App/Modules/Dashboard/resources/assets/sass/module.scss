@@ -26,20 +26,20 @@ body{
 .dash-content{
 
 	h2{
-		margin: 15px 0;
+		margin: $box-padding 0;
 		color: $gray-600;
 	}
 
 	.tab-card{
 
 		.nav{
-			margin: 10px;
+			margin: 0.625rem;
 		}
 	}
 
 	.tab-content{
 		@extend .card;
-		padding: 15px;
+		padding: $box-padding;
 		min-height:70vh;
 	}
 }
@@ -47,24 +47,27 @@ body{
 .landing-screen{
 
 	i.fa{
-		font-size: 100px;
+		font-size: 6.25rem;
 		color: lighten($gray-light, 50%);
-		margin-top: 50px;
-		margin-bottom: 30px;
+		margin-top: 3.125rem;
+		margin-bottom: $box-padding * 2;
 	}
 }
 
 .placeholder{
 	background: -webkit-repeating-linear-gradient(135deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
 	background: repeating-linear-gradient(-45deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
-	background-size: 30px 30px;
-	text-align: center;padding:30px 15px;
-	margin: 0 -15px;
+	background-size: $box-padding * 2 $box-padding * 2;
+	text-align: center;
+	padding: $box-padding * 2 $box-padding;
+	margin: 0 -$box-padding;
 	color: $gray-light;
 }
 .placeholder-row{
-	padding: 15px;
+	padding: $box-padding;
 	.placeholder{margin: 0;}
 }
 
-footer{margin-top: 10px;}
+footer {
+	margin-top: 0.625rem;
+}
