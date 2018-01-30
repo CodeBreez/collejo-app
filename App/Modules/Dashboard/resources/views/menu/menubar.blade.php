@@ -1,7 +1,3 @@
-<script>
-    window.C.menus = {!! json_encode(Menus::getMenuBarItems()) !!};
-</script>
-
 <div id="navbar">
-    <navbar></navbar>
+    <navbar :menus="{{json_encode(Menus::getMenuBarItems())}}"></navbar>
 </div>

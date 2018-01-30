@@ -45,9 +45,8 @@
 
 	export default  {
 		mixins: [ C.mixins.Routes, C.mixins.Trans],
-		created(){
-
-			this.menus = window.C.menus;
+        props: {
+            menus: Array
 		}
 	}
 
