@@ -9,7 +9,7 @@
 
 @section('scripts')
     @parent
-    <script type="text/javascript" src="{{ mix('/assets/classes/js/editGrade.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('/assets/classes/js/editGradeDetails.js') }}"></script>
 @endsection
 
 @section('breadcrumbs')
@@ -34,8 +34,14 @@
 
 @section('tab')
 
-    <div id="editGrade">
-        <edit-grade :validation="{!! $grade_form_validator->renderRules() !!}"></edit-grade>
+    <div id="editGradeDetails">
+        <edit-grade-details
+                @if($grade)
+                :grade="{{$grade}}"
+                @endif
+                :validation="{{$grade_form_validator->renderRules()}}">
+
+        </edit-grade-details>
     </div>
 
 @endsection

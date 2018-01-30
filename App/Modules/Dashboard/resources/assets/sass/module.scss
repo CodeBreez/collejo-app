@@ -37,7 +37,32 @@ body{
 		}
 	}
 
+	.tabs-view-tabs {
+
+		.nav-link.active {
+			@extend .card;
+			color: $text-color;
+			border-right: none;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	@media (min-width: 992px) {
+
+		.tabs-view-tabs {
+			margin-top: $box-padding * 2;
+
+			.flex-column {
+				position: relative;
+				z-index: 1;
+				margin-right: -$box-padding * 2 - $border-width;
+			}
+		}
+	}
+
 	.tab-content{
+
 		@extend .card;
 		padding: $box-padding;
 		min-height:70vh;
@@ -45,6 +70,7 @@ body{
 }
 
 .landing-screen{
+
 	min-height: 80vh;
 
 	i.fa{
@@ -65,8 +91,12 @@ body{
 	color: $gray-light;
 }
 .placeholder-row{
+
 	padding: $box-padding;
-	.placeholder{margin: 0;}
+
+	.placeholder {
+		margin: 0;
+	}
 }
 
 footer {

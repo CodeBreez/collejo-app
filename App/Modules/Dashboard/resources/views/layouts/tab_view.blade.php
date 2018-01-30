@@ -4,8 +4,6 @@
 
     <section class="section">
 
-    @hasSection('breadcrumbs')
-
         <h2>@yield('title')</h2>
 
         <div class="pull-right">
@@ -16,21 +14,11 @@
 
             @yield('breadcrumbs')
 
-        @endif
-    @else
-
-        <div class="pull-right">
-            @yield('tools')
-        </div>
-
-        <h2>@yield('title')</h2>
-
     @endif
 
-    <div class="col-md-12">
         <div class="row">
 
-            <div class="col-md-2">
+            <div class="col-md-2 tabs-view-tabs">
 
                 @yield('tabs')
 
@@ -42,7 +30,6 @@
                         @yield('tab')
 
                         <div class="clearfix"></div>
-                    </div>
                 </div>
             </div>
         </div>

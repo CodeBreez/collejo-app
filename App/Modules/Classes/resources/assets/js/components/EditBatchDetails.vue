@@ -2,9 +2,9 @@
     <b-form @submit.prevent="onSubmit">
 
        <div class="col-md-6">
-           <b-form-group :label="trans('classes::grade.name')">
+           <b-form-group :label="trans('classes::batch.name')">
 
-               <b-form-input type="text" v-model="form.name" :placeholder="trans('classes::grade.name_placeholder')"></b-form-input>
+               <b-form-input type="text" v-model="form.name" :placeholder="trans('classes::batch.name_placeholder')"></b-form-input>
 
            </b-form-group>
        </div>
@@ -21,9 +21,9 @@
     export default {
 	    mixins: [ C.mixins.Routes, C.mixins.Trans ],
         props:{
-            validation: Object,
-            grade: {
-                default: null,
+	    	validation: Object,
+            batch: {
+	    	    default: null,
                 type: Object
             }
         },
@@ -35,9 +35,9 @@
 			    submitDisabled:false
 		    }
 	    },
-        mounted() {
-            if (this.grade) {
-                this.form = this.grade;
+        mounted(){
+	        if(this.batch){
+	            this.form = this.batch;
             }
         },
 	    methods:{

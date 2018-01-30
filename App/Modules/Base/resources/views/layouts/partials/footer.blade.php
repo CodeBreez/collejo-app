@@ -8,7 +8,7 @@
 	@endif
 
 		@foreach (Modules::getLangScriptFiles() as $script)
-		<script type="application/javascript" src="{{ $script }}"></script>
+			<script type="application/javascript" src="{{ $script }}"></script>
 		@endforeach
 
 	@yield('scripts')

@@ -1,11 +1,11 @@
 @if(is_null($grade))
 
 <ul class="nav nav-pills flex-column">
-    <li class="nav-item active">
-        <a class="nav-link" href="#">{{ trans('classes::grade.grade_details') }}</a>
+    <li class="nav-item">
+        <a class="nav-link active" href="#">{{ trans('classes::grade.grade_details') }}</a>
     </li>
-    <li class="nav-item disabled">
-        <a class="nav-link" href="#">{{ trans('classes::grade.classes') }}</a>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">{{ trans('classes::grade.classes') }}</a>
     </li>
 </ul>
 

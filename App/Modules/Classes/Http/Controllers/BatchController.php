@@ -5,8 +5,8 @@ namespace Collejo\App\Modules\Classes\Http\Controllers;
 use Collejo\App\Http\Controller;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Classes\Http\Requests\CreateBatchRequest;
-use Collejo\App\Modules\Classes\Http\Requests\UpdateBatchRequest;
 use Collejo\App\Modules\Classes\Http\Requests\CreateTermRequest;
+use Collejo\App\Modules\Classes\Http\Requests\UpdateBatchRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateTermRequest;
 use Request;
 
@@ -142,7 +142,8 @@ class BatchController extends Controller
 		$this->authorize('add_edit_batch');
 
 		return view('classes::edit_batch_details', [
-						'batch' => $this->classRepository->findBatch($batchId)
+            'batch' => $this->classRepository->findBatch($batchId),
+            'batch_form_validator' => $this->jsValidator(UpdateBatchRequest::class)
 					]);
 	}
 
