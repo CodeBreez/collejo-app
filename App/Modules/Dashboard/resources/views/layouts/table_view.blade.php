@@ -7,8 +7,8 @@
         @hasSection('tools')
 
             <div class="float-right">
-            @yield('tools')
-        </div>
+                @yield('tools')
+            </div>
 
         @endif
 
@@ -23,21 +23,14 @@
 
         <div class="row">
 
-            <div class="col-md-2 tabs-view-tabs">
+            <div class="col-md-12">
 
-                @yield('tabs')
-
-            </div>
-            <div class="col-md-10">
-                <div class="tab-content">
-                    <div class="tab-pane active">
-
-                        @yield('tab')
-
-                        <div class="clearfix"></div>
-                    </div>
+                <div class="table-view-table">
+                    @yield('table')
                 </div>
+
             </div>
+        </div>
         </div>
 
     </section>

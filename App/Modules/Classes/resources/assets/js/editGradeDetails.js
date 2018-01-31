@@ -1,4 +1,4 @@
-Vue.component('edit-grade-details', require('./components/EditGrade'));
+Vue.component('edit-grade-details', require('./components/EditGradeDetails'));
 
 new Vue({
     el: '#editGradeDetails'

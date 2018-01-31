@@ -1,6 +1,6 @@
 @if(is_null($batch))
 
-    <ul class="nav nav-pills flex-column">
+    <ul class="nav nav-pills flex-md-column">
         <li class="nav-item"><a class="nav-link active" href="#">Batch Details</a></li>
         <li class="nav-item"><a class="nav-link disabled" href="#">Terms</a></li>
         <li class="nav-item"><a class="nav-link disabled" href="#">Grades</a></li>
@@ -8,7 +8,7 @@
 
 @else
 
-    <ul class="nav nav-pills flex-column">
+    <ul class="nav nav-pills flex-md-column">
         <li class="nav-item">
             <a class="nav-link {{ active_class(if_route(['batch.details.edit'])) }}"
                href="{{ route('batch.details.edit', $batch->id) }}">Batch Details</a>

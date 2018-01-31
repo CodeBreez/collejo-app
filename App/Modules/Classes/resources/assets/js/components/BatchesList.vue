@@ -1,5 +1,5 @@
 <template>
-    <b-table striped hover :items="items" :fields="fields">
+    <b-table :items="items" :fields="fields">
 
     </b-table>
 </template>

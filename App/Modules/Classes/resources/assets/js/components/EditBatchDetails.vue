@@ -29,6 +29,7 @@
         },
 	    data(){
 		    return {
+                action: 'batch.new',
                 form: {
                     name: null
                 },
@@ -38,21 +39,26 @@
         mounted(){
 	        if(this.batch){
 	            this.form = this.batch;
+                this.action = this.route('batch.details.edit', this.batch.id);
             }
         },
 	    methods:{
 		    onSubmit(){
 			    this.submitDisabled = true;
 
-			    axios.post(this.route('batch.new'), this.form)
+                axios.post(this.action, this.form)
 				    .then(response => {
 
 					    console.log(response)
 				    })
 				    .catch(errors => {
-					    this.submitDisabled = false;
+
 					    console.log(errors)
-				    });
+                    }).then(() => {
+
+                    this.submitDisabled = false;
+
+                });
 		    }
 	    }
     }

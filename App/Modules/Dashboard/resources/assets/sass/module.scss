@@ -43,33 +43,40 @@ body{
 
 	.tabs-view-tabs {
 
+		margin-bottom: $box-padding;
+
 		.nav-link.active {
 			@extend .card;
 			color: $text-color;
-			border-right: none;
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
 		}
 	}
 
-	@media (min-width: 992px) {
+	@media (min-width: 768px) {
 
 		.tabs-view-tabs {
 			margin-top: $box-padding * 2;
 
-			.flex-column {
+			.nav-pills {
 				position: relative;
 				z-index: 1;
 				margin-right: -$box-padding * 2 - $border-width;
+
+				.nav-link.active {
+					border-right: none;
+					border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
+				}
 			}
 		}
 	}
 
-	.tab-content{
-
+	.tab-content, .table-view-table {
 		@extend .card;
-		padding: $box-padding;
 		min-height:70vh;
+	}
+
+	.tab-content {
+		padding: $box-padding;
 	}
 }
 
@@ -92,12 +99,11 @@ body{
 	text-align: center;
 	padding: $box-padding * 2 $box-padding;
 	margin: 0 -$box-padding;
-	color: $gray-light;
+	color: $text-color;
 }
+
 .placeholder-row{
-
 	padding: $box-padding;
-
 	.placeholder {
 		margin: 0;
 	}

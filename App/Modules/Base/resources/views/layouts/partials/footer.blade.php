@@ -14,3 +14,7 @@
 	@yield('scripts')
 
 </footer>
+
+<div class="notifications-wrap">
+
+</div>

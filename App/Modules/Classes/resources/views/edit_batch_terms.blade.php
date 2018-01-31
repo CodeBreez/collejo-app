@@ -9,7 +9,7 @@
 
 @section('scripts')
     @parent
-    <script type="text/javascript" src="{{ mix('/assets/classes/js/editBatchDetails.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('/assets/classes/js/editBatchTerms.js') }}"></script>
 @endsection
 
 @section('breadcrumbs')
@@ -28,6 +28,14 @@
 
 @endsection
 
+@section('tools')
+
+    <a href="{{ route('batch.term.new', $batch->id) }}" data-modal-backdrop="static" data-modal-keyboard="false"
+       class="btn btn-primary pull-right" data-toggle="ajax-modal"><i
+                class="fa fa-plus"></i> {{ trans('classes::term.new_term') }}</a>
+
+@endsection
+
 @section('tabs')
 
     @include('classes::partials.edit_batch_tabs')
@@ -37,13 +45,7 @@
 @section('tab')
 
     <div id="editBatchDetails">
-        <edit-batch-details
-                @if($batch)
-                :batch="{{$batch}}"
-                @endif
-                :validation="{{$batch_form_validator->renderRules()}}">
-
-        </edit-batch-details>
+        <edit-batch-terms :batch="{{$batch}}"></edit-batch-terms>
     </div>
 
 @endsection

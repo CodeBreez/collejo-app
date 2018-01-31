@@ -7,7 +7,9 @@ import {Routes} from './routes';
 import {Trans} from './trans';
 
 Vue.use(BootstrapVue);
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, {
+    fieldsBagName: 'formFields'
+});
 
 const token = document.head.querySelector('meta[name="token"]');
 

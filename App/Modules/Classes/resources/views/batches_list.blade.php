@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.dash')
+@extends('dashboard::layouts.table_view')
 
 @section('title', trans('classes::batch.batches_list'))
 
@@ -12,7 +12,7 @@
     <script type="text/javascript" src="{{ mix('/assets/classes/js/batchesList.js') }}"></script>
 @endsection
 
-@section('content')
+@section('table')
 
     <div id="batchesList">
         <batches-list></batches-list>

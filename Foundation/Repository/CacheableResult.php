@@ -113,7 +113,7 @@ class CacheableResult {
 
         $builder = $this->builder;
 
-        return Cache::remember($key, config('collejo.pagination.perpage'), function () use ($builder) {
+        return Cache::remember($key, config('collejo.tweaks.criteria_cache_ttl'), function () use ($builder) {
 
             return $this->builder->get();
         });

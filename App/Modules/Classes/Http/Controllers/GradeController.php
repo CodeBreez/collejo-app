@@ -4,10 +4,10 @@ namespace Collejo\App\Modules\Classes\Http\Controllers;
 
 use Collejo\App\Http\Controller;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
-use Collejo\App\Modules\Classes\Http\Requests\CreateGradeRequest;
 use Collejo\App\Modules\Classes\Http\Requests\CreateClassRequest;
-use Collejo\App\Modules\Classes\Http\Requests\UpdateGradeRequest;
+use Collejo\App\Modules\Classes\Http\Requests\CreateGradeRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateClassRequest;
+use Collejo\App\Modules\Classes\Http\Requests\UpdateGradeRequest;
 use Request;
 
 class GradeController extends Controller
@@ -74,21 +74,27 @@ class GradeController extends Controller
 	{
 		$this->authorize('view_grade_details');
 
-		return view('classes::view_grade_details', ['grade' => $this->classRepository->findGrade($gradeId)]);
+        return view('classes::view_grade_details', [
+            'grade' => $this->classRepository->findGrade($gradeId)
+        ]);
 	}
 
 	public function getGradeClassesView($gradeId)
 	{
 		$this->authorize('list_classes');
 
-		return view('classes::view_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
+        return view('classes::view_grade_classes', [
+            'grade' => $this->classRepository->findGrade($gradeId)
+        ]);
 	}
 
 	public function getGradeClassesEdit($gradeId)
 	{
 		$this->authorize('add_edit_class');
 
-		return view('classes::edit_grade_classes', ['grade' => $this->classRepository->findGrade($gradeId)]);
+        return view('classes::edit_grade_classes', [
+            'grade' => $this->classRepository->findGrade($gradeId)
+        ]);
 	}
 
 	public function postGradeDetailsEdit(UpdateGradeRequest $request, $gradeId)

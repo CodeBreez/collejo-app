@@ -1,6 +1,6 @@
 @if(is_null($grade))
 
-<ul class="nav nav-pills flex-column">
+    <ul class="nav nav-pills flex-md-column">
     <li class="nav-item">
         <a class="nav-link active" href="#">{{ trans('classes::grade.grade_details') }}</a>
     </li>
@@ -11,7 +11,7 @@
 
 @else
 
-<ul class="nav nav-pills flex-column">
+    <ul class="nav nav-pills flex-md-column">
     <li class="nav-item {{ active_class(if_route(['grade.details.edit'])) }}">
     	<a class="nav-link" href="{{ route('grade.details.edit', $grade->id) }}">{{ trans('classes::grade.grade_details') }}</a>
     </li>
