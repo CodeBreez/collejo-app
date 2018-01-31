@@ -3,7 +3,7 @@
 
 		<b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-		<b-navbar-brand href="/"> Collejo</b-navbar-brand>
+		<b-navbar-brand href="/"><span class="brand-name">Collejo</span></b-navbar-brand>
 
 		<b-collapse is-nav id="nav_collapse">
 

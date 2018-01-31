@@ -1,4 +1,11 @@
 .navbar-brand {
-  background: url("../../images/collejo_sml.png") left center no-repeat;
-  padding-left: 2.5rem;
+  background: url("../../images/collejo.svg") left center no-repeat;
+  padding-left: 2.188rem;
+  height: 30px;
+  background-size: contain;
+
+  .brand-name {
+    position: relative;
+    top: -0.3125rem
+  }
 }

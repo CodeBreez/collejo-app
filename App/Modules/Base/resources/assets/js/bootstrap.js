@@ -2,10 +2,12 @@ window._ = require('lodash');
 window.Vue = require('vue');
 
 import BootstrapVue from 'bootstrap-vue'
-import { Routes } from './routes';
-import { Trans } from './trans';
+import VeeValidate from 'vee-validate';
+import {Routes} from './routes';
+import {Trans} from './trans';
 
 Vue.use(BootstrapVue);
+Vue.use(VeeValidate);
 
 const token = document.head.querySelector('meta[name="token"]');
 
