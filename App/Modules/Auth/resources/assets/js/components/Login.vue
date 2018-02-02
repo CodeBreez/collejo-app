@@ -49,15 +49,16 @@
 	        	this.submitDisabled = true;
 
 		        axios.post(this.route('login'), this.loginForm)
-			        .then(response => {
+                    .then(this._handleLoginSubmit)
+                    .catch(this._handleLoginSubmit);
+            },
+            _handleLoginSubmit(response) {
+                if (!response.data.success) {
+                    this.submitDisabled = false;
 
-				        console.log(response)
-                    })
-			        .catch(errors => {
-				        this.submitDisabled = false;
-				        console.log(errors)
-                    });
-	        }
+                    window.C.notification.warning('Login Faild')
+                }
+            }
         }
     }
 </script>

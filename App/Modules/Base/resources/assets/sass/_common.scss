@@ -1,11 +1,31 @@
-.navbar-brand {
-  background: url("../../images/collejo.svg") left center no-repeat;
-  padding-left: 2.188rem;
-  height: 30px;
-  background-size: contain;
+@import "variables";
 
-  .brand-name {
-    position: relative;
-    top: -0.3125rem
-  }
+.navbar-brand {
+    background: url("../../images/collejo.svg") left center no-repeat;
+    padding-left: 2.188rem;
+    height: 30px;
+    background-size: contain;
+
+    .brand-name {
+        position: relative;
+        top: -0.3125rem
+    }
+}
+
+.notifications-wrap {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 0;
+
+    .notifications-list {
+        width: 33.33%;
+        left: 33.33%;
+        position: absolute;
+        margin-top: $box-padding;
+    }
+
+    .alert-dismissible .close {
+        padding: 0.55rem 1.05rem;
+    }
 }

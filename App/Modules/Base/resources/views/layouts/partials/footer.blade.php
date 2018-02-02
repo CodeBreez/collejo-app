@@ -7,14 +7,18 @@
 		</pre-->
 	@endif
 
-		@foreach (Modules::getLangScriptFiles() as $script)
-			<script type="application/javascript" src="{{ $script }}"></script>
-		@endforeach
-
-	@yield('scripts')
-
 </footer>
 
-<div class="notifications-wrap">
-
+<div id="notification" class="notifications-wrap">
+	<div class="notifications-list">
+		<notification :notification="notification" :key="notification.id"
+					  v-for="notification in notifications"></notification>
+	</div>
 </div>
+
+<script type="text/javascript" src="{{ mix('/assets/base/js/bootstrap.js') }}"></script>
+@foreach (Modules::getLangScriptFiles() as $script)
+	<script type="application/javascript" src="{{ $script }}"></script>
+@endforeach
+
+@yield('scripts')
