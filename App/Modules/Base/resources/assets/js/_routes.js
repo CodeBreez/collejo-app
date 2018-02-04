@@ -2,14 +2,21 @@ const Routes = {
 
 	methods:{
 
+        /**
+         * Parse and return a route by it's name
+         *
+         * @param name
+         * @param params
+         * @returns {string}
+         */
         route(name, params) {
 
-			const routes = this.getRoutes().filter(route => {
+            const routes = this._getRoutes().filter(route => {
 
-				return route.name === name;
-			});
+                return route.name === name;
+            });
 
-			if(routes.length === 1){
+            if(routes.length === 1){
 
                 let url = `/${routes[0].uri}`;
 
@@ -20,6 +27,9 @@ const Routes = {
                     }
                 }
 
+                /**
+                 * If parameters are present parse them in to the route
+                 */
                 if (params) {
 
                     _.each(Object.keys(params), key => {
@@ -32,13 +42,19 @@ const Routes = {
 
                 return url;
 
-			} else {
+            } else {
 
                 throw Error(`Route ${name} is not found`);
-			}
-		},
+            }
+        },
 
-		getRoutes(){
+        /**
+         * Returns all the registered routes in the system
+         *
+         * @returns {any}
+         * @private
+         */
+        _getRoutes() {
 
             return JSON.parse('<<ROUTES_OBJECT>>');
 		}

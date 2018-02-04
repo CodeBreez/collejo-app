@@ -33,7 +33,7 @@
 <script>
 
     export default {
-	    mixins: [ C.mixins.Routes, C.mixins.Trans ],
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
         data(){
 	    	return {
 			    loginForm:{
@@ -41,7 +41,7 @@
 				    password:'',
 				    remember_me:false
 			    },
-                submitDisabled:false
+                submitDisabled: false
 		    }
         },
         methods:{
@@ -49,15 +49,8 @@
 	        	this.submitDisabled = true;
 
 		        axios.post(this.route('login'), this.loginForm)
-                    .then(this._handleLoginSubmit)
-                    .catch(this._handleLoginSubmit);
-            },
-            _handleLoginSubmit(response) {
-                if (!response.data.success) {
-                    this.submitDisabled = false;
-
-                    window.C.notification.warning('Login Faild')
-                }
+                    .then(this.handleSubmitResponse)
+                    .catch(this.handleSubmitResponse);
             }
         }
     }

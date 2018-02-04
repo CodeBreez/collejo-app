@@ -1,7 +1,7 @@
 @import "../../../../Base/resources/assets/sass/bs";
 
 body{
-	background: $gray-lighter;
+  background: $gray-200;
 	font-family: $font-family-sans-serif;
 }
 
@@ -86,7 +86,7 @@ body{
 
 	i.fa{
 		font-size: 6.25rem;
-		color: lighten($gray-light, 50%);
+      color: lighten($gray-100, 50%);
 		margin-top: 3.125rem;
 		margin-bottom: $box-padding * 2;
 	}
@@ -94,7 +94,6 @@ body{
 
 .placeholder{
 	background: -webkit-repeating-linear-gradient(135deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
-	background: repeating-linear-gradient(-45deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
 	background-size: $box-padding * 2 $box-padding * 2;
 	text-align: center;
 	padding: $box-padding * 2 $box-padding;

@@ -2,6 +2,12 @@ const Notification = {
 
     methods: {
 
+        /**
+         * Show a success message
+         *
+         * @param message
+         * @param dismissible
+         */
         success(message, dismissible = true) {
 
             this._showMessage({
@@ -10,6 +16,12 @@ const Notification = {
             })
         },
 
+        /**
+         * Show a danger message
+         *
+         * @param message
+         * @param dismissible
+         */
         danger(message, dismissible = true) {
 
             this._showMessage({
@@ -19,6 +31,12 @@ const Notification = {
             })
         },
 
+        /**
+         * Show a warning message
+         *
+         * @param message
+         * @param dismissible
+         */
         warning(message, dismissible = true) {
 
             this._showMessage({
@@ -28,6 +46,12 @@ const Notification = {
             })
         },
 
+        /**
+         * Show a info message
+         *
+         * @param message
+         * @param dismissible
+         */
         info(message, dismissible = true) {
 
             this._showMessage({
@@ -37,20 +61,21 @@ const Notification = {
             })
         },
 
+        /**
+         * Show message with given options
+         *
+         * @param options
+         */
         _showMessage(options) {
 
             this.notifications.push(Object.assign({
-                show: true,
+                show: 5,
                 variant: 'success',
                 dismissible: true,
-                dismissLabel: 'Close',
-                dismissCountDown: 0,
-                dismissSecs: 5
+                dismissLabel: 'Close'
             }, options));
         }
-
-    },
-
+    }
 };
 
 export {Notification};

@@ -21,7 +21,7 @@
 <script>
 
     export default {
-        mixins: [C.mixins.Routes, C.mixins.Trans],
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
         props: {
             validation: Object,
             batch: {
@@ -49,18 +49,8 @@
                 this.submitDisabled = true;
 
                 axios.post(this.action, this.form)
-                    .then(response => {
-
-                        console.log(response)
-                    })
-                    .catch(errors => {
-
-                        console.log(errors)
-                    }).then(() => {
-
-                    this.submitDisabled = false;
-
-                });
+                    .then(this.handleSubmitResponse)
+                    .catch(this.handleSubmitResponse);
             }
         }
     }

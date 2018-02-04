@@ -19,7 +19,7 @@
 <script>
 
     export default {
-	    mixins: [ C.mixins.Routes, C.mixins.Trans ],
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
         props:{
             validation: Object,
             grade: {
@@ -45,14 +45,8 @@
 			    this.submitDisabled = true;
 
 			    axios.post(this.route('batch.new'), this.form)
-				    .then(response => {
-
-					    console.log(response)
-				    })
-				    .catch(errors => {
-					    this.submitDisabled = false;
-					    console.log(errors)
-				    });
+                    .then(this.handleSubmitResponse)
+                    .catch(this.handleSubmitResponse);
 		    }
 	    }
     }

@@ -1,25 +1,16 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-// BS4 Beta alias
-$gray-lighter:$gray-200;
-$gray-light:$gray-100;
-
 // Body
-$body-bg: #f5f8fa;
+$body-bg: $gray-100;
 
 // Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
 $box-padding: ($grid-gutter-width / 2);
 
 // Brands
-$brand-primary: darken(#3498db, 6.5%);
-$brand-info: #27ae60;
-$brand-success: #2980b9;
+$brand-primary: #3498db;
+$brand-info: #3498db;
+$brand-success: #27ae60;
 $brand-warning: #e67e22;
 $brand-danger: #c0392b;
 
@@ -31,14 +22,3 @@ $font-family-brand: "Raleway", Helvetica, Arial;
 $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #636b6f;
-
-// Navbar
-$navbar-default-bg: #fff;
-
-// Buttons
-$btn-default-color: $text-color;
-
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
