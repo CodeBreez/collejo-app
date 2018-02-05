@@ -19,8 +19,20 @@
 
 @section('tab')
 
-    @foreach($batch->terms as $terms)
-        <span class="label label-default">{{ $terms->name }}</span>
-    @endforeach
+    <div class="card-group">
+
+        @foreach($batch->terms as $terms)
+
+            <div class="card">
+                <div class="card-header">{{ $terms->name }}</div>
+                <div class="card-block">
+                    <p class="card-text">Start Date : {{ $terms->start_date }}</p>
+                    <p class="card-text">End Date : {{ $terms->end_date }}</p>
+                </div>
+            </div>
+
+        @endforeach
+
+    </div>
 
 @endsection

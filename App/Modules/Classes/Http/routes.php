@@ -26,7 +26,7 @@ Route::group(['prefix' => 'dashboard/batch', 'middleware' => 'auth'], function (
 	Route::get('/{id}/term/{tid}/edit', 'BatchController@getBatchTermEdit')->name('batch.term.edit');
 	Route::post('/{id}/term/{tid}/edit', 'BatchController@postBatchTermEdit');
 
-	Route::get('/{id}/term/{tid}/delete', 'BatchController@getBatchTermDelete')->name('batch.term.delete');
+    Route::delete('/{id}/term/{tid}/delete', 'BatchController@getBatchTermDelete')->name('batch.term.delete');
 
 	Route::get('/{id}/grades/view', 'BatchController@getBatchGradesView')->name('batch.grades.view');
 	Route::get('/{id}/grades/edit', 'BatchController@getBatchGradesEdit')->name('batch.grades.edit');

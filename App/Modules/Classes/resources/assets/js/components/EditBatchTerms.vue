@@ -5,30 +5,34 @@
               @edit="handleEdit(index)"></term>
 
         <b-card bg-variant="light" class="text-center">
-            <b-button @click.prevent="addNewTerm" variant="link">Add Term</b-button>
+            <b-button @click.prevent="addNewTerm" variant="link">
+                <i class="fa fa-2x fa-plus"></i>
+                <br/>Add Term
+            </b-button>
         </b-card>
 
-        <b-modal v-if="currentTerm" ref="editTermPopup" :title="currentTerm.name" @ok="handleSave" no-close-on-backdrop
+        <b-modal v-if="currentTerm" ref="editTermPopup" :bvEvt="bvEvt" :title="currentTerm.name" @ok="handleSave"
+                 no-close-on-backdrop
                  no-close-on-esc>
             <b-form>
 
                 <b-form-group label="Name">
 
-                    <b-form-input type="text" v-model="currentTerm.name" required placeholder="New Term">
+                    <b-form-input type="text" v-model="currentTerm.name" v-validate="'required'" placeholder="New Term">
                     </b-form-input>
 
                 </b-form-group>
 
                 <b-form-group label="Name">
 
-                    <datepicker input-class="form-control" v-model="currentTerm.start_date" required>
+                    <datepicker input-class="form-control" v-model="currentTerm.start_date" v-validate="'required'">
                     </datepicker>
 
                 </b-form-group>
 
                 <b-form-group label="Name">
 
-                    <datepicker input-class="form-control" v-model="currentTerm.end_date" required>
+                    <datepicker input-class="form-control" v-model="currentTerm.end_date" v-validate="'required'">
                     </datepicker>
 
                 </b-form-group>
@@ -42,7 +46,7 @@
 <script>
     import Datepicker from 'vuejs-datepicker';
 
-    Vue.component('term', require('./EditTerms'));
+    Vue.component('term', require('./EditTerm'));
 
     export default {
         components: {
@@ -65,6 +69,7 @@
                 termsList: [],
                 currentTerm: null,
                 currentIndex: null,
+                bvEvt: null
             }
         },
         mounted() {
@@ -89,7 +94,16 @@
 
                 this.setCurrentIndex(index);
 
-                this.terms.splice(this.currentIndex, 1)
+                axios.delete(this.route('batch.term.delete', {
+                    id: this.batch.id,
+                    tid: this.terms[this.currentIndex].id
+                }))
+                    .then(this.handleSubmitResponse)
+                    .then(() => {
+
+                        this.terms.splice(this.currentIndex, 1);
+                    })
+                    .catch(this.handleSubmitResponse);
             },
 
             handleEdit(index) {
@@ -120,16 +134,26 @@
 
             handleSave() {
 
-                axios.post(this.getRouteForObject(), this.currentTerm)
-                    .then(this.handleSubmitResponse)
-                    .then(response => {
+                this.$validator.validateAll().then(result => {
 
-                        this.currentTerm.id = response.data.data.term.id;
+                    if (!result) {
+                        window.C.notification.warning(this.trans('base::common.validation_failed'));
 
-                        this.$set(this.terms, this.currentIndex, Object.assign({}, this.currentTerm));
+                        this.bvEvt.preventDefault()
+                    }
 
-                    })
-                    .catch(this.handleSubmitResponse);
+                    axios.post(this.getRouteForObject(), this.currentTerm)
+                        .then(this.handleSubmitResponse)
+                        .then(response => {
+
+                            this.currentTerm.id = response.data.data.term.id;
+
+                            this.$set(this.terms, this.currentIndex, Object.assign({}, this.currentTerm));
+
+                        })
+                        .catch(this.handleSubmitResponse);
+                });
+
             },
 
             cloneObject() {
