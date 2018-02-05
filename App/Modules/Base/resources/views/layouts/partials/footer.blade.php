@@ -11,8 +11,8 @@
 
 <div id="notification" class="notifications-wrap">
 	<div class="notifications-list">
-		<notification :notification="notification" :key="notification.id"
-					  v-for="notification in notifications"></notification>
+		<notification :notification="notification" :key="index"
+					  v-for="(notification, index) in notifications"></notification>
 	</div>
 </div>
 

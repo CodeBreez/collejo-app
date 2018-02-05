@@ -6,8 +6,8 @@ import VeeValidate from 'vee-validate';
  */
 import {Routes} from './_routes';
 import {Trans} from './_trans';
-import {Notification} from './_notification';
-import {FormHelpers} from './_formHelpers';
+import {Notification} from './_notificationHelper';
+import {FormHelpers} from './_formHelper';
 
 /**
  * Register global packages

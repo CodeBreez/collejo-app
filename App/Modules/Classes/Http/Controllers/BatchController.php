@@ -81,10 +81,9 @@ class BatchController extends Controller
 
 		$term = $this->classRepository->updateTerm($attributes, $termId, $batchId);
 
-		return $this->printPartial(view('classes::partials.term', [
-						'batch' => $this->classRepository->findBatch($batchId),
-						'term' => $term
-					]), trans('classes::term.term_updated'));
+        return $this->printJson(true, [
+            'term' => $term
+        ], trans('classes::term.term_updated'));
 	}
 
 	public function getBatchTermEdit($batchId, $termId)
@@ -103,10 +102,9 @@ class BatchController extends Controller
 
 		$term = $this->classRepository->createTerm($request->all(), $batchId);
 
-		return $this->printPartial(view('classes::partials.term', [
-						'batch' => $this->classRepository->findBatch($batchId),
-						'term' => $term
-					]), trans('classes::term.term_created'));
+        return $this->printJson(true, [
+            'term' => $term
+        ], trans('classes::term.term_created'));
 	}
 
 	public function getBatchTermNew($batchId)

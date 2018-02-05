@@ -1,56 +1,145 @@
 <template>
-    <b-form @submit.prevent="onSubmit">
+    <b-card-group deck>
 
-        <div class="col-md-6">
-            <b-form-group :label="trans('classes::batch.name')">
+        <term v-for="(term, index) in termsList" :key="index" :term="term" @delete="handleDelete(index)"
+              @edit="handleEdit(index)"></term>
 
-                <b-form-input type="text" v-model="form.name"
-                              :placeholder="trans('classes::batch.name_placeholder')"></b-form-input>
+        <b-card bg-variant="light" class="text-center">
+            <b-button @click.prevent="addNewTerm" variant="link">Add Term</b-button>
+        </b-card>
 
-            </b-form-group>
-        </div>
+        <b-modal v-if="currentTerm" ref="editTermPopup" :title="currentTerm.name" @ok="handleSave" no-close-on-backdrop
+                 no-close-on-esc>
+            <b-form>
 
-        <div class="col-md-12">
-            <b-button type="submit" :disabled="submitDisabled" variant="primary">{{ trans('base::common.save') }}
-            </b-button>
-        </div>
+                <b-form-group label="Name">
 
-    </b-form>
+                    <b-form-input type="text" v-model="currentTerm.name" required placeholder="New Term">
+                    </b-form-input>
+
+                </b-form-group>
+
+                <b-form-group label="Name">
+
+                    <datepicker input-class="form-control" v-model="currentTerm.start_date" required>
+                    </datepicker>
+
+                </b-form-group>
+
+                <b-form-group label="Name">
+
+                    <datepicker input-class="form-control" v-model="currentTerm.end_date" required>
+                    </datepicker>
+
+                </b-form-group>
+
+            </b-form>
+        </b-modal>
+
+    </b-card-group>
 </template>
 
 <script>
+    import Datepicker from 'vuejs-datepicker';
+
+    Vue.component('term', require('./EditTerms'));
 
     export default {
-        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
+        components: {
+            Datepicker
+        },
+        mixins: [C.mixins.Routes, C.mixins.Trans],
         props: {
-            validation: Object,
             batch: {
-                default: null,
+                default: () => {
+                },
                 type: Object
+            },
+            terms: {
+                default: () => [],
+                type: Array
             }
         },
         data() {
             return {
-                action: 'batch.new',
-                form: {
-                    name: null
-                },
-                submitDisabled: false
+                termsList: [],
+                currentTerm: null,
+                currentIndex: null,
             }
         },
         mounted() {
-            if (this.batch) {
-                this.form = this.batch;
-                this.action = this.route('batch.details.edit', this.batch.id);
-            }
+
+            this.termsList = this.terms;
         },
         methods: {
-            onSubmit() {
-                this.submitDisabled = true;
 
-                axios.post(this.action, this.form)
+            addNewTerm() {
+
+                this.termsList.push({
+                    id: null,
+                    name: null,
+                    start_date: null,
+                    end_date: null
+                });
+
+                this.handleEdit(this.terms.length - 1);
+            },
+
+            handleDelete(index) {
+
+                this.setCurrentIndex(index);
+
+                this.terms.splice(this.currentIndex, 1)
+            },
+
+            handleEdit(index) {
+
+                this.setCurrentIndex(index);
+
+                this.cloneObject();
+
+                setTimeout(() => {
+
+                    this.$refs.editTermPopup.show();
+                }, 100)
+            },
+
+            getRouteForObject() {
+
+                if (!this.currentTerm.id) {
+
+                    return this.route('batch.term.new', this.batch.id);
+                } else {
+
+                    return this.route('batch.term.edit', {
+                        id: this.batch.id,
+                        tid: this.currentTerm.id
+                    });
+                }
+            },
+
+            handleSave() {
+
+                axios.post(this.getRouteForObject(), this.currentTerm)
                     .then(this.handleSubmitResponse)
+                    .then(response => {
+
+                        this.currentTerm.id = response.data.data.term.id;
+
+                        this.$set(this.terms, this.currentIndex, Object.assign({}, this.currentTerm));
+
+                    })
                     .catch(this.handleSubmitResponse);
+            },
+
+            cloneObject() {
+
+                this.currentTerm = Object.assign({}, this.terms[this.currentIndex]);
+            },
+
+            setCurrentIndex(index) {
+
+                this.currentIndex = index;
             }
         }
     }

@@ -36,10 +36,10 @@
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
         data(){
 	    	return {
-			    loginForm:{
-				    email:'',
-				    password:'',
-				    remember_me:false
+                loginForm: {
+                    email: '',
+                    password: '',
+                    remember_me: false
 			    },
                 submitDisabled: false
 		    }
