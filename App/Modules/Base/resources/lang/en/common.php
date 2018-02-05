@@ -40,7 +40,6 @@ return [
 	'authorization_failed' => 'You do not have permission to do this action',
 	'ajax_token_mismatch' => 'Could not fulfill your request. Please refresh the page and try again',
 	'ajax_unauthorize' => 'You are not authorized to perform this action',
-	'validation_failed' => 'Validation Failed',
-	'validation_correct' => 'Please correct them and try again',
+    'validation_failed' => 'Validation Failed. Please correct them and try again',
 	'select' => 'Select...'
 ];
