@@ -92,7 +92,7 @@ class Modules{
 
 		return array_filter($files, function($file){
 
-			return file_exists(realpath(app_path() . $file));
+            return file_exists(realpath(app_path() . $file));
 		});
 	}
 

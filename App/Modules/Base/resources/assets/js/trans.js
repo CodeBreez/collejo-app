@@ -1,32 +1,32 @@
 const Trans = {
 
-	methods:{
+    methods: {
 
-		trans(string){
+        trans(string) {
 
-			const parts = string.split('::');
-			const module = parts[0];
-			const path = parts[1];
+            const parts = string.split('::');
+            const module = parts[0];
+            const path = parts[1];
 
-			return _.get(this.getModuleLangObject(module), path, '');
-		},
+            return _.get(this.getModuleLangObject(module), path, '');
+        },
 
-		getModuleLangObject(module){
+        getModuleLangObject(module) {
 
-			if(this.getCurrentLanguage() !== 'en'){
+            if (this.getCurrentLanguage() !== 'en') {
 
-				return _.merge(C.langs['en'][module], C.langs[this.getCurrentLanguage()][module]);
-			}
+                return _.merge(C.langs['en'][module], C.langs[this.getCurrentLanguage()][module]);
+            }
 
-			return C.langs[this.getCurrentLanguage()][module];
-		},
+            return C.langs[this.getCurrentLanguage()][module];
+        },
 
-		getCurrentLanguage(){
+        getCurrentLanguage() {
 
-			return document.documentElement.lang;
-		}
-	},
+            return document.documentElement.lang;
+        }
+    },
 
 };
 
-export { Trans };
+export {Trans};

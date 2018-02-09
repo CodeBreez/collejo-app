@@ -2,14 +2,14 @@
 
 namespace Collejo\App\Modules\ACL\Tests;
 
-use Collejo\Foundation\Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Auth;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Models\User;
+use Collejo\Foundation\Tests\TestCase;
 use Faker\Generator;
 use Hash;
-use Auth;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserRepositoryTest extends TestCase
 {

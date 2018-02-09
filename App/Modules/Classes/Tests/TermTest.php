@@ -2,12 +2,12 @@
 
 namespace Collejo\App\Modules\Classes\Tests;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
-use Collejo\App\Modules\Classes\Models\Term;
 use Collejo\App\Modules\Classes\Models\Batch;
+use Collejo\App\Modules\Classes\Models\Term;
 use Collejo\Foundation\Tests\TestCase;
 use Faker\Generator;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TermTest extends TestCase
 {
