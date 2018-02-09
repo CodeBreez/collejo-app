@@ -1,7 +1,9 @@
 <?php
 
 
-// define how courses and terms should appear on the frontend
+// Define how courses and terms should appear on the front end
+// Depending on your system this could be customized
+
 return [
 	'grade' => [
 		'singular' => 'Grade', //'Course',

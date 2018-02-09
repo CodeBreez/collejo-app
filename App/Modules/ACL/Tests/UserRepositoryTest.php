@@ -5,7 +5,7 @@ namespace Collejo\App\Modules\ACL\Tests;
 use Collejo\Foundation\Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Collejo\App\Modules\ACL\Repositories\UserRepository;
+use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Models\User;
 use Faker\Generator;
 use Hash;
