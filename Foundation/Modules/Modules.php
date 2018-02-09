@@ -91,8 +91,7 @@ class Modules{
 		$files[] = '/js/trans/base/' . config('app.locale') . '.js';
 
 		return array_filter($files, function($file){
-			echo realpath(app_path() . $file);
-			return true;
+
 			return file_exists(realpath(app_path() . $file));
 		});
 	}

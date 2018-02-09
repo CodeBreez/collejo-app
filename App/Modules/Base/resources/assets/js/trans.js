@@ -22,6 +22,7 @@ const Trans = {
 		},
 
 		getCurrentLanguage(){
+
 			return document.documentElement.lang;
 		}
 	},
