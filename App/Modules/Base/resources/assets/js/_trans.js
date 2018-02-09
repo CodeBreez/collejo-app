@@ -14,7 +14,7 @@ const Trans = {
             const module = parts[0];
             const path = parts[1];
 
-            return _.get(this.getModuleLangObject(module), path, '');
+            return _.get(this.getModuleLangObject(module), path, string);
         },
 
         /**
