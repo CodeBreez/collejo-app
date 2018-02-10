@@ -16,6 +16,9 @@
             </template>
         </b-table>
 
+        <b-pagination-nav v-if="items" align="center" :link-gen="linkGen" :base-url="baseUrl"
+                          :number-of-pages="totalPages" v-model="currentPage"></b-pagination-nav>
+
         <div class="placeholder-row" v-if="!items">
             <div class="placeholder">{{ trans('classes::batch.empty_list') }}</div>
         </div>
@@ -25,13 +28,15 @@
 <script>
 
     export default {
-        mixins: [C.mixins.Routes, C.mixins.Trans],
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.PaginationHelper],
         props: {
             batches: Object
         },
         mounted() {
             if (this.batches && this.batches.data) {
                 this.items = this.batches.data;
+
+                this.createPaginationProps(this.batches);
             }
         },
         data() {
