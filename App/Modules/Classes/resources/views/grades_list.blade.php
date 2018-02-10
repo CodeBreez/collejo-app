@@ -12,6 +12,17 @@
     <script type="text/javascript" src="{{ mix('/assets/classes/js/gradesList.js') }}"></script>
 @endsection
 
+@section('tools')
+
+    @can('add_edit_grade')
+
+        <a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i
+                    class="fa fa-fw fa-plus"></i> {{ trans('classes::grade.new_grade') }}</a>
+
+    @endcan
+
+@endsection
+
 @section('table')
 
     <div id="gradesList">

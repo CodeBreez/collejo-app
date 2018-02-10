@@ -44,14 +44,14 @@ Route::group(['prefix' => 'dashboard/grade', 'middleware' => 'auth'], function (
 	Route::get('/new', 'GradeController@getGradeNew')->name('grade.new');
 	Route::post('/new', 'GradeController@postGradeNew');
 
-	Route::get('/{gid}/details/view', 'GradeController@getGradeDetailsView')->name('grade.details.view');
-	Route::get('/{gid}/details/edit', 'GradeController@getGradeDetailsEdit')->name('grade.details.edit');
-	Route::post('/{gid}/details/edit', 'GradeController@postGradeDetailsEdit');
+    Route::get('/{id}/details/view', 'GradeController@getGradeDetailsView')->name('grade.details.view');
+    Route::get('/{id}/details/edit', 'GradeController@getGradeDetailsEdit')->name('grade.details.edit');
+    Route::post('/{id}/details/edit', 'GradeController@postGradeDetailsEdit');
 
-	Route::get('/{gid}/delete', 'GradeController@getDelete')->name('grade.delete');
+    Route::get('/{id}/delete', 'GradeController@getDelete')->name('grade.delete');
 
-    Route::get('/{gid}/classes/view', 'GradeController@getGradeClassesView')->name('grade.classes.view');
-	Route::get('/{gid}/classes/edit', 'GradeController@getGradeClassesEdit')->name('grade.classes.edit');
+    Route::get('/{id}/classes/view', 'GradeController@getGradeClassesView')->name('grade.classes.view');
+    Route::get('/{id}/classes/edit', 'GradeController@getGradeClassesEdit')->name('grade.classes.edit');
 
 	Route::get('/{id}/class/new', 'GradeController@getGradeClassNew')->name('grade.class.new');
 	Route::post('/{id}/class/new', 'GradeController@postGradeClassNew');

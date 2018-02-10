@@ -1,38 +1,54 @@
 <template>
-    <b-table :items="items" :fields="fields">
+    <div>
+        <b-table v-if="items" :items="items" :fields="fields" fixed>
 
-    </b-table>
+            <template slot="name" slot-scope="row">
+                <a :href="route('batch.details.view', row.item.id)">{{row.value}}</a>
+            </template>
+
+            <template slot="actions" slot-scope="row">
+                <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
+                    Info modal
+                </b-button>
+                <b-button size="sm" @click.stop="row.toggleDetails">
+                    {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+                </b-button>
+            </template>
+        </b-table>
+
+        <div class="placeholder-row" v-if="!items">
+            <div class="placeholder">{{ trans('classes::batch.empty_list') }}</div>
+        </div>
+    </div>
 </template>
 
 <script>
 
     export default {
-	    mixins: [ C.mixins.Routes, C.mixins.Trans ],
+        mixins: [C.mixins.Routes, C.mixins.Trans],
+        props: {
+            batches: Object
+        },
+        mounted() {
+            if (this.batches && this.batches.data) {
+                this.items = this.batches.data;
+            }
+        },
         data() {
-	        return {
-		        items: [
-			        { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-			        { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-			        { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-			        { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
-		        ],
-		        fields: [
-			        {
-				        key: 'last_name',
-				        sortable: true
-			        },
-			        {
-				        key: 'first_name',
-				        sortable: false
-			        },
-			        {
-				        key: 'age',
-				        label: 'Person age',
-				        sortable: true,
-				        // Variant applies to the whole column, including the header and footer
-				        variant: 'danger'
-			        }
-		        ],
+            return {
+                items: null,
+                fields: [
+                    {
+                        key: 'id',
+                        sortable: true
+                    }, {
+                        key: 'name',
+                        sortable: false
+                    }, {
+                        key: 'actions',
+                        label: 'Actions'
+                    }
+                ],
             }
         }
     }

@@ -29,7 +29,7 @@
         },
 	    data(){
 		    return {
-                action: 'batch.new',
+                action: this.route('batch.new'),
                 form: {
                     name: null
                 },

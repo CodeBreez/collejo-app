@@ -17,9 +17,13 @@
 @if($grade)
 
 <ol class="breadcrumb">
-  <li><a href="{{ route('grades.list') }}">{{ trans('classes::grade.grades_list') }}</a></li>
-  <li><a href="{{ route('grade.details.view', $grade->id) }}">{{ $grade->name }}</a></li>
-  <li class="active">{{ trans('classes::grade.edit_grade') }}</li>
+    <li class="breadcrumb-item">
+        <a href="{{ route('grades.list') }}">{{ trans('classes::grade.grades_list') }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ route('grade.details.view', $grade->id) }}">{{ $grade->name }}</a>
+    </li>
+    <li class="breadcrumb-item active">{{ trans('classes::grade.edit_grade') }}</li>
 </ol>
 
 @endif

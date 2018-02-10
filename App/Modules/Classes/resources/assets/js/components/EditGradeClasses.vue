@@ -1,13 +1,13 @@
 <template>
     <b-card-group deck>
 
-        <term v-for="(term, index) in termsList" :key="index" :term="term" @delete="handleDelete(index)"
-              @edit="handleEdit(index)"></term>
+        <clasis v-for="(clasis, index) in classesList" :key="index" :clasis="clasis" @delete="handleDelete(index)"
+                @edit="handleEdit(index)"></clasis>
 
         <b-card bg-variant="light" class="text-center">
             <b-button @click.prevent="addNewTerm" variant="link">
                 <i class="fa fa-2x fa-plus"></i>
-                <br/>{{trans('classes::term.new_term')}}
+                <br/>{{trans('classes::class.new_class')}}
             </b-button>
         </b-card>
 
@@ -46,7 +46,7 @@
 <script>
     import Datepicker from 'vuejs-datepicker';
 
-    Vue.component('term', require('./EditTerm'));
+    Vue.component('clasis', require('./EditClass'));
 
     export default {
         components: {
@@ -54,19 +54,19 @@
         },
         mixins: [C.mixins.Routes, C.mixins.Trans],
         props: {
-            batch: {
+            grade: {
                 default: () => {
                 },
                 type: Object
             },
-            terms: {
+            classes: {
                 default: () => [],
                 type: Array
             }
         },
         data() {
             return {
-                termsList: [],
+                classesList: [],
                 currentTerm: null,
                 currentIndex: null,
                 bvEvt: null
@@ -74,34 +74,34 @@
         },
         mounted() {
 
-            this.termsList = this.terms;
+            this.classesList = this.clasiss;
         },
         methods: {
 
             addNewTerm() {
 
-                this.termsList.push({
+                this.classesList.push({
                     id: null,
                     name: null,
                     start_date: null,
                     end_date: null
                 });
 
-                this.handleEdit(this.terms.length - 1);
+                this.handleEdit(this.clasiss.length - 1);
             },
 
             handleDelete(index) {
 
                 this.setCurrentIndex(index);
 
-                axios.delete(this.route('batch.term.delete', {
+                axios.delete(this.route('batch.clasis.delete', {
                     id: this.batch.id,
-                    tid: this.terms[this.currentIndex].id
+                    tid: this.clasiss[this.currentIndex].id
                 }))
                     .then(this.handleSubmitResponse)
                     .then(() => {
 
-                        this.terms.splice(this.currentIndex, 1);
+                        this.clasiss.splice(this.currentIndex, 1);
                     })
                     .catch(this.handleSubmitResponse);
             },
@@ -122,10 +122,10 @@
 
                 if (!this.currentTerm.id) {
 
-                    return this.route('batch.term.new', this.batch.id);
+                    return this.route('batch.clasis.new', this.batch.id);
                 } else {
 
-                    return this.route('batch.term.edit', {
+                    return this.route('batch.clasis.edit', {
                         id: this.batch.id,
                         tid: this.currentTerm.id
                     });
@@ -146,9 +146,9 @@
                         .then(this.handleSubmitResponse)
                         .then(response => {
 
-                            this.currentTerm.id = response.data.data.term.id;
+                            this.currentTerm.id = response.data.data.clasis.id;
 
-                            this.$set(this.terms, this.currentIndex, Object.assign({}, this.currentTerm));
+                            this.$set(this.clasiss, this.currentIndex, Object.assign({}, this.currentTerm));
 
                         })
                         .catch(this.handleSubmitResponse);
@@ -158,7 +158,7 @@
 
             cloneObject() {
 
-                this.currentTerm = Object.assign({}, this.terms[this.currentIndex]);
+                this.currentTerm = Object.assign({}, this.clasiss[this.currentIndex]);
             },
 
             setCurrentIndex(index) {

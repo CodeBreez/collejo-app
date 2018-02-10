@@ -15,7 +15,11 @@
 @section('table')
 
     <div id="batchesList">
-        <batches-list></batches-list>
+        <batches-list
+                @if($batches->count())
+                :batches="{{$batches->toJson()}}"
+                @endif
+        ></batches-list>
     </div>
 
 @endsection

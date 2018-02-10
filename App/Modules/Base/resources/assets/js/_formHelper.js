@@ -13,23 +13,29 @@ const FormHelpers = {
                 response = response.response;
             }
 
-            this.submitDisabled = false;
+            if (response && response.data) {
 
-            if (response && response.data.message) {
+                if (!response.data.data.redir) {
 
-                if (!response.data.success) {
-
-                    window.C.notification.warning(response.data.message);
+                    this.submitDisabled = false;
                 }
 
-                if (response.data.errors) {
+                if (response.data.message) {
 
-                    window.C.notification.danger(response.data.message);
-                }
+                    if (!response.data.success) {
 
-                if (response.data.success) {
+                        window.C.notification.warning(response.data.message);
+                    }
 
-                    window.C.notification.success(response.data.message);
+                    if (response.data.errors) {
+
+                        window.C.notification.danger(response.data.message);
+                    }
+
+                    if (response.data.success) {
+
+                        window.C.notification.success(response.data.message);
+                    }
                 }
             }
         }

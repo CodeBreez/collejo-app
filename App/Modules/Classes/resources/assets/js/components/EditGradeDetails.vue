@@ -29,6 +29,7 @@
         },
 	    data(){
 		    return {
+                action: this.route('grade.new'),
                 form: {
                     name: null
                 },
@@ -38,13 +39,14 @@
         mounted() {
             if (this.grade) {
                 this.form = this.grade;
+                this.action = this.route('grade.details.edit', this.grade.id);
             }
         },
 	    methods:{
 		    onSubmit(){
 			    this.submitDisabled = true;
 
-			    axios.post(this.route('batch.new'), this.form)
+                axios.post(this.action, this.form)
                     .then(this.handleSubmitResponse)
                     .catch(this.handleSubmitResponse);
 		    }
