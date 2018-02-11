@@ -5,7 +5,6 @@ namespace Collejo\App\Modules\Classes\Tests;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Classes\Models\Grade;
 use Collejo\Foundation\Tests\TestCase;
-use Faker\Generator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class GradeTest extends TestCase
@@ -39,11 +38,5 @@ class GradeTest extends TestCase
         parent::setup();
 
         $this->classRepository = $this->app->make(ClassRepository::class);
-
-        $this->factory->define(Grade::class, function (Generator $faker) {
-            return [
-                'name' => $faker->firstName
-            ];
-        });
     }
 }

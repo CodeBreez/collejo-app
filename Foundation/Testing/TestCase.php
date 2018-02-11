@@ -2,8 +2,8 @@
 
 namespace Collejo\Foundation\Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -89,5 +89,12 @@ abstract class TestCase extends BaseTestCase
 		parent::setup();
 
 		$this->factory = $this->app->make(Factory::class);
+
+        $factoriesDir = realpath(dirname((new \ReflectionClass(static::class))->getFileName()) . '/../Models/factories');
+
+        if (file_exists($factoriesDir)) {
+
+            $this->factory->load($factoriesDir);
+        }
 	}
 }
