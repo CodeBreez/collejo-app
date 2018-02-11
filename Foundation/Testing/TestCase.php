@@ -2,12 +2,12 @@
 
 namespace Collejo\Foundation\Tests;
 
-use Illuminate\Database\Eloquent\Factory;
+use Collejo\Foundation\Database\Eloquent\LoadFactories;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, LoadFactories;
 
     /**
      * Assert if array values are equal
@@ -88,13 +88,6 @@ abstract class TestCase extends BaseTestCase
 
 		parent::setup();
 
-		$this->factory = $this->app->make(Factory::class);
-
-        $factoriesDir = realpath(dirname((new \ReflectionClass(static::class))->getFileName()) . '/../Models/factories');
-
-        if (file_exists($factoriesDir)) {
-
-            $this->factory->load($factoriesDir);
-        }
+        $this->loadFactories();
 	}
 }
