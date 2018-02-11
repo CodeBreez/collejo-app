@@ -2,8 +2,8 @@
 
 namespace Collejo\Foundation\Tests;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\Hash;
 
 trait CreatesApplication
 {
@@ -37,7 +37,7 @@ trait CreatesApplication
 
         while(true){
 
-            $files = $this->scanDir(__DIR__ . $path);
+            $files = listDir(__DIR__ . $path);
 
             if(in_array('bootstrap', $files)){
 
@@ -46,19 +46,5 @@ trait CreatesApplication
 
             $path = $path  . '/..';
         }
-    }
-
-    /**
-     * Scans a directory
-     *
-     * @param $path
-     * @return array
-     */
-    public function scanDir($path)
-    {
-        return array_filter(scandir($path), function($item) {
-
-            return !in_array($item, ['.', '..']) && substr($item, 0, 1) != '.';
-        });
     }
 }

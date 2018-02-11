@@ -30,7 +30,7 @@ class Module
 
 			if (file_exists($path)) {
 
-				foreach ($this->scandir($path) as $dir) {
+                foreach (listDir($path) as $dir) {
 
 					if(is_dir($path . '/' . $dir)){
 
@@ -57,20 +57,6 @@ class Module
 		}
 
 		app()->register($provider);
-	}
-
-    /**
-     * Scans a given directory
-     *
-     * @param $path
-     * @return array
-     */
-	public function scanDir($path)
-	{
-		return array_filter(scandir($path), function($item) {
-
-			return !in_array($item, ['.', '..']) && substr($item, 0, 1) != '.';
-		});
 	}
 
     /**
