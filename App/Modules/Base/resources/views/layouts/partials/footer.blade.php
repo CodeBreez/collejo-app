@@ -18,7 +18,7 @@
 
 <script type="text/javascript" src="{{ mix('/assets/base/js/commons.js') }}"></script>
 <script type="text/javascript" src="{{ mix('/assets/base/js/bootstrap.js') }}"></script>
-@foreach (Modules::getLangScriptFiles() as $script)
+@foreach (Module::getLangScriptFiles() as $script)
 	<script type="application/javascript" src="{{ $script }}"></script>
 @endforeach
 

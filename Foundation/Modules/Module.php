@@ -4,7 +4,8 @@ namespace Collejo\Foundation\Modules;
 
 use Illuminate\Support\Facades\Route;
 
-class Modules{
+class Module
+{
 
     /**
      * Returns an array of paths to load modules from

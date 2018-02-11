@@ -3,7 +3,6 @@
 namespace Collejo\Foundation\Menus\Tests;
 
 use Collejo\Foundation\Tests\TestCase;
-use Collejo\Foundation\Support\Facades\Menus;
 use Illuminate\Support\Facades\Route;
 
 class MenusTest extends TestCase
@@ -34,7 +33,7 @@ class MenusTest extends TestCase
 
     public function createMenuGroup()
     {
-        return Menus::group('main', 'icon', function ($parent) {
+        return Menu::group('main', 'icon', function ($parent) {
 
         })->setOrder(1)->setPosition('right');
     }
@@ -43,6 +42,6 @@ class MenusTest extends TestCase
     {
         Route::get('test', 'LoginController@showLoginForm')->name('test');
 
-        return Menus::create('name', 'sub')->setPath('test');
+        return Menu::create('name', 'sub')->setPath('test');
     }
 }

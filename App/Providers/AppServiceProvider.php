@@ -2,9 +2,9 @@
 
 namespace Collejo\App\Providers;
 
+use Collejo\Foundation\Menus\Menu;
+use Collejo\Foundation\Modules\Module;
 use Illuminate\Support\ServiceProvider;
-use Collejo\Foundation\Modules\Modules;
-use Collejo\Foundation\Menus\Menus;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -26,12 +26,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-	    $this->app->bind('modules', function ($app) {
-		    return new Modules($app);
-	    });
+        $this->app->bind('modules', function ($app) {
+            return new Module($app);
+        });
 
-	    $this->app->bind('menus', function ($app) {
-		    return new Menus($app);
-	    });
+        $this->app->bind('menus', function ($app) {
+            return new Menu($app);
+        });
     }
 }

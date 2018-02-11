@@ -4,7 +4,8 @@ namespace Collejo\Foundation\Menus;
 
 use Route;
 
-class Menus{
+class Menu
+{
 
 	private $menus;
 
