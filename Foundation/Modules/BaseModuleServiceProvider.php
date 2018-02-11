@@ -171,6 +171,7 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
      *
      * @param string $subDir
      * @return bool|string
+     * @throws \ReflectionException
      */
 	private function getModuleDirectory($subDir = '')
 	{

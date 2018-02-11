@@ -53,7 +53,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 	{
 		$roleIds = Role::whereIn('role', $roleNames)->get(['id'])->pluck('id')->all();
 
-		$user->roles()->sync($this->createPrivotIds($roleIds));
+        $user->roles()->sync($this->createPivotIds($roleIds));
 	}
 
     /**
@@ -102,7 +102,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract {
 		$permissionIds = Permission::whereIn('permission', (array) $permissions)->get(['id'])
 								->pluck('id')->all();
 
-		$role->permissions()->sync($this->createPrivotIds($permissionIds));
+        $role->permissions()->sync($this->createPivotIds($permissionIds));
 	}
 
     /**

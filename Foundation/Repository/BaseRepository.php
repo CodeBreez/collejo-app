@@ -2,10 +2,10 @@
 
 namespace Collejo\Foundation\Repository;
 
-use Uuid;
 use Auth;
 use Request;
 use Session;
+use Uuid;
 
 abstract class BaseRepository {
 
@@ -64,12 +64,13 @@ abstract class BaseRepository {
 	 *
 	 * @return array
 	 */
-	public function createPrivotIds($ids)
+    public function createPivotIds($ids)
 	{
 		$collection = collect($ids);
 
 		$collection = $collection->map(function(){
-			return $this->includePivotMetaData();
+
+            return $this->includePivotMetaData();
 		});
 
 		return array_combine($ids, $collection->all());

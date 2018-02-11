@@ -2,12 +2,12 @@
 
 namespace Collejo\App\Modules\Classes\Repository;
 
-use Collejo\Foundation\Repository\BaseRepository;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Modules\Classes\Models\Batch;
-use Collejo\App\Modules\Classes\Models\Grade;
 use Collejo\App\Modules\Classes\Models\Clasis;
+use Collejo\App\Modules\Classes\Models\Grade;
 use Collejo\App\Modules\Classes\Models\Term;
+use Collejo\Foundation\Repository\BaseRepository;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract
 {
@@ -88,7 +88,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 
     public function assignGradesToBatch(array $gradeIds, $batchId)
     {
-        $this->findBatch($batchId)->grades()->sync($this->createPrivotIds($gradeIds));
+        $this->findBatch($batchId)->grades()->sync($this->createPivotIds($gradeIds));
     }
 
     public function createTerm(array $attributes, $batchId)

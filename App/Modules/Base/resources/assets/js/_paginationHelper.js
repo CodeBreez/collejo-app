@@ -26,6 +26,7 @@ const PaginationHelper = {
          * Generates links bases on page number
          */
         linkGen(pageNum) {
+
             return `?page=${pageNum}`;
         }
     }
