@@ -35,7 +35,7 @@
 @section('tab')
 
     <div id="editGradeClasses">
-        <edit-grade-classes :batch="{{$grade}}" :classes="{{$grade->classes}}"></edit-grade-classes>
+        <edit-grade-classes :grade="{{$grade}}" :classes="{{$grade->classes}}"></edit-grade-classes>
     </div>
 
 @endsection

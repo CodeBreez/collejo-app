@@ -18,7 +18,8 @@
 
                 <b-form-group label="Name">
 
-                    <b-form-input type="text" v-model="currentTerm.name" v-validate="'required'" placeholder="New Term">
+                    <b-form-input type="text" v-model="currentTerm.name" v-validate="'required'"
+                                  :placeholder="trans('classes::term.new_term_placeholder')">
                     </b-form-input>
 
                 </b-form-group>

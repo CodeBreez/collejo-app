@@ -20,6 +20,8 @@ const FormHelpers = {
                     this.submitDisabled = false;
                 }
 
+                console.log(response.data.message);
+
                 if (response.data.message) {
 
                     if (!response.data.success) {

@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Collejo\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Console\Scheduling\Schedule;
 
 class Kernel extends ConsoleKernel
 {
@@ -50,7 +50,7 @@ class Kernel extends ConsoleKernel
 
 			if (file_exists($path)) {
 
-				foreach ($modules->scandir($path) as $dir) {
+                foreach (listDir($path) as $dir) {
 
 					$commandsDir = $path . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . 'Commands';
 

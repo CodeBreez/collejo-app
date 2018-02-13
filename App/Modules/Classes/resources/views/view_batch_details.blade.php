@@ -6,7 +6,7 @@
 
     @can('add_edit_batch')
 
-        <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-primary pull-right"><i
+        <a href="{{ route('batch.details.edit', $batch->id) }}" class="btn btn-primary"><i
                     class="fa fa-fw fa-edit"></i> {{ trans('base::common.edit') }}</a>
 
     @endcan

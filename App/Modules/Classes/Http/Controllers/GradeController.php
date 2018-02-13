@@ -30,21 +30,10 @@ class GradeController extends Controller
 
 		$class = $this->classRepository->updateClass($request->all(), $classId, $gradeId);
 
-		return $this->printPartial(view('classes::partials.class', [
-				'grade' => $this->classRepository->findGrade($gradeId),
-				'class' => $class
-			]), trans('classes::class.class_updated'));
-	}
-
-	public function getGradeClassEdit($gradeId, $classId)
-	{
-		$this->authorize('add_edit_class');
-
-		return $this->printModal(view('classes::modals.edit_class', [
-				'class' => $this->classRepository->findClass($classId, $gradeId),
-				'grade' => $this->classRepository->findGrade($gradeId),
-				'class_form_validator' => $this->jsValidator(UpdateClassRequest::class)
-			]));
+        return $this->printJson(true, [
+            'grade' => $this->classRepository->findGrade($gradeId),
+            'class' => $class
+        ], trans('classes::class.class_updated'));
 	}
 
 	public function postGradeClassNew(CreateClassRequest $request, $gradeId)
@@ -53,21 +42,10 @@ class GradeController extends Controller
 
 		$class = $this->classRepository->createClass($request->all(), $gradeId);
 
-		return $this->printPartial(view('classes::partials.class', [
-				'grade' => $this->classRepository->findGrade($gradeId),
-				'class' => $class
-			]), 'Class Created');
-	}
-
-	public function getGradeClassNew($gradeId)
-	{
-		$this->authorize('add_edit_class');
-
-		return $this->printModal(view('classes::modals.edit_class', [
-				'class' => null,
-				'grade' => $this->classRepository->findGrade($gradeId),
-				'class_form_validator' => $this->jsValidator(CreateClassRequest::class)
-			]));
+        return $this->printJson(true, [
+            'grade' => $this->classRepository->findGrade($gradeId),
+            'class' => $class
+        ], trans('classes::class.class_created'));
 	}
 
 	public function getGradeDetailsView($gradeId)

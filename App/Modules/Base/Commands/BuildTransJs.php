@@ -3,7 +3,7 @@
 namespace Collejo\App\Modules\Base\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Lang;
+
 class BuildTransJs extends Command
 {
 	/**
@@ -38,19 +38,19 @@ class BuildTransJs extends Command
 
 			if (file_exists($path)) {
 
-				foreach ($this->modules->scandir($path) as $dir) {
+                foreach (listDir($path) as $dir) {
 
 					$langsDir = $path . '/' . $dir . '/resources/lang';
 
 					if(is_dir($langsDir)){
 
-						foreach ($this->modules->scandir($langsDir) as $lang) {
+                        foreach (listDir($langsDir) as $lang) {
 
 							$langDir = $langsDir . '/' . $lang;
 
 							$strings = [];
 
-							foreach ($this->modules->scandir($langDir) as $file) {
+                            foreach (listDir($langDir) as $file) {
 
 								$langFile = $langDir . '/' . $file;
 

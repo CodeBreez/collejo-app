@@ -40,13 +40,11 @@ class BuildRoutesJs extends Command
 
 		foreach($this->routes as $route){
 
-			if(in_array('GET',  $route->methods())){
-
 				$routes[] = [
+                    'methods' => $route->methods(),
 					'name' => $route->getName(),
 					'uri' => $route->uri()
 				];
-			}
 		}
 
 		$handle = fopen(storage_path() . '/collejo/routes.json', 'w');

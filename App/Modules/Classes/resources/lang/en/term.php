@@ -3,6 +3,7 @@
 return [
 	'terms' => trans('base::entities.term.plural'),
     'new_term' => 'New ' . trans('base::entities.term.singular'),
+    'new_term_placeholder' => 'New ' . trans('base::entities.term.singular'),
     'start_date' => 'Start Date',
     'end_date' => 'End Date',
     'empty_list' => 'This Batch does not have any ' . trans('base::entities.term.plural') . ' defined.',

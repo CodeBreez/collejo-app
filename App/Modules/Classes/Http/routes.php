@@ -48,7 +48,7 @@ Route::group(['prefix' => 'dashboard/grade', 'middleware' => 'auth'], function (
     Route::get('/{id}/details/edit', 'GradeController@getGradeDetailsEdit')->name('grade.details.edit');
     Route::post('/{id}/details/edit', 'GradeController@postGradeDetailsEdit');
 
-    Route::get('/{id}/delete', 'GradeController@getDelete')->name('grade.delete');
+    Route::delete('/{id}/delete', 'GradeController@getDelete')->name('grade.delete');
 
     Route::get('/{id}/classes/view', 'GradeController@getGradeClassesView')->name('grade.classes.view');
     Route::get('/{id}/classes/edit', 'GradeController@getGradeClassesEdit')->name('grade.classes.edit');
@@ -56,10 +56,10 @@ Route::group(['prefix' => 'dashboard/grade', 'middleware' => 'auth'], function (
 	Route::get('/{id}/class/new', 'GradeController@getGradeClassNew')->name('grade.class.new');
 	Route::post('/{id}/class/new', 'GradeController@postGradeClassNew');
 
-	Route::get('/{id}/class/{tid}/edit', 'GradeController@getGradeClassEdit')->name('grade.class.edit');
-	Route::post('/{id}/class/{tid}/edit', 'GradeController@postGradeClassEdit');
+    Route::get('/{id}/class/{cid}/edit', 'GradeController@getGradeClassEdit')->name('grade.class.edit');
+    Route::post('/{id}/class/{cid}/edit', 'GradeController@postGradeClassEdit');
 
-	Route::get('/{id}/class/{tid}/delete', 'GradeController@getGradeClassDelete')->name('grade.class.delete');
+    Route::delete('/{id}/class/{cid}/delete', 'GradeController@getGradeClassDelete')->name('grade.class.delete');
 
 	Route::get('/classes', 'GradeController@getGradeClasses')->middleware('ajax')->name('grade.classes.search');
 });

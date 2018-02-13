@@ -16,7 +16,7 @@
 
     @can('add_edit_grade')
 
-        <a href="{{ route('grade.new') }}" class="btn btn-primary pull-right"><i
+        <a href="{{ route('grade.new') }}" class="btn btn-primary"><i
                     class="fa fa-fw fa-plus"></i> {{ trans('classes::grade.new_grade') }}</a>
 
     @endcan
