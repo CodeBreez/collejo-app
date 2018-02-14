@@ -4,6 +4,7 @@ namespace Collejo\Foundation\Menus\Tests;
 
 use Collejo\Foundation\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
+use Menu;
 
 class MenusTest extends TestCase
 {
