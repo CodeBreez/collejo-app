@@ -2,13 +2,12 @@
 
 namespace Collejo\App\Repository;
 
-use Collejo\App\Foundation\Repository\BaseRepository;
 use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
+use Collejo\App\Foundation\Repository\BaseRepository;
 use Collejo\App\Models\Batch;
-use Collejo\App\Models\Grade;
 use Collejo\App\Models\Clasis;
+use Collejo\App\Models\Grade;
 use Collejo\App\Models\Term;
-use DB;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract
 {

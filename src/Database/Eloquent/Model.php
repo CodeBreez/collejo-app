@@ -2,22 +2,21 @@
 
 namespace Collejo\App\Database\Eloquent;
 
-use Illuminate\Database\Eloquent\Model as Base;
-use Collejo\App\Events\CriteriaDataChanged;
-use Uuid;
 use Auth;
+use Collejo\App\Events\CriteriaDataChanged;
+use Illuminate\Database\Eloquent\Model as Base;
 use Schema;
+use Uuid;
 
-abstract class Model extends Base {
+abstract class Model extends Base
+{
+    public $incrementing = false;
 
-	public $incrementing = false;
-
-	protected static function boot()
+    protected static function boot()
     {
         parent::boot();
 
-        static::creating(function($model) {
-
+        static::creating(function ($model) {
             $keyName = $model->getKeyName();
 
             $model->$keyName = $model->newUuid();
@@ -28,28 +27,24 @@ abstract class Model extends Base {
                 $model->attributes['updated_by'] = Auth::user()->id;
             }
 
-
             if (Auth::user() && in_array('created_by', $attributes)) {
                 $model->attributes['created_by'] = Auth::user()->id;
             }
-
         });
 
-        static::saving(function($model) {
-
+        static::saving(function ($model) {
             $attributes = $model->getAllColumnsNames();
 
             if (Auth::user() && in_array('updated_by', $attributes)) {
                 $model->attributes['updated_by'] = Auth::user()->id;
             }
-            
         });
 
-        static::created(function($model){
+        static::created(function ($model) {
             event(new CriteriaDataChanged($model));
         });
 
-        static::updated(function($model){
+        static::updated(function ($model) {
             event(new CriteriaDataChanged($model));
         });
     }
