@@ -7,52 +7,51 @@ use Illuminate\Routing\Router;
 
 class BuildRoutesJs extends Command
 {
-	/**
-	 * The name and signature of the console command.
-	 *
-	 * @var string
-	 */
-	protected $signature = 'asset:routes';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'asset:routes';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Build Routes JS';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Build Routes JS';
 
-	public function __construct(Router $router)
-	{
-		parent::__construct();
+    public function __construct(Router $router)
+    {
+        parent::__construct();
 
-		$this->router = $router;
-		$this->routes = $router->getRoutes();
-	}
+        $this->router = $router;
+        $this->routes = $router->getRoutes();
+    }
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function handle()
-	{
-		$routes = [];
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $routes = [];
 
-		foreach($this->routes as $route){
-
-				$routes[] = [
+        foreach ($this->routes as $route) {
+            $routes[] = [
                     'methods' => $route->methods(),
-					'name' => $route->getName(),
-					'uri' => $route->uri()
-				];
-		}
+                    'name'    => $route->getName(),
+                    'uri'     => $route->uri(),
+                ];
+        }
 
-		$handle = fopen(storage_path() . '/collejo/routes.json', 'w');
+        $handle = fopen(storage_path().'/collejo/routes.json', 'w');
 
-		fwrite($handle, json_encode($routes));
+        fwrite($handle, json_encode($routes));
 
-		fclose($handle);
+        fclose($handle);
 
-		$this->info('routes.json updated!');
-	}
+        $this->info('routes.json updated!');
+    }
 }

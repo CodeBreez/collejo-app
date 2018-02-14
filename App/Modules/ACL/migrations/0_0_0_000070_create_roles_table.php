@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Collejo\Foundation\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateRolesTable extends Migration
 {
@@ -13,7 +13,6 @@ class CreateRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-
             $table->string('id', 45)->primary();
             $table->string('role')->unique();
             $table->string('created_by')->nullable();
@@ -23,7 +22,6 @@ class CreateRolesTable extends Migration
         });
 
         Schema::table('roles', function (Blueprint $table) {
-
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

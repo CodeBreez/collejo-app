@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-
     use SoftDeletes;
 
     protected $table = 'users';
@@ -29,13 +28,13 @@ class User extends Authenticatable
 
     public function getNameAttribute()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     public function getPermissionsAttribute()
     {
-        return Cache::remember('user-perms:' . $this->id, config('collejo.tweaks.user_permissions_ttl'), function () {
-            return Permission::join('permission_role', 'permission_role.permission_id', '=' ,'permissions.id')
+        return Cache::remember('user-perms:'.$this->id, config('collejo.tweaks.user_permissions_ttl'), function () {
+            return Permission::join('permission_role', 'permission_role.permission_id', '=', 'permissions.id')
                             ->join('roles', 'permission_role.role_id', '=', 'roles.id')
                             ->join('role_user', 'permission_role.role_id', '=', 'role_user.role_id')
                             ->where('role_user.user_id', $this->id)
@@ -45,7 +44,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-    	return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
     /*public function student()

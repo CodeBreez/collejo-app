@@ -13,7 +13,7 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	    $this->modules = app()->make('modules');
+        $this->modules = app()->make('modules');
 
         $this->modules->loadModules();
     }
@@ -25,7 +25,5 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
-
 }

@@ -8,7 +8,6 @@ use Session;
 
 class LoginController extends Controller
 {
-
     use AuthenticatesUsers;
 
     protected $redirectTo = '/dashboard';

@@ -8,8 +8,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
-	'documentation' => 'Documentation',
-	'guide' => 'View Installation Guide',
+    'documentation' => 'Documentation',
+    'guide'         => 'View Installation Guide',
 
-    'incomplete' => 'It looks like you haven\'t installed Collejo yet.'
+    'incomplete' => 'It looks like you haven\'t installed Collejo yet.',
 ];

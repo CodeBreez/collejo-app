@@ -41,6 +41,5 @@ class TermTest extends TestCase
         parent::setup();
 
         $this->classRepository = $this->app->make(ClassRepository::class);
-
     }
 }

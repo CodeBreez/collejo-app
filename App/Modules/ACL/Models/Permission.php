@@ -6,7 +6,6 @@ use Collejo\Foundation\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-
     protected $table = 'permissions';
 
     protected $fillable = ['permission', 'module'];
@@ -18,12 +17,12 @@ class Permission extends Model
 
     public function children()
     {
-    	return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->hasMany(self::class, 'parent_id', 'id');
     }
 
     public function parent()
     {
-    	return $this->hasOne(self::class, 'id', 'parent_id');
+        return $this->hasOne(self::class, 'id', 'parent_id');
     }
 
     public function getNameAttribute()
