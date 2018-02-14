@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Collejo\Foundation\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 class CreateTermsTable extends Migration

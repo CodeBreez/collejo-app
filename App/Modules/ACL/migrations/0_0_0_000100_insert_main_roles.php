@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Collejo\Foundation\Database\Migrations\Migration;
 use Collejo\App\Modules\ACL\Contracts\UserRepository as UserRepositoryContract;
 
 class InsertMainRoles extends Migration
