@@ -6,7 +6,7 @@ use Illuminate\Console\Application as Artisan;
 use Illuminate\Foundation\Console\Kernel as IlluminateConsoleKernel;
 use Symfony\Component\Finder\Finder;
 
-class Kernal extends IlluminateConsoleKernel
+class Kernel extends IlluminateConsoleKernel
 {
     /**
      * Register all of the commands in the given directory.
