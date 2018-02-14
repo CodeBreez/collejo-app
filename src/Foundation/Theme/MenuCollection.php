@@ -1,126 +1,121 @@
-<?php 
+<?php
 
 namespace Collejo\App\Foundation\Theme;
 
-use Illuminate\Database\Eloquent\Collection;
 use Collejo\App\Contracts\Theme\Menu as MenuInterface;
 use Illuminate\Container\Container as Application;
+use Illuminate\Database\Eloquent\Collection;
 use Route;
-use Menu;
 
-class MenuCollection {
+class MenuCollection
+{
+    protected $app;
 
-	protected $app;
+    private $menus;
 
-	private $menus;
+    public function getMenuBarItems()
+    {
+        $namedRoutes = $this->getNamedRoutes();
 
-	public function getMenuBarItems()
-	{
-		$namedRoutes = $this->getNamedRoutes();
+        foreach ($this->getItems() as $key => $menu) {
+            if (isset($namedRoutes[$menu->getName()])) {
+                $this->getItems()[$key]->setPath($namedRoutes[$menu->getName()]);
+            }
+        }
 
-		foreach ($this->getItems() as $key => $menu) {
-			if (isset($namedRoutes[$menu->getName()])) {
-				$this->getItems()[$key]->setPath($namedRoutes[$menu->getName()]);
-			}
-		}
+        $groups = $this->getItems()->where('type', 'g');
 
-		$groups = $this->getItems()->where('type', 'g');
+        $menus = $this->getItems()->where('type', 'm');
 
-		$menus = $this->getItems()->where('type', 'm');
+        $subGroups = $this->getItems()->where('type', 's');
 
-		$subGroups = $this->getItems()->where('type', 's');
+        foreach ($subGroups as $subGroupItem) {
+            $subGroupItem->children = $menus->where('parent', $subGroupItem->getName());
+        }
 
-		foreach ($subGroups as $subGroupItem) {
-			$subGroupItem->children = $menus->where('parent', $subGroupItem->getName());
-		}
+        foreach ($groups as $groupsItem) {
+            $groupsItem->children = $menus->where('parent', $groupsItem->getName())->union($subGroups->where('parent', $groupsItem->getName()));
+        }
 
-		foreach ($groups as $groupsItem) {
-			$groupsItem->children = $menus->where('parent', $groupsItem->getName())->union($subGroups->where('parent', $groupsItem->getName()));
-		}
+        return $groups;
+    }
 
-		return $groups;
-	}
+    private function getNamedRoutes()
+    {
+        $routeCollection = Route::getRoutes();
+        $namedRoutes = [];
 
-	private function getNamedRoutes()
-	{
-		$routeCollection = Route::getRoutes();
-		$namedRoutes = [];
+        foreach ($routeCollection as $route) {
+            if (!is_null($route->getName())) {
+                $namedRoutes[$route->getName()] = $route->getPath();
+            }
+        }
 
-		foreach ($routeCollection as $route) {
-			if (!is_null($route->getName())) {
-				$namedRoutes[$route->getName()] = $route->getPath();
-			}
-		}
+        return $namedRoutes;
+    }
 
-		return $namedRoutes;
-	}
+    public function getItems()
+    {
+        return $this->menus;
+    }
 
-	public function getItems()
-	{
-		return $this->menus;
-	}
+    public function addNamespace($namespace, $path)
+    {
+        require_once $path;
+    }
 
-	public function addNamespace($namespace, $path)
-	{
-		require_once ($path);
-	}
+    public function group()
+    {
+        if (func_num_args() == 3) {
+            $label = func_get_arg(0);
+            $icon = func_get_arg(1);
+            $closure = func_get_arg(2);
 
-	public function group()
-	{
-		if (func_num_args() == 3) {
+            $menu = $this->app->make(MenuInterface::class);
 
-			$label = func_get_arg(0);
-			$icon = func_get_arg(1);
-			$closure = func_get_arg(2);
+            $name = strtolower($label);
 
-			$menu = $this->app->make(MenuInterface::class);
+            $menu->setName($name)->setLabel($label)->setIcon($icon)->setType('g');
 
-			$name = strtolower($label);
+            $this->menus->push($menu);
 
-			$menu->setName($name)->setLabel($label)->setIcon($icon)->setType('g');
+            $closure($name);
 
-			$this->menus->push($menu);
+            return $menu;
+        } elseif (func_num_args() == 1) {
+            $closure = func_get_arg(0);
 
-			$closure($name);
+            $menu = $this->app->make(MenuInterface::class);
 
-			return $menu;
+            $name = microtime(true);
 
-		} elseif(func_num_args() == 1) {
+            $menu->setName($name)->setLabel(null)->setType('s');
 
-			$closure = func_get_arg(0);
+            $this->menus->push($menu);
 
-			$menu = $this->app->make(MenuInterface::class);
+            $closure($name);
 
-			$name = microtime(true);
+            return $menu;
+        }
 
-			$menu->setName($name)->setLabel(null)->setType('s');
+        throw new \Exception('Invalid Arguments');
+    }
 
-			$this->menus->push($menu);
+    public function create($name, $label)
+    {
+        $menu = $this->app->make(MenuInterface::class);
 
-			$closure($name);
+        $menu->setName($name)->setLabel($label)->setType('m');
 
-			return $menu;
-		}
+        $this->menus->push($menu);
 
-		throw new \Exception('Invalid Arguments');
-		
-	}
+        return $menu;
+    }
 
-	public function create($name, $label)
-	{
-		$menu = $this->app->make(MenuInterface::class);
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
 
-		$menu->setName($name)->setLabel($label)->setType('m');
-
-		$this->menus->push($menu);
-
-		return $menu;
-	}
-
-	public function __construct(Application $app)
-	{
-		$this->app = $app;
-
-		$this->menus = new Collection();
-	}
+        $this->menus = new Collection();
+    }
 }

@@ -1,14 +1,13 @@
-<?php 
+<?php
 
 namespace Collejo\App\Events;
 
 use Collejo\App\Foundation\Events\Event;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Queue\SerializesModels;
 
-class CriteriaDataChanged extends Event {
-
+class CriteriaDataChanged extends Event
+{
     use SerializesModels;
 
     public $model;
@@ -22,7 +21,7 @@ class CriteriaDataChanged extends Event {
     {
         $this->model = $model;
     }
-    
+
     /**
      * Get the channels the event should be broadcast on.
      *
