@@ -7,11 +7,10 @@ use View;
 
 class DashboardModuleServiceProvider extends ModuleServiceProvider
 {
-
-	public function register()
-	{
-		View::composer(
-			'layouts.dash', 'Collejo\App\Modules\Dashboard\Http\ViewComposers\DashComposer'
-		);
-	}
+    public function register()
+    {
+        View::composer(
+            'layouts.dash', 'Collejo\App\Modules\Dashboard\Http\ViewComposers\DashComposer'
+        );
+    }
 }

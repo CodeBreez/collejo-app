@@ -1,7 +1,7 @@
 <?php
 
-use Collejo\Foundation\Database\Migrations\Migration;
 use Collejo\App\Modules\ACL\Contracts\UserRepository as UserRepositoryContract;
+use Collejo\Foundation\Database\Migrations\Migration;
 
 class InsertMainRoles extends Migration
 {
@@ -17,7 +17,6 @@ class InsertMainRoles extends Migration
         $mainRoles = app()->majorUserRoles;
 
         foreach ($mainRoles as $role) {
-
             $userRepository->createRoleIfNotExists($role);
         }
     }
@@ -29,6 +28,5 @@ class InsertMainRoles extends Migration
      */
     public function down()
     {
-
     }
 }

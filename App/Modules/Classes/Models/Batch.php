@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Batch extends Model
 {
-
     use SoftDeletes;
 
     protected $table = 'batches';
@@ -16,7 +15,7 @@ class Batch extends Model
 
     public function terms()
     {
-    	return $this->hasMany(Term::class);
+        return $this->hasMany(Term::class);
     }
 
     public function grades()

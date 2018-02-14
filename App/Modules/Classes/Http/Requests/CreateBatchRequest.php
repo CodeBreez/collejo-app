@@ -6,18 +6,17 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class CreateBatchRequest extends Request
 {
+    public function rules()
+    {
+        return [
+            'name' => 'required',
+        ];
+    }
 
-	public function rules()
-	{
-	    return [
-	        'name' => 'required'
-	    ];
-	}
-
-	public function attributes()
-	{
-		return [
-	        'name' => 'Batch Name'
-	    ];
-	}
+    public function attributes()
+    {
+        return [
+            'name' => 'Batch Name',
+        ];
+    }
 }

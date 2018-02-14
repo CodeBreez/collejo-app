@@ -6,26 +6,25 @@ use Closure;
 
 class JsonRequest
 {
+    const PARSED_METHODS = [
+        'POST', 'PUT', 'PATCH',
+    ];
 
-	const PARSED_METHODS = [
-		'POST', 'PUT', 'PATCH'
-	];
-
-	/**
+    /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param string|null              $guard
+     *
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        if (in_array($request->getMethod(), self::PARSED_METHODS)) {
+            $request->merge((array) json_decode($request->getContent()));
+        }
 
-	    if (in_array($request->getMethod(), self::PARSED_METHODS)) {
-		    $request->merge((array)json_decode($request->getContent()));
-	    }
-
-	    return $next($request);
+        return $next($request);
     }
 }

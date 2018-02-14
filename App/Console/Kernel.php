@@ -19,7 +19,8 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)
@@ -42,21 +43,18 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 
-	private function registerModuleCommands()
-	{
-		$modules = app()->make('modules');
+    private function registerModuleCommands()
+    {
+        $modules = app()->make('modules');
 
-		foreach ($modules->getModulePaths() as $path) {
-
-			if (file_exists($path)) {
-
+        foreach ($modules->getModulePaths() as $path) {
+            if (file_exists($path)) {
                 foreach (listDir($path) as $dir) {
+                    $commandsDir = $path.DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.'Commands';
 
-					$commandsDir = $path . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . 'Commands';
-
-					$this->load($commandsDir);
-				}
-			}
-		}
-	}
+                    $this->load($commandsDir);
+                }
+            }
+        }
+    }
 }

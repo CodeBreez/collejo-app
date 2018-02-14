@@ -6,22 +6,21 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class CreateTermRequest extends Request
 {
+    public function rules()
+    {
+        return [
+            'name'       => 'required',
+            'start_date' => 'required',
+            'end_date'   => 'required',
+        ];
+    }
 
-	public function rules()
-	{
-	    return [
-	        'name' => 'required',
-	        'start_date' => 'required',
-	        'end_date' => 'required'
-	    ];
-	}
-
-	public function attributes()
-	{
-		return [
-	        'name' => 'Term Name',
-	        'start_date' => 'Start Date',
-	        'end_date' => 'End Date',
-	    ];
-	}
+    public function attributes()
+    {
+        return [
+            'name'       => 'Term Name',
+            'start_date' => 'Start Date',
+            'end_date'   => 'End Date',
+        ];
+    }
 }

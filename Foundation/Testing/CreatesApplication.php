@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 trait CreatesApplication
 {
-
-	protected $factory;
+    protected $factory;
 
     /**
      * Creates the application.
@@ -17,7 +16,7 @@ trait CreatesApplication
      */
     public function createApplication()
     {
-        $app = require $this->getAppPath() . '/bootstrap/app.php';
+        $app = require $this->getAppPath().'/bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
 
@@ -27,7 +26,7 @@ trait CreatesApplication
     }
 
     /**
-     * Search for the bootstrap folder in reverse
+     * Search for the bootstrap folder in reverse.
      *
      * @return string
      */
@@ -35,16 +34,14 @@ trait CreatesApplication
     {
         $path = '/..';
 
-        while(true){
+        while (true) {
+            $files = listDir(__DIR__.$path);
 
-            $files = listDir(__DIR__ . $path);
-
-            if(in_array('bootstrap', $files)){
-
-                return __DIR__ . $path;
+            if (in_array('bootstrap', $files)) {
+                return __DIR__.$path;
             }
 
-            $path = $path  . '/..';
+            $path = $path.'/..';
         }
     }
 }

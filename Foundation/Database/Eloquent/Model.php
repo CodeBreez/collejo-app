@@ -2,22 +2,21 @@
 
 namespace Collejo\Foundation\Database\Eloquent;
 
-use Illuminate\Database\Eloquent\Model as Base;
-//use Collejo\App\Events\CriteriaDataChanged;
-use Webpatser\Uuid\Uuid;
 use Auth;
+//use Collejo\App\Events\CriteriaDataChanged;
+use Illuminate\Database\Eloquent\Model as Base;
 use Schema;
+use Webpatser\Uuid\Uuid;
 
-abstract class Model extends Base {
-
+abstract class Model extends Base
+{
     public $incrementing = false;
 
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function($model) {
-
+        static::creating(function ($model) {
             $keyName = $model->getKeyName();
 
             $model->$keyName = $model->newUuid();
@@ -33,8 +32,7 @@ abstract class Model extends Base {
             }
         });
 
-        static::saving(function($model) {
-
+        static::saving(function ($model) {
             $attributes = $model->getAllColumnsNames();
 
             if (Auth::user() && in_array('updated_by', $attributes)) {
@@ -42,17 +40,17 @@ abstract class Model extends Base {
             }
         });
 
-        static::created(function($model){
+        static::created(function ($model) {
             //event(new CriteriaDataChanged($model));
         });
 
-        static::updated(function($model){
+        static::updated(function ($model) {
             //event(new CriteriaDataChanged($model));
         });
     }
 
     /**
-     * Generates a new UUID
+     * Generates a new UUID.
      *
      * @return string
      */
@@ -62,7 +60,7 @@ abstract class Model extends Base {
     }
 
     /**
-     * Returns an array of columns for this model
+     * Returns an array of columns for this model.
      *
      * @return mixed
      */

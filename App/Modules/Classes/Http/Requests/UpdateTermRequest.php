@@ -6,19 +6,17 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class UpdateTermRequest extends Request
 {
+    public function rules()
+    {
+        $createRequest = new CreateTermRequest();
 
-	public function rules()
-	{
+        return $createRequest->rules();
+    }
 
-		$createRequest = new CreateTermRequest();
+    public function attributes()
+    {
+        $createRequest = new CreateTermRequest();
 
-	    return $createRequest->rules();
-	}
-
-	public function attributes()
-	{
-		$createRequest = new CreateTermRequest();
-
-	    return $createRequest->attributes();
-	}
+        return $createRequest->attributes();
+    }
 }

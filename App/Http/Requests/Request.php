@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 
 abstract class Request extends FormRequest
 {
-
     protected $authorize = true;
 
     public function authorize()
@@ -20,9 +19,9 @@ abstract class Request extends FormRequest
     {
         return [
             'success' => false,
-            'data' => [
-                'errors' => $validator->errors()->getMessages()
-            ]
+            'data'    => [
+                'errors' => $validator->errors()->getMessages(),
+            ],
         ];
     }
 

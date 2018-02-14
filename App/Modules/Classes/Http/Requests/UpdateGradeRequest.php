@@ -6,19 +6,17 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class UpdateGradeRequest extends Request
 {
+    public function rules()
+    {
+        $createRequest = new CreateGradeRequest();
 
-	public function rules()
-	{
+        return $createRequest->rules();
+    }
 
-		$createRequest = new CreateGradeRequest();
+    public function attributes()
+    {
+        $createRequest = new CreateGradeRequest();
 
-	    return $createRequest->rules();
-	}
-
-	public function attributes()
-	{
-		$createRequest = new CreateGradeRequest();
-
-	    return $createRequest->attributes();
-	}
+        return $createRequest->attributes();
+    }
 }
