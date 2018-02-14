@@ -6,7 +6,7 @@ use Collejo\App\Modules\ACL\Contracts\UserRepository as UserRepositoryContract;
 use Collejo\App\Modules\ACL\Repositories\UserRepository;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 
-class AuthModuleServiceProvider extends ModuleServiceProvider
+class ACLModuleServiceProvider extends ModuleServiceProvider
 {
     public function register()
     {
