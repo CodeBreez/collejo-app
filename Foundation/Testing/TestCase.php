@@ -2,6 +2,8 @@
 
 namespace Collejo\Foundation\Tests;
 
+require_once ('../helpers.php');
+
 use Collejo\Foundation\Database\Eloquent\LoadFactories;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
