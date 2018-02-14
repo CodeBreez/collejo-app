@@ -6,7 +6,6 @@ use Collejo\Foundation\Menus\Menu;
 use Collejo\Foundation\Modules\Module;
 use Illuminate\Support\ServiceProvider;
 
-
 class AppServiceProvider extends ServiceProvider
 {
     /**

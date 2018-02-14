@@ -2,15 +2,15 @@
 
 namespace Collejo\App\Modules\Auth\Http\Controllers;
 
-use Collejo\App\Http\Controller;
 use Auth;
+use Collejo\App\Http\Controller;
 
 class ProfileController extends Controller
 {
-	public function getProfile()
-	{
-		return view('auth::profile', ['profile' => Auth::user()]);
-	}
+    public function getProfile()
+    {
+        return view('auth::profile', ['profile' => Auth::user()]);
+    }
 
     public function __construct()
     {

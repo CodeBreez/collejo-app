@@ -6,10 +6,8 @@ use Collejo\App\Http\Controller;
 
 class DashController extends Controller
 {
-
-	public function getIndex()
-	{
-
-		return view('dashboard::dash')->render();
-	}
+    public function getIndex()
+    {
+        return view('dashboard::dash')->render();
+    }
 }

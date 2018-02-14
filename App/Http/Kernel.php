@@ -70,11 +70,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => Authenticate::class,
+        'auth'       => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
-        'bindings' => SubstituteBindings::class,
-        'can' => Authorize::class,
-        'guest' => RedirectIfAuthenticated::class,
-        'throttle' => ThrottleRequests::class,
+        'bindings'   => SubstituteBindings::class,
+        'can'        => Authorize::class,
+        'guest'      => RedirectIfAuthenticated::class,
+        'throttle'   => ThrottleRequests::class,
     ];
 }

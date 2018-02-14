@@ -6,9 +6,7 @@ use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvide
 
 class AuthModuleServiceProvider extends ModuleServiceProvider
 {
-
     public function register()
     {
-
     }
 }

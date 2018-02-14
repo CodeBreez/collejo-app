@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Collejo\Foundation\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateMediaTable extends Migration
 {
@@ -13,7 +13,6 @@ class CreateMediaTable extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
-
             $table->string('id', 45)->primary();
             $table->string('mime', 15);
             $table->string('ext', 5);
@@ -24,7 +23,6 @@ class CreateMediaTable extends Migration
         });
 
         Schema::table('media', function (Blueprint $table) {
-
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

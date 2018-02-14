@@ -12,198 +12,197 @@ use Request;
 
 class BatchController extends Controller
 {
+    protected $classRepository;
 
-	protected $classRepository;
+    public function getBatchTermsView($batchId)
+    {
+        $this->authorize('view_batch_details');
 
-	public function getBatchTermsView($batchId)
-	{
-		$this->authorize('view_batch_details');
+        return view('classes::view_batch_terms', [
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]);
+    }
 
-		return view('classes::view_batch_terms', [
-						'batch' => $this->classRepository->findBatch($batchId)
-					]);
-	}
+    public function getBatchTermsEdit($batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-	public function getBatchTermsEdit($batchId)
-	{
-		$this->authorize('add_edit_batch');
+        return view('classes::edit_batch_terms', [
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]);
+    }
 
-		return view('classes::edit_batch_terms', [
-						'batch' => $this->classRepository->findBatch($batchId)
-					]);
-	}
+    public function postBatchGradesEdit(Request $request, $batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-	public function postBatchGradesEdit(Request $request, $batchId)
-	{
-		$this->authorize('add_edit_batch');
+        $this->classRepository->assignGradesToBatch($request::get('grades', []), $batchId);
 
-		$this->classRepository->assignGradesToBatch($request::get('grades', []), $batchId);
+        return $this->printJson(true, [], trans('classes::batch.batch_updated'));
+    }
 
-		return $this->printJson(true, [], trans('classes::batch.batch_updated'));
-	}
+    public function getBatchGradesView($batchId)
+    {
+        $this->authorize('view_batch_details');
 
-	public function getBatchGradesView($batchId)
-	{
-		$this->authorize('view_batch_details');
+        return view('classes::view_batch_grades', [
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]);
+    }
 
-		return view('classes::view_batch_grades', [
-						'batch' => $this->classRepository->findBatch($batchId)
-					]);
-	}
+    public function getBatchGradesEdit($batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-	public function getBatchGradesEdit($batchId)
-	{
-		$this->authorize('add_edit_batch');
+        return view('classes::edit_batch_grades', [
+                        'batch'  => $this->classRepository->findBatch($batchId),
+                        'grades' => $this->classRepository->getGrades()->get(),
+                    ]);
+    }
 
-		return view('classes::edit_batch_grades', [
-						'batch' => $this->classRepository->findBatch($batchId),
-						'grades' => $this->classRepository->getGrades()->get()
-					]);
-	}
+    public function getBatchTermDelete($batchId, $termId)
+    {
+        $this->authorize('add_edit_batch');
 
-	public function getBatchTermDelete($batchId, $termId)
-	{
-		$this->authorize('add_edit_batch');
+        $this->classRepository->deleteTerm($termId, $batchId);
 
-		$this->classRepository->deleteTerm($termId, $batchId);
+        return $this->printJson(true, [], trans('classes::term.term_deleted'));
+    }
 
-		return $this->printJson(true, [], trans('classes::term.term_deleted'));
-	}
+    public function postBatchTermEdit(UpdateTermRequest $request, $batchId, $termId)
+    {
+        $this->authorize('add_edit_batch');
 
-	public function postBatchTermEdit(UpdateTermRequest $request, $batchId, $termId)
-	{
-		$this->authorize('add_edit_batch');
-
-		$attributes = $request->all();
+        $attributes = $request->all();
 
         $attributes['start_date'] = toUTC($attributes['start_date']);
         $attributes['end_date'] = toUTC($attributes['end_date']);
 
-		$term = $this->classRepository->updateTerm($attributes, $termId, $batchId);
+        $term = $this->classRepository->updateTerm($attributes, $termId, $batchId);
 
         return $this->printJson(true, [
-            'term' => $term
+            'term' => $term,
         ], trans('classes::term.term_updated'));
-	}
+    }
 
-	public function getBatchTermEdit($batchId, $termId)
-	{
-		$this->authorize('add_edit_batch');
+    public function getBatchTermEdit($batchId, $termId)
+    {
+        $this->authorize('add_edit_batch');
 
-		return $this->printModal(view('classes::modals.edit_term', [
-						'term' => $this->classRepository->findTerm($termId, $batchId),
-						'batch' => $this->classRepository->findBatch($batchId)
-					]));
-	}
+        return $this->printModal(view('classes::modals.edit_term', [
+                        'term'  => $this->classRepository->findTerm($termId, $batchId),
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]));
+    }
 
-	public function postBatchTermNew(CreateTermRequest $request, $batchId)
-	{
-		$this->authorize('add_edit_batch');
+    public function postBatchTermNew(CreateTermRequest $request, $batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-		$term = $this->classRepository->createTerm($request->all(), $batchId);
+        $term = $this->classRepository->createTerm($request->all(), $batchId);
 
         return $this->printJson(true, [
-            'term' => $term
+            'term' => $term,
         ], trans('classes::term.term_created'));
-	}
+    }
 
-	public function getBatchTermNew($batchId)
-	{
-		$this->authorize('add_edit_batch');
+    public function getBatchTermNew($batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-		return $this->printModal(view('classes::modals.edit_term', [
-						'term' => null,
-						'batch' => $this->classRepository->findBatch($batchId)
-					]));
-	}
+        return $this->printModal(view('classes::modals.edit_term', [
+                        'term'  => null,
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]));
+    }
 
-	public function getBatchTerms($batchId)
-	{
-		$this->authorize('view_batch_details');
+    public function getBatchTerms($batchId)
+    {
+        $this->authorize('view_batch_details');
 
-		return view('classes::view_batch_terms', [
-						'batch' => $this->classRepository->findBatch($batchId)
-					]);
-	}
+        return view('classes::view_batch_terms', [
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]);
+    }
 
-	public function getBatchDetailsView($batchId)
-	{
-		$this->authorize('view_batch_details');
+    public function getBatchDetailsView($batchId)
+    {
+        $this->authorize('view_batch_details');
 
-		return view('classes::view_batch_details', [
-						'batch' => $this->classRepository->findBatch($batchId)
-					]);
-	}
+        return view('classes::view_batch_details', [
+                        'batch' => $this->classRepository->findBatch($batchId),
+                    ]);
+    }
 
-	public function getBatchDetailsEdit($batchId)
-	{
-		$this->authorize('add_edit_batch');
+    public function getBatchDetailsEdit($batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-		return view('classes::edit_batch_details', [
-            'batch' => $this->classRepository->findBatch($batchId),
-            'batch_form_validator' => $this->jsValidator(UpdateBatchRequest::class)
-					]);
-	}
+        return view('classes::edit_batch_details', [
+            'batch'                => $this->classRepository->findBatch($batchId),
+            'batch_form_validator' => $this->jsValidator(UpdateBatchRequest::class),
+                    ]);
+    }
 
-	public function postBatchDetailsEdit(UpdateBatchRequest $request, $batchId)
-	{
-		$this->authorize('add_edit_batch');
+    public function postBatchDetailsEdit(UpdateBatchRequest $request, $batchId)
+    {
+        $this->authorize('add_edit_batch');
 
-		$this->classRepository->updateBatch($request->all(), $batchId);
+        $this->classRepository->updateBatch($request->all(), $batchId);
 
-		return $this->printJson(true, [], trans('classes::batch.batch_updated'));
-	}
+        return $this->printJson(true, [], trans('classes::batch.batch_updated'));
+    }
 
-	public function postBatchNew(CreateBatchRequest $request)
-	{
-		$this->authorize('add_edit_batch');
+    public function postBatchNew(CreateBatchRequest $request)
+    {
+        $this->authorize('add_edit_batch');
 
-		$batch = $this->classRepository->createBatch($request->all());
+        $batch = $this->classRepository->createBatch($request->all());
 
-		return $this->printRedirect(route('batch.details.edit', $batch->id));
-	}
+        return $this->printRedirect(route('batch.details.edit', $batch->id));
+    }
 
-	public function getBatchNew()
-	{
-		$this->authorize('add_edit_batch');
+    public function getBatchNew()
+    {
+        $this->authorize('add_edit_batch');
 
-		return view('classes::edit_batch_details', ['batch' => null]);
-	}
+        return view('classes::edit_batch_details', ['batch' => null]);
+    }
 
-	/**
-	 * Render a list of batches
-	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 * @throws \Illuminate\Auth\Access\AuthorizationException
-	 */
-	public function getBatchList()
-	{
-		$this->authorize('list_batches');
+    /**
+     * Render a list of batches.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getBatchList()
+    {
+        $this->authorize('list_batches');
 
-		if (!$this->classRepository->getGrades()->count()) {
+        if (!$this->classRepository->getGrades()->count()) {
+            return view('dashboard::landings.action_required', [
+                            'message' => trans('classes::batch.no_grades_defined'),
+                            'help'    => trans('classes::batch.no_grades_defined_help'),
+                            'action'  => trans('classes::grade.create_grade'),
+                            'route'   => route('grade.new'),
+                        ]);
+        }
 
-			return view('dashboard::landings.action_required', [
-							'message' => trans('classes::batch.no_grades_defined'),
-							'help' => trans('classes::batch.no_grades_defined_help'),
-							'action' => trans('classes::grade.create_grade'),
-							'route' => route('grade.new')
-						]);
-		}
+        return view('classes::batches_list', [
+                        'batches' => $this->classRepository->getBatches()->withTrashed()->paginate(config('collejo.perpage')),
+                    ]);
+    }
 
-		return view('classes::batches_list', [
-						'batches' => $this->classRepository->getBatches()->withTrashed()->paginate(config('collejo.perpage'))
-					]);
-	}
+    public function getBatchGrades(Request $request)
+    {
+        $this->authorize('view_batch_details');
 
-	public function getBatchGrades(Request $request)
-	{
-		$this->authorize('view_batch_details');
+        return $this->printJson(true, $this->classRepository->findBatch($request::get('batch_id'))->grades->pluck('name', 'id'));
+    }
 
-		return $this->printJson(true, $this->classRepository->findBatch($request::get('batch_id'))->grades->pluck('name', 'id'));
-	}
-
-	public function __construct(ClassRepository $classRepository)
-	{
-		$this->classRepository = $classRepository;
-	}
+    public function __construct(ClassRepository $classRepository)
+    {
+        $this->classRepository = $classRepository;
+    }
 }

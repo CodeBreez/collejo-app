@@ -4,42 +4,41 @@ namespace Collejo\App\Modules\Classes\Contracts;
 
 interface ClassRepository
 {
-	public function deleteClass($classId, $gradeId);
+    public function deleteClass($classId, $gradeId);
 
-	public function updateGrade(array $attributes, $id);
+    public function updateGrade(array $attributes, $id);
 
-	public function findGrade($id);
+    public function findGrade($id);
 
-	public function createGrade(array $attributes);
+    public function createGrade(array $attributes);
 
-	public function getGrades();
+    public function getGrades();
 
-	public function updateClass(array $attributes, $classId, $gradeId);
+    public function updateClass(array $attributes, $classId, $gradeId);
 
-	public function createClass(array $attributes, $gradeId);
+    public function createClass(array $attributes, $gradeId);
 
-	public function findClass($classId, $gradeId);
+    public function findClass($classId, $gradeId);
 
-	public function getClasses();
+    public function getClasses();
 
-	public function updateBatch(array $attributes, $batchId);
+    public function updateBatch(array $attributes, $batchId);
 
-	public function deleteTerm($termId, $batchId);
+    public function deleteTerm($termId, $batchId);
 
-	public function updateTerm(array $attributes, $termId, $batchId);
+    public function updateTerm(array $attributes, $termId, $batchId);
 
-	public function findTerm($termId, $batchId);
+    public function findTerm($termId, $batchId);
 
-	public function assignGradesToBatch(array $gradeIds, $batchId);
+    public function assignGradesToBatch(array $gradeIds, $batchId);
 
-	public function createTerm(array $attributes, $batchId);
+    public function createTerm(array $attributes, $batchId);
 
-	public function activeBatches();
+    public function activeBatches();
 
-	public function findBatch($id);
+    public function findBatch($id);
 
-	public function createBatch(array $attributes);
+    public function createBatch(array $attributes);
 
-	public function getBatches();
-
+    public function getBatches();
 }

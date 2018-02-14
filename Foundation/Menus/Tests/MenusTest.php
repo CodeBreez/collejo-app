@@ -8,7 +8,6 @@ use Menu;
 
 class MenusTest extends TestCase
 {
-
     public function testMenuGroup()
     {
         $group = $this->createMenuGroup();
@@ -35,7 +34,6 @@ class MenusTest extends TestCase
     public function createMenuGroup()
     {
         return Menu::group('main', 'icon', function ($parent) {
-
         })->setOrder(1)->setPosition('right');
     }
 
