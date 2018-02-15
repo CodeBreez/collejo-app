@@ -25,7 +25,7 @@ class JsValidator
 
     public function renderRules()
     {
-        return htmlentities(json_encode($this->rules));
+        return json_encode($this->rules);
     }
 
     private function processItemRules($rules)
