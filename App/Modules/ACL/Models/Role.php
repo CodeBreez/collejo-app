@@ -14,7 +14,7 @@ class Role extends Model
     protected $fillable = ['role'];
 
     /**
-     * Get a proper name that could be rendered in the front end
+     * Get a proper name that could be rendered in the front end.
      *
      * @return mixed
      */
@@ -24,7 +24,7 @@ class Role extends Model
     }
 
     /**
-     * Returns a collection of Users for this Role
+     * Returns a collection of Users for this Role.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -34,7 +34,7 @@ class Role extends Model
     }
 
     /**
-     * Returns a collection of Permissions for this Role
+     * Returns a collection of Permissions for this Role.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

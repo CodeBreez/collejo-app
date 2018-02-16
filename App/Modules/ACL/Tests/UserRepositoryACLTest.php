@@ -2,11 +2,10 @@
 
 namespace Collejo\App\Modules\ACL\Tests;
 
-use Auth;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
-use Collejo\App\Modules\ACL\Models\User;
-use Collejo\App\Modules\ACL\Models\Role;
 use Collejo\App\Modules\ACL\Models\Permission;
+use Collejo\App\Modules\ACL\Models\Role;
+use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -113,7 +112,7 @@ class UserRepositoryACLTest extends TestCase
 
         $this->userRepository->enableRole($role->id);
 
-        $role = Role::withTrashed()->where('id' , $role->id)->firstOrFail();
+        $role = Role::withTrashed()->where('id', $role->id)->firstOrFail();
 
         $this->assertFalse($role->trashed());
     }
@@ -129,7 +128,7 @@ class UserRepositoryACLTest extends TestCase
 
         $this->userRepository->disableRole($role->id);
 
-        $role = Role::withTrashed()->where('id' , $role->id)->firstOrFail();
+        $role = Role::withTrashed()->where('id', $role->id)->firstOrFail();
 
         $this->assertTrue($role->trashed());
     }

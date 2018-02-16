@@ -5,16 +5,16 @@ namespace Collejo\Foundation\Tests;
 require_once __DIR__.'/../helpers.php';
 
 use Collejo\Foundation\Database\Eloquent\LoadFactories;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, LoadFactories, DatabaseMigrations, DatabaseTransactions;
 
     /**
-     * Assert if two array have same values
+     * Assert if two array have same values.
      *
      * @param $a
      * @param $b
@@ -38,10 +38,8 @@ abstract class TestCase extends BaseTestCase
      */
     public function assertArrayValuesEquals($a, $b)
     {
-
         $a = !is_array($a) ? $a->toArray() : $a;
         $b = !is_array($b) ? $b->toArray() : $b;
-
 
         if (isset($a['id'])) {
             unset($a['id']);
@@ -52,11 +50,8 @@ abstract class TestCase extends BaseTestCase
         }
 
         foreach ($b as $k => $v) {
-
             if (isset($a[$k])) {
-
                 if ($v != $a[$k]) {
-
                     return $this->assertTrue(false);
                 }
             }

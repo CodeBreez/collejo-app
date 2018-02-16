@@ -3,8 +3,8 @@
 namespace Collejo\Foundation\Repository;
 
 use Auth;
-use Uuid;
 use Carbon;
+use Uuid;
 
 abstract class BaseRepository
 {
