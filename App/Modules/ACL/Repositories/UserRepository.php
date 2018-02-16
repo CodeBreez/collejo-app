@@ -57,7 +57,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     }
 
     /**
-     * Adds the given role model to the User model.
+     * Adds the given Role model to the User model.
      *
      * @param User $user
      * @param Role $role
@@ -65,6 +65,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function addRoleToUser(User $user, Role $role)
     {
         if (!$this->userHasRole($user, $role)) {
+
             $user->roles()->attach($role, ['id' => $this->newUUID()]);
         }
     }
@@ -79,7 +80,8 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      */
     public function userHasRole(User $user, Role $role)
     {
-        return $user->roles->contains($role->id);
+
+        return $user->hasRole($role->role);
     }
 
     /**
@@ -114,6 +116,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function addPermissionToRole(Role $role, Permission $permission)
     {
         if (!$this->roleHasPermission($role, $permission)) {
+
             $role->permissions()->attach($permission, ['id' => $this->newUUID()]);
         }
     }
@@ -144,6 +147,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
         $perm = $this->getPermissionByName($permission);
 
         if (is_null($perm)) {
+
             $perm = Permission::create(['permission' => $permission, 'module' => $module]);
         }
 
@@ -216,6 +220,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function createRoleIfNotExists($roleName)
     {
         if (is_null($role = $this->getRoleByName($roleName))) {
+
             $role = Role::create(['role' => $roleName]);
         }
 
@@ -265,6 +270,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function update(array $attributes, $id)
     {
         if (isset($attributes['password'])) {
+
             $attributes['password'] = Hash::make($attributes['password']);
         }
 
@@ -281,6 +287,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function create(array $attributes)
     {
         if (isset($attributes['password'])) {
+
             $attributes['password'] = Hash::make($attributes['password']);
         }
 
@@ -296,6 +303,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      */
     public function findByEmail($email)
     {
-        return User::where('email', $email)->first();
+        return User::where('email', $email)->firstOrFail();
     }
 }
