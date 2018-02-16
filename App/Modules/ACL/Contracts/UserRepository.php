@@ -35,4 +35,18 @@ interface UserRepository
     public function create(array $attributes);
 
     public function findByEmail($email);
+
+    public function findRole($id);
+
+    public function disableRole($roleId);
+
+    public function enableRole($roleId);
+
+    public function getPermissionsByModule($name);
+
+    public function getRoles();
+
+    public function getPermissions();
+
+    public function update(array $attributes, $id);
 }

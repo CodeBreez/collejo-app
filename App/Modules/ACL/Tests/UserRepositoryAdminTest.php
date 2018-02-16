@@ -16,8 +16,8 @@ class UserRepositoryAdminTest extends TestCase
     private $userRepository;
 
     /**
-     * @covers UserRepository::getAdminUsers()
-     * @covers UserRepository::createAdminUser()
+     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::getAdminUsers()
+     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
      */
     public function testGetAdminUsers()
     {
@@ -31,7 +31,7 @@ class UserRepositoryAdminTest extends TestCase
     }
 
     /**
-     * @covers UserRepository::createAdminUser()
+     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
      */
     public function testCreateAdminUser()
     {
@@ -44,7 +44,7 @@ class UserRepositoryAdminTest extends TestCase
 
     /**
      * @covers Auth::attempt()
-     * @covers UserRepository::createAdminUser()
+     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
      */
     public function testAdminUserLogin()
     {
