@@ -43,7 +43,7 @@ class UserRepositoryAdminTest extends TestCase
     }
 
     /**
-     * @covers Auth::attempt()
+     * @covers \Auth::attempt()
      * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
      */
     public function testAdminUserLogin()
