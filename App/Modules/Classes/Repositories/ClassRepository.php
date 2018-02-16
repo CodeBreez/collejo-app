@@ -12,7 +12,7 @@ use Collejo\Foundation\Repository\BaseRepository;
 class ClassRepository extends BaseRepository implements ClassRepositoryContract
 {
     /**
-     * Deletes a given class by class id for the given grade id
+     * Deletes a given class by class id for the given grade id.
      *
      * @param $classId
      * @param $gradeId
@@ -23,10 +23,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Update the given Grade with attributes
+     * Update the given Grade with attributes.
      *
      * @param array $attributes
      * @param $id
+     *
      * @return mixed
      */
     public function updateGrade(array $attributes, $id)
@@ -37,9 +38,10 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Find Grade by id
+     * Find Grade by id.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findGrade($id)
@@ -48,9 +50,10 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Create new Grade with given attributes
+     * Create new Grade with given attributes.
      *
      * @param array $attributes
+     *
      * @return mixed
      */
     public function createGrade(array $attributes)
@@ -59,7 +62,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Returns a collection of Grades
+     * Returns a collection of Grades.
      *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
@@ -69,11 +72,12 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Update a Class with given attributes for the given grade id
+     * Update a Class with given attributes for the given grade id.
      *
      * @param array $attributes
      * @param $classId
      * @param $gradeId
+     *
      * @return mixed
      */
     public function updateClass(array $attributes, $classId, $gradeId)
@@ -84,9 +88,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Creates a new Class with given attributes for the given grade id
+     * Creates a new Class with given attributes for the given grade id.
+     *
      * @param array $attributes
      * @param $gradeId
+     *
      * @return mixed
      */
     public function createClass(array $attributes, $gradeId)
@@ -97,10 +103,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Find a class by id for the given grade id
+     * Find a class by id for the given grade id.
      *
      * @param $classId
      * @param $gradeId
+     *
      * @return mixed
      */
     public function findClass($classId, $gradeId)
@@ -109,7 +116,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Returns a collection of Classes
+     * Returns a collection of Classes.
      *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
@@ -119,10 +126,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Update a Batch with given attributes
+     * Update a Batch with given attributes.
      *
      * @param array $attributes
      * @param $batchId
+     *
      * @return mixed
      */
     public function updateBatch(array $attributes, $batchId)
@@ -133,7 +141,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Deletes a Term by id for the given batch id
+     * Deletes a Term by id for the given batch id.
      *
      * @param $termId
      * @param $batchId
@@ -144,11 +152,12 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Update a term with attributes for the term id for batch id
+     * Update a term with attributes for the term id for batch id.
      *
      * @param array $attributes
      * @param $termId
      * @param $batchId
+     *
      * @return mixed
      */
     public function updateTerm(array $attributes, $termId, $batchId)
@@ -159,10 +168,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Find a Term by id
+     * Find a Term by id.
      *
      * @param $termId
      * @param $batchId
+     *
      * @return mixed
      */
     public function findTerm($termId, $batchId)
@@ -171,7 +181,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Assign an array of grade ids to the given Batch
+     * Assign an array of grade ids to the given Batch.
      *
      * @param array $gradeIds
      * @param $batchId
@@ -182,10 +192,11 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Create a new Term with given attributes
+     * Create a new Term with given attributes.
      *
      * @param array $attributes
      * @param $batchId
+     *
      * @return mixed
      */
     public function createTerm(array $attributes, $batchId)
@@ -200,7 +211,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Return a collection of active Batches
+     * Return a collection of active Batches.
      *
      * @return mixed
      */
@@ -210,9 +221,10 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Find a Batch by id
+     * Find a Batch by id.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findBatch($id)
@@ -221,9 +233,10 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Create a new Batch with given attributes
+     * Create a new Batch with given attributes.
      *
      * @param array $attributes
+     *
      * @return mixed
      */
     public function createBatch(array $attributes)
@@ -232,7 +245,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     }
 
     /**
-     * Return a collection of Batches
+     * Return a collection of Batches.
      *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
