@@ -15,7 +15,7 @@ class BatchTest extends TestCase
 
     public function testBatchCreate()
     {
-        $batch = factory(Batch::class)->create();
+        $batch = factory(Batch::class)->make();
 
         $model = $this->classRepository->createBatch($batch->toArray());
 
