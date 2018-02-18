@@ -8,6 +8,13 @@ use Menu;
 
 class MenusTest extends TestCase
 {
+
+    /**
+     * @covers \Collejo\Foundation\Menus\Menu::group()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getPosition()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getLabel()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getIcon()
+     */
     public function testMenuGroup()
     {
         $group = $this->createMenuGroup();
@@ -17,6 +24,13 @@ class MenusTest extends TestCase
         $this->assertTrue($group->getIcon() == 'icon');
     }
 
+    /**
+     * @covers \Collejo\Foundation\Menus\Menu::create()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getName()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getLabel()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getPath()
+     * @covers \Collejo\Foundation\Menus\MenuItem::getFullPath()
+     */
     public function testMenuItem()
     {
         $group = $this->createMenuGroup();

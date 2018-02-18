@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @codeCoverageIgnore
+ */
+
 $factory->define(Collejo\App\Modules\Classes\Models\Term::class, function (Faker\Generator $faker) {
     return [
         'name'       => $faker->name,
