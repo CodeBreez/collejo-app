@@ -3,7 +3,6 @@
 /**
  * @codeCoverageIgnore
  */
-
 $factory->define(Collejo\App\Modules\ACL\Models\User::class, function (Faker\Generator $faker) {
     return [
         'email'          => $faker->safeEmail,

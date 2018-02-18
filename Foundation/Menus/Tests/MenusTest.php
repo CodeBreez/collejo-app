@@ -8,7 +8,6 @@ use Menu;
 
 class MenusTest extends TestCase
 {
-
     /**
      * @covers \Collejo\Foundation\Menus\Menu::group()
      * @covers \Collejo\Foundation\Menus\MenuItem::getPosition()
