@@ -2,13 +2,13 @@
 
 namespace Collejo\App\Http;
 
+use Collejo\App\Http\Middleware\CheckInstallation;
 use Collejo\App\Http\Middleware\EncryptCookies;
 use Collejo\App\Http\Middleware\JsonRequest;
 use Collejo\App\Http\Middleware\RedirectIfAuthenticated;
 use Collejo\App\Http\Middleware\TrimStrings;
 use Collejo\App\Http\Middleware\TrustProxies;
 use Collejo\App\Http\Middleware\VerifyCsrfToken;
-use Collejo\App\Http\Middleware\CheckInstallation;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;

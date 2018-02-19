@@ -154,11 +154,13 @@ class BatchController extends Controller
     }
 
     /**
-     * Create a new Batch
+     * Create a new Batch.
      *
      * @param CreateBatchRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postBatchNew(CreateBatchRequest $request)
     {
@@ -170,17 +172,19 @@ class BatchController extends Controller
     }
 
     /**
-     * Get form for new Batch
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Get form for new Batch.
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchNew()
     {
         $this->authorize('add_edit_batch');
 
         return view('classes::edit_batch_details', [
-            'batch' => null,
-            'batch_form_validator' => $this->jsValidator(UpdateBatchRequest::class)
+            'batch'                => null,
+            'batch_form_validator' => $this->jsValidator(UpdateBatchRequest::class),
         ]);
     }
 
@@ -188,6 +192,7 @@ class BatchController extends Controller
      * Render a list of batches.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchList()
@@ -209,11 +214,13 @@ class BatchController extends Controller
     }
 
     /**
-     * View Grades for a Batch
+     * View Grades for a Batch.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getBatchGrades(Request $request)
     {
