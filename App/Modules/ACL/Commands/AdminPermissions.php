@@ -3,7 +3,6 @@
 namespace Collejo\App\Modules\ACL\Commands;
 
 use Illuminate\Console\Command;
-use Module;
 use Illuminate\Container\Container as Application;
 
 class AdminPermissions extends Command
@@ -32,11 +31,9 @@ class AdminPermissions extends Command
         $modules = app()->make('modules');
 
         foreach ($modules->getModulePaths() as $path) {
-
             if (file_exists($path)) {
                 foreach (listDir($path) as $dir) {
                     if (is_dir($path.'/'.$dir)) {
-
                         $provider = 'Collejo\App\Modules\\'.$dir.'\Providers\\'.$dir.'ModuleServiceProvider';
                         $this->processModule($provider);
                     }
@@ -49,7 +46,7 @@ class AdminPermissions extends Command
     {
         $provider = new $providerName(app());
 
-        $this->info('Processing ' . $provider->getModuleName());
+        $this->info('Processing '.$provider->getModuleName());
 
         $provider->createPermissions();
     }
