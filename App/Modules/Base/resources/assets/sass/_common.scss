@@ -29,3 +29,15 @@
         padding: 0.55rem 1.05rem;
     }
 }
+
+.landing-screen{
+
+    min-height: 80vh;
+
+    i.fa{
+        font-size: 6.25rem;
+        color: lighten($gray-100, 50%);
+        margin-top: 3.125rem;
+        margin-bottom: $box-padding * 2;
+    }
+}

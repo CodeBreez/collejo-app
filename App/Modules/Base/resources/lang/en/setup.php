@@ -8,6 +8,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'title' => 'Setup',
+
     'documentation' => 'Documentation',
     'guide'         => 'View Installation Guide',
 
