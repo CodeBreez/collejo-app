@@ -8,6 +8,7 @@ use Collejo\App\Http\Middleware\RedirectIfAuthenticated;
 use Collejo\App\Http\Middleware\TrimStrings;
 use Collejo\App\Http\Middleware\TrustProxies;
 use Collejo\App\Http\Middleware\VerifyCsrfToken;
+use Collejo\App\Http\Middleware\CheckInstallation;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -32,6 +33,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        CheckInstallation::class,
         CheckForMaintenanceMode::class,
         ValidatePostSize::class,
         TrimStrings::class,
