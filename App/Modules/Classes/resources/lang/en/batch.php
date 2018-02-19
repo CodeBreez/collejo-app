@@ -10,6 +10,7 @@ return [
     'new_batch'     => 'New Batch',
     'edit_batch'    => 'Edit Batch',
     'name'          => 'Batch Name',
+    'name_placeholder' => 'New Batch',
     'grades'        => trans('base::entities.grade.plural'),
     'assign_grades' => 'Assign '.trans('base::entities.grade.plural'),
     'view_students' => 'View Students',

@@ -132,7 +132,7 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
      *
      * @return string
      */
-    private function getModuleName()
+    public function getModuleName()
     {
         return $this->name;
     }

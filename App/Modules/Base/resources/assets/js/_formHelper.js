@@ -15,12 +15,10 @@ const FormHelpers = {
 
             if (response && response.data) {
 
-                if (!response.data.data.redir) {
+                if (!response.data.data || !response.data.data.redir) {
 
                     this.submitDisabled = false;
                 }
-
-                console.log(response.data.message);
 
                 if (response.data.message) {
 

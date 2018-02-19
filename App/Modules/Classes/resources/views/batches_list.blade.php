@@ -12,6 +12,17 @@
     <script type="text/javascript" src="{{ mix('/assets/classes/js/batchesList.js') }}"></script>
 @endsection
 
+@section('tools')
+
+    @can('add_edit_batch')
+
+        <a href="{{ route('batch.new') }}" class="btn btn-primary"><i
+                    class="fa fa-fw fa-plus"></i> {{ trans('classes::batch.new_batch') }}</a>
+
+    @endcan
+
+@endsection
+
 @section('table')
 
     <div id="batchesList">

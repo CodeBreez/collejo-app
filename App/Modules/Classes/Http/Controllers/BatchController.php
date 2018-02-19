@@ -153,6 +153,13 @@ class BatchController extends Controller
         return $this->printJson(true, [], trans('classes::batch.batch_updated'));
     }
 
+    /**
+     * Create a new Batch
+     *
+     * @param CreateBatchRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postBatchNew(CreateBatchRequest $request)
     {
         $this->authorize('add_edit_batch');
@@ -162,18 +169,25 @@ class BatchController extends Controller
         return $this->printRedirect(route('batch.details.edit', $batch->id));
     }
 
+    /**
+     * Get form for new Batch
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchNew()
     {
         $this->authorize('add_edit_batch');
 
-        return view('classes::edit_batch_details', ['batch' => null]);
+        return view('classes::edit_batch_details', [
+            'batch' => null,
+            'batch_form_validator' => $this->jsValidator(UpdateBatchRequest::class)
+        ]);
     }
 
     /**
      * Render a list of batches.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchList()
@@ -194,6 +208,13 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * View Grades for a Batch
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchGrades(Request $request)
     {
         $this->authorize('view_batch_details');

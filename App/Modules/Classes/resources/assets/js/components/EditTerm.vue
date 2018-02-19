@@ -5,8 +5,8 @@
         <p><span>{{trans('classes::term.end_date')}} : </span>{{term.end_date}}</p>
 
         <div slot="footer">
-            <b-button variant="secondary" size="sm" @click="handleEdit">{{trans('base::commong.edit')}}</b-button>
-            <b-button variant="outline-danger" size="sm" @click="handleDelete">{{trans('base::commong.delete')}}
+            <b-button variant="secondary" size="sm" @click="handleEdit">{{trans('base::common.edit')}}</b-button>
+            <b-button variant="outline-danger" size="sm" @click="handleDelete">{{trans('base::common.delete')}}
             </b-button>
         </div>
     </b-card>
