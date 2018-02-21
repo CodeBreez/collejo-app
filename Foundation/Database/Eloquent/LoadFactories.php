@@ -10,7 +10,7 @@ trait LoadFactories
 
     public function loadFactories()
     {
-        $this->eloquentFactory = $this->app->make(Factory::class);
+        $this->eloquentFactory = app()->make(Factory::class);
 
         $factoriesDir = realpath(dirname((new \ReflectionClass(static::class))->getFileName()).'/../Models/factories');
 

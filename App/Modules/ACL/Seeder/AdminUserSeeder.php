@@ -1,9 +1,11 @@
 <?php
 
+namespace Collejo\App\Modules\ACL\Seeder;
+
 use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Database\Seeder;
 
-class StudentDataSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -5,6 +5,7 @@ namespace Collejo\Foundation\Database;
 use Collejo\Foundation\Database\Eloquent\LoadFactories;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder as BaseSeeder;
+use Faker\Generator;
 use Uuid;
 
 abstract class Seeder extends BaseSeeder
@@ -13,6 +14,8 @@ abstract class Seeder extends BaseSeeder
 
     public function __construct()
     {
+        $this->faker = app()->make(Generator::class);
+
         $this->loadFactories();
     }
 
