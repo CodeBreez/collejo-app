@@ -41,10 +41,9 @@ class DBSeed extends Command
 
                     if (is_dir($seedsDir)) {
                         foreach (listDir($seedsDir) as $seeder) {
+                            $seeder = 'Collejo\App\Modules\\'.$dir.'\Seeder\\'.substr($seeder, 0, strlen($seeder) - 4);
 
-                            $seeder = 'Collejo\App\Modules\\'.$dir.'\Seeder\\'. substr($seeder, 0, strlen($seeder) -4);
-
-                            $this->info('Seeding : ' . $seeder);
+                            $this->info('Seeding : '.$seeder);
 
                             $class = new $seeder();
 

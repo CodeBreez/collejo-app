@@ -3,9 +3,9 @@
 namespace Collejo\Foundation\Database;
 
 use Collejo\Foundation\Database\Eloquent\LoadFactories;
+use Faker\Generator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder as BaseSeeder;
-use Faker\Generator;
 use Uuid;
 
 abstract class Seeder extends BaseSeeder
