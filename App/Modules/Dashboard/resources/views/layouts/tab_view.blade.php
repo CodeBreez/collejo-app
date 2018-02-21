@@ -29,12 +29,13 @@
 
             </div>
             <div class="col-md-10">
+
                 <div class="tab-content">
+
                     <div class="tab-pane active">
 
                         @yield('tab')
 
-                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>

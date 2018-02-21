@@ -80,18 +80,6 @@ body{
 	}
 }
 
-.landing-screen{
-
-	min-height: 80vh;
-
-	i.fa{
-		font-size: 6.25rem;
-      color: lighten($gray-100, 50%);
-		margin-top: 3.125rem;
-		margin-bottom: $box-padding * 2;
-	}
-}
-
 .placeholder{
 	background: -webkit-repeating-linear-gradient(135deg, #fff, #fff 25%, #F7F7F7 25%, #F7F7F7 50%, #fff 50%) top left fixed;
 	background-size: $box-padding * 2 $box-padding * 2;

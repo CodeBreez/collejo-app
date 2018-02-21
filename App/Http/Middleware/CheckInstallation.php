@@ -4,12 +4,12 @@ namespace Collejo\App\Http\Middleware;
 
 use Closure;
 
-class CheckInstalation
+class CheckInstallation
 {
     public function handle($request, Closure $next, $guard = null)
     {
         if (!app()->isInstalled()) {
-            return view('collejo::setup.incomplete');
+            return response(view('base::setup.incomplete'));
         }
 
         return $next($request);

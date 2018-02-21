@@ -2,6 +2,7 @@
 
 namespace Collejo\App\Http;
 
+use Collejo\App\Http\Middleware\CheckInstallation;
 use Collejo\App\Http\Middleware\EncryptCookies;
 use Collejo\App\Http\Middleware\JsonRequest;
 use Collejo\App\Http\Middleware\RedirectIfAuthenticated;
@@ -32,6 +33,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        CheckInstallation::class,
         CheckForMaintenanceMode::class,
         ValidatePostSize::class,
         TrimStrings::class,

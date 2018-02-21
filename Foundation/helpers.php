@@ -6,7 +6,7 @@
 if (!function_exists('toUTC')) {
     function toUTC($time)
     {
-        return Carbon::parse($time, Session::get('user-tz', 'UTC'))->setTimezone('UTC');
+        return Carbon::parse($time, Cookie::get('collejo_tz', 'UTC'))->setTimezone('UTC');
     }
 }
 
@@ -16,7 +16,7 @@ if (!function_exists('toUTC')) {
 if (!function_exists('toUserTz')) {
     function toUserTz($time)
     {
-        return Carbon::parse($time, 'UTC')->setTimezone(Session::get('user-tz', 'UTC'));
+        return Carbon::parse($time, 'UTC')->setTimezone(Cookie::get('collejo_tz', 'UTC'));
     }
 }
 

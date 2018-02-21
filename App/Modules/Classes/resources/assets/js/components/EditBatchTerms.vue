@@ -16,7 +16,7 @@
                  no-close-on-esc>
             <b-form>
 
-                <b-form-group label="Name">
+                <b-form-group :label="trans('classes::term.name')">
 
                     <b-form-input type="text" v-model="currentTerm.name" v-validate="'required'"
                                   :placeholder="trans('classes::term.new_term_placeholder')">
@@ -24,14 +24,14 @@
 
                 </b-form-group>
 
-                <b-form-group label="Name">
+                <b-form-group :label="trans('classes::term.start_date')">
 
                     <datepicker input-class="form-control" v-model="currentTerm.start_date" v-validate="'required'">
                     </datepicker>
 
                 </b-form-group>
 
-                <b-form-group label="Name">
+                <b-form-group :label="trans('classes::term.end_date')">
 
                     <datepicker input-class="form-control" v-model="currentTerm.end_date" v-validate="'required'">
                     </datepicker>

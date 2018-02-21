@@ -22,11 +22,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      */
     public function createAdminUser($name, $email, $password)
     {
-        $user = User::create([
-                'first_name' => $name,
-                'email'      => $email,
-                'password'   => Hash::make($password),
-            ]);
+        $user = $this->create([
+            'first_name' => $name,
+            'email'      => $email,
+            'password'   => $password,
+        ]);
 
         $this->addRoleToUser($user, $this->getRoleByName('admin'));
 
@@ -296,6 +296,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      */
     public function findByEmail($email)
     {
-        return User::where('email', $email)->firstOrFail();
+        return User::where('email', $email)->first();
     }
 }
