@@ -2,7 +2,7 @@
 
 namespace Collejo\Foundation\Testing;
 
-require_once __DIR__ . '/../helpers.php';
+require_once __DIR__.'/../helpers.php';
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Hash;
