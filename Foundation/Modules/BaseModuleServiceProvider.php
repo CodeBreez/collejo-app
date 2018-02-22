@@ -11,6 +11,8 @@ abstract class BaseModuleServiceProvider extends ServiceProvider
 {
     protected $name;
 
+    protected $defer = true;
+
     /**
      * Boot up service provider.
      */
