@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
@@ -25,6 +26,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        $providers = config('app.non_production_mode_providers');
+
+        if(is_array($providers) && !$this->app->environment('production')){
+            foreach ($providers as $provider){
+                $this->app->register($provider);
+            }
+        }
+
         $this->app->bind('modules', function ($app) {
             return new Module($app);
         });

@@ -1,6 +1,8 @@
 <?php
 
-namespace Collejo\Foundation\Tests;
+namespace Collejo\Foundation\Testing;
+
+require_once __DIR__ . '/../helpers.php';
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +22,7 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
-        Hash::setRounds(4);
+        Hash::driver('bcrypt')->setRounds(4);
 
         return $app;
     }

@@ -5,7 +5,7 @@ namespace Collejo\App\Modules\Classes\Tests;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\App\Modules\Classes\Models\Term;
-use Collejo\Foundation\Tests\TestCase;
+use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TermTest extends TestCase

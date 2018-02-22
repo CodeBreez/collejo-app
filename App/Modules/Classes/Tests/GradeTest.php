@@ -4,7 +4,7 @@ namespace Collejo\App\Modules\Classes\Tests;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Classes\Models\Grade;
-use Collejo\Foundation\Tests\TestCase;
+use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class GradeTest extends TestCase

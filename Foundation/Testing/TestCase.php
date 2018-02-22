@@ -1,8 +1,6 @@
 <?php
 
-namespace Collejo\Foundation\Tests;
-
-require_once __DIR__.'/../helpers.php';
+namespace Collejo\Foundation\Testing;
 
 use Collejo\Foundation\Database\Eloquent\LoadFactories;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

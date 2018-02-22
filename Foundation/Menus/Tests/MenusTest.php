@@ -2,7 +2,7 @@
 
 namespace Collejo\Foundation\Menus\Tests;
 
-use Collejo\Foundation\Tests\TestCase;
+use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Route;
 use Menu;
 

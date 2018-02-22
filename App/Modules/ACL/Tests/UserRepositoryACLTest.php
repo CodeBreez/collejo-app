@@ -6,7 +6,7 @@ use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Models\Permission;
 use Collejo\App\Modules\ACL\Models\Role;
 use Collejo\App\Modules\ACL\Models\User;
-use Collejo\Foundation\Tests\TestCase;
+use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
