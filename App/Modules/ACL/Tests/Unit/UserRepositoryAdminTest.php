@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\App\Modules\ACL\Tests;
+namespace Collejo\App\Modules\ACL\Tests\Unit;
 
 use Auth;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;

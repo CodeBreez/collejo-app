@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\App\Modules\ACL\Tests;
+namespace Collejo\App\Modules\ACL\Tests\Unit;
 
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Models\Permission;

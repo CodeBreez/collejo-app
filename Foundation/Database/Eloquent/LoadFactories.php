@@ -12,7 +12,7 @@ trait LoadFactories
     {
         $this->eloquentFactory = app()->make(Factory::class);
 
-        $factoriesDir = realpath(dirname((new \ReflectionClass(static::class))->getFileName()).'/../Models/factories');
+        $factoriesDir = realpath(dirname((new \ReflectionClass(static::class))->getFileName()).'/../../Models/factories');
 
         if (file_exists($factoriesDir)) {
             $this->eloquentFactory->load($factoriesDir);

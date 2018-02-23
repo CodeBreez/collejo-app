@@ -2,6 +2,7 @@
 
 namespace Collejo\Foundation\Testing;
 
+use Collejo\Foundation\Database\Eloquent\LoadFactories;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -10,7 +11,7 @@ use Laravel\Dusk\TestCase as BaseTestCase;
 
 abstract class DuskTestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseMigrations;
+    use CreatesApplication, DatabaseMigrations, LoadFactories;
 
     /**
      * Prepare for Dusk test execution.
@@ -41,5 +42,15 @@ abstract class DuskTestCase extends BaseTestCase
                 ChromeOptions::CAPABILITY, $options
             )
         );
+    }
+
+    /**
+     * Setup.
+     */
+    public function setup()
+    {
+        parent::setup();
+
+        $this->loadFactories();
     }
 }

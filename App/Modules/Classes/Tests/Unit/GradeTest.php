@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\App\Modules\Classes\Tests;
+namespace Collejo\App\Modules\Classes\Tests\Unit;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Classes\Models\Grade;

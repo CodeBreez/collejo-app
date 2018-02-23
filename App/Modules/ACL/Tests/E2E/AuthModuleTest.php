@@ -1,18 +1,19 @@
 <?php
 
-namespace Collejo\App\Modules\ACL\Tests;
+namespace Collejo\App\Modules\ACL\Tests\E2E;
 
 use Collejo\Foundation\Testing\DuskTestCase;
 use Laravel\Dusk\Browser;
 
-class ExampleTest extends DuskTestCase
+class AuthModuleTest extends DuskTestCase
 {
     /**
-     * A basic browser test example.
+     * Test if the module is loading
      *
-     * @return void
+     * @throws \Exception
+     * @throws \Throwable
      */
-    public function testBasicExample()
+    public function testModuleLoaded()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
