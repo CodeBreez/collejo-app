@@ -6,6 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class JsValidatorFactory
 {
+    /**
+     * Builds a new JsValidator from a given FormRequest class name
+     *
+     * @param $className
+     * @return JsValidator
+     * @throws \Exception
+     */
     public static function create($className)
     {
         $class = new $className();

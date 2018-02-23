@@ -16,6 +16,9 @@ class JsValidator
         $this->processRules();
     }
 
+    /**
+     * Provess rules
+     */
     private function processRules()
     {
         $this->rules = $this->rules->map(function ($rules, $element) {
@@ -23,11 +26,22 @@ class JsValidator
         });
     }
 
+    /**
+     * Renders a set of rules in the Laravel json object format
+     *
+     * @return string
+     */
     public function renderRules()
     {
         return json_encode($this->rules);
     }
 
+    /**
+     * Process form field rules
+     *
+     * @param $rules
+     * @return \stdClass
+     */
     private function processItemRules($rules)
     {
         $rules = explode('|', $rules);

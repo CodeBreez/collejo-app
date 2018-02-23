@@ -18,4 +18,14 @@ class BroadcastServiceProvider extends ServiceProvider
 
         require base_path('routes/channels.php');
     }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+
+    }
 }
