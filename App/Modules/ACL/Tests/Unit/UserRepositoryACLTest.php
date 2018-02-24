@@ -17,8 +17,7 @@ class UserRepositoryACLTest extends TestCase
     private $userRepository;
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::findByEmail()
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::create()
+     * Test if a user can be found by email
      */
     public function testFindByEmail()
     {
@@ -32,7 +31,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::findRole()
+     * Test if a Role can be found by id
      */
     public function testFindRole()
     {
@@ -44,7 +43,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createRoleIfNotExists()
+     * Test creating a role if not exists
      */
     public function testCreateRoleIfNotExists()
     {
@@ -58,7 +57,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::getPermissionsByModule()
+     * Test getting permissions by module name
      */
     public function testGetPermissionsByModule()
     {
@@ -72,7 +71,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::getPermissionByName()
+     * Test getting permission by name
      */
     public function testGetPermissionByName()
     {
@@ -86,7 +85,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::getRoleByName()
+     * Test get Role by name
      */
     public function testGetRoleByName()
     {
@@ -100,7 +99,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::enableRole()
+     * Test enabling a Role
      */
     public function testEnableRole()
     {
@@ -118,7 +117,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::disableRole()
+     * Test disabling a Role
      */
     public function testDisableRole()
     {
@@ -134,7 +133,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createPermissionIfNotExists()
+     * Test if a Permission could be created if not exists
      */
     public function testCreatePermissionIfNotExists()
     {
@@ -148,7 +147,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::syncRolePermissions()
+     * Test sync Permissions in to Role
      */
     public function testSyncRolePermissions()
     {
@@ -169,8 +168,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::addRoleToUser()
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::userHasRole()
+     * Test adding a Role to a User
      */
     public function testAddRoleToUser()
     {
@@ -187,7 +185,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::syncUserRoles()
+     * Test sync Roles in to User
      */
     public function testSyncUserRoles()
     {
@@ -208,8 +206,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::addPermissionToRole()
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::roleHasPermission()
+     * Test Permissions are assigned to Role
      */
     public function testRolePermission()
     {

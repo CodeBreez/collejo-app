@@ -16,8 +16,7 @@ class UserRepositoryAdminTest extends TestCase
     private $userRepository;
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::getAdminUsers()
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
+     * Test get admin users
      */
     public function testGetAdminUsers()
     {
@@ -31,7 +30,7 @@ class UserRepositoryAdminTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
+     * Test creating an admin User
      */
     public function testCreateAdminUser()
     {
@@ -43,7 +42,7 @@ class UserRepositoryAdminTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\App\Modules\ACL\Contracts\UserRepository::createAdminUser()
+     * Test if admin users can login
      */
     public function testAdminUserLogin()
     {

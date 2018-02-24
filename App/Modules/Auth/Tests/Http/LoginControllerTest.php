@@ -27,6 +27,7 @@ class LoginControllerTest extends TestCase
      * @throws \Exception
      * @throws \Throwable
      * @covers \Collejo\App\Modules\Auth\Http\Controllers\LoginController::login()
+     * @covers \Collejo\App\Modules\Auth\Http\Controllers\LoginController::authenticated()
      */
     public function testLoginSuccess()
     {

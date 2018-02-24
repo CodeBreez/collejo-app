@@ -1,6 +1,6 @@
 @extends('dashboard::layouts.dash')
 
-@section('title', 'Dashboard')
+@section('title', trans('dashboard::dash.dashboard'))
 
 @section('content')
 

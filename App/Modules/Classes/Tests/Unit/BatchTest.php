@@ -13,6 +13,9 @@ class BatchTest extends TestCase
 
     private $classRepository;
 
+    /**
+     * Test creating a Batch
+     */
     public function testBatchCreate()
     {
         $batch = factory(Batch::class)->make();
@@ -22,6 +25,9 @@ class BatchTest extends TestCase
         $this->assertArrayValuesEquals($model, $batch);
     }
 
+    /**
+     * Test updating a Batch
+     */
     public function testBatchUpdate()
     {
         $batch = factory(Batch::class)->create();

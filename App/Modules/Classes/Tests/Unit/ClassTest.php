@@ -14,6 +14,9 @@ class ClassTest extends TestCase
 
     private $classRepository;
 
+    /**
+     * Test creating a Class
+     */
     public function testClassCreate()
     {
         $class = factory(Clasis::class)->make();
@@ -24,6 +27,9 @@ class ClassTest extends TestCase
         $this->assertArrayValuesEquals($model, $class);
     }
 
+    /**
+     * Test updating a Class
+     */
     public function testClassUpdate()
     {
         $grade = factory(Grade::class)->create();

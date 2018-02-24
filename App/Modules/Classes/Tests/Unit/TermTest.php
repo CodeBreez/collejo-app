@@ -14,6 +14,9 @@ class TermTest extends TestCase
 
     private $classRepository;
 
+    /**
+     * Test creating a Term
+     */
     public function testTermCreate()
     {
         $batch = factory(Batch::class)->create();
@@ -24,6 +27,9 @@ class TermTest extends TestCase
         $this->assertArrayValuesEquals($model, $term);
     }
 
+    /**
+     * Test updating a Term
+     */
     public function testTermUpdate()
     {
         $batch = factory(Batch::class)->create();
