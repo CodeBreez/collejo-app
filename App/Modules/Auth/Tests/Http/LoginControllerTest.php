@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Modules\Auth\Tests\Browser;
 
-use Collejo\Foundation\Testing\TestCase;
 use Collejo\App\Modules\ACL\Models\User;
+use Collejo\Foundation\Testing\TestCase;
 
 class LoginControllerTest extends TestCase
 {
@@ -34,8 +34,8 @@ class LoginControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $credentials = [
-            'email' => $user->email,
-            'password' => 123
+            'email'    => $user->email,
+            'password' => 123,
         ];
 
         $response = $this->post(route('login'), $credentials);
@@ -56,8 +56,8 @@ class LoginControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $credentials = [
-            'email' => $user->email,
-            'password' => 'wrong password'
+            'email'    => $user->email,
+            'password' => 'wrong password',
         ];
 
         $response = $this->post(route('login'), $credentials);
