@@ -26,6 +26,5 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 }
