@@ -7,7 +7,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     <link rel="icon" href="/favicon.ico">
 
-    <title>@yield('title') - Collejo</title>
+    <title>@yield('title') - {{config('app.name')}}</title>
 
     <link href="{{ mix('/assets/base/css/app.css') }}" rel="stylesheet" type="text/css">
     @yield('styles')

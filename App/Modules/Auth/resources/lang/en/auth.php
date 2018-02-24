@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'app_name'    => config('app.name'),
     'email'       => 'Email',
     'password'    => 'Password',
     'failed'      => 'These credentials do not match our records.',

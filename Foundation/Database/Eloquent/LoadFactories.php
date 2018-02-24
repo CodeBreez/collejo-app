@@ -12,10 +12,20 @@ trait LoadFactories
     {
         $this->eloquentFactory = app()->make(Factory::class);
 
-        $factoriesDir = realpath(dirname((new \ReflectionClass(static::class))->getFileName()).'/../../Models/factories');
+        $modules = app()->make('modules');
 
-        if (file_exists($factoriesDir)) {
-            $this->eloquentFactory->load($factoriesDir);
+        foreach ($modules->getModulePaths() as $path) {
+            if (file_exists($path)) {
+                foreach (listDir($path) as $dir) {
+                    if (is_dir($path.'/'.$dir)) {
+
+                        $factoriesDir = realpath($path.'/'.$dir.'/Models/factories');
+                        if (file_exists($factoriesDir)) {
+                            $this->eloquentFactory->load($factoriesDir);
+                        }
+                    }
+                }
+            }
         }
     }
 }

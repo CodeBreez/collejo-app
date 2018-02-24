@@ -7,7 +7,7 @@
                 <div class="auth-logo"></div>
             </div>
 
-            <h2 class="text-center brand-text">Collejo</h2>
+            <h2 class="text-center brand-text">{{trans('auth::auth.app_name')}}</h2>
 
             <b-form-group :label="trans('auth::auth.email')" label-for="emailInput">
                 <b-form-input id="emailInput" type="email" v-model="loginForm.email" required></b-form-input>

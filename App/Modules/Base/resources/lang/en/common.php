@@ -34,7 +34,7 @@ return [
 
     'delete_confirm'  => 'Are you sure you want to delete this item?',
     'action_required' => 'Action Required',
-    'copyright_text'  => 'Powered by <a href=":link" target="_blank">Collejo</a>',
+    'copyright_text'  => 'Powered by <a href=":link" target="_blank">'.config('app.name').'</a>',
     'copyright_link'  => 'https://github.com/codebreez/collejo-app',
 
     'authorization_failed' => 'You do not have permission to do this action',
