@@ -18,7 +18,6 @@ trait LoadFactories
             if (file_exists($path)) {
                 foreach (listDir($path) as $dir) {
                     if (is_dir($path.'/'.$dir)) {
-
                         $factoriesDir = realpath($path.'/'.$dir.'/Models/factories');
                         if (file_exists($factoriesDir)) {
                             $this->eloquentFactory->load($factoriesDir);
