@@ -66,5 +66,7 @@ abstract class TestCase extends BaseTestCase
         parent::setup();
 
         $this->loadFactories();
+
+        $this->runDatabaseMigrations();
     }
 }

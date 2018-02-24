@@ -52,5 +52,7 @@ abstract class DuskTestCase extends BaseTestCase
         parent::setup();
 
         $this->loadFactories();
+
+        $this->runDatabaseMigrations();
     }
 }
