@@ -7,11 +7,13 @@ use Illuminate\Foundation\Http\FormRequest;
 class JsValidatorFactory
 {
     /**
-     * Builds a new JsValidator from a given FormRequest class name
+     * Builds a new JsValidator from a given FormRequest class name.
      *
      * @param $className
-     * @return JsValidator
+     *
      * @throws \Exception
+     *
+     * @return JsValidator
      */
     public static function create($className)
     {
