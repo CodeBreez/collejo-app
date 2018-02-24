@@ -14,6 +14,10 @@ class LoginControllerTest extends TestCase
      */
     public function testShowLoginForm()
     {
+        $this->runDatabaseMigrations();
+        
+        sleep(3);
+
         $response = $this->get(route('login'));
 
         $this->assertGuest();
