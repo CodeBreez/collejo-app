@@ -16,6 +16,9 @@ class AuthModuleTest extends DuskTestCase
      */
     public function testModuleLoaded()
     {
+
+        $this->runDatabaseMigrations();
+        
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                     ->assertSee(config('app.name'))
