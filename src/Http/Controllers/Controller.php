@@ -2,15 +2,13 @@
 
 namespace Collejo\App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Collejo\App\Http\JsValidator\JsValidatorFactory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
-use Collejo\App\Http\JsValidator\JsValidatorFactory;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 use Request;
-use JsValidate;
-use Cache;
 
 abstract class Controller extends BaseController
 {
@@ -20,7 +18,7 @@ abstract class Controller extends BaseController
     {
         return response()->json([
             'success' => $success,
-            'data' => $data,
+            'data'    => $data,
             'message' => $msg,
         ]);
     }
@@ -33,11 +31,11 @@ abstract class Controller extends BaseController
     public function printModal($view)
     {
         return $this->printJson(true, ['content' => $view->render()]);
-    }    
+    }
 
     public function printPartial($view, $msg = null, $target = null)
     {
-    	return $this->printJson(true, ['partial' => $view->render(), 'target' => Request::get('target', $target)], $msg);
+        return $this->printJson(true, ['partial' => $view->render(), 'target' => Request::get('target', $target)], $msg);
     }
 
     public function jsValidator($validatorClass)
