@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Collejo\App\Contracts\Repository\UserRepository;
+use Illuminate\Console\Command;
 
 class AdminCreate extends Command
 {
@@ -31,21 +31,19 @@ class AdminCreate extends Command
         $name = $this->ask('Enter name');
         $email = false;
 
-        do{
+        do {
             $email = $this->ask('Enter email');
 
             if (!$this->isValidEmail($email)) {
                 $this->error('Enter a valid email address');
             }
-
         } while (!$this->isValidEmail($email));
 
-        do{
+        do {
             if ($this->accountExists($email)) {
                 $this->error('There is already an account by this email');
                 $email = $this->ask('Enter email');
             }
-
         } while ($this->accountExists($email));
 
         $password = $this->secret('Enter password');

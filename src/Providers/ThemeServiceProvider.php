@@ -2,13 +2,13 @@
 
 namespace Collejo\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Collejo\App\Contracts\Theme\Menu as MenuInterface;
+use Collejo\App\Contracts\Theme\Theme as ThemeInterface;
 use Collejo\App\Foundation\Theme\Menu;
 use Collejo\App\Foundation\Theme\MenuCollection;
-use Collejo\App\Contracts\Theme\Theme as ThemeInterface;
 use Collejo\App\Foundation\Theme\Theme;
 use Collejo\App\Foundation\Theme\ThemeCollection;
+use Illuminate\Support\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
 {
@@ -29,16 +29,16 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(MenuInterface::class, function($app) { 
-            return new Menu(); 
+        $this->app->bind(MenuInterface::class, function ($app) {
+            return new Menu();
         });
 
         $this->app->singleton('menus', function ($app) {
             return new MenuCollection($app);
         });
 
-        $this->app->bind(ThemeInterface::class, function($app) { 
-            return new Theme(); 
+        $this->app->bind(ThemeInterface::class, function ($app) {
+            return new Theme();
         });
 
         $this->app->singleton('themes', function ($app) {

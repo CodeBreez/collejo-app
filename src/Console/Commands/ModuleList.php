@@ -3,7 +3,6 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use DirectoryIterator;
 use Module;
 
 class ModuleList extends Command

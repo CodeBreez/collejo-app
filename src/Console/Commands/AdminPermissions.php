@@ -3,9 +3,8 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use DirectoryIterator;
-use Module;
 use Illuminate\Container\Container as Application;
+use Module;
 
 class AdminPermissions extends Command
 {
@@ -53,6 +52,6 @@ class AdminPermissions extends Command
 
         $provider->createPermissions();
 
-        $this->info('Processing ' . $module->name);
+        $this->info('Processing '.$module->name);
     }
 }

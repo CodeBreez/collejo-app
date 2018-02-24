@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateUserRoleTable extends Migration
 {
@@ -17,7 +17,7 @@ class CreateUserRoleTable extends Migration
             $table->string('user_id');
             $table->string('role_id');
             $table->string('created_by')->nullable();
-            $table->timestamp('created_at');          
+            $table->timestamp('created_at');
         });
 
         Schema::table('role_user', function (Blueprint $table) {

@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Illuminate\Database\Migrations\Migration;
 
 class InsertMainRoles extends Migration
 {
@@ -29,6 +28,5 @@ class InsertMainRoles extends Migration
      */
     public function down()
     {
-
     }
 }
