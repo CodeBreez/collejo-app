@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Dashboard\Tests\Browser;
 
 use Collejo\Foundation\Testing\TestCase;
+use Collejo\App\Modules\ACL\Models\User;
 use Auth;
 
 class DashboardControllerTest extends TestCase
