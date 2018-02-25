@@ -17,7 +17,7 @@ class UserRepositoryACLTest extends TestCase
     private $userRepository;
 
     /**
-     * Test if a user can be found by email
+     * Test if a user can be found by email.
      */
     public function testFindByEmail()
     {
@@ -31,7 +31,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test if a Role can be found by id
+     * Test if a Role can be found by id.
      */
     public function testFindRole()
     {
@@ -43,7 +43,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test creating a role if not exists
+     * Test creating a role if not exists.
      */
     public function testCreateRoleIfNotExists()
     {
@@ -57,7 +57,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test getting permissions by module name
+     * Test getting permissions by module name.
      */
     public function testGetPermissionsByModule()
     {
@@ -71,7 +71,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test getting permission by name
+     * Test getting permission by name.
      */
     public function testGetPermissionByName()
     {
@@ -85,7 +85,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test get Role by name
+     * Test get Role by name.
      */
     public function testGetRoleByName()
     {
@@ -99,7 +99,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test enabling a Role
+     * Test enabling a Role.
      */
     public function testEnableRole()
     {
@@ -117,7 +117,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test disabling a Role
+     * Test disabling a Role.
      */
     public function testDisableRole()
     {
@@ -133,7 +133,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test if a Permission could be created if not exists
+     * Test if a Permission could be created if not exists.
      */
     public function testCreatePermissionIfNotExists()
     {
@@ -147,7 +147,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test sync Permissions in to Role
+     * Test sync Permissions in to Role.
      */
     public function testSyncRolePermissions()
     {
@@ -168,7 +168,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test adding a Role to a User
+     * Test adding a Role to a User.
      */
     public function testAddRoleToUser()
     {
@@ -185,7 +185,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test sync Roles in to User
+     * Test sync Roles in to User.
      */
     public function testSyncUserRoles()
     {
@@ -206,7 +206,7 @@ class UserRepositoryACLTest extends TestCase
     }
 
     /**
-     * Test Permissions are assigned to Role
+     * Test Permissions are assigned to Role.
      */
     public function testRolePermission()
     {
