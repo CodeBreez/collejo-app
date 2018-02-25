@@ -7,10 +7,11 @@ use Collejo\App\Http\Controller;
 class DashController extends Controller
 {
     /**
-     * Show the dashboard view
+     * Show the dashboard view.
+     *
+     * @throws \Throwable
      *
      * @return string
-     * @throws \Throwable
      */
     public function getIndex()
     {
