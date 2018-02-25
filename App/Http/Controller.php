@@ -7,18 +7,18 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Request;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * Prints a json response
+     * Prints a json response.
      *
-     * @param bool $success
+     * @param bool  $success
      * @param array $data
-     * @param null $msg
+     * @param null  $msg
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function printJson($success = false, $data = [], $msg = null)
@@ -31,10 +31,11 @@ class Controller extends BaseController
     }
 
     /**
-     * Prints a json response that would be identified as a redirect
+     * Prints a json response that would be identified as a redirect.
      *
      * @param $route
      * @param null $msg
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function printRedirect($route, $msg = null)
@@ -43,11 +44,13 @@ class Controller extends BaseController
     }
 
     /**
-     * Returns a JsValidator object from FormRequest object
+     * Returns a JsValidator object from FormRequest object.
      *
      * @param $validatorClass
-     * @return JsValidator\JsValidator
+     *
      * @throws \Exception
+     *
+     * @return JsValidator\JsValidator
      */
     public function jsValidator($validatorClass)
     {
