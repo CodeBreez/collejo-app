@@ -15,7 +15,7 @@ class ClassTest extends TestCase
     private $classRepository;
 
     /**
-     * Test creating a Class
+     * Test creating a Class.
      */
     public function testClassCreate()
     {
@@ -28,7 +28,7 @@ class ClassTest extends TestCase
     }
 
     /**
-     * Test updating a Class
+     * Test updating a Class.
      */
     public function testClassUpdate()
     {

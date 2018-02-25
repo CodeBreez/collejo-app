@@ -7,11 +7,12 @@ use Closure;
 class CheckInstallation
 {
     /**
-     * Determines if Collejo is installed
+     * Determines if Collejo is installed.
      *
      * @param $request
      * @param Closure $next
-     * @param null $guard
+     * @param null    $guard
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|mixed|\Symfony\Component\HttpFoundation\Response
      */
     public function handle($request, Closure $next, $guard = null)
