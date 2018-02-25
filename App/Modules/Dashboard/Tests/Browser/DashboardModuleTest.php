@@ -2,10 +2,10 @@
 
 namespace Collejo\App\Modules\Dashboard\Tests\Browser;
 
+use Auth;
+use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Testing\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Collejo\App\Modules\ACL\Models\User;
-use Auth;
 
 class DashboardModuleTest extends DuskTestCase
 {
@@ -19,7 +19,7 @@ class DashboardModuleTest extends DuskTestCase
     public function testModuleLoaded()
     {
         $this->runDatabaseMigrations();
-        
+
         $user = factory(User::class)->create();
 
         Auth::login($user, true);
