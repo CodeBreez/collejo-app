@@ -17,7 +17,7 @@ class JsValidator
     }
 
     /**
-     * Provess rules
+     * Process rules
      */
     private function processRules()
     {
