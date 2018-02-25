@@ -4,6 +4,8 @@ namespace Collejo\App\Modules\Dashboard\Tests\Browser;
 
 use Collejo\Foundation\Testing\DuskTestCase;
 use Laravel\Dusk\Browser;
+use Collejo\App\Modules\ACL\Models\User;
+use Auth;
 
 class DashboardModuleTest extends DuskTestCase
 {
@@ -17,11 +19,15 @@ class DashboardModuleTest extends DuskTestCase
     public function testModuleLoaded()
     {
         $this->runDatabaseMigrations();
+        
+        $user = factory(User::class)->create();
+
+        Auth::login($user, true);
 
         $this->browse(function (Browser $browser) {
             $browser->visit(route('dash'))
                     ->assertSee(config('app.name'))
-                    ->assertTitle(trans('dashabord::dash.dashboard').' - '.config('app.name'));
+                    ->assertTitle(trans('dashboard::dash.dashboard').' - '.config('app.name'));
         });
     }
 }
