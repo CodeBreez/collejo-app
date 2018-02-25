@@ -9,7 +9,7 @@ use Menu;
 class MenusTest extends TestCase
 {
     /**
-     * Test menu group
+     * Test menu group.
      */
     public function testMenuGroup()
     {
@@ -21,7 +21,7 @@ class MenusTest extends TestCase
     }
 
     /**
-     * Test menu item
+     * Test menu item.
      */
     public function testMenuItem()
     {
@@ -51,7 +51,7 @@ class MenusTest extends TestCase
     }
 
     /**
-     * Create new menu group
+     * Create new menu group.
      *
      * @return mixed
      */
@@ -62,7 +62,7 @@ class MenusTest extends TestCase
     }
 
     /**
-     * Create a new menu item
+     * Create a new menu item.
      *
      * @return mixed
      */

@@ -11,14 +11,14 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * The default location to be redirected once logged in
+     * The default location to be redirected once logged in.
      *
      * @var string
      */
     protected $redirectTo;
 
     /**
-     * Sends the login failed message to the user
+     * Sends the login failed message to the user.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -28,19 +28,19 @@ class LoginController extends Controller
     }
 
     /**
-     * ON successful authentication redirect to the intended url or to the default route
+     * ON successful authentication redirect to the intended url or to the default route.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function authenticated()
     {
         return $this->printJson(true, [
-            'redir' => Session::get('url.intended', $this->redirectTo)
+            'redir' => Session::get('url.intended', $this->redirectTo),
         ]);
     }
 
     /**
-     * Returns the login form view
+     * Returns the login form view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
