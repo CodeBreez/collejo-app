@@ -9,10 +9,7 @@ use Menu;
 class MenusTest extends TestCase
 {
     /**
-     * @covers \Collejo\Foundation\Menus\Menu::group()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getPosition()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getLabel()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getIcon()
+     * Test menu group
      */
     public function testMenuGroup()
     {
@@ -24,32 +21,51 @@ class MenusTest extends TestCase
     }
 
     /**
-     * @covers \Collejo\Foundation\Menus\Menu::create()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getName()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getLabel()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getPath()
-     * @covers \Collejo\Foundation\Menus\MenuItem::getFullPath()
+     * Test menu item
      */
     public function testMenuItem()
     {
         $group = $this->createMenuGroup();
 
+        $permission = 'some_permission';
+        $icon = 'some_icon';
+        $order = 12;
+
         $menu = $this->createMenuItem();
 
-        $menu->setParent($group);
+        $menu->setParent($group)
+            ->setPermission($permission)
+            ->setIcon($icon)
+            ->setOrder($order);
 
+        $this->assertTrue($menu->getParent() == $group);
         $this->assertTrue($menu->getName() == 'name');
         $this->assertTrue($menu->getLabel() == 'sub');
         $this->assertTrue($menu->getPath() == 'test');
         $this->assertTrue($menu->getFullPath() == '/test');
+        $this->assertTrue($menu->type == 'm');
+        $this->assertTrue($menu->getPermission() == $permission);
+        $this->assertTrue($menu->getIcon() == $icon);
+        $this->assertTrue($menu->order == $order);
+        $this->assertFalse($menu->isVisible());
     }
 
+    /**
+     * Create new menu group
+     *
+     * @return mixed
+     */
     public function createMenuGroup()
     {
         return Menu::group('main', 'icon', function ($parent) {
         })->setOrder(1)->setPosition('right');
     }
 
+    /**
+     * Create a new menu item
+     *
+     * @return mixed
+     */
     public function createMenuItem()
     {
         Route::get('test', 'LoginController@showLoginForm')->name('test');
