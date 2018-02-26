@@ -16,7 +16,7 @@ class UserRepositoryAdminTest extends TestCase
     private $userRepository;
 
     /**
-     * Test get admin users
+     * Test get admin users.
      */
     public function testGetAdminUsers()
     {
@@ -30,7 +30,7 @@ class UserRepositoryAdminTest extends TestCase
     }
 
     /**
-     * Test creating an admin User
+     * Test creating an admin User.
      */
     public function testCreateAdminUser()
     {
@@ -42,7 +42,7 @@ class UserRepositoryAdminTest extends TestCase
     }
 
     /**
-     * Test if admin users can login
+     * Test if admin users can login.
      */
     public function testAdminUserLogin()
     {
