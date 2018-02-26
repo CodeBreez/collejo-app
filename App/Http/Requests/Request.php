@@ -11,7 +11,8 @@ abstract class Request extends FormRequest
     protected $authorize = true;
 
     /**
-     * Tells the framework that this request needs to be authorized
+     * Tells the framework that this request needs to be authorized.
+     *
      * @return bool
      */
     public function authorize()
@@ -20,9 +21,10 @@ abstract class Request extends FormRequest
     }
 
     /**
-     * Formats form validation errors
+     * Formats form validation errors.
      *
      * @param Validator $validator
+     *
      * @return array
      */
     public function formatErrors(Validator $validator)
@@ -36,9 +38,10 @@ abstract class Request extends FormRequest
     }
 
     /**
-     * Returns a json response
+     * Returns a json response.
      *
      * @param array $errors
+     *
      * @return $this|JsonResponse
      */
     public function response(array $errors)

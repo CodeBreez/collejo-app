@@ -14,7 +14,7 @@ class BatchTest extends TestCase
     private $classRepository;
 
     /**
-     * Test creating a Batch
+     * Test creating a Batch.
      */
     public function testBatchCreate()
     {
@@ -26,7 +26,7 @@ class BatchTest extends TestCase
     }
 
     /**
-     * Test updating a Batch
+     * Test updating a Batch.
      */
     public function testBatchUpdate()
     {

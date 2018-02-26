@@ -27,7 +27,7 @@ class JsValidator
     }
 
     /**
-     * Renders a set of rules in the Laravel json object format
+     * Renders a set of rules in the Laravel json object format.
      *
      * @return string
      */
@@ -37,9 +37,10 @@ class JsValidator
     }
 
     /**
-     * Process form field rules
+     * Process form field rules.
      *
      * @param $rules
+     *
      * @return \stdClass
      */
     private function processItemRules($rules)
