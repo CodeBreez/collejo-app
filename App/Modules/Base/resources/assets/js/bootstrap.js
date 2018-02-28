@@ -1,6 +1,6 @@
 import * as Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue'
-import VeeValidate from 'vee-validate';
+import Vuelidate from 'vuelidate'
 /**
  * Common Vue mixins
  */
@@ -28,9 +28,7 @@ window.biscuits.set('collejo_tz', moment().format(), { expires: 1 });
  * Register Vue packages
  */
 Vue.use(BootstrapVue);
-Vue.use(VeeValidate, {
-    fieldsBagName: 'formFields'
-});
+Vue.use(Vuelidate);
 
 /**
  * Register common Vue components
