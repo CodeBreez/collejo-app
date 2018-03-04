@@ -16,7 +16,7 @@ class Term extends Model
     protected $dates = ['start_date', 'end_date'];
 
     /**
-     * Returns the relating batch
+     * Returns the relating batch.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -27,13 +27,12 @@ class Term extends Model
 
     /**
      * Boot the model with event binding for updating
-     * start and end dates fot the Batch
+     * start and end dates fot the Batch.
      */
     public static function boot()
     {
         $changeEvent = function ($model) {
-
-            if($model->batch->terms->count()){
+            if ($model->batch->terms->count()) {
                 $model->batch->start_date = $model->batch->terms->first()->start_date;
                 $model->batch->end_date = $model->batch->terms->last()->end_date;
 

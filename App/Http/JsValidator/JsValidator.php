@@ -17,7 +17,7 @@ class JsValidator
     }
 
     /**
-     * Process rules
+     * Process rules.
      */
     private function processRules()
     {
