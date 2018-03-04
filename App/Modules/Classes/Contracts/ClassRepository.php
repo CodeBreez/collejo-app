@@ -38,7 +38,7 @@ interface ClassRepository
 
     public function activeBatches();
 
-    public function findBatch($id);
+    public function findBatch($id, $with);
 
     public function createBatch(array $attributes);
 

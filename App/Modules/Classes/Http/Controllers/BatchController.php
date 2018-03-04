@@ -15,6 +15,13 @@ class BatchController extends Controller
 {
     protected $classRepository;
 
+    /**
+     * Returns the view for Batch's Terms
+     *
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchTermsView($batchId)
     {
         $this->authorize('view_batch_details');
@@ -24,6 +31,13 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * Returns the view for Batch Term edit UI
+     *
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchTermsEdit($batchId)
     {
         $this->authorize('add_edit_batch');
@@ -33,6 +47,14 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * Save Batch Grade data
+     *
+     * @param Request $request
+     * @param $batchId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postBatchGradesEdit(Request $request, $batchId)
     {
         $this->authorize('add_edit_batch');
@@ -42,6 +64,11 @@ class BatchController extends Controller
         return $this->printJson(true, [], trans('classes::batch.batch_updated'));
     }
 
+    /**
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchGradesView($batchId)
     {
         $this->authorize('view_batch_details');
@@ -51,16 +78,31 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * Returns the view for Batch Grade edit
+     *
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchGradesEdit($batchId)
     {
         $this->authorize('add_edit_batch');
 
         return view('classes::edit_batch_grades', [
-                        'batch'  => $this->classRepository->findBatch($batchId),
+                        'batch'  => $this->classRepository->findBatch($batchId, 'grades'),
                         'grades' => $this->classRepository->getGrades()->get(),
                     ]);
     }
 
+    /**
+     * Deletes a Batch Term
+     *
+     * @param $batchId
+     * @param $termId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchTermDelete($batchId, $termId)
     {
         $this->authorize('add_edit_batch');
@@ -70,6 +112,15 @@ class BatchController extends Controller
         return $this->printJson(true, [], trans('classes::term.term_deleted'));
     }
 
+    /**
+     * Save Batch Term
+     *
+     * @param UpdateTermRequest $request
+     * @param $batchId
+     * @param $termId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postBatchTermEdit(UpdateTermRequest $request, $batchId, $termId)
     {
         $this->authorize('add_edit_batch');
@@ -86,6 +137,14 @@ class BatchController extends Controller
         ], trans('classes::term.term_updated'));
     }
 
+    /**
+     * Get the Batch Term edit form
+     *
+     * @param $batchId
+     * @param $termId
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchTermEdit($batchId, $termId)
     {
         $this->authorize('add_edit_batch');
@@ -96,6 +155,13 @@ class BatchController extends Controller
                     ]));
     }
 
+    /**
+     * Creates a new Batch Term
+     * @param CreateTermRequest $request
+     * @param $batchId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postBatchTermNew(CreateTermRequest $request, $batchId)
     {
         $this->authorize('add_edit_batch');
@@ -107,6 +173,13 @@ class BatchController extends Controller
         ], trans('classes::term.term_created'));
     }
 
+    /**
+     * Returns the new Batch Term form
+     *
+     * @param $batchId
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchTermNew($batchId)
     {
         $this->authorize('add_edit_batch');
@@ -117,6 +190,13 @@ class BatchController extends Controller
                     ]));
     }
 
+    /**
+     * Returns the Batch Terms
+     *
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchTerms($batchId)
     {
         $this->authorize('view_batch_details');
@@ -126,6 +206,13 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * Get Batch Details view
+     *
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchDetailsView($batchId)
     {
         $this->authorize('view_batch_details');
@@ -135,6 +222,14 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * Get the Batch Details edit form
+     *
+     * @param $batchId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getBatchDetailsEdit($batchId)
     {
         $this->authorize('add_edit_batch');
@@ -145,6 +240,14 @@ class BatchController extends Controller
                     ]);
     }
 
+    /**
+     * Save batch Details
+     *
+     * @param UpdateBatchRequest $request
+     * @param $batchId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postBatchDetailsEdit(UpdateBatchRequest $request, $batchId)
     {
         $this->authorize('add_edit_batch');

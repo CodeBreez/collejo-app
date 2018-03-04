@@ -189,6 +189,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      */
     public function assignGradesToBatch(array $gradeIds, $batchId)
     {
+        print_r($this->createPivotIds($gradeIds));
         $this->findBatch($batchId)->grades()->sync($this->createPivotIds($gradeIds));
     }
 
@@ -225,11 +226,16 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      * Find a Batch by id.
      *
      * @param $id
+     * @param $with
      *
      * @return mixed
      */
-    public function findBatch($id)
+    public function findBatch($id, $with = null)
     {
+        if ($with) {
+            return Batch::with($with)->findOrFail($id);
+        }
+
         return Batch::findOrFail($id);
     }
 
