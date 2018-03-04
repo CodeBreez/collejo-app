@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-table v-if="items" :items="items" :fields="fields" fixed responsive no-local-sorting>
+        <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
                 <a :href="route('batch.details.view', row.item.id)">{{row.value}}</a>
@@ -15,11 +15,13 @@
             </template>
 
             <template slot="actions" slot-scope="row">
-                <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-                    Info modal
+                <b-button v-b-tooltip variant="outline-secondary" :title="trans('classes::batch.view_terms')"
+                          :href="route('batch.terms.view', row.item.id)">
+                    {{ trans('classes::term.terms') }}
                 </b-button>
-                <b-button size="sm" @click.stop="row.toggleDetails">
-                    {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+                <b-button v-b-tooltip variant="outline-secondary" :title="trans('classes::batch.view_grades')"
+                          :href="route('batch.grades.view', row.item.id)">
+                    {{ trans('classes::grade.grades') }}
                 </b-button>
             </template>
         </b-table>

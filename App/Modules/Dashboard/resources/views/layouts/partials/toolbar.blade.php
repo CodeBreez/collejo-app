@@ -20,8 +20,8 @@
             <h2>
                 @yield('title')
                 @hasSection('count')
-                    <span v-b-tooltip.hover placement="right"
-                          title="{!!trans('base::common.total_records')!!}"
+                    <span v-b-tooltip
+                          title="{!!trans('dashboard::dash.total_records')!!}"
                           class="badge badge-info badge-count">
                         @yield('count')
                     </span>

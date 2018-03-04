@@ -3,7 +3,7 @@
         <div class="float-right">
             <slot name="tools"></slot>
             <b-button v-if="filters" v-b-toggle.criteriaPanel variant="secondary-outline"
-                      :pressed="criteriaPanelVisible"
+                      :pressed="criteriaPanelVisible" v-b-tooltip
                       :title="trans('base::common.search_filter')">
                 <i class="fa fa-filter"></i>
             </b-button>
