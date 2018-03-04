@@ -2,14 +2,13 @@
 
 namespace Collejo\App\Http\Tests\Unit;
 
-use Collejo\Foundation\Testing\TestCase;
-use Collejo\App\Http\JsValidator\JsValidatorFactory;
 use Collejo\App\Http\JsValidator\JsValidator;
+use Collejo\App\Http\JsValidator\JsValidatorFactory;
 use Collejo\Foundation\Http\Requests\Request;
+use Collejo\Foundation\Testing\TestCase;
 
 class JsValidatorTest extends TestCase
 {
-
     public function testFactoryInstance()
     {
         $validator = JsValidatorFactory::create(new TestableRequest());

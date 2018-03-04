@@ -3,10 +3,10 @@
 namespace Collejo\App\Modules\Classes\Tests\Unit;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 
 class BatchTest extends TestCase
 {
@@ -15,7 +15,7 @@ class BatchTest extends TestCase
     private $classRepository;
 
     /**
-     * Test Getting batches list
+     * Test Getting batches list.
      */
     public function testGetBatches()
     {

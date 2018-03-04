@@ -2,9 +2,9 @@
 
 namespace Collejo\Foundation\Repository;
 
-use Collejo\Foundation\Criteria\CriteriaInterface;
 use Auth;
 use Carbon;
+use Collejo\Foundation\Criteria\CriteriaInterface;
 use Uuid;
 
 abstract class BaseRepository

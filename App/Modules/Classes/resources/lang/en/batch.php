@@ -15,7 +15,7 @@ return [
     'view_students'    => 'View Students',
 
     'batch_start'      => 'Batch Start',
-    'batch_end'      => 'Batch End',
+    'batch_end'        => 'Batch End',
 
     'empty_list'             => 'There are no Batches in the system',
     'no_grades_defined'      => 'No '.trans('base::entities.grade.plural').' or Batches defined.',
