@@ -4,11 +4,11 @@ namespace Collejo\App\Modules\Classes\Http\Controllers;
 
 use Collejo\App\Http\Controller;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 use Collejo\App\Modules\Classes\Http\Requests\CreateBatchRequest;
 use Collejo\App\Modules\Classes\Http\Requests\CreateTermRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateBatchRequest;
 use Collejo\App\Modules\Classes\Http\Requests\UpdateTermRequest;
-use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 use Request;
 
 class BatchController extends Controller
@@ -175,9 +175,10 @@ class BatchController extends Controller
     /**
      * Get form for new Batch.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchNew()
     {
@@ -193,6 +194,7 @@ class BatchController extends Controller
      * Render a list of batches.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchList(BatchListCriteria $criteria)
@@ -210,7 +212,7 @@ class BatchController extends Controller
 
         return view('classes::batches_list', [
                         'criteria' => $criteria,
-                        'batches' => $this->classRepository
+                        'batches'  => $this->classRepository
                             ->getBatches($criteria)
                             ->with('terms')
                             ->paginate(config('collejo.perpage')),

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
         /**
-         * Load any non production providers
+         * Load any non production providers.
          */
         $providers = config('app.non_production_mode_providers');
 

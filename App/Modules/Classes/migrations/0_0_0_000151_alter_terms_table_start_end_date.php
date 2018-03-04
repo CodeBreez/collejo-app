@@ -25,7 +25,7 @@ class AlterTermsTableStartEndDate extends Migration
      */
     public function down()
     {
-        /**
+        /*
          * Since mysql Doctrine\DBAL does not support timestamps
          * we can't reverse the migration
          */

@@ -8,7 +8,6 @@ use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvide
 
 class ACLModuleServiceProvider extends ModuleServiceProvider
 {
-
     /**
      * Register any application services.
      *
