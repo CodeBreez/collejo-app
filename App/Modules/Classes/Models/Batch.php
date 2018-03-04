@@ -16,7 +16,8 @@ class Batch extends Model
     protected $dates = ['start_date', 'end_date'];
 
     /**
-     * Returns the relative Terms for this Batch
+     * Returns the relative Terms for this Batch.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function terms()
@@ -25,7 +26,8 @@ class Batch extends Model
     }
 
     /**
-     * Returns the relative Grades for this Batch
+     * Returns the relative Grades for this Batch.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function grades()
@@ -34,7 +36,8 @@ class Batch extends Model
     }
 
     /**
-     * Set the scope to active Batches
+     * Set the scope to active Batches.
+     *
      * @return mixed
      */
     public function scopeActive()

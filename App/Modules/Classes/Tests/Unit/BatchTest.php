@@ -15,7 +15,7 @@ class BatchTest extends TestCase
     private $classRepository;
 
     /**
-     * Test Getting batches list
+     * Test Getting batches list.
      */
     public function testGetBatches()
     {
