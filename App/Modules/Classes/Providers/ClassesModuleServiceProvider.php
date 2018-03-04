@@ -5,12 +5,20 @@ namespace Collejo\App\Modules\Classes\Providers;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Modules\Classes\Repository\ClassRepository;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 
 class ClassesModuleServiceProvider extends ModuleServiceProvider
 {
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->app->bind(ClassRepositoryContract::class, ClassRepository::class);
+        $this->app->bind(BatchListCriteria::class);
     }
 
     /**

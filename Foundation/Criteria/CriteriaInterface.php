@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\Foundation\Repository;
+namespace Collejo\Foundation\Criteria;
 
 interface CriteriaInterface
 {

@@ -16,7 +16,7 @@
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ route('grades.list') }}">{{ trans('classes::grade.grades_list') }}</a>
+            <a href="{{ route('grades.list') }}">{{ trans('classes::grade.grades') }}</a>
         </li>
         <li class="breadcrumb-item">
             <a href="{{ route('grade.details.view', $grade->id) }}">{{ $grade->name }}</a>

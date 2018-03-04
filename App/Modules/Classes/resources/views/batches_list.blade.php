@@ -1,6 +1,8 @@
 @extends('dashboard::layouts.table_view')
 
-@section('title', trans('classes::batch.batches_list'))
+@section('title', trans('classes::batch.batches'))
+
+@section('count', $batches->count())
 
 @section('styles')
     @parent

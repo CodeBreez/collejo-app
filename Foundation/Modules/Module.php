@@ -62,12 +62,18 @@ class Module
         $files = [];
 
         if (config('app.locale') !== 'en') {
-            $files[] = '/js/trans/'.$this->getModuleNameByPath().'/en.js';
-            $files[] = '/js/trans/base/en.js';
+            $files = [
+                '/js/trans/'.$this->getModuleNameByPath().'/en.js',
+                '/js/trans/base/en.js',
+                '/js/trans/dashboard/en.js',
+            ];
         }
 
-        $files[] = '/js/trans/'.$this->getModuleNameByPath().'/'.config('app.locale').'.js';
-        $files[] = '/js/trans/base/'.config('app.locale').'.js';
+        $files = [
+            '/js/trans/'.$this->getModuleNameByPath().'/'.config('app.locale').'.js',
+            '/js/trans/base/'.config('app.locale').'.js',
+            '/js/trans/dashboard/'.config('app.locale').'.js',
+        ];
 
         return array_filter($files, function ($file) {
             return file_exists(realpath(base_path().'/public/'.$file));

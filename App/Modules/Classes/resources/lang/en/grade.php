@@ -3,7 +3,6 @@
 return [
     'menu_grades'   => trans('base::entities.grade.plural'),
     'grades'        => trans('base::entities.grade.plural'),
-    'grades_list'   => trans('base::entities.grade.plural').' List',
     'edit_grade'    => 'Edit '.trans('base::entities.grade.singular'),
     'new_grade'     => 'New '.trans('base::entities.grade.singular'),
     'create_grade'  => 'Create '.trans('base::entities.grade.singular').'',

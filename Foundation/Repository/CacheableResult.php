@@ -80,6 +80,20 @@ class CacheableResult
     }
 
     /**
+     * Order the records
+     *
+     * @param $column
+     * @param string $direction
+     * @return $this
+     */
+    public function orderBy($column, $direction = 'asc')
+    {
+        $this->builder->orderBy($column, $direction);
+
+        return $this;
+    }
+
+    /**
      * Return deletes entities.
      *
      * @return $this

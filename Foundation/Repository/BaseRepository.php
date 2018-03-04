@@ -2,6 +2,7 @@
 
 namespace Collejo\Foundation\Repository;
 
+use Collejo\Foundation\Criteria\CriteriaInterface;
 use Auth;
 use Carbon;
 use Uuid;

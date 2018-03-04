@@ -12,6 +12,9 @@ abstract class Model extends Base
 {
     public $incrementing = false;
 
+    /**
+     * Boot the model and bind event handlers
+     */
     protected static function boot()
     {
         parent::boot();
@@ -53,6 +56,7 @@ abstract class Model extends Base
      * Generates a new UUID.
      *
      * @return string
+     * @throws \Exception
      */
     public function newUuid()
     {

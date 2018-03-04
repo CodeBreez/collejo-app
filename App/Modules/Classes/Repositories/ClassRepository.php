@@ -8,6 +8,7 @@ use Collejo\App\Modules\Classes\Models\Clasis;
 use Collejo\App\Modules\Classes\Models\Grade;
 use Collejo\App\Modules\Classes\Models\Term;
 use Collejo\Foundation\Repository\BaseRepository;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract
 {
@@ -249,8 +250,8 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
-    public function getBatches()
+    public function getBatches(BatchListCriteria $criteria)
     {
-        return $this->search(Batch::class);
+        return $this->search($criteria)->orderBy('start_date');
     }
 }

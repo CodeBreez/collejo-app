@@ -27,7 +27,9 @@ return [
     'create'       => 'Create New',
     'list'         => 'List',
     'search'       => 'Search',
+    'search_filter' => 'Search Filter',
     'clear_search' => 'Clear',
+    'actions'       => 'Actions',
 
     'dashboard'       => 'Dashboard',
     'go_to_dashboard' => 'Go To Dashboard',

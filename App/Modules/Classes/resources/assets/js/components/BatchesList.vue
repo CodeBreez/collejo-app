@@ -1,9 +1,17 @@
 <template>
     <div>
-        <b-table v-if="items" :items="items" :fields="fields" fixed>
+        <b-table v-if="items" :items="items" :fields="fields" fixed responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
                 <a :href="route('batch.details.view', row.item.id)">{{row.value}}</a>
+            </template>
+
+            <template slot="start" slot-scope="row">
+                {{dateFormat(dateToUserTz(row.item.start_date))}}
+            </template>
+
+            <template slot="end" slot-scope="row">
+                {{dateFormat(dateToUserTz(row.item.end_date))}}
             </template>
 
             <template slot="actions" slot-scope="row">
@@ -28,7 +36,7 @@
 <script>
 
     export default {
-        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.PaginationHelper],
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.PaginationHelper, C.mixins.DateTimeHelpers],
         props: {
             batches: Object
         },
@@ -44,14 +52,18 @@
                 items: null,
                 fields: [
                     {
-                        key: 'id',
-                        sortable: true
-                    }, {
                         key: 'name',
-                        sortable: false
+                        sortable: true,
+                        label: this.trans('classes::batch.name')
+                    }, {
+                        key: 'start',
+                        label: this.trans('classes::batch.batch_start')
+                    },{
+                        key: 'end',
+                        label: this.trans('classes::batch.batch_end')
                     }, {
                         key: 'actions',
-                        label: 'Actions'
+                        label: this.trans('base::common.actions')
                     }
                 ],
             }

@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        /**
+         * Load any non production providers
+         */
         $providers = config('app.non_production_mode_providers');
 
         if (is_array($providers) && !$this->app->environment('production')) {

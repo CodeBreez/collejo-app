@@ -6,6 +6,12 @@ use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvide
 
 class BaseModuleServiceProvider extends ModuleServiceProvider
 {
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
     }

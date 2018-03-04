@@ -1,6 +1,7 @@
 import * as Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue'
 import VeeValidate from 'vee-validate';
+
 /**
  * Common Vue mixins
  */
@@ -17,12 +18,6 @@ import {DateTimeHelpers} from './_dateTimeHelpers';
 window._ = require('lodash');
 window.Vue = require('vue');
 window.moment = require('moment');
-window.biscuits =  require('js-cookie');
-
-/**
- * Set User time on cookie
- */
-window.biscuits.set('collejo_tz', moment().format(), { expires: 1 });
 
 /**
  * Register Vue packages
@@ -90,7 +85,7 @@ window.C = {
                 type: Array
             }
         }
-    })
+    }),
 };
 
 /**

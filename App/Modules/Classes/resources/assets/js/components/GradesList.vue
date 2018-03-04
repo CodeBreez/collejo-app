@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-table v-if="items" :items="items" :fields="fields" fixed>
+        <b-table v-if="items" :items="items" :fields="fields" fixed responsive>
 
             <template slot="name" slot-scope="row">
                 <a :href="route('grade.details.view', row.item.id)">{{row.value}}</a>

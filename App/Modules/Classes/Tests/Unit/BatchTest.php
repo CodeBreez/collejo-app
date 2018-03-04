@@ -14,6 +14,18 @@ class BatchTest extends TestCase
     private $classRepository;
 
     /**
+     * Test Getting batches list
+     */
+    public function testGetBatches()
+    {
+        factory(Batch::class, 5)->create();
+
+        $batches = $this->classRepository->getBatches()->get();
+
+        $this->assertCount(5, $batches);
+    }
+
+    /**
      * Test creating a Batch.
      */
     public function testBatchCreate()
