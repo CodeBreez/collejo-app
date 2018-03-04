@@ -6,6 +6,7 @@ use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 
 class BatchTest extends TestCase
 {
@@ -20,7 +21,8 @@ class BatchTest extends TestCase
     {
         factory(Batch::class, 5)->create();
 
-        $batches = $this->classRepository->getBatches()->get();
+        $batches = $this->classRepository
+            ->getBatches(app()->make(BatchListCriteria::class))->get();
 
         $this->assertCount(5, $batches);
     }
