@@ -80,10 +80,11 @@ class CacheableResult
     }
 
     /**
-     * Order the records
+     * Order the records.
      *
      * @param $column
      * @param string $direction
+     *
      * @return $this
      */
     public function orderBy($column, $direction = 'asc')

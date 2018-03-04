@@ -13,7 +13,7 @@ abstract class Model extends Base
     public $incrementing = false;
 
     /**
-     * Boot the model and bind event handlers
+     * Boot the model and bind event handlers.
      */
     protected static function boot()
     {
@@ -55,8 +55,9 @@ abstract class Model extends Base
     /**
      * Generates a new UUID.
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function newUuid()
     {

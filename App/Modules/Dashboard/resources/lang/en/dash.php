@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'dashboard'          => 'Dashboard',
-    'total_records' => 'Total records',
+    'dashboard'            => 'Dashboard',
+    'total_records'        => 'Total records',
     'filter_by'            => 'Filter By',
-    'filter_results'    =>'Filter',
-    'reset_filters'    =>'Reset',
+    'filter_results'       => 'Filter',
+    'reset_filters'        => 'Reset',
 ];
