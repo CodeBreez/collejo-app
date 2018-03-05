@@ -41,6 +41,7 @@ class AssetsController extends Controller
             return $langs;
         });
 
-        return response('C.langs='.json_encode($langs))->header('Content-Type:', 'application/javascript');
+        return response('C.langs='.json_encode($langs))
+            ->header('Content-Type:', 'application/javascript');
     }
 }
