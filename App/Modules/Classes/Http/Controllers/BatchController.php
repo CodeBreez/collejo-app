@@ -152,26 +152,6 @@ class BatchController extends Controller
     }
 
     /**
-     * Get the Batch Term edit form.
-     *
-     * @param $batchId
-     * @param $termId
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return mixed
-     */
-    public function getBatchTermEdit($batchId, $termId)
-    {
-        $this->authorize('add_edit_batch');
-
-        return $this->printModal(view('classes::modals.edit_term', [
-                        'term'  => $this->classRepository->findTerm($termId, $batchId),
-                        'batch' => $this->classRepository->findBatch($batchId),
-                    ]));
-    }
-
-    /**
      * Creates a new Batch Term.
      *
      * @param CreateTermRequest $request
@@ -190,25 +170,6 @@ class BatchController extends Controller
         return $this->printJson(true, [
             'term' => $term,
         ], trans('classes::term.term_created'));
-    }
-
-    /**
-     * Returns the new Batch Term form.
-     *
-     * @param $batchId
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return mixed
-     */
-    public function getBatchTermNew($batchId)
-    {
-        $this->authorize('add_edit_batch');
-
-        return $this->printModal(view('classes::modals.edit_term', [
-                        'term'  => null,
-                        'batch' => $this->classRepository->findBatch($batchId),
-                    ]));
     }
 
     /**
