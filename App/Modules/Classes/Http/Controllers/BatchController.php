@@ -16,11 +16,13 @@ class BatchController extends Controller
     protected $classRepository;
 
     /**
-     * Returns the view for Batch's Terms
+     * Returns the view for Batch's Terms.
      *
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchTermsView($batchId)
     {
@@ -32,11 +34,13 @@ class BatchController extends Controller
     }
 
     /**
-     * Returns the view for Batch Term edit UI
+     * Returns the view for Batch Term edit UI.
      *
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchTermsEdit($batchId)
     {
@@ -48,12 +52,14 @@ class BatchController extends Controller
     }
 
     /**
-     * Save Batch Grade data
+     * Save Batch Grade data.
      *
      * @param Request $request
      * @param $batchId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postBatchGradesEdit(Request $request, $batchId)
     {
@@ -66,8 +72,10 @@ class BatchController extends Controller
 
     /**
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchGradesView($batchId)
     {
@@ -79,11 +87,13 @@ class BatchController extends Controller
     }
 
     /**
-     * Returns the view for Batch Grade edit
+     * Returns the view for Batch Grade edit.
      *
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchGradesEdit($batchId)
     {
@@ -96,12 +106,14 @@ class BatchController extends Controller
     }
 
     /**
-     * Deletes a Batch Term
+     * Deletes a Batch Term.
      *
      * @param $batchId
      * @param $termId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getBatchTermDelete($batchId, $termId)
     {
@@ -113,13 +125,15 @@ class BatchController extends Controller
     }
 
     /**
-     * Save Batch Term
+     * Save Batch Term.
      *
      * @param UpdateTermRequest $request
      * @param $batchId
      * @param $termId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postBatchTermEdit(UpdateTermRequest $request, $batchId, $termId)
     {
@@ -138,12 +152,14 @@ class BatchController extends Controller
     }
 
     /**
-     * Get the Batch Term edit form
+     * Get the Batch Term edit form.
      *
      * @param $batchId
      * @param $termId
-     * @return mixed
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return mixed
      */
     public function getBatchTermEdit($batchId, $termId)
     {
@@ -156,11 +172,14 @@ class BatchController extends Controller
     }
 
     /**
-     * Creates a new Batch Term
+     * Creates a new Batch Term.
+     *
      * @param CreateTermRequest $request
      * @param $batchId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postBatchTermNew(CreateTermRequest $request, $batchId)
     {
@@ -174,11 +193,13 @@ class BatchController extends Controller
     }
 
     /**
-     * Returns the new Batch Term form
+     * Returns the new Batch Term form.
      *
      * @param $batchId
-     * @return mixed
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return mixed
      */
     public function getBatchTermNew($batchId)
     {
@@ -191,11 +212,13 @@ class BatchController extends Controller
     }
 
     /**
-     * Returns the Batch Terms
+     * Returns the Batch Terms.
      *
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchTerms($batchId)
     {
@@ -207,11 +230,13 @@ class BatchController extends Controller
     }
 
     /**
-     * Get Batch Details view
+     * Get Batch Details view.
      *
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchDetailsView($batchId)
     {
@@ -223,12 +248,14 @@ class BatchController extends Controller
     }
 
     /**
-     * Get the Batch Details edit form
+     * Get the Batch Details edit form.
      *
      * @param $batchId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getBatchDetailsEdit($batchId)
     {
@@ -241,12 +268,14 @@ class BatchController extends Controller
     }
 
     /**
-     * Save batch Details
+     * Save batch Details.
      *
      * @param UpdateBatchRequest $request
      * @param $batchId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postBatchDetailsEdit(UpdateBatchRequest $request, $batchId)
     {
