@@ -31,7 +31,7 @@
         },
         data(){
             return {
-                action: this.route('batch.grades.edit'),
+                action: this.route('batch.grades.edit', this.batch.id),
                 batchGrades: [],
                 submitDisabled:false
             }
@@ -40,7 +40,9 @@
             this.batchGrades = this.grades.map(grade => {
                 return {
                     name: grade.name,
-                    checked: false,
+                    checked: this.batch.grades.map(g => {
+                        return g.id;
+                    }).indexOf(grade.id) >= 0,
                     id: grade.id
                 }
             });
@@ -49,7 +51,13 @@
             onSubmit(){
                 this.submitDisabled = true;
 
-                axios.post(this.action, this.form)
+                axios.post(this.action, {
+                        grades: this.batchGrades.filter(grade => {
+                            return grade.checked;
+                        }).map(grade => {
+                            return grade.id;
+                        })
+                    })
                     .then(this.handleSubmitResponse)
                     .catch(this.handleSubmitResponse);
             }

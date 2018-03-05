@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Classes\Tests\Unit;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -12,6 +13,19 @@ class BatchTest extends TestCase
     use DatabaseMigrations;
 
     private $classRepository;
+
+    /**
+     * Test Getting batches list.
+     */
+    public function testGetBatches()
+    {
+        factory(Batch::class, 5)->create();
+
+        $batches = $this->classRepository
+            ->getBatches(app()->make(BatchListCriteria::class))->get();
+
+        $this->assertCount(5, $batches);
+    }
 
     /**
      * Test creating a Batch.

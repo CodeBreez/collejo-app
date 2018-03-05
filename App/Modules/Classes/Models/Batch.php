@@ -11,18 +11,35 @@ class Batch extends Model
 
     protected $table = 'batches';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'start_date', 'end_date'];
 
+    protected $dates = ['start_date', 'end_date'];
+
+    /**
+     * Returns the relative Terms for this Batch.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function terms()
     {
-        return $this->hasMany(Term::class);
+        return $this->hasMany(Term::class)->orderBy('start_date');
     }
 
+    /**
+     * Returns the relative Grades for this Batch.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function grades()
     {
         return $this->belongsToMany(Grade::class);
     }
 
+    /**
+     * Set the scope to active Batches.
+     *
+     * @return mixed
+     */
     public function scopeActive()
     {
         return $this->whereNull('deleted_at');

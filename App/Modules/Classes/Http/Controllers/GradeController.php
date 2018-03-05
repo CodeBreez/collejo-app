@@ -14,6 +14,14 @@ class GradeController extends Controller
 {
     protected $classRepository;
 
+    /**
+     * Delete Grade Class
+     *
+     * @param $gradeId
+     * @param $classId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getGradeClassDelete($gradeId, $classId)
     {
         $this->authorize('add_edit_class');
@@ -23,6 +31,15 @@ class GradeController extends Controller
         return $this->printJson(true, [], trans('classes::class.class_deleted'));
     }
 
+    /**
+     * Save Grade Class
+     *
+     * @param UpdateClassRequest $request
+     * @param $gradeId
+     * @param $classId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postGradeClassEdit(UpdateClassRequest $request, $gradeId, $classId)
     {
         $this->authorize('add_edit_class');
@@ -35,6 +52,14 @@ class GradeController extends Controller
         ], trans('classes::class.class_updated'));
     }
 
+    /**
+     * Create Grade Class
+     *
+     * @param CreateClassRequest $request
+     * @param $gradeId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postGradeClassNew(CreateClassRequest $request, $gradeId)
     {
         $this->authorize('add_edit_class');
@@ -47,6 +72,13 @@ class GradeController extends Controller
         ], trans('classes::class.class_created'));
     }
 
+    /**
+     * Get Grade Details view
+     *
+     * @param $gradeId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getGradeDetailsView($gradeId)
     {
         $this->authorize('view_grade_details');
@@ -56,6 +88,13 @@ class GradeController extends Controller
         ]);
     }
 
+    /**
+     * View Grade Classes
+     *
+     * @param $gradeId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getGradeClassesView($gradeId)
     {
         $this->authorize('list_classes');
@@ -65,6 +104,13 @@ class GradeController extends Controller
         ]);
     }
 
+    /**
+     * Grade Classes Edit view
+     *
+     * @param $gradeId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getGradeClassesEdit($gradeId)
     {
         $this->authorize('add_edit_class');
@@ -74,6 +120,14 @@ class GradeController extends Controller
         ]);
     }
 
+    /**
+     * Saves the Grade details
+     *
+     * @param UpdateGradeRequest $request
+     * @param $gradeId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postGradeDetailsEdit(UpdateGradeRequest $request, $gradeId)
     {
         $this->authorize('add_edit_grade');
@@ -83,6 +137,14 @@ class GradeController extends Controller
         return $this->printJson(true, [], trans('classes::grade.grade_updated'));
     }
 
+    /**
+     * Returns the edit details for Grade
+     *
+     * @param $gradeId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getGradeDetailsEdit($gradeId)
     {
         $this->authorize('add_edit_grade');
@@ -93,6 +155,13 @@ class GradeController extends Controller
             ]);
     }
 
+    /**
+     * Saves a new Grade
+     *
+     * @param CreateGradeRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postGradeNew(CreateGradeRequest $request)
     {
         $this->authorize('add_edit_grade');
@@ -106,7 +175,7 @@ class GradeController extends Controller
      * Render new Grade form.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @throws \Exception
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGradeNew()
@@ -137,11 +206,19 @@ class GradeController extends Controller
             ]);
     }
 
+    /**
+     * Returns the Classes for the Grade
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getGradeClasses(Request $request)
     {
         $this->authorize('list_classes');
 
-        return $this->printJson(true, $this->classRepository->findGrade($request::get('grade_id'))->classes->pluck('name', 'id'));
+        return $this->printJson(true, $this->classRepository
+            ->findGrade($request::get('grade_id'))->classes->pluck('name', 'id'));
     }
 
     public function __construct(ClassRepository $classRepository)

@@ -1,4 +1,6 @@
-@import "../../../../Base/resources/assets/sass/bs";
+@import "../../../../Base/resources/assets/sass/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/card";
 
 body{
   background: $gray-200;
@@ -28,6 +30,44 @@ body{
 	h2{
 		margin: $box-padding 0;
 		color: $gray-600;
+
+		.badge-count{
+			font-size:50%;
+			position: relative;
+			top: -5px;
+		}
+	}
+
+	.criteria-panel{
+		.card:after, .card:before {
+			bottom: 100%;
+			right: .4rem;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+
+		.card:after {
+			border-color: rgba(255, 255, 255, 0);
+			border-bottom-color: #ffffff;
+			border-width: 0.63rem;
+			margin-left: -1.875rem;
+		}
+
+		.card:before {
+			border-color: rgba(199, 199, 199, 0);
+			border-bottom-color: #c7c7c7;
+			border-width: 0.63rem;
+			margin-left: -1.88rem;
+		}
+
+		.filter-title{
+			float:left;
+			padding: 0.4375rem 0.4375rem 0 0;
+		}
 	}
 
 	.breadcrumb {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-table v-if="items" :items="items" :fields="fields" fixed>
+        <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
                 <a :href="route('grade.details.view', row.item.id)">{{row.value}}</a>
@@ -39,11 +39,10 @@
                 items: null,
                 fields: [
                     {
-                        key: 'id',
+                        key: 'name',
                         sortable: true
                     }, {
-                        key: 'name',
-                        sortable: false
+                        key: 'classes'
                     }, {
                         key: 'actions',
                         label: 'Actions'

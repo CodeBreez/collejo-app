@@ -8,6 +8,11 @@ use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvide
 
 class ACLModuleServiceProvider extends ModuleServiceProvider
 {
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);

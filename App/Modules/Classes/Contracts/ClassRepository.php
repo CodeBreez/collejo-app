@@ -2,6 +2,8 @@
 
 namespace Collejo\App\Modules\Classes\Contracts;
 
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
+
 interface ClassRepository
 {
     public function deleteClass($classId, $gradeId);
@@ -36,9 +38,9 @@ interface ClassRepository
 
     public function activeBatches();
 
-    public function findBatch($id);
+    public function findBatch($id, $with);
 
     public function createBatch(array $attributes);
 
-    public function getBatches();
+    public function getBatches(BatchListCriteria $criteria);
 }

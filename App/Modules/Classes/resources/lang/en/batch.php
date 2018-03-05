@@ -2,7 +2,6 @@
 
 return [
     'batches'          => 'Batches',
-    'batches_list'     => 'Batches List',
     'batch_details'    => 'Batch Details',
     'batch_terms'      => trans('base::entities.term.plural'),
     'batch_grades'     => trans('base::entities.grade.singular'),
@@ -14,6 +13,11 @@ return [
     'grades'           => trans('base::entities.grade.plural'),
     'assign_grades'    => 'Assign '.trans('base::entities.grade.plural'),
     'view_students'    => 'View Students',
+    'view_terms'       => 'View Terms',
+    'view_grades'      => 'View Grades',
+
+    'batch_start'      => 'Batch Start',
+    'batch_end'        => 'Batch End',
 
     'empty_list'             => 'There are no Batches in the system',
     'no_grades_defined'      => 'No '.trans('base::entities.grade.plural').' or Batches defined.',

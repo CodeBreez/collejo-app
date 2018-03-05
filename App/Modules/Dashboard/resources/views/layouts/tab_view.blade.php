@@ -4,16 +4,7 @@
 
     <section class="section">
 
-        @hasSection('tools')
-
-            <div class="float-right">
-            @yield('tools')
-        </div>
-
-        @endif
-
-        <h2>@yield('title')</h2>
-
+        @include('dashboard::layouts.partials.toolbar')
 
         @hasSection('breadcrumbs')
 

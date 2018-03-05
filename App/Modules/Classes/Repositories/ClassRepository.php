@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Classes\Repository;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository as ClassRepositoryContract;
+use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\App\Modules\Classes\Models\Clasis;
 use Collejo\App\Modules\Classes\Models\Grade;
@@ -188,6 +189,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      */
     public function assignGradesToBatch(array $gradeIds, $batchId)
     {
+        print_r($this->createPivotIds($gradeIds));
         $this->findBatch($batchId)->grades()->sync($this->createPivotIds($gradeIds));
     }
 
@@ -224,11 +226,16 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      * Find a Batch by id.
      *
      * @param $id
+     * @param $with
      *
      * @return mixed
      */
-    public function findBatch($id)
+    public function findBatch($id, $with = null)
     {
+        if ($with) {
+            return Batch::with($with)->findOrFail($id);
+        }
+
         return Batch::findOrFail($id);
     }
 
@@ -249,8 +256,8 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
-    public function getBatches()
+    public function getBatches(BatchListCriteria $criteria)
     {
-        return $this->search(Batch::class);
+        return $this->search($criteria)->orderBy('start_date');
     }
 }

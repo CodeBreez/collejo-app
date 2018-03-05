@@ -11,7 +11,7 @@
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="{{ route('batches.list') }}">{{ trans('classes::batch.batches_list') }}</a>
+        <a href="{{ route('batches.list') }}">{{ trans('classes::batch.batches') }}</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a>

@@ -1,6 +1,8 @@
 @extends('dashboard::layouts.table_view')
 
-@section('title', trans('classes::grade.grades_list'))
+@section('title', trans('classes::grade.grades'))
+
+@section('count', $grades->count())
 
 @section('styles')
     @parent
