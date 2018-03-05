@@ -9,7 +9,6 @@
             :filters="{{$criteria->toJson()}}"
             @endif
     >
-
         @hasSection('tools')
             <template slot="tools">
                 @yield('tools')

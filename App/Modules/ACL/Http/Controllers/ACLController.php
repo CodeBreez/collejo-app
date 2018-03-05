@@ -7,9 +7,9 @@ use Collejo\App\Http\Controller;
 
 class ACLController extends Controller
 {
-    public function getRoles()
+    public function getManage()
     {
-        return 'acl';
+        return 'users';
     }
 
     public function __construct()

@@ -1,5 +1,5 @@
 <?php
 
-Menu::create('users', trans('acl::users.roles'))
-    ->setParent(Menu::getMenuByName(trans('auth::menu.my_account')))
-    ->setPath('users.roles');
+Menu::group(trans('acl::menu.users'), 'fa-user', function ($parent) {
+    Menu::create('users.manage', trans('acl::menu.manage'))->setParent($parent)->setPath('users.manage');
+})->setOrder(0)->setPosition('right');

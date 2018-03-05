@@ -1,5 +1,5 @@
 <?php
 
 Route::group(['prefix' => 'dashboard/users'], function () {
-    Route::get('roles', 'ACLController@getRoles')->name('users.roles');
+    Route::get('manage', 'ACLController@getManage')->name('users.manage');
 });
