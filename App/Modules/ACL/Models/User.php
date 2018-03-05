@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function getPermissionsAttribute()
     {
-        return Cache::remember('user-perms:'.$this->id, config('collejo.tweaks.user_permissions_ttl'), function () {
+        return Cache::remember('user-perms:'.$this->id, config('collejo.tweaks.user_permissions_cache_ttl'), function () {
             return Permission::join('permission_role', 'permission_role.permission_id', '=', 'permissions.id')
                             ->join('roles', 'permission_role.role_id', '=', 'roles.id')
                             ->join('role_user', 'permission_role.role_id', '=', 'role_user.role_id')

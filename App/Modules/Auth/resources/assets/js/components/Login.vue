@@ -1,7 +1,7 @@
 <template>
     <div class="form-auth">
 
-        <b-form @submit.prevent="onSubmit">
+        <b-form @submit.prevent="onSubmit" novalidate>
 
             <div class="text-center">
                 <div class="auth-logo"></div>

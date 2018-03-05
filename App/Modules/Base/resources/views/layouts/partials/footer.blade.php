@@ -18,8 +18,6 @@
 
 <script type="text/javascript" src="{{ mix('/js/commons.js') }}"></script>
 <script type="text/javascript" src="{{ mix('/assets/base/js/bootstrap.js') }}"></script>
-@foreach (Module::getLangScriptFiles() as $script)
-	<script type="application/javascript" src="{{ $script }}"></script>
-@endforeach
+<script type="application/javascript" src="/assets/locale.js"></script>
 
 @yield('scripts')

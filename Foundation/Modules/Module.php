@@ -53,34 +53,6 @@ class Module
     }
 
     /**
-     * Get an array of language script files for the module.
-     *
-     * @return array
-     */
-    public function getLangScriptFiles()
-    {
-        $files = [];
-
-        if (config('app.locale') !== 'en') {
-            $files = [
-                '/js/trans/'.$this->getModuleNameByPath().'/en.js',
-                '/js/trans/base/en.js',
-                '/js/trans/dashboard/en.js',
-            ];
-        }
-
-        $files = [
-            '/js/trans/'.$this->getModuleNameByPath().'/'.config('app.locale').'.js',
-            '/js/trans/base/'.config('app.locale').'.js',
-            '/js/trans/dashboard/'.config('app.locale').'.js',
-        ];
-
-        return array_filter($files, function ($file) {
-            return file_exists(realpath(base_path().'/public/'.$file));
-        });
-    }
-
-    /**
      * Returns the module name by the given path.
      *
      * @return string

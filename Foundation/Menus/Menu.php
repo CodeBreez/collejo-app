@@ -22,7 +22,7 @@ class Menu
             $label = func_get_arg(0);
             $icon = func_get_arg(1);
             $closure = func_get_arg(2);
-            $name = strtolower($label);
+            $name = $this->createMenuNameFromString($label);
 
             $menu = new MenuItem();
             $menu->setName($name)->setLabel($label)->setIcon($icon)->setType('g');
@@ -45,6 +45,29 @@ class Menu
         }
 
         throw new \Exception('Invalid Arguments');
+    }
+
+
+    /**
+     * Returns a Menu object by name
+     *
+     * @param $name
+     * @return \Illuminate\Support\Collection|static
+     */
+    public function getMenuByName($name)
+    {
+        return $this->menus->where('name', $this->createMenuNameFromString($name))->first();
+    }
+
+    /**
+     * Create a nice name from a given string
+     *
+     * @param $string
+     * @return mixed
+     */
+    private function createMenuNameFromString($string)
+    {
+        return strtolower($string);
     }
 
     /**

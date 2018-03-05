@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'account' => 'Account',
+    'my_account' => 'My Account',
     'logout'  => 'Logout',
 ];

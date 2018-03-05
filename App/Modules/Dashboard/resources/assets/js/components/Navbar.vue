@@ -22,7 +22,7 @@
 
                 <b-nav-form class="hyper-search-form">
 
-					<b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
+					<!--b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/-->
 
 				</b-nav-form>
 
