@@ -15,12 +15,14 @@ class GradeController extends Controller
     protected $classRepository;
 
     /**
-     * Delete Grade Class
+     * Delete Grade Class.
      *
      * @param $gradeId
      * @param $classId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getGradeClassDelete($gradeId, $classId)
     {
@@ -32,13 +34,15 @@ class GradeController extends Controller
     }
 
     /**
-     * Save Grade Class
+     * Save Grade Class.
      *
      * @param UpdateClassRequest $request
      * @param $gradeId
      * @param $classId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postGradeClassEdit(UpdateClassRequest $request, $gradeId, $classId)
     {
@@ -53,12 +57,14 @@ class GradeController extends Controller
     }
 
     /**
-     * Create Grade Class
+     * Create Grade Class.
      *
      * @param CreateClassRequest $request
      * @param $gradeId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postGradeClassNew(CreateClassRequest $request, $gradeId)
     {
@@ -73,11 +79,13 @@ class GradeController extends Controller
     }
 
     /**
-     * Get Grade Details view
+     * Get Grade Details view.
      *
      * @param $gradeId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGradeDetailsView($gradeId)
     {
@@ -89,11 +97,13 @@ class GradeController extends Controller
     }
 
     /**
-     * View Grade Classes
+     * View Grade Classes.
      *
      * @param $gradeId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGradeClassesView($gradeId)
     {
@@ -105,11 +115,13 @@ class GradeController extends Controller
     }
 
     /**
-     * Grade Classes Edit view
+     * Grade Classes Edit view.
      *
      * @param $gradeId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGradeClassesEdit($gradeId)
     {
@@ -121,12 +133,14 @@ class GradeController extends Controller
     }
 
     /**
-     * Saves the Grade details
+     * Saves the Grade details.
      *
      * @param UpdateGradeRequest $request
      * @param $gradeId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postGradeDetailsEdit(UpdateGradeRequest $request, $gradeId)
     {
@@ -138,12 +152,14 @@ class GradeController extends Controller
     }
 
     /**
-     * Returns the edit details for Grade
+     * Returns the edit details for Grade.
      *
      * @param $gradeId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGradeDetailsEdit($gradeId)
     {
@@ -156,11 +172,13 @@ class GradeController extends Controller
     }
 
     /**
-     * Saves a new Grade
+     * Saves a new Grade.
      *
      * @param CreateGradeRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postGradeNew(CreateGradeRequest $request)
     {
@@ -176,6 +194,7 @@ class GradeController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGradeNew()
@@ -207,11 +226,13 @@ class GradeController extends Controller
     }
 
     /**
-     * Returns the Classes for the Grade
+     * Returns the Classes for the Grade.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getGradeClasses(Request $request)
     {
