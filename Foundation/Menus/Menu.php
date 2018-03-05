@@ -47,11 +47,11 @@ class Menu
         throw new \Exception('Invalid Arguments');
     }
 
-
     /**
-     * Returns a Menu object by name
+     * Returns a Menu object by name.
      *
      * @param $name
+     *
      * @return \Illuminate\Support\Collection|static
      */
     public function getMenuByName($name)
@@ -60,9 +60,10 @@ class Menu
     }
 
     /**
-     * Create a nice name from a given string
+     * Create a nice name from a given string.
      *
      * @param $string
+     *
      * @return mixed
      */
     private function createMenuNameFromString($string)
