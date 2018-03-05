@@ -13,15 +13,21 @@
                 <b-form-input id="emailInput" type="email"
                               v-model="loginForm.email"
                               @input="$v.loginForm.email.$touch()"></b-form-input>
-                <div class="invalid-feedback" v-if="!$v.loginForm.email.required">{{trans('base::validation.required', trans('auth::auth.email'))}}</div>
-                <div class="invalid-feedback" v-if="!$v.loginForm.email.email">{{trans('base::validation.email')}}</div>
+                <div class="invalid-feedback" v-if="!$v.loginForm.email.required">
+                    {{trans('base::validation.required', trans('auth::auth.email'))}}
+                </div>
+                <div class="invalid-feedback" v-if="!$v.loginForm.email.email">
+                    {{trans('base::validation.email', trans('auth::auth.email'))}}
+                </div>
             </b-form-group>
 
             <b-form-group :label="trans('auth::auth.password')" label-for="passwordInput">
                 <b-form-input id="passwordInput" type="password"
                               v-model="loginForm.password"
                               @input="$v.loginForm.password.$touch()"></b-form-input>
-                <div class="invalid-feedback" v-if="!$v.loginForm.password.required">{{trans('base::validation.required', trans('auth::auth.email'))}}</div>
+                <div class="invalid-feedback" v-if="!$v.loginForm.password.required">
+                    {{trans('base::validation.required', trans('auth::auth.password'))}}
+                </div>
             </b-form-group>
 
             <div class="checkbox-row">

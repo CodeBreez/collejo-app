@@ -27,9 +27,7 @@ const Routes = {
                     }
                 }
 
-                /**
-                 * If parameters are present parse them in to the route
-                 */
+                // If parameters are present parse them in to the route
                 if (params) {
 
                     _.each(Object.keys(params), key => {
