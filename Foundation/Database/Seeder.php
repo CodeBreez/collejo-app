@@ -21,7 +21,7 @@ abstract class Seeder extends BaseSeeder
 
     /**
      * Create pivot ids for seeded relationships
-     * 
+     *
      * @param $collection
      * @return array
      */
