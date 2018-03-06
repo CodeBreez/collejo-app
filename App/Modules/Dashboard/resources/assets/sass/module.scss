@@ -2,6 +2,15 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/card";
 
+
+#navbar{
+	min-height: 3.438rem;
+}
+
+#toolbar{
+	min-height: 2.375rem;
+}
+
 body{
   background: $gray-200;
 	font-family: $font-family-sans-serif;

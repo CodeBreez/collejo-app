@@ -6,36 +6,45 @@
 
         <b-card bg-variant="light" class="text-center">
             <b-button @click.prevent="addNewTerm" variant="link">
-                <i class="fa fa-2x fa-plus"></i>
-                <br/>{{trans('classes::term.new_term')}}
+                <i class="fa fa-2x fa-plus"></i><br/>{{trans('classes::term.new_term')}}
             </b-button>
         </b-card>
 
-        <b-modal v-if="currentTerm" ref="editTermPopup" :bvEvt="bvEvt" :title="currentTerm.name" @ok="handleSave"
-                 no-close-on-backdrop
+        <b-modal v-if="currentTerm" :title="currentTerm.name" @ok="handleOk" @hide="handleHide"
+                 no-close-on-backdrop v-model="modalOpen"
                  no-close-on-esc>
-            <b-form>
+            <b-form @submit.prevent="handleSubmit" novalidate>
 
                 <b-form-group :label="trans('classes::term.name')">
 
-                    <b-form-input type="text" v-model="currentTerm.name" v-validate="'required'"
+                    <b-form-input type="text" v-model="currentTerm.name" @input="$v.currentTerm.name.$touch()"
                                   :placeholder="trans('classes::term.new_term_placeholder')">
                     </b-form-input>
-
+                    <div class="invalid-feedback" v-if="!$v.currentTerm.name.required">
+                        {{trans('base::validation.required', trans('classes::term.name'))}}
+                    </div>
                 </b-form-group>
 
                 <b-form-group :label="trans('classes::term.start_date')">
 
-                    <datepicker input-class="form-control" v-model="currentTerm.start_date" v-validate="'required'">
+                    <datepicker input-class="form-control" v-model="currentTerm.start_date"
+                                :format="getCalendarFormat()"
+                                @input="$v.currentTerm.start_date.$touch()">
                     </datepicker>
-
+                    <div class="invalid-feedback" v-if="!$v.currentTerm.start_date.required">
+                        {{trans('base::validation.required', trans('classes::term.start_date'))}}
+                    </div>
                 </b-form-group>
 
                 <b-form-group :label="trans('classes::term.end_date')">
 
-                    <datepicker input-class="form-control" v-model="currentTerm.end_date" v-validate="'required'">
+                    <datepicker input-class="form-control" v-model="currentTerm.end_date"
+                                :format="getCalendarFormat()"
+                                @input="$v.currentTerm.end_date.$touch()">
                     </datepicker>
-
+                    <div class="invalid-feedback" v-if="!$v.currentTerm.end_date.required">
+                        {{trans('base::validation.required', trans('classes::term.end_date'))}}
+                    </div>
                 </b-form-group>
 
             </b-form>
@@ -45,7 +54,9 @@
 </template>
 
 <script>
+
     import Datepicker from 'vuejs-datepicker';
+    import { required } from 'vuelidate/lib/validators'
 
     Vue.component('term', require('./EditTerm'));
 
@@ -53,7 +64,7 @@
         components: {
             Datepicker
         },
-        mixins: [C.mixins.Routes, C.mixins.Trans],
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.DateTimeHelpers],
         props: {
             batch: {
                 default: () => {
@@ -70,12 +81,25 @@
                 termsList: [],
                 currentTerm: null,
                 currentIndex: null,
-                bvEvt: null
+                modalOpen: false
             }
         },
         mounted() {
 
             this.termsList = this.terms;
+        },
+        validations: {
+            currentTerm:{
+                name: {
+                    required
+                },
+                start_date: {
+                    required
+                },
+                end_date: {
+                    required
+                }
+            }
         },
         methods: {
 
@@ -113,10 +137,7 @@
 
                 this.cloneObject();
 
-                setTimeout(() => {
-
-                    this.$refs.editTermPopup.show();
-                }, 100)
+                this.modalOpen = true;
             },
 
             getRouteForObject() {
@@ -133,28 +154,38 @@
                 }
             },
 
-            handleSave() {
+            handleOk(e) {
+                this.$v.$touch();
+                e.preventDefault();
 
-                this.$validator.validateAll().then(result => {
+                if(this.$v.currentTerm.$error){
+                    window.C.notification.warning(this.trans('base::common.validation_failed'));
+                } else {
+                    this.handleSubmit();
+                }
 
-                    if (!result) {
-                        window.C.notification.warning(this.trans('base::common.validation_failed'));
+            },
 
-                        this.bvEvt.preventDefault()
-                    }
+            handleHide(){
+                if(_.filter(_.values(_.pick(this.currentTerm, _.keys(this.$v.currentTerm.$params))), item => {
+                    return item;
+                    }).length <= 0){
+                    this.terms.splice(this.currentIndex, 1);
+                }
+            },
 
-                    axios.post(this.getRouteForObject(), this.currentTerm)
-                        .then(this.handleSubmitResponse)
-                        .then(response => {
+            handleSubmit() {
+                axios.post(this.getRouteForObject(), this.currentTerm)
+                    .then(this.handleSubmitResponse)
+                    .then(response => {
 
-                            this.currentTerm.id = response.data.data.term.id;
+                        this.currentTerm.id = response.data.data.term.id;
 
-                            this.$set(this.terms, this.currentIndex, Object.assign({}, this.currentTerm));
+                        this.$set(this.terms, this.currentIndex, Object.assign({}, this.currentTerm));
 
-                        })
-                        .catch(this.handleSubmitResponse);
-                });
-
+                        this.modalOpen = false;
+                    })
+                    .catch(this.handleSubmitResponse);
             },
 
             cloneObject() {

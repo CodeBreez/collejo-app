@@ -4,7 +4,7 @@ const DateTimeHelpers = {
 
         dateFormat(date)
         {
-            return date.format(this._getDateFormat());
+            return date.format(this.getDateFormat());
         },
 
         /**
@@ -50,12 +50,22 @@ const DateTimeHelpers = {
         },
 
         /**
+         * Returns the date format for calendars
+         *
+         * @returns {string}
+         */
+        getCalendarFormat()
+        {
+            return 'MMM dd, yyyy';
+        },
+
+        /**
          * Returns how dates should be formatted
          *
          * @returns {string}
          * @private
          */
-        _getDateFormat()
+        getDateFormat()
         {
             return 'MMM D, YYYY';
         },
@@ -66,7 +76,7 @@ const DateTimeHelpers = {
          * @returns {string}
          * @private
          */
-        _getTimeFormat()
+        getTimeFormat()
         {
             return 'h:mm a';
         },
@@ -77,9 +87,9 @@ const DateTimeHelpers = {
          * @returns {string}
          * @private
          */
-        _getDateTimeFormat()
+        getDateTimeFormat()
         {
-            return `${this._getDateFormat()}, ${this._getTimeFormat()}`;
+            return `${this.getDateFormat()}, ${this.getTimeFormat()}`;
         }
     }
 };

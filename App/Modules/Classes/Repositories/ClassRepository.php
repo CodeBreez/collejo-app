@@ -189,7 +189,6 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      */
     public function assignGradesToBatch(array $gradeIds, $batchId)
     {
-        print_r($this->createPivotIds($gradeIds));
         $this->findBatch($batchId)->grades()->sync($this->createPivotIds($gradeIds));
     }
 
