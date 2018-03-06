@@ -19,6 +19,12 @@ abstract class Seeder extends BaseSeeder
         $this->loadFactories();
     }
 
+    /**
+     * Create pivot ids for seeded relationships
+     * 
+     * @param $collection
+     * @return array
+     */
     public function createPivotIds($collection)
     {
         if (!$collection instanceof Collection) {
