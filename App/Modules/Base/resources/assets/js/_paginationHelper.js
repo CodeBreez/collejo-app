@@ -6,7 +6,7 @@ const PaginationHelper = {
             totalPages: null,
             currentPage: null,
             baseUrl: null,
-        }
+        };
     },
     methods: {
 

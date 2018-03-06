@@ -24,7 +24,7 @@ const Routes = {
 
                     params = {
                         'id': params
-                    }
+                    };
                 }
 
                 // If parameters are present parse them in to the route

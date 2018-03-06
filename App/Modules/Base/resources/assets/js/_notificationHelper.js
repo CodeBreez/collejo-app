@@ -11,9 +11,9 @@ const Notification = {
         success(message, dismissible = true) {
 
             this._showMessage({
-                message: message,
-                dismissible: dismissible
-            })
+                message,
+                dismissible
+            });
         },
 
         /**
@@ -25,10 +25,10 @@ const Notification = {
         danger(message, dismissible = true) {
 
             this._showMessage({
-                message: message,
-                dismissible: dismissible,
+                message,
+                dismissible,
                 variant: 'danger'
-            })
+            });
         },
 
         /**
@@ -40,10 +40,10 @@ const Notification = {
         warning(message, dismissible = true) {
 
             this._showMessage({
-                message: message,
-                dismissible: dismissible,
+                message,
+                dismissible,
                 variant: 'warning'
-            })
+            });
         },
 
         /**
@@ -55,10 +55,10 @@ const Notification = {
         info(message, dismissible = true) {
 
             this._showMessage({
-                message: message,
-                dismissible: dismissible,
+                message,
+                dismissible,
                 variant: 'info'
-            })
+            });
         },
 
         /**
