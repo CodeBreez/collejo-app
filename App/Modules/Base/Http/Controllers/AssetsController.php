@@ -43,6 +43,7 @@ class AssetsController extends Controller
         });
 
         return response('C.langs='.json_encode($langs))
+            ->header('Cache-Control', 'max-age='. config('languages_cache_ttl'))
             ->header('Content-Type', 'application/javascript');
     }
 }
