@@ -16,7 +16,6 @@ class AssetsController extends Controller
     public function getLocals()
     {
         $langs = Cache::remember('lang-files', config('languages_cache_ttl'), function () {
-
             $langs = array_fill_keys(config('collejo.languages'), []);
 
             foreach (Module::getModulePaths() as $path) {
@@ -43,7 +42,7 @@ class AssetsController extends Controller
         });
 
         return response('C.langs='.json_encode($langs))
-            ->header('Cache-Control', 'max-age='. config('languages_cache_ttl'))
+            ->header('Cache-Control', 'max-age='.config('languages_cache_ttl'))
             ->header('Content-Type', 'application/javascript');
     }
 }
