@@ -2,9 +2,9 @@
 
 namespace Collejo\App\Console\Commands;
 
+use DirectoryIterator;
 use Illuminate\Console\Command;
 use Theme;
-use DirectoryIterator;
 
 class AssetCopy extends Command
 {
@@ -33,13 +33,13 @@ class AssetCopy extends Command
 
         $this->info('Copying core assets');
 
-        $srcDir = realpath(__DIR__ . '/../../resources/assets/');
+        $srcDir = realpath(__DIR__.'/../../resources/assets/');
 
         $assetLocations = [
             ['js', true],
             ['css', true],
             ['fonts', false],
-            ['images', true]
+            ['images', true],
         ];
 
         $publicDir = base_path('public');
@@ -51,47 +51,46 @@ class AssetCopy extends Command
         }
 
         foreach ($assetLocations as $location) {
-
             $dir = $location[0];
             $versioned = $location[1];
 
-            $assetDir = $publicDir . '/' . $dir . '/';
-            $buildDir = $publicDir . '/build/' . $dir . '/';
+            $assetDir = $publicDir.'/'.$dir.'/';
+            $buildDir = $publicDir.'/build/'.$dir.'/';
 
             if (!file_exists($assetDir)) {
                 mkdir($assetDir, 0755, true);
-            } 
+            }
 
             if (!file_exists($buildDir)) {
                 mkdir($buildDir, 0755, true);
-            } 
+            }
 
-            array_map('unlink', glob($assetDir . '/*'));
-            array_map('unlink', glob($buildDir . '/*'));
+            array_map('unlink', glob($assetDir.'/*'));
+            array_map('unlink', glob($buildDir.'/*'));
 
-            foreach (new DirectoryIterator($srcDir . '/' . $dir) as $fileInfo) {
-                if($fileInfo->isDot()) continue;
+            foreach (new DirectoryIterator($srcDir.'/'.$dir) as $fileInfo) {
+                if ($fileInfo->isDot()) {
+                    continue;
+                }
 
-                $regularFilePath = '/' . $dir . '/' . $fileInfo->getFilename();
+                $regularFilePath = '/'.$dir.'/'.$fileInfo->getFilename();
 
                 if ($versioned) {
+                    $versionedName = md5($fileInfo->getFilename().microtime(true)).'-'.$fileInfo->getFilename();
 
-                    $versionedName = md5($fileInfo->getFilename() . microtime(true)) . '-' . $fileInfo->getFilename();
-
-                    $manifest[$regularFilePath] = $dir . '/' . $versionedName;
-
+                    $manifest[$regularFilePath] = $dir.'/'.$versionedName;
                 } else {
                     $versionedName = $fileInfo->getFilename();
                 }
 
-                copy($srcDir . '/' . $dir . '/' . $fileInfo->getFilename(), $assetDir . $fileInfo->getFilename());
-                copy($srcDir . '/' . $dir . '/' . $fileInfo->getFilename(), $buildDir . $versionedName);
+                copy($srcDir.'/'.$dir.'/'.$fileInfo->getFilename(), $assetDir.$fileInfo->getFilename());
+                copy($srcDir.'/'.$dir.'/'.$fileInfo->getFilename(), $buildDir.$versionedName);
             }
         }
 
         if (($theme = Theme::current())) {
-            $srcFiles = $theme->getStyles()->map(function($style) use ($theme) {
-                return base_path('themes/' . $theme->name) . '/css/' . $style;
+            $srcFiles = $theme->getStyles()->map(function ($style) use ($theme) {
+                return base_path('themes/'.$theme->name).'/css/'.$style;
             });
 
             $assetDir = base_path('public/theme/css/');
@@ -99,24 +98,23 @@ class AssetCopy extends Command
 
             if (!file_exists($assetDir)) {
                 mkdir($assetDir, 0755, true);
-            } 
+            }
 
             if (!file_exists($buildDir)) {
                 mkdir($buildDir, 0755, true);
-            } 
+            }
 
-            array_map('unlink', glob($assetDir . '/*'));
-            array_map('unlink', glob($buildDir . '/*'));
+            array_map('unlink', glob($assetDir.'/*'));
+            array_map('unlink', glob($buildDir.'/*'));
 
             foreach ($theme->getStyles() as $file) {
+                $versionedName = md5($file.microtime(true)).'-'.$file;
+                $regularFilePath = '/theme/css/'.$file;
 
-                $versionedName = md5($file . microtime(true)) . '-' . $file;
-                $regularFilePath = '/theme/css/' . $file;
+                $manifest[$regularFilePath] = 'theme/css/'.$versionedName;
 
-                $manifest[$regularFilePath] = 'theme/css/' . $versionedName;
-
-                copy(base_path('themes/' . $theme->name) . '/css/' . $file, $assetDir . $file);
-                copy(base_path('themes/' . $theme->name) . '/build/css/' . $file, $buildDir . $versionedName);
+                copy(base_path('themes/'.$theme->name).'/css/'.$file, $assetDir.$file);
+                copy(base_path('themes/'.$theme->name).'/build/css/'.$file, $buildDir.$versionedName);
             }
         }
 
@@ -126,6 +124,6 @@ class AssetCopy extends Command
 
         fclose($fn);
 
-        $this->info('Finished in ' . round(microtime(true) - $startTime, 3) * 1000);
+        $this->info('Finished in '.round(microtime(true) - $startTime, 3) * 1000);
     }
 }

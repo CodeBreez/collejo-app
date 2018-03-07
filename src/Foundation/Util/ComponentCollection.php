@@ -6,46 +6,46 @@ use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Collection;
 use ReflectionClass;
 
-abstract class ComponentCollection {
+abstract class ComponentCollection
+{
+    protected $app;
 
-	protected $app;
-
-	protected $items;
+    protected $items;
 
     public function scanDir($path)
     {
-        return array_filter(scandir($path), function($item){
-                    return !in_array($item, ['.', '..']) && substr($item, 0, 1) != '.';
-                });
+        return array_filter(scandir($path), function ($item) {
+            return !in_array($item, ['.', '..']) && substr($item, 0, 1) != '.';
+        });
     }
 
-    public function appModulesPath() {
-
+    public function appModulesPath()
+    {
         $reflection = new ReflectionClass('Collejo\App\Providers\ModuleServiceProvider');
 
         $pathinfo = pathinfo($reflection->getFileName());
 
-        return realpath($pathinfo['dirname'] . '/../Modules');
+        return realpath($pathinfo['dirname'].'/../Modules');
     }
 
     public function getModulePaths()
     {
         return [
-            'Collejo\Modules' => base_path('modules'),
-            'Collejo\App\Modules' => $this->appModulesPath()
+            'Collejo\Modules'     => base_path('modules'),
+            'Collejo\App\Modules' => $this->appModulesPath(),
         ];
-    }  
+    }
 
     public function __construct(Application $app)
     {
         $this->app = $app;
 
         $this->items = new Collection();
-    }  
+    }
 
     public function all()
     {
-    	return $this->items;
+        return $this->items;
     }
 
     public function add($item)

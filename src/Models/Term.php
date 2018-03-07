@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Term extends Model
 {
-
     use SoftDeletes;
 
     protected $table = 'terms';
@@ -18,6 +17,6 @@ class Term extends Model
 
     public function batch()
     {
-    	return $this->belongsTo(Batch::class);
+        return $this->belongsTo(Batch::class);
     }
 }

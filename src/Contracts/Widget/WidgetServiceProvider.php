@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 namespace Collejo\App\Contracts\Widget;
 
-interface WidgetServiceProvider {
-
-	public function initWidgets();
+interface WidgetServiceProvider
+{
+    public function initWidgets();
 }
