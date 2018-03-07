@@ -2,178 +2,174 @@
 
 namespace Collejo\App\Repository;
 
-use Collejo\App\Foundation\Repository\BaseRepository;
-use Collejo\App\Contracts\Repository\StudentRepository as StudentRepositoryContract;
 use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
+use Collejo\App\Contracts\Repository\StudentRepository as StudentRepositoryContract;
 use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
-use Collejo\App\Models\Student;
+use Collejo\App\Foundation\Repository\BaseRepository;
 use Collejo\App\Models\Address;
+use Collejo\App\Models\Student;
 use Collejo\App\Models\StudentCategory;
 use DB;
-use Carbon;
-use Auth;
 
-class StudentRepository extends BaseRepository implements StudentRepositoryContract {
+class StudentRepository extends BaseRepository implements StudentRepositoryContract
+{
+    protected $userRepository;
 
-	protected $userRepository;
-	
-	protected $classRepository;
+    protected $classRepository;
 
-	public function updateStudentCategory(array $attributes, $studentCategoryId)
-	{
-		$this->findStudentCategory($studentCategoryId)->update($attributes);
+    public function updateStudentCategory(array $attributes, $studentCategoryId)
+    {
+        $this->findStudentCategory($studentCategoryId)->update($attributes);
 
-		return $this->findStudentCategory($studentCategoryId);
-	}
+        return $this->findStudentCategory($studentCategoryId);
+    }
 
-	public function createStudentCategory(array $attributes)
-	{
-		return StudentCategory::create($attributes);
-	}
+    public function createStudentCategory(array $attributes)
+    {
+        return StudentCategory::create($attributes);
+    }
 
-	public function findStudentCategory($studentCategoryId)
-	{
-		return StudentCategory::findOrFail($studentCategoryId);
-	}
+    public function findStudentCategory($studentCategoryId)
+    {
+        return StudentCategory::findOrFail($studentCategoryId);
+    }
 
-	public function removeGuardian($guardianId, $studentId)
-	{
-		$this->findStudent($studentId)->guardians()->detach($this->guardiansRepository->findGuardian($guardianId));
-	}
+    public function removeGuardian($guardianId, $studentId)
+    {
+        $this->findStudent($studentId)->guardians()->detach($this->guardiansRepository->findGuardian($guardianId));
+    }
 
-	public function assignGuardian($guardianId, $studentId)
-	{
-		if (!$this->findStudent($studentId)->guardians->contains($guardianId)) {
-			$this->findStudent($studentId)
-				->guardians()
-				->attach($this->guardiansRepository->findGuardian($guardianId), $this->includePivotMetaData());
-		}
-	}
+    public function assignGuardian($guardianId, $studentId)
+    {
+        if (!$this->findStudent($studentId)->guardians->contains($guardianId)) {
+            $this->findStudent($studentId)
+                ->guardians()
+                ->attach($this->guardiansRepository->findGuardian($guardianId), $this->includePivotMetaData());
+        }
+    }
 
-	public function assignToClass($batchId, $gradeId, $classId, $current = false, $studentId)
-	{
-		if (!$this->findStudent($studentId)->classes->contains($classId)) {
+    public function assignToClass($batchId, $gradeId, $classId, $current, $studentId)
+    {
+        if (!$this->findStudent($studentId)->classes->contains($classId)) {
+            $student = $this->findStudent($studentId);
 
-			$student = $this->findStudent($studentId);
+            if ($current && $student->class) {
+                $student->classes()->detach($student->class->id);
+            }
 
-			if ($current && $student->class) {
-				$student->classes()->detach($student->class->id);
-			} 
+            $student->classes()
+                    ->attach($this->classRepository->findClass($classId, $gradeId), $this->includePivotMetaData([
+                        'batch_id' => $this->classRepository->findBatch($batchId)->id,
+                    ]));
+        }
+    }
 
-			$student->classes()
-					->attach($this->classRepository->findClass($classId, $gradeId), $this->includePivotMetaData([
-						'batch_id' => $this->classRepository->findBatch($batchId)->id,
-					]));
-		}
-	}
+    public function deleteAddress($addressId, $studentId)
+    {
+        $this->findAddress($addressId, $studentId)->delete();
+    }
 
-	public function deleteAddress($addressId, $studentId)
-	{
-		$this->findAddress($addressId, $studentId)->delete();
-	}
+    public function updateAddress(array $attributes, $addressId, $studentId)
+    {
+        $attributes['is_emergency'] = isset($attributes['is_emergency']);
 
-	public function updateAddress(array $attributes, $addressId, $studentId)
-	{
-		$attributes['is_emergency'] = isset($attributes['is_emergency']);
+        $this->findAddress($addressId, $studentId)->update($attributes);
 
-		$this->findAddress($addressId, $studentId)->update($attributes);
+        return $this->findAddress($addressId, $studentId);
+    }
 
-		return $this->findAddress($addressId, $studentId);
-	}
+    public function createAddress(array $attributes, $studentId)
+    {
+        $address = null;
 
-	public function createAddress(array $attributes, $studentId)
-	{
-		$address = null;
+        $student = $this->findStudent($studentId);
 
-		$student = $this->findStudent($studentId);
+        $attributes['user_id'] = $student->user->id;
+        $attributes['is_emergency'] = isset($attributes['is_emergency']);
 
-		$attributes['user_id'] = $student->user->id;
-		$attributes['is_emergency'] = isset($attributes['is_emergency']);
+        DB::transaction(function () use ($attributes, &$address) {
+            $address = Address::create($attributes);
+        });
 
-		DB::transaction(function () use ($attributes, &$address) {
-			$address = Address::create($attributes);
-		});
+        return $address;
+    }
 
-		return $address;
-	}
+    public function findAddress($addressId, $studentId)
+    {
+        return Address::where([
+                    'user_id' => $this->findStudent($studentId)->user->id,
+                    'id'      => $addressId, ]
+                )->firstOrFail();
+    }
 
-	public function findAddress($addressId, $studentId)
-	{
-		return Address::where([
-					'user_id' => $this->findStudent($studentId)->user->id, 
-					'id' => $addressId]
-				)->firstOrFail();
-	}
+    public function findStudent($id)
+    {
+        return Student::findOrFail($id);
+    }
 
-	public function findStudent($id)
-	{
-		return Student::findOrFail($id);
-	}
+    public function getStudents($criteria)
+    {
+        return $this->search($criteria);
+    }
 
-	public function getStudents($criteria)
-	{
-		return $this->search($criteria);
-	}
+    public function updateStudent(array $attributes, $studentId)
+    {
+        $student = $this->findStudent($studentId);
 
-	public function updateStudent(array $attributes, $studentId)
-	{
-		$student = $this->findStudent($studentId);
+        if (isset($attributes['admitted_on'])) {
+            $attributes['admitted_on'] = toUTC($attributes['admitted_on']);
+        }
 
-		if (isset($attributes['admitted_on'])) {
-			$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
-		}
+        if (!isset($attributes['image_id'])) {
+            $attributes['image_id'] = null;
+        }
 
-		if (!isset($attributes['image_id'])) {
-			$attributes['image_id'] = null;
-		}
+        $studentAttributes = $this->parseFillable($attributes, Student::class);
 
-		$studentAttributes = $this->parseFillable($attributes, Student::class);
+        DB::transaction(function () use ($attributes, $studentAttributes, &$student, $studentId) {
+            $student->update($studentAttributes);
 
-		DB::transaction(function () use ($attributes, $studentAttributes, &$student, $studentId) {
-			$student->update($studentAttributes);
+            $user = $this->userRepository->update($attributes, $student->user->id);
+        });
 
-			$user = $this->userRepository->update($attributes, $student->user->id);
-		});
+        return $student;
+    }
 
-		return $student;
-	}
+    public function createStudent(array $attributes)
+    {
+        $student = null;
 
-	public function createStudent(array $attributes)
-	{
-		$student = null;
-		
-		$attributes['admitted_on'] = toUTC($attributes['admitted_on']);
+        $attributes['admitted_on'] = toUTC($attributes['admitted_on']);
 
-		if (!isset($attributes['image_id'])) {
-			$attributes['image_id'] = null;
-		}
-		
-		$studentAttributes = $this->parseFillable($attributes, Student::class);
+        if (!isset($attributes['image_id'])) {
+            $attributes['image_id'] = null;
+        }
 
-		DB::transaction(function () use ($attributes, $studentAttributes, &$student) {
-			$user = $this->userRepository->create($attributes);
+        $studentAttributes = $this->parseFillable($attributes, Student::class);
 
-			$student = Student::create(array_merge($studentAttributes, ['user_id' => $user->id]));
+        DB::transaction(function () use ($attributes, $studentAttributes, &$student) {
+            $user = $this->userRepository->create($attributes);
 
-			$this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('student'));
-		});
+            $student = Student::create(array_merge($studentAttributes, ['user_id' => $user->id]));
 
+            $this->userRepository->addRoleToUser($user, $this->userRepository->getRoleByName('student'));
+        });
 
-		return $student;
-	}
+        return $student;
+    }
 
-	public function getStudentCategories()
-	{
-		return $this->search(StudentCategory::class);
-	}
+    public function getStudentCategories()
+    {
+        return $this->search(StudentCategory::class);
+    }
 
     public function boot()
     {
-    	parent::boot();
+        parent::boot();
 
-    	$this->userRepository = app()->make(UserRepositoryContract::class);
-    	$this->classRepository = app()->make(ClassRepositoryContract::class);
-    	$this->guardiansRepository = app()->make(GuardianRepositoryContract::class);
+        $this->userRepository = app()->make(UserRepositoryContract::class);
+        $this->classRepository = app()->make(ClassRepositoryContract::class);
+        $this->guardiansRepository = app()->make(GuardianRepositoryContract::class);
     }
 }

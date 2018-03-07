@@ -1,14 +1,13 @@
-<?php 
+<?php
 
 namespace Collejo\App\Events;
 
 use Collejo\App\Foundation\Events\Event;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Collejo\App\Models\User;
+use Illuminate\Queue\SerializesModels;
 
-class UserPermissionsChanged extends Event {
-
+class UserPermissionsChanged extends Event
+{
     use SerializesModels;
 
     public $user;
@@ -22,7 +21,7 @@ class UserPermissionsChanged extends Event {
     {
         $this->user = $user;
     }
-    
+
     /**
      * Get the channels the event should be broadcast on.
      *

@@ -1,78 +1,74 @@
-<?php 
+<?php
 
 namespace Collejo\App\Foundation\Repository;
 
-use Collejo\App\Foundation\Repository\RepositoryInterface;
-use Collejo\App\Foundation\Repository\CriteriaInterface;
-use Collejo\App\Foundation\Repository\CacheableResult;
-use Uuid;
 use Auth;
 use Carbon;
-use Request;
-use Session;
+use Uuid;
 
-abstract class BaseRepository implements RepositoryInterface {
+abstract class BaseRepository implements RepositoryInterface
+{
+    protected $sessionOwner;
 
-	protected $sessionOwner;
+    public function search($criteria)
+    {
+        if ($criteria instanceof CriteriaInterface) {
+            $criteria = $criteria->buildQuery();
+        } else {
+            $criteria = new $criteria();
+            $criteria = $criteria->select('*');
+        }
 
-	public function search($criteria)
-	{
-		if ($criteria instanceOf CriteriaInterface) {
-			$criteria = $criteria->buildQuery();
-		} else {
-			$criteria = new $criteria();
-			$criteria = $criteria->select('*');
-		}
+        return new CacheableResult($criteria);
+    }
 
-		return new CacheableResult($criteria);
-	}
+    public function parseFillable(array $attributes, $class)
+    {
+        $model = new $class();
 
-	public function parseFillable(array $attributes, $class)
-	{
-		$model = new $class();
-		return array_intersect_key($attributes, array_flip($model->getFillable()));
-	}
+        return array_intersect_key($attributes, array_flip($model->getFillable()));
+    }
 
-	public function newUuid()
-	{
-		return (string) Uuid::generate(4);
-	}
+    public function newUuid()
+    {
+        return (string) Uuid::generate(4);
+    }
 
-	public function createPrivotIds($ids)
-	{
-		$collection = collect($ids);
+    public function createPrivotIds($ids)
+    {
+        $collection = collect($ids);
 
-		$collection = $collection->map(function(){
-			return $this->includePivotMetaData();
-		});
+        $collection = $collection->map(function () {
+            return $this->includePivotMetaData();
+        });
 
-		return array_combine($ids, $collection->all());
-	}
+        return array_combine($ids, $collection->all());
+    }
 
-	public function includePivotMetaData(array $attributes = [])
-	{
-		if (!isset($attributes['id'])) {
-			$attributes['id'] = $this->newUuid();
-		}		
+    public function includePivotMetaData(array $attributes = [])
+    {
+        if (!isset($attributes['id'])) {
+            $attributes['id'] = $this->newUuid();
+        }
 
-		if (!isset($attributes['created_at'])) {
-			$attributes['created_at'] = Carbon::now();
-		}
+        if (!isset($attributes['created_at'])) {
+            $attributes['created_at'] = Carbon::now();
+        }
 
-		if (!isset($attributes['created_by']) && Auth::user()) {
-			$attributes['created_by'] = Auth::user()->id;
-		}
+        if (!isset($attributes['created_by']) && Auth::user()) {
+            $attributes['created_by'] = Auth::user()->id;
+        }
 
-		return $attributes;
-	}
+        return $attributes;
+    }
 
-	public function boot()
-	{
-		$this->sessionOwner = Auth::user();
-	}
+    public function boot()
+    {
+        $this->sessionOwner = Auth::user();
+    }
 
     public function __construct()
     {
         $this->boot();
-    }	
+    }
 }

@@ -3,7 +3,6 @@
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use DirectoryIterator;
 use Theme;
 
 class ThemeList extends Command
