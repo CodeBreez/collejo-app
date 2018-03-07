@@ -1,141 +1,149 @@
-<?php 
+<?php
 
 namespace Collejo\App\Foundation\Theme;
 
 use ArrayAccess;
+use Gate;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
-use Gate;
 
-class Menu implements ArrayAccess, Arrayable{
+class Menu implements ArrayAccess, Arrayable
+{
+    protected $name;
 
-	protected $name;
+    protected $label;
 
-	protected $label;
+    protected $icon;
 
-	protected $icon;
+    protected $path;
 
-	protected $path;
+    protected $parent;
 
-	protected $parent;
+    protected $permission;
 
-	protected $permission;
+    public $children;
 
-	public $children;
+    public $order;
 
-	public $order;
+    public $type;
 
-	public $type;
+    public function setType($type)
+    {
+        $this->type = $type;
 
-	public function setType($type)
-	{
-		$this->type = $type;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function setPermission($permission)
-	{
-		$this->permission = $permission;
-		return $this;
-	}
+    public function setPermission($permission)
+    {
+        $this->permission = $permission;
 
-	public function setName($name)
-	{
-		$this->name = $name;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function setParent($name)
-	{
-		$this->parent = $name;
-		return $this;
-	}
+    public function setName($name)
+    {
+        $this->name = $name;
 
-	public function getName()
-	{
-		return $this->name;
-	}
+        return $this;
+    }
 
-	public function setLabel($label)
-	{
-		$this->label = $label;
-		return $this;
-	}
+    public function setParent($name)
+    {
+        $this->parent = $name;
 
-	public function getLabel()
-	{
-		return $this->label;
-	}
+        return $this;
+    }
 
-	public function setIcon($icon)
-	{
-		$this->icon = $icon;
-		return $this;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function getIcon()
-	{
-		return $this->icon;
-	}
+    public function setLabel($label)
+    {
+        $this->label = $label;
 
-	public function setPath($path)
-	{
-		$this->path = $path;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getPath()
-	{
-		return $this->path;
-	}
+    public function getLabel()
+    {
+        return $this->label;
+    }
 
-	public function isVisible()
-	{
-		if ($this->children->count()) {
-			foreach ($this->children as $child) {
-				if ($child->permission && Gate::allows($child->permission)) {
-					return true;
-				}
-			}
-		} else {
-			if ($this->permission && Gate::allows($this->permission)) {
-				return true;
-			}
-		}
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
 
-		return false;
-	}
+        return $this;
+    }
 
-	public function getPermission()
-	{
-		return $this->permission;
-	}
+    public function getIcon()
+    {
+        return $this->icon;
+    }
 
-	public function getParent()
-	{
-		return $this->parent;
-	}
+    public function setPath($path)
+    {
+        $this->path = $path;
 
-	public function getFullPath()
-	{
-		return '/' . ltrim($this->getPath(), '/');
-	}
+        return $this;
+    }
 
-	public function setOrder($order)
-	{
-		$this->order = $order;
-		return $this;
-	}
+    public function getPath()
+    {
+        return $this->path;
+    }
 
-	public function toArray()
+    public function isVisible()
+    {
+        if ($this->children->count()) {
+            foreach ($this->children as $child) {
+                if ($child->permission && Gate::allows($child->permission)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->permission && Gate::allows($this->permission)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getPermission()
+    {
+        return $this->permission;
+    }
+
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    public function getFullPath()
+    {
+        return '/'.ltrim($this->getPath(), '/');
+    }
+
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    public function toArray()
     {
         return [
-        	'name' =>  $this->name,
-			'label' =>  $this->label,
-			'icon' =>  $this->icon,
-			'path' =>  $this->path,
-			'parent' =>  $this->parent
-		];
+            'name'   => $this->name,
+            'label'  => $this->label,
+            'icon'   => $this->icon,
+            'path'   => $this->path,
+            'parent' => $this->parent,
+        ];
     }
 
     public function offsetExists($offset)
@@ -160,6 +168,6 @@ class Menu implements ArrayAccess, Arrayable{
 
     public function __construct()
     {
-    	$this->children = new Collection;
+        $this->children = new Collection();
     }
 }

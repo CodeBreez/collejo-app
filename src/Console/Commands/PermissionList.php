@@ -2,9 +2,8 @@
 
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Console\Command;
-use DirectoryIterator;
 use Collejo\App\Contracts\Repository\UserRepository;
+use Illuminate\Console\Command;
 
 class PermissionList extends Command
 {

@@ -2,10 +2,10 @@
 
 namespace Collejo\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Collejo\App\Contracts\Module\Module as ModuleInterface;
 use Collejo\App\Foundation\Module\Module;
 use Collejo\App\Foundation\Module\ModuleCollection;
+use Illuminate\Support\ServiceProvider;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -26,8 +26,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ModuleInterface::class, function($app) { 
-            return new Module(); 
+        $this->app->bind(ModuleInterface::class, function ($app) {
+            return new Module();
         });
 
         $this->app->singleton('modules', function ($app) {

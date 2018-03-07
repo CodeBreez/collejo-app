@@ -2,12 +2,10 @@
 
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 
 class ConfigCache extends ConfigCacheCommand
 {
-
     /**
      * Boot a fresh copy of the application configuration.
      *

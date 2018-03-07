@@ -1,131 +1,128 @@
-<?php 
+<?php
 
 namespace Collejo\App\Foundation\Repository;
 
-use Collejo\App\Foundation\Repository\CriteriaInterface;
-use Request;
-use DB;
 use Cache;
+use DB;
+use Request;
 
-abstract class BaseCriteria implements CriteriaInterface {
+abstract class BaseCriteria implements CriteriaInterface
+{
+    protected $model;
 
-	protected $model;
+    protected $criteria = [];
 
-	protected $criteria = [];
+    protected $selects = [];
 
-	protected $selects = [];
+    protected $joins = [];
 
-	protected $joins = [];
+    protected $form = [];
 
-	protected $form = [];
+    public function buildQuery()
+    {
+        $model = $this->getModel();
 
-	public function buildQuery()
-	{
-		$model = $this->getModel();
+        $builder = $model->select($model->getTable().'.*')
+                    ->join(DB::raw('('.$this->getSubquery($model)->toSql().') as tmp'), $model->getTable().'.id', '=', 'tmp.id');
 
-		$builder = $model->select($model->getTable() . '.*')
-					->join(DB::raw('(' . $this->getSubquery($model)->toSql() . ') as tmp'), $model->getTable() . '.id', '=', 'tmp.id');
+        foreach ($this->criteria() as $params) {
+            $input = isset($params[2]) ? $params[2] : $params[0];
 
-		foreach ($this->criteria() as $params) {
+            if (Request::has($input)) {
+                switch ($params[1]) {
+                    case '%LIKE':
+                        $builder = $builder->orWhere('tmp.'.$params[0], 'LIKE', '%'.Request::get($input));
+                        break;
 
-			$input = isset($params[2]) ? $params[2] : $params[0];
+                    case 'LIKE%':
+                        $builder = $builder->orWhere('tmp.'.$params[0], 'LIKE', Request::get($input).'%');
+                        break;
 
-			if (Request::has($input)) {
+                    case '%LIKE%':
+                        $builder = $builder->orWhere('tmp.'.$params[0], 'LIKE', '%'.Request::get($input).'%');
+                        break;
 
-				switch ($params[1]) {
-					case '%LIKE':
-						$builder = $builder->orWhere('tmp.' . $params[0], 'LIKE', '%' . Request::get($input));
-						break;					
+                    default:
+                        $builder = $builder->orWhere('tmp.'.$params[0], $params[1], Request::get($input));
+                        break;
+                }
+            }
+        }
 
-					case 'LIKE%':
-						$builder = $builder->orWhere('tmp.' . $params[0], 'LIKE', Request::get($input) . '%');
-						break;
+        return $builder->orderBy($model->getTable().'.created_at', 'DESC');
+    }
 
-					case '%LIKE%':
-						$builder = $builder->orWhere('tmp.' . $params[0], 'LIKE', '%' . Request::get($input) . '%');
-						break;
-					
-					default:
-						$builder = $builder->orWhere('tmp.' . $params[0], $params[1], Request::get($input));
-						break;
-				}
-			}
-		}
+    private function getModel()
+    {
+        if ($this->model) {
+            $model = $this->model;
 
-		return $builder->orderBy($model->getTable() . '.created_at', 'DESC');
-	}
+            return new $model();
+        }
+    }
 
-	private function getModel()
-	{
-		if ($this->model) {
-			$model = $this->model;
-			return new $model();
-		}
-	}
+    public function formElements()
+    {
+        $form = $this->form()->all();
 
-	public function formElements()
-	{
-		$form = $this->form()->all();
+        return $this->criteria()->map(function ($item) use ($form) {
+            $name = count($item) == 3 ? $item[2] : $item[0];
 
-		return $this->criteria()->map(function($item) use ($form){
+            return array_merge([
+                    'name'  => $name,
+                    'label' => ucwords(str_replace('_', ' ', $name)),
+                    'type'  => 'text',
+                ], isset($form[$name]) ? $form[$name] : []);
+        });
+    }
 
-			$name = count($item) == 3 ? $item[2] : $item[0];
+    private function getSubquery($query)
+    {
+        $selects = [$query->getTable().'.*'];
 
-			return array_merge([
-					'name' => $name,
-					'label' => ucwords(str_replace('_', ' ', $name)),
-					'type' => 'text'
-				], isset($form[$name]) ? $form[$name] : []);
-		});
-	}
+        foreach ($this->selects() as $as => $field) {
+            $selects[] = $field.' AS '.$as;
+        }
 
-	private function getSubquery($query)
-	{
-		$selects = [$query->getTable() . '.*'];
+        $query = $query->select(DB::raw(implode(', ', $selects)));
 
-		foreach ($this->selects() as $as => $field) {
-			$selects[] = $field . ' AS ' . $as;
-		}
+        foreach ($this->joins() as $join) {
+            $query = $query->leftJoin($join[0], $join[1], '=', $join[2]);
+        }
 
-		$query = $query->select(DB::raw(implode(', ', $selects)));
+        return $query;
+    }
 
-		foreach ($this->joins() as $join) {
-			$query = $query->leftJoin($join[0], $join[1], '=', $join[2]);
-		}
+    public function callback($callback)
+    {
+        $callback = 'callback'.ucfirst($callback);
 
-		return $query;
-	}
+        $key = 'criteria:'.$this->model.':callbacks:'.md5(get_class($this).'|'.$callback);
 
-	public function callback($callback)
-	{
-		$callback = 'callback' . ucfirst($callback);
+        if (!Cache::has($key)) {
+            Cache::put($key, $this->$callback(), config('collejo.pagination.perpage'));
+        }
 
-		$key = 'criteria:' . $this->model . ':callbacks:' . md5(get_class($this) . '|' . $callback);
+        return Cache::get($key);
+    }
 
-		if (!Cache::has($key)) {
-			Cache::put($key, $this->$callback(), config('collejo.pagination.perpage'));
-		}
+    public function selects()
+    {
+        return collect($this->selects);
+    }
 
-		return Cache::get($key);
-	}
+    public function joins()
+    {
+        return collect($this->joins);
+    }
 
-	public function selects()
-	{
-		return collect($this->selects);
-	}
+    public function criteria()
+    {
+        return collect($this->criteria);
+    }
 
-	public function joins()
-	{
-		return collect($this->joins);
-	}
-
-	public function criteria()
-	{
-		return collect($this->criteria);
-	}
-
-	public function form()
-	{
-		return collect($this->form);
-	}
+    public function form()
+    {
+        return collect($this->form);
+    }
 }

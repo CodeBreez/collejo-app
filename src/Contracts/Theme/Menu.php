@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 namespace Collejo\App\Contracts\Menu;
 
-interface Menu {
-
+interface Menu
+{
 }

@@ -2,9 +2,9 @@
 
 namespace Collejo\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Collejo\App\Contracts\Media\Uploader as UploaderInterface;
 use Collejo\App\Foundation\Media\Uploader;
+use Illuminate\Support\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,6 @@ class MediaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**
@@ -25,9 +24,8 @@ class MediaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(UploaderInterface::class, function($app) { 
-            return new Uploader(); 
+        $this->app->bind(UploaderInterface::class, function ($app) {
+            return new Uploader();
         });
     }
-
 }

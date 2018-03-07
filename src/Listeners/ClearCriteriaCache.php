@@ -1,29 +1,29 @@
-<?php 
+<?php
 
 namespace Collejo\App\Listeners;
 
+use Cache;
 use Collejo\App\Events\CriteriaDataChanged;
-use Illuminate\Queue\InteractsWithQueue;
+use DB;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Predis\Client as Redis;
-use Cache;
-use DB;
 
-class ClearCriteriaCache implements ShouldQueue{
-
+class ClearCriteriaCache implements ShouldQueue
+{
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct() {
-
+    public function __construct()
+    {
     }
 
     /**
      * Handle the event.
      *
-     * @param  CriteriaDataChanged  $event
+     * @param CriteriaDataChanged $event
+     *
      * @return void
      */
     public function handle(CriteriaDataChanged $event)
@@ -31,7 +31,7 @@ class ClearCriteriaCache implements ShouldQueue{
         if ($event->model) {
             if (config('cache.default') == 'redis') {
                 $this->flushRedisCache(get_class($event->model));
-            } elseif(config('cache.default') == 'database') {
+            } elseif (config('cache.default') == 'database') {
                 $this->flushDatabaseCache(get_class($event->model));
             } else {
                 Cache::flush();
@@ -45,25 +45,25 @@ class ClearCriteriaCache implements ShouldQueue{
 
         DB::connection($connection)
             ->table(config('cache.stores.database.table'))
-            ->where('key', 'LIKE', '%'. str_replace('\\', '\\\\', $pattern) . ':%')
+            ->where('key', 'LIKE', '%'.str_replace('\\', '\\\\', $pattern).':%')
             ->delete();
     }
 
     private function flushRedisCache($pattern)
     {
-        $config = config('database.redis.' . config('cache.stores.redis.connection'));
+        $config = config('database.redis.'.config('cache.stores.redis.connection'));
 
         $client = new Redis([
-            'scheme' => 'tcp',
-            'host'   => $config['host'],
-            'port'   => $config['port'],
+            'scheme'     => 'tcp',
+            'host'       => $config['host'],
+            'port'       => $config['port'],
             'parameters' => [
                 'password' => $config['password'],
                 'database' => $config['database'],
             ],
         ]);
 
-        $keys = $client->keys('collejo:criteria:' . str_replace('\\', '\\\\', $pattern) . ':*');
+        $keys = $client->keys('collejo:criteria:'.str_replace('\\', '\\\\', $pattern).':*');
 
         foreach ($keys as $key) {
             $client->del($key);
