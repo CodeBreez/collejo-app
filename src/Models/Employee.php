@@ -3,17 +3,11 @@
 namespace Collejo\App\Models;
 
 use Collejo\App\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Collejo\App\Traits\CommonUserPropertiesTrait;
-use Collejo\App\Models\EmployeeCategory;
-use Collejo\App\Models\employeeDepartment;
-use Collejo\App\Models\employeePosition;
-use Collejo\App\Models\employeeGrade;
-use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
 {
-    
     use SoftDeletes, CommonUserPropertiesTrait;
 
     protected $table = 'employees';
@@ -26,17 +20,17 @@ class Employee extends Model
 
     public function employeeDepartment()
     {
-    	return $this->belongsTo(EmployeeDepartment::class);
+        return $this->belongsTo(EmployeeDepartment::class);
     }
 
     public function employeePosition()
     {
-    	return $this->belongsTo(EmployeePosition::class);
+        return $this->belongsTo(EmployeePosition::class);
     }
 
     public function employeeGrade()
     {
-    	return $this->belongsTo(EmployeeGrade::class);
+        return $this->belongsTo(EmployeeGrade::class);
     }
 
     public function picture()

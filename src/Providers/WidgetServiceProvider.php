@@ -2,10 +2,10 @@
 
 namespace Collejo\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Collejo\App\Contracts\Widget\Widget as WidgetInterface;
 use Collejo\App\Foundation\Widget\Widget;
 use Collejo\App\Foundation\Widget\WidgetCollection;
+use Illuminate\Support\ServiceProvider;
 
 class WidgetServiceProvider extends ServiceProvider
 {
@@ -26,8 +26,8 @@ class WidgetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(WidgetInterface::class, function($app) { 
-            return new Widget(); 
+        $this->app->bind(WidgetInterface::class, function ($app) {
+            return new Widget();
         });
 
         $this->app->singleton('widgets', function ($app) {

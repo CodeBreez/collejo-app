@@ -3,14 +3,14 @@
 namespace Collejo\App\Exceptions;
 
 use Exception;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
-use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Illuminate\Validation\ValidationException;
 use Session;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -32,7 +32,8 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
+     * @param \Exception $e
+     *
      * @return void
      */
     public function report(Exception $e)
@@ -43,45 +44,38 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $e
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
-
-        if ($e instanceOf AuthorizationException) {
-
+        if ($e instanceof AuthorizationException) {
             if ($request->ajax()) {
-
                 return response()->json([
-                                'success' => false, 
-                                'data' => [] , 
-                                'message' => trans('common.authorization_failed')
+                                'success' => false,
+                                'data'    => [],
+                                'message' => trans('common.authorization_failed'),
                             ], 403);
-
             } else {
-
                 return response()->make(view('collejo::errors.403'), 403);
             }
-        }        
+        }
 
-        if ($e instanceOf HttpException) {
-
+        if ($e instanceof HttpException) {
             return response()->make(view('collejo::errors.404'), 404);
-        }        
+        }
 
-        if ($e instanceOf ModelNotFoundException) {
-
+        if ($e instanceof ModelNotFoundException) {
             return response()->make(view('collejo::errors.400'), 400);
         }
 
-        if ($e instanceOf TokenMismatchException) {
-
+        if ($e instanceof TokenMismatchException) {
             return response()->json([
-                                'success' => false, 
-                                'data' => ['redir' => Session::get('url.intended', route('auth.login'))] , 
-                                'message' => trans('common.ajax_token_mismatch')
+                                'success' => false,
+                                'data'    => ['redir' => Session::get('url.intended', route('auth.login'))],
+                                'message' => trans('common.ajax_token_mismatch'),
                             ], 401);
         }
 

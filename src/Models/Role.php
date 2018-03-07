@@ -3,14 +3,12 @@
 namespace Collejo\App\Models;
 
 use Collejo\App\Database\Eloquent\Model;
-use Collejo\App\Models\User;
-use Collejo\App\Models\Permission;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
     use SoftDeletes;
-    
+
     protected $table = 'roles';
 
     protected $fillable = ['role'];
@@ -22,11 +20,11 @@ class Role extends Model
 
     public function users()
     {
-    	return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function permissions()
     {
-    	return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class);
     }
 }

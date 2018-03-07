@@ -1,18 +1,17 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use DirectoryIterator;
-use Module;
 use Illuminate\Container\Container as Application;
+use Module;
 
 /**
- * Class AdminPermissions
- * @package Collejo\App\Console\Commands
+ * Class AdminPermissions.
  */
 class AdminPermissions extends Command
 {
@@ -53,10 +52,9 @@ class AdminPermissions extends Command
     }
 
     /**
-     * Loop thought each module and assign defined permissions
+     * Loop thought each module and assign defined permissions.
      *
      * @param $app
-     *
      * @param $module
      */
     private function processModule($app, $module)
@@ -67,6 +65,6 @@ class AdminPermissions extends Command
 
         $provider->createPermissions();
 
-        $this->info('Processing ' . $module->name);
+        $this->info('Processing '.$module->name);
     }
 }

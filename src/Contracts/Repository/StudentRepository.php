@@ -14,7 +14,7 @@ interface StudentRepository
 
     public function assignGuardian($guardianId, $studentId);
 
-    public function assignToClass($batchId, $gradeId, $classId, $current = false, $studentId);
+    public function assignToClass($batchId, $gradeId, $classId, $current, $studentId);
 
     public function deleteAddress($addressId, $studentId);
 
@@ -35,5 +35,4 @@ interface StudentRepository
     public function getStudentCategories();
 
     public function boot();
-
 }

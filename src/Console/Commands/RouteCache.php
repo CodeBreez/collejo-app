@@ -1,21 +1,18 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Routing\RouteCollection;
 use Illuminate\Foundation\Console\RouteCacheCommand;
 
 /**
- * Class RouteCache
- * @package Collejo\App\Console\Commands
+ * Class RouteCache.
  */
 class RouteCache extends RouteCacheCommand
 {
-
     /**
      * Boot a fresh copy of the application and get the routes.
      *

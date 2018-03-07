@@ -2,19 +2,19 @@
 
 namespace Collejo\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
-use Collejo\App\Repository\UserRepository;
-use Collejo\App\Contracts\Repository\StudentRepository as StudentRepositoryContract;
-use Collejo\App\Repository\StudentRepository;
-use Collejo\App\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
-use Collejo\App\Repository\EmployeeRepository;
 use Collejo\App\Contracts\Repository\ClassRepository as ClassRepositoryContract;
-use Collejo\App\Repository\ClassRepository;
+use Collejo\App\Contracts\Repository\EmployeeRepository as EmployeeRepositoryContract;
 use Collejo\App\Contracts\Repository\GuardianRepository as GuardianRepositoryContract;
-use Collejo\App\Repository\GuardianRepository;
+use Collejo\App\Contracts\Repository\StudentRepository as StudentRepositoryContract;
 use Collejo\App\Contracts\Repository\SubjectRepository as SubjectRepositoryContract;
+use Collejo\App\Contracts\Repository\UserRepository as UserRepositoryContract;
+use Collejo\App\Repository\ClassRepository;
+use Collejo\App\Repository\EmployeeRepository;
+use Collejo\App\Repository\GuardianRepository;
+use Collejo\App\Repository\StudentRepository;
 use Collejo\App\Repository\SubjectRepository;
+use Collejo\App\Repository\UserRepository;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,9 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom([realpath(__DIR__ . '/../resources/views')], 'collejo');
+        $this->loadViewsFrom([realpath(__DIR__.'/../resources/views')], 'collejo');
 
-        $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/lang'), null);
+        $this->loadTranslationsFrom(realpath(__DIR__.'/../resources/lang'), null);
     }
 
     /**

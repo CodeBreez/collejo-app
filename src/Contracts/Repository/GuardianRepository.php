@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Contracts\Repository;
 
-interface GuardianRepository{
-
+interface GuardianRepository
+{
     public function createGuardian(array $attributes);
 
     public function updateGuardian(array $attributes, $guardianId);
@@ -21,5 +21,4 @@ interface GuardianRepository{
     public function getGuardians($criteria);
 
     public function boot();
-
 }

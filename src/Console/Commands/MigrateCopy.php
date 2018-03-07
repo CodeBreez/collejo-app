@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Console\Command;
 use DirectoryIterator;
+use Illuminate\Console\Command;
 
 /**
- * Class MigrateCopy
- * @package Collejo\App\Console\Commands
+ * Class MigrateCopy.
  */
 class MigrateCopy extends Command
 {
@@ -37,19 +37,21 @@ class MigrateCopy extends Command
     {
         $this->info('Copying core migrations');
 
-        $src = realpath(__DIR__ . '/../../migrations');
+        $src = realpath(__DIR__.'/../../migrations');
         $dest = base_path('database/migrations');
 
         if (!file_exists($dest)) {
             mkdir($dest);
         }
 
-        array_map('unlink', glob($dest . '/*'));
+        array_map('unlink', glob($dest.'/*'));
 
         foreach (new DirectoryIterator($src) as $fileInfo) {
-            if($fileInfo->isDot()) continue;
+            if ($fileInfo->isDot()) {
+                continue;
+            }
 
-            copy($src . '/' . $fileInfo->getFilename(), $dest . '/' . $fileInfo->getFilename());
+            copy($src.'/'.$fileInfo->getFilename(), $dest.'/'.$fileInfo->getFilename());
         }
 
         return $this->call('migrate');
