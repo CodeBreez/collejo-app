@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use DirectoryIterator;
 use Widget;
 
 /**
- * Class WidgetList
- * @package Collejo\App\Console\Commands
+ * Class WidgetList.
  */
 class WidgetList extends Command
 {

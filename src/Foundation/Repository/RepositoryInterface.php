@@ -1,16 +1,16 @@
-<?php 
+<?php
 
 namespace Collejo\App\Foundation\Repository;
 
-interface RepositoryInterface {
+interface RepositoryInterface
+{
+    public function parseFillable(array $attributes, $class);
 
-	public function parseFillable(array $attributes, $class);
+    public function newUuid();
 
-	public function newUuid();
+    public function createPrivotIds($ids);
 
-	public function createPrivotIds($ids);
+    public function boot();
 
-	public function boot();
-
-	public function search($model);
+    public function search($model);
 }

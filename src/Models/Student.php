@@ -3,17 +3,12 @@
 namespace Collejo\App\Models;
 
 use Collejo\App\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Collejo\App\Traits\CommonUserPropertiesTrait;
-use Collejo\App\Models\User;
-use Collejo\App\Models\Clasis;
-use Collejo\App\Models\Guardian;
-use Collejo\App\Models\StudentCategory;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
-    
     use SoftDeletes, CommonUserPropertiesTrait;
 
     protected $table = 'students';
@@ -26,7 +21,7 @@ class Student extends Model
     {
         return $this->belongsToMany(Guardian::class, 'guardian_student', 'student_id', 'guardian_id');
     }
-    
+
     public function studentCategory()
     {
         return $this->hasOne(StudentCategory::class);
@@ -70,5 +65,3 @@ class Student extends Model
         return $this->hasOne(Media::class, 'id', 'image_id');
     }
 }
-
-

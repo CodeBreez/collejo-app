@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
 use Collejo\App\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Console\Scheduling\Schedule;
 
 /**
- * Class Kernel
- * @package Collejo\App\Console
+ * Class Kernel.
  */
 class Kernel extends ConsoleKernel
 {
@@ -37,11 +37,11 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-
     }
 }

@@ -1,33 +1,31 @@
-<?php 
+<?php
 
 namespace Collejo\App\Foundation\Media;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+class Bucket
+{
+    public $config;
 
-class Bucket {
+    public static function find($bucketName)
+    {
+        $config = config('uploader.'.$bucketName);
 
-	public $config;
+        if (is_null($config)) {
+            throw new \Exception('specified bucket not found');
+        }
 
-	public static function find($bucketName)
-	{
-		$config = config('uploader.' . $bucketName);
+        return new Self($config);
+    }
 
-		if (is_null($config)) {
-			throw new \Exception('specified bucket not found');
-		}
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
 
-		return new Self($config);
-	}
-
-	public function __construct($config)
-	{
-		$this->config = $config;
-	}
-
-	public function __call($method, $args)
-	{
-		if (isset($this->config[camel_case($method)])) {
-			return $this->config[camel_case($method)];
-		}
-	}
+    public function __call($method, $args)
+    {
+        if (isset($this->config[camel_case($method)])) {
+            return $this->config[camel_case($method)];
+        }
+    }
 }

@@ -6,7 +6,6 @@ use Collejo\App\Foundation\Module\ModuleServiceProvider as BaseModuleServiceProv
 
 class SubjectsModuleServiceProvider extends BaseModuleServiceProvider
 {
-
     protected $namespace = 'Collejo\App\Modules\Subjects\Http\Controllers';
 
     public function boot()
@@ -16,13 +15,12 @@ class SubjectsModuleServiceProvider extends BaseModuleServiceProvider
 
     public function register()
     {
-
     }
 
     public function getPermissions()
     {
         return [
-            'list_subjects' => ['create_subject']
+            'list_subjects' => ['create_subject'],
         ];
-    }    
+    }
 }

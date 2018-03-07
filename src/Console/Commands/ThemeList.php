@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Console\Command;
-use DirectoryIterator;
 use Theme;
 
 /**
- * Class ThemeList
- * @package Collejo\App\Console\Commands
+ * Class ThemeList.
  */
 class ThemeList extends Command
 {

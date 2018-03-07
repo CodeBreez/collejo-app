@@ -1,16 +1,15 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 
 /**
- * Class Install
- * @package Collejo\App\Console\Commands
+ * Class Install.
  */
 class Install extends ConfigCacheCommand
 {
@@ -43,9 +42,9 @@ class Install extends ConfigCacheCommand
 
         $this->call('migrate:copy');
 
-        $this->info(" ,-----.         ,--. ,--.           ,--.         ");
+        $this->info(' ,-----.         ,--. ,--.           ,--.         ');
         $this->info("'  .--./  ,---.  |  | |  |  ,---.    `--'  ,---.  ");
-        $this->info("|  |     | .-. | |  | |  | | .-. :   ,--. | .-. | ");
+        $this->info('|  |     | .-. | |  | |  | | .-. :   ,--. | .-. | ');
         $this->info("'  '--'\ ' '-' ' |  | |  | \   --.   |  | ' '-' ' ");
         $this->info(" `-----'  `---'  `--' `--'  `----' .-'  /  `---'  ");
         $this->info("                                   '---'          ");

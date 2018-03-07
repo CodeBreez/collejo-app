@@ -1,20 +1,18 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
+
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 
 /**
- * Class ConfigCache
- * @package Collejo\App\Console\Commands
+ * Class ConfigCache.
  */
 class ConfigCache extends ConfigCacheCommand
 {
-
     /**
      * Boot a fresh copy of the application configuration.
      *

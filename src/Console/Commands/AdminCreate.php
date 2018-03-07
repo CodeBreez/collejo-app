@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
  */
 
 namespace Collejo\App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Collejo\App\Contracts\Repository\UserRepository;
+use Illuminate\Console\Command;
 
 /**
- * Class AdminCreate
- * @package Collejo\App\Console\Commands
+ * Class AdminCreate.
  */
 class AdminCreate extends Command
 {
@@ -39,21 +38,19 @@ class AdminCreate extends Command
         $name = $this->ask('Enter name');
         $email = false;
 
-        do{
+        do {
             $email = $this->ask('Enter email');
 
             if (!$this->isValidEmail($email)) {
                 $this->error('Enter a valid email address');
             }
-
         } while (!$this->isValidEmail($email));
 
-        do{
+        do {
             if ($this->accountExists($email)) {
                 $this->error('There is already an account by this email');
                 $email = $this->ask('Enter email');
             }
-
         } while ($this->accountExists($email));
 
         $password = $this->secret('Enter password');
@@ -62,7 +59,7 @@ class AdminCreate extends Command
     }
 
     /**
-     * Checks if a given email is valid
+     * Checks if a given email is valid.
      *
      * @param $email
      *
@@ -74,7 +71,7 @@ class AdminCreate extends Command
     }
 
     /**
-     * Checks if an account is already there in the database for the given email
+     * Checks if an account is already there in the database for the given email.
      *
      * @param $email
      *
