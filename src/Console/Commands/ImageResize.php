@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
- */
-
 namespace Collejo\App\Console\Commands;
 
 use Collejo\App\Models\Media;

@@ -22,7 +22,7 @@
     "gulp-clean-css": "^2.0.13",
     "gulp-exec": "^2.1.2",
     "gulp-minify": "0.0.14",
-    "jquery": "1.9.1",
+    "jquery": "3.0.0",
     "jquery-form": "^3.50.0",
     "jquery-validation": "^1.15.0",
     "moment": "^2.13.0",

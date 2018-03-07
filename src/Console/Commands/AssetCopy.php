@@ -117,10 +117,11 @@ class AssetCopy extends Command
 
             foreach ($theme->getStyles() as $file) {
                 $versionedName = md5($file.microtime(true)).'-'.$file;
-                $regularFilePath = '/themes/'.$theme->name.'/css/'.$file;
+              
+                $regularFilePath = '/theme/css/'.$file;
 
-                $manifest[$regularFilePath] = 'themes/'.$theme->name.'/css/'.$versionedName;
-
+                $manifest[$regularFilePath] = 'theme/css/'.$versionedName;
+              
                 copy(base_path('themes/'.$theme->name).'/css/'.$file, $assetDir.$file);
                 copy(base_path('themes/'.$theme->name).'/build/css/'.$file, $buildDir.$versionedName);
             }
