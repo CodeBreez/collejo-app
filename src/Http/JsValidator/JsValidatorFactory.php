@@ -6,15 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class JsValidatorFactory
 {
+    public static function create($className)
+    {
+        $class = new $className();
 
-	public static function create($className)
-	{
-		$class = new $className;
+        if (!$class instanceof FormRequest) {
+            throw new \Exception($className.' is not an instance of '.FormRequest::class);
+        }
 
-		if (!$class instanceOf FormRequest) {
-			throw new \Exception($className . ' is not an instance of ' . FormRequest::class);
-		}
-
-		return new JsValidator($class->rules(), $class->attributes());
-	}
+        return new JsValidator($class->rules(), $class->attributes());
+    }
 }
