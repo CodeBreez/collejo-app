@@ -15,7 +15,6 @@
     "blueimp-file-upload": "^9.12.5",
     "bootbox": "^4.4.0",
     "bootstrap": "^3.3.6",
-    "bootstrap-sass": "^3.3.6",
     "c3": "^0.4.11",
     "d3": "^3.5.17",
     "eonasdan-bootstrap-datetimepicker": "^4.15.35",
@@ -27,6 +26,7 @@
     "jquery-form": "^3.50.0",
     "jquery-validation": "^1.15.0",
     "moment": "^2.13.0",
-    "selectize": "^0.12.1"
+    "selectize": "^0.12.1",
+    "vue": "^2.3.4"
   }
 }

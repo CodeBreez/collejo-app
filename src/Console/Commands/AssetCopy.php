@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
+ */
+
 namespace Collejo\App\Console\Commands;
 
 use DirectoryIterator;
 use Illuminate\Console\Command;
 use Theme;
 
+/**
+ * Class AssetCopy.
+ */
 class AssetCopy extends Command
 {
     /**
@@ -88,13 +95,14 @@ class AssetCopy extends Command
             }
         }
 
+        // if a theme is set copy those asset files too
         if (($theme = Theme::current())) {
             $srcFiles = $theme->getStyles()->map(function ($style) use ($theme) {
                 return base_path('themes/'.$theme->name).'/css/'.$style;
             });
 
-            $assetDir = base_path('public/theme/css/');
-            $buildDir = base_path('public/build/theme/css/');
+            $assetDir = base_path('public/themes/'.$theme->name.'/css/');
+            $buildDir = base_path('public/build/themes/'.$theme->name.'/css/');
 
             if (!file_exists($assetDir)) {
                 mkdir($assetDir, 0755, true);
@@ -109,6 +117,7 @@ class AssetCopy extends Command
 
             foreach ($theme->getStyles() as $file) {
                 $versionedName = md5($file.microtime(true)).'-'.$file;
+
                 $regularFilePath = '/theme/css/'.$file;
 
                 $manifest[$regularFilePath] = 'theme/css/'.$versionedName;

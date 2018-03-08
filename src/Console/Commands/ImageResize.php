@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\File;
 use Image;
 use Storage;
 
+/**
+ * Class ImageResize.
+ */
 class ImageResize extends ConfigCacheCommand
 {
     /**

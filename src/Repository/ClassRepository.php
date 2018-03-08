@@ -13,7 +13,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 {
     public function deleteClass($classId, $gradeId)
     {
-        $this->findClass($classId, $gradeId)->delete();
+        return $this->findClass($classId, $gradeId)->delete();
     }
 
     public function updateGrade(array $attributes, $id)
@@ -54,7 +54,8 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 
     public function findClass($classId, $gradeId)
     {
-        return Clasis::where(['grade_id' => $gradeId, 'id' => $classId])->firstOrFail();
+        return Clasis::where(['grade_id' => $gradeId, 'id' => $classId])
+            ->firstOrFail();
     }
 
     public function getClasses()
@@ -83,12 +84,15 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 
     public function findTerm($termId, $batchId)
     {
-        return Term::where(['batch_id' => $batchId, 'id' => $termId])->firstOrFail();
+        return Term::where(['batch_id' => $batchId, 'id' => $termId])
+            ->firstOrFail();
     }
 
     public function assignGradesToBatch(array $gradeIds, $batchId)
     {
-        $this->findBatch($batchId)->grades()->sync($this->createPrivotIds($gradeIds));
+        $this->findBatch($batchId)->grades()->sync(
+            $this->createPrivotIds($gradeIds)
+        );
     }
 
     public function createTerm(array $attributes, $batchId)

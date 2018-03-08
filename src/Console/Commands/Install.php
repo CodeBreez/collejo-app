@@ -1,9 +1,16 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
+ */
+
 namespace Collejo\App\Console\Commands;
 
 use Illuminate\Foundation\Console\ConfigCacheCommand;
 
+/**
+ * Class Install.
+ */
 class Install extends ConfigCacheCommand
 {
     /**
@@ -29,6 +36,7 @@ class Install extends ConfigCacheCommand
     {
         if (app()->isInstalled()) {
             $this->error('Collejo is already installed. Exiting.');
+            $this->info('Use artisan command `php artisan admin:create` to create an admin account.');
             exit();
         }
 

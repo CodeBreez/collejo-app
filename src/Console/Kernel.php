@@ -1,10 +1,17 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Anuradha Jauayathilaka <astroanu2004@gmail.com>.
+ */
+
 namespace Collejo\App\Console;
 
 use Collejo\App\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Console\Scheduling\Schedule;
 
+/**
+ * Class Kernel.
+ */
 class Kernel extends ConsoleKernel
 {
     /**

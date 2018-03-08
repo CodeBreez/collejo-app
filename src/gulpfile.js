@@ -17,6 +17,7 @@ elixir(function(mix) {
             '../../../node_modules/jquery/jquery.js',
             '../../../node_modules/moment/moment.js',
             '../../../node_modules/bootstrap/dist/js/bootstrap.js',
+            '../../../node_modules/vue/dist/vue.js',
             '../../../node_modules/jquery-form/jquery.form.js',
             '../../../node_modules/jquery-validation/dist/jquery.validate.js',
             '../../../node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
