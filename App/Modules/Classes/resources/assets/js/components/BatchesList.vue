@@ -3,7 +3,7 @@
         <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
-                <a :href="route('batch.details.view', row.item.id)">{{row.value}}</a>
+                <b-button variant="link" :href="route('batch.details.view', row.item.id)">{{row.value}}</b-button>
             </template>
 
             <template slot="start" slot-scope="row">

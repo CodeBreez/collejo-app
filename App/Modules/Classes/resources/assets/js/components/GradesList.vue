@@ -3,16 +3,13 @@
         <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
-                <a :href="route('grade.details.view', row.item.id)">{{row.value}}</a>
+                <b-button variant="link" :href="route('grade.details.view', row.item.id)">{{row.value}}</b-button>
             </template>
 
-            <template slot="actions" slot-scope="row">
-                <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-                    Info modal
-                </b-button>
-                <b-button size="sm" @click.stop="row.toggleDetails">
-                    {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-                </b-button>
+            <template slot="classes" slot-scope="row">
+                <b-button v-for="clasis in row.value" :key="clasis.id"
+                          variant="outline-secondary" class="table-btn"
+                          :href="route('grade.class.details.view', {id:row.item.id, cid:clasis.id})">{{clasis.name}}</b-button>
             </template>
         </b-table>
 
@@ -43,9 +40,6 @@
                         sortable: true
                     }, {
                         key: 'classes'
-                    }, {
-                        key: 'actions',
-                        label: 'Actions'
                     }
                 ],
             }

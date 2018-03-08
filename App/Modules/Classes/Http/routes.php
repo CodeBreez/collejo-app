@@ -53,6 +53,8 @@ Route::group(['prefix' => 'dashboard/grade', 'middleware' => 'auth'], function (
     Route::get('/{id}/class/{cid}/edit', 'GradeController@getGradeClassEdit')->name('grade.class.edit');
     Route::post('/{id}/class/{cid}/edit', 'GradeController@postGradeClassEdit');
 
+    Route::get('/{id}/class/{cid}/view', 'GradeController@getGradeClassView')->name('grade.class.details.view');
+
     Route::delete('/{id}/class/{cid}/delete', 'GradeController@getGradeClassDelete')->name('grade.class.delete');
 
     Route::get('/classes', 'GradeController@getGradeClasses')->middleware('ajax')->name('grade.classes.search');

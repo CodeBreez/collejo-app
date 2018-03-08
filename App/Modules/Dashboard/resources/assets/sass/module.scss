@@ -98,6 +98,11 @@ body{
 			@extend .card;
 			color: $text-color;
 		}
+
+	}
+
+	.table-btn{
+		margin-right: $box-padding;
 	}
 
 	@media (min-width: 768px) {
@@ -146,5 +151,5 @@ body{
 }
 
 footer {
-	margin-top: 0.625rem;
+	margin: 0.625rem 0 0.625rem 0;
 }

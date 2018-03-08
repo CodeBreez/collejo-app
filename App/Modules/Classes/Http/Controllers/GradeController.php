@@ -133,6 +133,24 @@ class GradeController extends Controller
     }
 
     /**
+     * Grade Class view.
+     *
+     * @param $gradeId
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getGradeClassView($gradeId, $classId)
+    {
+        $this->authorize('view_class_details');
+
+        return view('classes::view_class_details', [
+            'class' => $this->classRepository->findClass($classId, $gradeId),
+            'grade' => $this->classRepository->findGrade($gradeId),
+        ]);
+    }
+    /**
      * Saves the Grade details.
      *
      * @param UpdateGradeRequest $request
@@ -221,7 +239,8 @@ class GradeController extends Controller
         $this->authorize('list_grades');
 
         return view('classes::grades_list', [
-                'grades' => $this->classRepository->getGrades()->paginate(config('collejo.pagination.perpage')),
+                'grades' => $this->classRepository->getGrades()->with('classes')
+                    ->paginate(config('collejo.pagination.perpage')),
             ]);
     }
 
