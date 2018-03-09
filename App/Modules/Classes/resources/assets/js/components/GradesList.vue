@@ -37,7 +37,6 @@
                 fields: [
                     {
                         key: 'name',
-                        sortable: true
                     }, {
                         key: 'classes'
                     }
