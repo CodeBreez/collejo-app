@@ -1,9 +1,9 @@
 <template>
     <div>
-        <b-table v-if="items" :items="items" :fields="fields" @sort-changed="sortingChanged" responsive no-local-sorting>
+        <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
-                <b-button variant="link" :href="route('batch.details.view', row.item.id)">{{row.value}}</b-button>
+                <a :href="route('batch.details.view', row.item.id)">{{row.value}}</a>
             </template>
 
             <template slot="start" slot-scope="row">

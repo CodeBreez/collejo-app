@@ -308,7 +308,7 @@ class BatchController extends Controller
                         'batches'  => $this->classRepository
                             ->getBatches($criteria)
                             ->with('terms')
-                            ->paginate(config('collejo.perpage')),
+                            ->paginate(config('collejo.pagination.perpage')),
                     ]);
     }
 

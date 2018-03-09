@@ -223,6 +223,16 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     }
 
     /**
+     * Returns a collection for Users.
+     *
+     * @return User
+     */
+    public function getUsers()
+    {
+        return new User();
+    }
+
+    /**
      * Returns a collection for Roles.
      *
      * @return Role

@@ -28,7 +28,7 @@ class ACLModuleServiceProvider extends ModuleServiceProvider
         return [
             'create_admin'                  => [],
             'add_remove_permission_to_role' => ['add_edit_role', 'disable_role'],
-            'view_user_account_info'        => ['edit_user_account_info', 'reset_user_password', 'disable_user'],
+            'view_user_account_info'        => ['create_user_accounts', 'edit_user_account_info', 'reset_user_password', 'disable_user'],
         ];
     }
 }

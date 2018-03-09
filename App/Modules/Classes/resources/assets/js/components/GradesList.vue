@@ -3,7 +3,7 @@
         <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
-                <b-button variant="link" :href="route('grade.details.view', row.item.id)">{{row.value}}</b-button>
+                <a :href="route('grade.details.view', row.item.id)">{{row.value}}</a>
             </template>
 
             <template slot="classes" slot-scope="row">
