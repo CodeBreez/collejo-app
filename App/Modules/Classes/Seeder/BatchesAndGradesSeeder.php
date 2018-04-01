@@ -34,10 +34,10 @@ class BatchesAndGradesSeeder extends Seeder
         }
 
         // Assign grades and create terms
-        Batch::all()->each(function ($batch){
+        Batch::all()->each(function ($batch) {
             $batch->grades()->sync($this->createPivotIds($this->faker->randomElements(Grade::all()->pluck('id')->all(), 5)));
 
-            foreach (['Winter', 'Summer', 'Fall'] as $term){
+            foreach (['Winter', 'Summer', 'Fall'] as $term) {
                 $batch->terms()->save(factory(Term::class)->make([
                     'name' => $term,
                 ]));
