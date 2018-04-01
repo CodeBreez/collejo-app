@@ -8,6 +8,30 @@ use Collejo\App\Modules\ACL\Contracts\UserRepository;
 
 class ACLController extends Controller
 {
+    public function getNewUser ()
+    {
+
+    }
+
+    /**
+     * Returns the view for user details
+     *
+     * @param $userId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getUserDetails ($userId)
+    {
+        return view('acl::view_user_details', [
+            'user' => $this->userRepository->findUser($userId),
+        ]);
+    }
+
+    /**
+     * Returns the UI for managing users
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getManage()
     {
         $this->authorize('view_user_account_info');

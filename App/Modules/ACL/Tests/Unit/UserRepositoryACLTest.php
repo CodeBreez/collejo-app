@@ -17,6 +17,20 @@ class UserRepositoryACLTest extends TestCase
     private $userRepository;
 
     /**
+     * Test if a user can be found by id.
+     */
+    public function testFindUser()
+    {
+        $userAttributes = factory(User::class)->make();
+
+        $user = $this->userRepository->create($userAttributes->toArray());
+
+        $userFetched = $this->userRepository->findUser($user->id);
+
+        $this->assertEquals($user->id, $userFetched->id);
+    }
+
+    /**
      * Test if a user can be found by email.
      */
     public function testFindByEmail()

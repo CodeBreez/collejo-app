@@ -308,4 +308,15 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     {
         return User::where('email', $email)->first();
     }
+
+    /**
+     * Find a user by id
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function findUser($id)
+    {
+        return User::findOrFail($id);
+    }
 }

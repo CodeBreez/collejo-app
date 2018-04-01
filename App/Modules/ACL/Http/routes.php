@@ -7,7 +7,7 @@ Route::group(['prefix' => 'dashboard/users'], function () {
 
 Route::group(['prefix' => 'dashboard/user'], function () {
 
-    Route::get('{id}/view', 'ACLController@getuserDetails')->name('user.details.view');
+    Route::get('{id}/view', 'ACLController@getUserDetails')->name('user.details.view');
 
     Route::get('new', 'ACLController@getNewUser')->name('user.new');
 });
