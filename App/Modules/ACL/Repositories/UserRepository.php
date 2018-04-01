@@ -310,9 +310,10 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     }
 
     /**
-     * Find a user by id
+     * Find a user by id.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findUser($id)
