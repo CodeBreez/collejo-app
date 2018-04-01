@@ -21,23 +21,28 @@ class BatchesAndGradesSeeder extends Seeder
         foreach ($years as $k => $v) {
             $years[$k] = $this->faker->dateTimeBetween('-10 years', 'now');
         }
-        // create 12 grades
+        // Create 12 grades
         foreach (range(1, 12) as $num) {
             $grade = factory(Grade::class)->create(['name' => 'Grade '.$num]);
             foreach (range(1, 5) as $class) {
                 factory(Clasis::class)->create(['name' => $num.'-'.$class, 'grade_id' => $grade->id]);
             }
         }
-        // create batches
+        // Create batches
         foreach ($years as $y) {
-            factory(Batch::class)->create(['name' => $this->course().' - '.$y->format('Y').' Batch'])
-                ->each(function ($batch) use ($y) {
-                    $batch->grades()->sync($this->createPivotIds($this->faker->randomElements(Grade::all()->pluck('id')->all(), 5)));
-                    $batch->terms()->save(factory(Term::class)->make([
-                    'name' => $this->faker->randomElement(['Winter', 'Summer', 'Fall']),
-                ]));
-                });
+            factory(Batch::class)->create(['name' => $this->course().' - '.$y->format('Y').' Batch']);
         }
+
+        // Assign grades and create terms
+        Batch::all()->each(function ($batch){
+            $batch->grades()->sync($this->createPivotIds($this->faker->randomElements(Grade::all()->pluck('id')->all(), 5)));
+
+            foreach (['Winter', 'Summer', 'Fall'] as $term){
+                $batch->terms()->save(factory(Term::class)->make([
+                    'name' => $term,
+                ]));
+            }
+        });
     }
 
     private function course()
