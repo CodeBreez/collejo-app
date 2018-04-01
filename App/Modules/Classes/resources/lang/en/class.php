@@ -10,5 +10,5 @@ return [
     'class_deleted'         => 'Class deleted.',
     'class_updated'         => 'Class updated.',
 
-    'class_details'         => 'Class Details'
+    'class_details'         => 'Class Details',
 ];

@@ -150,6 +150,7 @@ class GradeController extends Controller
             'grade' => $this->classRepository->findGrade($gradeId),
         ]);
     }
+
     /**
      * Saves the Grade details.
      *
