@@ -8,6 +8,17 @@ use Menu;
 
 class MenusTest extends TestCase
 {
+
+    /**
+     * Test menu separator.
+     */
+    public function testMenuSeparator()
+    {
+        $separator = $this->createMenuSeparator();
+
+        $this->assertTrue($separator->type == 's');
+    }
+
     /**
      * Test menu group.
      */
@@ -48,6 +59,20 @@ class MenusTest extends TestCase
         $this->assertTrue($menu->getIcon() == $icon);
         $this->assertTrue($menu->order == $order);
         $this->assertFalse($menu->isVisible());
+    }
+
+    /**
+     * Create new menu separator.
+     *
+     * @return mixed
+     */
+    public function createMenuSeparator()
+    {
+        return Menu::group(function ($parent) {
+
+            Menu::create('name', 'sub')->setParent($parent);
+
+        });
     }
 
     /**

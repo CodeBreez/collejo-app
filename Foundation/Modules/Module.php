@@ -52,24 +52,6 @@ class Module
         app()->register($provider);
     }
 
-    /**
-     * Returns the module name by the given path.
-     *
-     * @return string
-     */
-    public function getModuleNameByPath()
-    {
-        $router = app()->make('router');
-
-        foreach ($router->getRoutes() as $route) {
-            if ($route->getName() == Route::getFacadeRoot()->current()->getName()) {
-                $parts = explode('\\', substr(get_class($route->controller), 20));
-
-                return snake_case($parts[0]);
-            }
-        }
-    }
-
     public function __construct($app)
     {
         $this->app = $app;
