@@ -6,7 +6,6 @@ use Collejo\Foundation\Testing\TestCase;
 
 class AssetControllerTest extends TestCase
 {
-
     /**
      * @throws \Exception
      * @throws \Throwable
