@@ -17,7 +17,7 @@ class AssetsController extends Controller
      */
     public function getRoutes(Router $router)
     {
-        $cacheKey = 'route-files-'.Auth::user() ? Auth::user()->id : 'guest';
+        $cacheKey = 'route-files-'.(Auth::user() ? Auth::user()->id : 'guest');
 
         $routes = Cache::remember($cacheKey, config('routes_cache_ttl'), function () use ($router) {
             $routes = [];
