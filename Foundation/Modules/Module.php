@@ -2,8 +2,6 @@
 
 namespace Collejo\Foundation\Modules;
 
-use Illuminate\Support\Facades\Route;
-
 class Module
 {
     /**

@@ -8,7 +8,6 @@ use Menu;
 
 class MenusTest extends TestCase
 {
-
     /**
      * Test menu separator.
      */
@@ -69,9 +68,7 @@ class MenusTest extends TestCase
     public function createMenuSeparator()
     {
         return Menu::group(function ($parent) {
-
             Menu::create('name', 'sub')->setParent($parent);
-
         });
     }
 
