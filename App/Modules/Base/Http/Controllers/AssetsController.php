@@ -2,15 +2,14 @@
 
 namespace Collejo\App\Modules\Base\Http\Controllers;
 
+use Auth;
+use Cache;
 use Collejo\App\Http\Controller;
 use Illuminate\Routing\Router;
-use Cache;
 use Module;
-use Auth;
 
 class AssetsController extends Controller
 {
-
     /**
      * Returns a cached array of routes for the application.
      *
@@ -24,8 +23,7 @@ class AssetsController extends Controller
             $routes = [];
 
             foreach ($router->getRoutes() as $route) {
-
-                if($route->getName()){
+                if ($route->getName()) {
                     $routes[] = [
                         'methods' => $route->methods(),
                         'name'    => $route->getName(),
