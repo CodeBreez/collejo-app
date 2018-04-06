@@ -54,7 +54,7 @@ const Routes = {
          */
         _getRoutes() {
 
-            return JSON.parse('<<ROUTES_OBJECT>>');
+            return window.C.routes;
 		}
 	},
 
