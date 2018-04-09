@@ -18,9 +18,9 @@ class CreateTermRequest extends Request
     public function attributes()
     {
         return [
-            'name'       => 'Term Name',
-            'start_date' => 'Start Date',
-            'end_date'   => 'End Date',
+            'name'       => trans('classes::term.name'),
+            'start_date' => trans('classes::batch.start_date'),
+            'end_date'   => trans('classes::batch.end_date'),
         ];
     }
 }

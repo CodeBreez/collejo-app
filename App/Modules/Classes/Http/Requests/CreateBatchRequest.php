@@ -16,7 +16,7 @@ class CreateBatchRequest extends Request
     public function attributes()
     {
         return [
-            'name' => 'Batch Name',
+            'name' => trans('classes::batch.name'),
         ];
     }
 }

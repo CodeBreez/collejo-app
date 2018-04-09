@@ -16,7 +16,7 @@ class CreateClassRequest extends Request
     public function attributes()
     {
         return [
-            'name' => 'Class Name',
+            'name' => trans('classes::class.name'),
         ];
     }
 }
