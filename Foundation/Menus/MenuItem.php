@@ -80,7 +80,7 @@ class MenuItem implements ArrayAccess, Arrayable
      */
     public function setParent($name)
     {
-        $this->parent = $name;
+        $this->parent = (string)$name;
 
         return $this;
     }
@@ -273,6 +273,7 @@ class MenuItem implements ArrayAccess, Arrayable
             'parent'   => $this->getParent(),
             'position' => $this->getPosition(),
             'children' => $this->children->values(),
+            'type'      => $this->type,
         ];
     }
 

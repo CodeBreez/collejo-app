@@ -33,13 +33,13 @@ class Menu
             return $menu;
         } elseif (func_num_args() == 1) {
             $closure = func_get_arg(0);
-            $name = microtime(true);
-            $closure($name);
+            $name = str_random(10);
 
             $menu = new MenuItem();
-            $name = microtime(true);
             $menu->setName($name)->setLabel(null)->setType('s');
             $this->menus->push($menu);
+
+            $closure($name);
 
             return $menu;
         }
@@ -101,20 +101,32 @@ class Menu
     /**
      * Returns a collection of menu items sorted and ready for rendering.
      *
-     * @return static
+     * @return \Illuminate\Support\Collection
      */
     public function getMenuBarItems()
     {
         $groups = $this->getItems()->where('type', 'g');
-        $menus = $this->getItems()->where('type', 'm');
-        $subGroups = $this->getItems()->where('type', 's');
 
-        foreach ($subGroups as $subGroupItem) {
-            $subGroupItem->children = $menus->where('parent', $subGroupItem->getName());
-        }
+        foreach ($groups as $group){
 
-        foreach ($groups as $groupsItem) {
-            $groupsItem->children = $menus->where('parent', $groupsItem->getName())->union($subGroups->where('parent', $groupsItem->getName()));
+            $children = collect();
+
+            foreach ($this->getItems()->whereStrict('parent', (string)$group->getName()) as $child){
+
+                if($child->type == 's'){
+
+                    foreach ($this->getItems()->where('parent', (string)$child->getName()) as $subMenuItem){
+
+                        $children->push($subMenuItem);
+                    }
+
+                }
+
+                $children->push($child);
+
+            }
+
+            $group->children = $children;
         }
 
         return $groups->sortBy('order')->values();

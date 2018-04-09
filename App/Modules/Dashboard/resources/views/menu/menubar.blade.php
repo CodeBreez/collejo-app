@@ -1,3 +1,3 @@
 <div id="navbar">
-    <navbar :menus="{{json_encode(Menu::getMenuBarItems())}}"></navbar>
+    <navbar :menus="{{Menu::getMenuBarItems()}}"></navbar>
 </div>
