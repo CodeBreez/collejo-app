@@ -9,7 +9,10 @@ Route::group(['prefix' => 'dashboard/user'], function () {
 
     Route::get('{id}/edit', 'ACLController@getUserDetailsEdit')->name('user.details.edit');
 
+    Route::post('{id}/edit', 'ACLController@postUserDetailsEdit');
+
     Route::get('new', 'ACLController@getNewUser')->name('user.new');
+    Route::post('new', 'ACLController@postNewUser');
 });
 
 Route::group(['prefix' => 'dashboard'], function () {

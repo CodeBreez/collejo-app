@@ -5,10 +5,17 @@ return [
     'new_user' => 'New User',
 
     'email'         => 'Email',
-    'name'          => 'Name',
+    'first_name'          => 'First Name',
+    'last_name'     => 'Last Name',
+    'name'=>    'Name',
+    'password' => 'Password',
+
     'date_of_birth' => 'Date of Birth',
 
     'user_details' => 'User Details',
+    'edit_user' => 'Edit User Details',
 
     'empty_list' => 'There are no Users in the system',
+
+    'user_updated' => 'User details updated.'
 ];
