@@ -107,23 +107,17 @@ class Menu
     {
         $groups = $this->getItems()->where('type', 'g');
 
-        foreach ($groups as $group){
-
+        foreach ($groups as $group) {
             $children = collect();
 
-            foreach ($this->getItems()->whereStrict('parent', (string)$group->getName()) as $child){
-
-                if($child->type == 's'){
-
-                    foreach ($this->getItems()->where('parent', (string)$child->getName()) as $subMenuItem){
-
+            foreach ($this->getItems()->whereStrict('parent', (string) $group->getName()) as $child) {
+                if ($child->type == 's') {
+                    foreach ($this->getItems()->where('parent', (string) $child->getName()) as $subMenuItem) {
                         $children->push($subMenuItem);
                     }
-
                 }
 
                 $children->push($child);
-
             }
 
             $group->children = $children;

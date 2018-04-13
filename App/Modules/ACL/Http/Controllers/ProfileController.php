@@ -8,7 +8,7 @@ use Collejo\App\Http\Controller;
 class ProfileController extends Controller
 {
     /**
-     * Returns the view for the profile
+     * Returns the view for the profile.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
