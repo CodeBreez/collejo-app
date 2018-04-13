@@ -2,13 +2,12 @@
 
 namespace Collejo\App\Modules\ACL\Tests\Browser;
 
-use Collejo\Foundation\Testing\TestCase;
-use Collejo\App\Modules\ACL\Models\User;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
+use Collejo\App\Modules\ACL\Models\User;
+use Collejo\Foundation\Testing\TestCase;
 
 class ACLControllerTest extends TestCase
 {
-
     /**
      * @throws \Exception
      * @throws \Throwable
