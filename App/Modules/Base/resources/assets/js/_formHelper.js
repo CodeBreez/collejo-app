@@ -113,9 +113,7 @@ const FormHelpers = {
                     if (!response.data.success) {
 
                         window.C.notification.warning(response.data.message);
-                    }
-
-                    if (response.data.errors) {
+                    } else if (response.data.errors) {
 
                         window.C.notification.danger(response.data.message);
                     }

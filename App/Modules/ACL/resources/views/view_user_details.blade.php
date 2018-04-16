@@ -2,13 +2,15 @@
 
 @section('title', $user->name)
 
-@section('breadcrumbs')
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{{ route('users.manage') }}">{{ trans('acl::user.users') }}</a>
-        </li>
-        <li class="breadcrumb-item active">{{ trans('acl::user.user_details') }}</li>
-    </ol>
+@section('tools')
+
+    @can('edit_user_account_info')
+
+        <a href="{{ route('user.details.edit', $user->id) }}" class="btn btn-primary"><i
+                    class="fa fa-fw fa-edit"></i> {{ trans('base::common.edit') }}</a>
+
+    @endcan
+
 @endsection
 
 @section('tabs')

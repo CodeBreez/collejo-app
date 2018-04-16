@@ -1,22 +1,22 @@
 <?php
 
-namespace Collejo\App\Modules\Classes\Http\Requests;
+namespace Collejo\App\Modules\ACL\Http\Requests;
 
 use Collejo\Foundation\Http\Requests\Request;
 
-class CreateClassRequest extends Request
+class CreateUserRequest extends Request
 {
     public function rules()
     {
         return [
-            'name' => 'required',
+            'first_name' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => trans('classes::class.name'),
+            'first_name' => trans('acl::user.first_name'),
         ];
     }
 }

@@ -16,7 +16,7 @@ class CreateGradeRequest extends Request
     public function attributes()
     {
         return [
-            'name' => 'Grade Name',
+            'name' => trans('classes::grade.name'),
         ];
     }
 }

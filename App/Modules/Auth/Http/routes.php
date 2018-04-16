@@ -17,7 +17,3 @@ Route::group(['prefix' => 'password'], function () {
     Route::get('email', 'ResetPasswordController@getEmail')->name('password.email');
     Route::post('email', 'ResetPasswordController@postEmail');
 });
-
-Route::group(['prefix' => 'dash'], function () {
-    Route::get('profile', 'ProfileController@getProfile')->name('user.profile');
-});
