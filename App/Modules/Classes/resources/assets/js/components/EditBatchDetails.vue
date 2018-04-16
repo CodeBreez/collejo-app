@@ -1,10 +1,17 @@
 <template>
-    <b-form @submit.prevent="onSubmit">
+    <b-form @submit.prevent="onSubmit" novalidate>
 
        <div class="col-md-6">
            <b-form-group :label="trans('classes::batch.name')">
 
-               <b-form-input type="text" v-model="form.name" :placeholder="trans('classes::batch.name_placeholder')"></b-form-input>
+               <b-form-input type="text"
+                             @input="$v.form.name.$touch()"
+                             v-model="form.name"
+                             :placeholder="trans('classes::batch.name_placeholder')"></b-form-input>
+
+               <div class="invalid-feedback" v-if="$v.form.name.$dirty && !$v.form.name.required">
+                   {{trans('base::validation.required', trans('classes::batch.name'))}}
+               </div>
 
            </b-form-group>
        </div>
@@ -20,35 +27,10 @@
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
-        props:{
-	    	validation: Object,
-            batch: {
-	    	    default: null,
-                type: Object
-            }
-        },
 	    data(){
 		    return {
-                action: this.route('batch.new'),
-                form: {
-                    name: null
-                },
-			    submitDisabled:false
-		    }
-	    },
-        mounted(){
-	        if(this.batch){
-	            this.form = this.batch;
-                this.action = this.route('batch.details.edit', this.batch.id);
-            }
-        },
-	    methods:{
-		    onSubmit(){
-			    this.submitDisabled = true;
-
-                axios.post(this.action, this.form)
-                    .then(this.handleSubmitResponse)
-                    .catch(this.handleSubmitResponse);
+                newAction: 'batch.new',
+                updateAction: ['batch.details.edit', this.entity.id]
 		    }
 	    }
     }
