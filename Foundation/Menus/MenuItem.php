@@ -80,7 +80,7 @@ class MenuItem implements ArrayAccess, Arrayable
      */
     public function setParent($name)
     {
-        if($name instanceof self){
+        if ($name instanceof self) {
             $name = $name->getName();
         }
 
