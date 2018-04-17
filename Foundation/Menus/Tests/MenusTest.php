@@ -48,7 +48,7 @@ class MenusTest extends TestCase
             ->setIcon($icon)
             ->setOrder($order);
 
-        $this->assertTrue($menu->getParent() == $group);
+        $this->assertTrue($menu->getParent() == $group->getName());
         $this->assertTrue($menu->getName() == 'name');
         $this->assertTrue($menu->getLabel() == 'sub');
         $this->assertTrue($menu->getPath() == 'test');
