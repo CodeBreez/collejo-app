@@ -39,7 +39,7 @@
     <div id="editBatchDetails">
         <edit-batch-details
                 @if($batch)
-                :batch="{{$batch}}"
+                :entity="{{$batch}}"
                 @endif
                 :validation="{{$batch_form_validator->renderRules()}}">
 

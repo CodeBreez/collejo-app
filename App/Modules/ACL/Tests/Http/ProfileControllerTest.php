@@ -2,12 +2,11 @@
 
 namespace Collejo\App\Modules\ACL\Tests\Browser;
 
-use Collejo\Foundation\Testing\TestCase;
 use Collejo\App\Modules\ACL\Models\User;
+use Collejo\Foundation\Testing\TestCase;
 
 class ProfileControllerTest extends TestCase
 {
-
     /**
      * @throws \Exception
      * @throws \Throwable
