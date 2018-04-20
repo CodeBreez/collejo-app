@@ -11,11 +11,11 @@ trait CreatesUsers
      *
      * @return mixed
      */
-    public function createAdminUser()
+    public function createAdminUser($ability)
     {
         $admin = $this->userRepository->createAdminUser('test', 'test@test.com', '123');
 
-        $permission = $this->userRepository->createPermissionIfNotExists('view_user_account_info');
+        $permission = $this->userRepository->createPermissionIfNotExists($ability);
 
         $role = $this->userRepository->getRoleByName('admin');
 
