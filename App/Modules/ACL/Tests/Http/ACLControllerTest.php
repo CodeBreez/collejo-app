@@ -3,12 +3,11 @@
 namespace Collejo\App\Modules\ACL\Tests\Browser;
 
 use Collejo\App\Modules\ACL\Models\User;
-use Collejo\Foundation\Testing\TestCase;
 use Collejo\Foundation\Testing\CreatesUsers;
+use Collejo\Foundation\Testing\TestCase;
 
 class ACLControllerTest extends TestCase
 {
-
     use CreatesUsers;
 
     /**
