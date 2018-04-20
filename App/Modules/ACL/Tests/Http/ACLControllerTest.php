@@ -22,7 +22,7 @@ class ACLControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($this->createAdminUser('edit_user_account_info'))
-            ->get(route('user.details.view', $user->id))
+            ->get(route('user.details.edit', $user->id))
             ->assertSuccessful();
     }
 
