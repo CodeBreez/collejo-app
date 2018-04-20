@@ -2,12 +2,15 @@
 
 namespace Collejo\App\Modules\ACL\Tests\Browser;
 
-use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Testing\TestCase;
+use Collejo\Foundation\Testing\CreatesUsers;
 
 class ACLControllerTest extends TestCase
 {
+
+    use CreatesUsers;
+
     /**
      * @throws \Exception
      * @throws \Throwable
@@ -17,11 +20,9 @@ class ACLControllerTest extends TestCase
     {
         $this->runDatabaseMigrations();
 
-        $admin = $this->userRepository->createAdminUser('test', 'test@test.com', '123');
-
         $user = factory(User::class)->create();
 
-        $this->actingAs($admin)
+        $this->actingAs($this->createAdminUser())
             ->get(route('user.details.view', $user->id))
             ->assertSuccessful();
     }
@@ -35,11 +36,9 @@ class ACLControllerTest extends TestCase
     {
         $this->runDatabaseMigrations();
 
-        $admin = $this->userRepository->createAdminUser('test', 'test@test.com', '123');
-
         $user = factory(User::class)->create();
 
-        $this->actingAs($admin)
+        $this->actingAs($this->createAdminUser())
             ->get(route('user.details.view', $user->id))
             ->assertSuccessful();
     }
@@ -53,17 +52,8 @@ class ACLControllerTest extends TestCase
     {
         $this->runDatabaseMigrations();
 
-        $admin = $this->userRepository->createAdminUser('test', 'test@test.com', '123');
-
-        $this->actingAs($admin)
+        $this->actingAs($this->createAdminUser())
             ->get(route('users.manage'))
             ->assertSuccessful();
-    }
-
-    public function setup()
-    {
-        parent::setup();
-
-        $this->userRepository = $this->app->make(UserRepository::class);
     }
 }
