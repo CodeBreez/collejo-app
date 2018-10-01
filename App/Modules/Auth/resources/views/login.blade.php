@@ -15,7 +15,7 @@
 @section('content')
 
 <div id="login">
-    <login></login>
+    <login :validation="{{$login_form_validator->renderRules()}}"></login>
 </div>
 
 @endsection

@@ -1,9 +1,12 @@
+/**
+ * Global packages
+ */
 import * as Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue'
 import Vuelidate from 'vuelidate';
 
 /**
- * Common Vue mixins
+ * Common collejo Vue mixins
  */
 import {Routes} from './_routes';
 import {Trans} from './_trans';
@@ -13,20 +16,20 @@ import {PaginationHelper} from './_paginationHelper';
 import {DateTimeHelpers} from './_dateTimeHelpers';
 
 /**
- * Register global packages
+ * Register global third party packages
  */
 window._ = require('lodash');
 window.Vue = require('vue');
 window.moment = require('moment');
 
 /**
- * Register Vue packages
+ * Register third party Vue packages
  */
 Vue.use(BootstrapVue);
 Vue.use(Vuelidate);
 
 /**
- * Register common Vue components
+ * Register collejo Vue components
  */
 Vue.component('notification', require('./components/Notification'));
 
@@ -86,6 +89,11 @@ window.C = {
         }
     }),
 };
+
+/**
+ * Import collejo form components
+ */
+Vue.component('c-form-input', require('./components/form/Input'));
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

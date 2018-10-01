@@ -1,4 +1,4 @@
-import { required } from 'vuelidate/lib/validators'
+import { required, requiredIf, requiredUnless, minLength, maxLength, minValue, maxValue, between, alpha, alphaNum, numeric, integer, decimal, email, ipAddress, macAddress, sameAs, url, or, and, not, withParams } from 'vuelidate/lib/validators'
 
 const FormHelpers = {
 
@@ -12,7 +12,7 @@ const FormHelpers = {
 
     data(){
         return {
-            action: this.trans(...this.newAction),
+            action: this.newAction ? this.trans(...this.newAction) : null,
             submitDisabled: false,
             form: {}
         }
@@ -21,7 +21,7 @@ const FormHelpers = {
     mounted(){
         if(this.entity){
             this.setFormObject();
-            this.action = this.trans(...this.updateAction);
+            this.action = this.updateAction ? this.trans(...this.updateAction) : null;
         }
     },
 
@@ -33,7 +33,28 @@ const FormHelpers = {
     validations(){
 
         const rulesMap = {
-            required: required
+            required: required,
+            requiredIf: requiredIf,
+            requiredUnless: requiredUnless,
+            minLength: minLength,
+            maxLength: maxLength,
+            minValue: minValue,
+            maxValue: maxValue,
+            between: between,
+            alpha: alpha,
+            alphaNum: alphaNum,
+            numeric: numeric,
+            integer: integer,
+            decimal: decimal,
+            email: email,
+            ipAddress: ipAddress,
+            macAddress: macAddress,
+            sameAs: sameAs,
+            url: url,
+            or: or,
+            and: and,
+            not: not,
+            withParams: withParams,
         };
 
         this._getFormFields().forEach(field => {
@@ -41,6 +62,8 @@ const FormHelpers = {
             _.keys(this.validation[field]).forEach(rule => {
                 if(rulesMap[rule]){
                     this.validation[field][rule] = rulesMap[rule];
+                } else{
+                    console.warning(`Validation rule "${rule}" is called but not defined`)
                 }
             });
         });
@@ -84,9 +107,14 @@ const FormHelpers = {
             if(!this.$v.form.$error){
                 this.submitDisabled = true;
 
-                axios.post(this.action, this.form)
-                    .then(this.handleSubmitResponse)
-                    .catch(this.handleSubmitResponse);
+                if(this.action){
+
+                    axios.post(this.action, this.form)
+                        .then(this.handleSubmitResponse)
+                        .catch(this.handleSubmitResponse);
+                }else{
+                    console.warning('form does not have an action');
+                }
             }
         },
 

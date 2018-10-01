@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Auth\Http\Controllers;
 
 use Collejo\App\Http\Controller;
+use Collejo\App\Modules\Auth\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Session;
 
@@ -46,7 +47,9 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth::login');
+        return view('auth::login', [
+            'login_form_validator' => $this->jsValidator(LoginRequest::class)
+        ]);
     }
 
     public function __construct()
