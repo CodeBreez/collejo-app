@@ -1,9 +1,11 @@
 <template>
 
-    <b-form-group :label="label" :label-for="id">
+    <b-form-group :label="label">
 
-        <b-form-input :id="id" :type="type"
-                      v-model="value"
+        <b-form-input :type="type"
+                      v-model="inputValue"
+                      :name="name"
+                      :placeholder="placeholder"
                       @input="update()"></b-form-input>
 
         <div class="invalid-feedback"
@@ -20,19 +22,24 @@
     export default {
         mixins: [C.mixins.Trans],
         props: {
-            model: null,
             type: String,
-            id: String,
             validator: null,
             name: null,
-            label: null
-        },
-        data(){
-            return {
-                value: null
-            }
+            label: null,
+            placeholder: null,
+            value: null,
+            model:null
         },
 
+        data(){
+            return {
+                inputValue: null
+            }
+        },
+        updated(){
+
+            this.inputValue = this.value;
+        },
         methods: {
 
             _getFieldRules(){
@@ -49,7 +56,8 @@
             },
 
             update() {
-                this.$emit('input', this.value);
+                this.$emit('input', this.inputValue);
+
                 if(this.validator){
 
                     this.validator['form'][this.name].$touch();

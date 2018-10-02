@@ -12,16 +12,19 @@ const FormHelpers = {
 
     data(){
         return {
-            action: this.newAction ? this.trans(...this.newAction) : null,
+            action: null,
             submitDisabled: false,
             form: {}
         }
     },
 
     mounted(){
-        if(this.entity){
-            this.setFormObject();
-            this.action = this.updateAction ? this.trans(...this.updateAction) : null;
+        this.setFormObject();
+
+        if(typeof this.action === 'string'){
+            this.action = this.route(this.action);
+        } else {
+            this.action = this.route(...this.action);
         }
     },
 
@@ -63,7 +66,7 @@ const FormHelpers = {
                 if(rulesMap[rule]){
                     this.validation[field][rule] = rulesMap[rule];
                 } else{
-                    console.warning(`Validation rule "${rule}" is called but not defined`)
+                    console.error(`Validation rule "${rule}" is called but not defined`)
                 }
             });
         });
@@ -113,7 +116,7 @@ const FormHelpers = {
                         .then(this.handleSubmitResponse)
                         .catch(this.handleSubmitResponse);
                 }else{
-                    console.warning('form does not have an action');
+                    console.error('form does not have an action');
                 }
             }
         },

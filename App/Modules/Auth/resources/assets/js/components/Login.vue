@@ -9,13 +9,13 @@
 
             <h2 class="text-center brand-text">{{trans('auth::auth.app_name')}}</h2>
 
-            <c-form-input id="emailInput" type="email"
+            <c-form-input type="email"
                               v-model="form.email"
                               name="email"
                               :label="trans('auth::auth.email')"
                               :validator="$v"></c-form-input>
 
-            <c-form-input id="passwordInput" type="password"
+            <c-form-input type="password"
                               v-model="form.password"
                               name="password"
                               :label="trans('auth::auth.password')"

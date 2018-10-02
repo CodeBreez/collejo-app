@@ -2,18 +2,14 @@
     <b-form @submit.prevent="onSubmit" novalidate>
 
        <div class="col-md-6">
-           <b-form-group :label="trans('classes::batch.name')">
 
-               <b-form-input type="text"
-                             @input="$v.form.name.$touch()"
-                             v-model="form.name"
-                             :placeholder="trans('classes::batch.name_placeholder')"></b-form-input>
+           <c-form-input type="text"
+                         v-model="form.name"
+                         name="name"
+                         :label="trans('classes::batch.name')"
+                         :placeholder="trans('classes::batch.name_placeholder')"
+                         :validator="$v"></c-form-input>
 
-               <div class="invalid-feedback" v-if="$v.form.name.$dirty && !$v.form.name.required">
-                   {{trans('base::validation.required', trans('classes::batch.name'))}}
-               </div>
-
-           </b-form-group>
        </div>
 
         <div class="col-md-12">
@@ -29,8 +25,7 @@
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
 	    data(){
 		    return {
-                newAction: 'batch.new',
-                updateAction: ['batch.details.edit', this.entity.id]
+                action: this.entity ? ['batch.details.edit', this.entity.id] : 'batch.new'
 		    }
 	    }
     }

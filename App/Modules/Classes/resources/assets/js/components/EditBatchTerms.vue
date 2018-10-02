@@ -10,6 +10,7 @@
             </b-button>
         </b-card>
 
+
         <b-modal v-if="currentTerm" :title="currentTerm.name" @ok="handleOk" @hide="handleHide"
                  no-close-on-backdrop v-model="modalOpen"
                  no-close-on-esc>
