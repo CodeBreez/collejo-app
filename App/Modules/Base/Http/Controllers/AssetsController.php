@@ -10,16 +10,27 @@ use Module;
 
 class AssetsController extends Controller
 {
+
+    public function getFrontAssets(Router $router){
+
+        $content = 'C.langs='.json_encode($this->getLocals())
+            . ';' . 'C.routes='.json_encode($this->getRoutes($router));
+
+        return response($content)
+            ->header('Cache-Control', 'max-age='.config('fe_asset_cache_ttl'))
+            ->header('Content-Type', 'application/javascript');
+    }
+
     /**
      * Returns a cached array of routes for the application.
      *
      * @return mixed
      */
-    public function getRoutes(Router $router)
+    private function getRoutes(Router $router)
     {
         $cacheKey = 'route-files-'.(Auth::user() ? Auth::user()->id : 'guest');
 
-        $routes = Cache::remember($cacheKey, config('routes_cache_ttl'), function () use ($router) {
+        return Cache::remember($cacheKey, config('fe_asset_cache_ttl'), function () use ($router) {
             $routes = [];
 
             foreach ($router->getRoutes() as $route) {
@@ -34,10 +45,6 @@ class AssetsController extends Controller
 
             return $routes;
         });
-
-        return response('C.routes='.json_encode($routes))
-            ->header('Cache-Control', 'max-age='.config('routes_cache_ttl'))
-            ->header('Content-Type', 'application/javascript');
     }
 
     /**
@@ -45,9 +52,9 @@ class AssetsController extends Controller
      *
      * @return mixed
      */
-    public function getLocals()
+    private function getLocals()
     {
-        $langs = Cache::remember('lang-files', config('languages_cache_ttl'), function () {
+        return Cache::remember('lang-files', config('fe_asset_cache_ttl'), function () {
             $langs = array_fill_keys(config('collejo.languages'), []);
 
             foreach (Module::getModulePaths() as $path) {
@@ -72,9 +79,5 @@ class AssetsController extends Controller
 
             return $langs;
         });
-
-        return response('C.langs='.json_encode($langs))
-            ->header('Cache-Control', 'max-age='.config('languages_cache_ttl'))
-            ->header('Content-Type', 'application/javascript');
     }
 }

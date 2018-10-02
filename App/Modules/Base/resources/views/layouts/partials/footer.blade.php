@@ -18,7 +18,6 @@
 
 <script type="text/javascript" src="{{ mix('/js/commons.js') }}"></script>
 <script type="text/javascript" src="{{ mix('/assets/base/js/bootstrap.js') }}"></script>
-<script type="application/javascript" src="/assets/routes.js"></script>
-<script type="application/javascript" src="/assets/locale.js"></script>
+<script type="application/javascript" src="/assets/fe-assets.js"></script>
 
 @yield('scripts')
