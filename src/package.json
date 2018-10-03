@@ -14,7 +14,7 @@
   "dependencies": {
     "blueimp-file-upload": "^9.12.5",
     "bootbox": "^4.4.0",
-    "bootstrap": "^3.3.6",
+    "bootstrap": "^4.1.2",
     "c3": "^0.4.11",
     "d3": "^3.5.17",
     "eonasdan-bootstrap-datetimepicker": "^4.15.35",
