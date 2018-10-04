@@ -47,7 +47,7 @@ class BatchController extends Controller
         $this->authorize('add_edit_batch');
 
         return view('classes::edit_batch_terms', [
-                        'batch' => $this->classRepository->findBatch($batchId),
+                        'batch'                => $this->classRepository->findBatch($batchId),
                         'terms_form_validator' => $this->jsValidator(CreateTermRequest::class),
                     ]);
     }

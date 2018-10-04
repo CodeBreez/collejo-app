@@ -9,7 +9,7 @@ class LoginRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required',
         ];
     }
@@ -17,7 +17,7 @@ class LoginRequest extends Request
     public function attributes()
     {
         return [
-            'email' => trans('auth::auth.email'),
+            'email'    => trans('auth::auth.email'),
             'password' => trans('auth::auth.password'),
         ];
     }
