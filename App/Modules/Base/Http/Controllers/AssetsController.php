@@ -10,11 +10,10 @@ use Module;
 
 class AssetsController extends Controller
 {
-
-    public function getFrontAssets(Router $router){
-
+    public function getFrontAssets(Router $router)
+    {
         $content = 'C.langs='.json_encode($this->getLocals())
-            . ';' . 'C.routes='.json_encode($this->getRoutes($router));
+            .';'.'C.routes='.json_encode($this->getRoutes($router));
 
         return response($content)
             ->header('Cache-Control', 'max-age='.config('fe_asset_cache_ttl'))
