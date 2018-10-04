@@ -2,6 +2,11 @@
 
 @section('title', trans('classes::batch.edit_batch'))
 
+@section('styles')
+    @parent
+    <link href="{{ mix('/assets/classes/css/module.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
 @section('scripts')
     @parent
     <script type="text/javascript" src="{{ mix('/assets/classes/js/editBatchGrades.js') }}"></script>

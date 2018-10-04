@@ -11,6 +11,7 @@ const FormHelpers = {
     },
 
     data(){
+
         return {
             action: null,
             submitDisabled: false,
@@ -19,13 +20,8 @@ const FormHelpers = {
     },
 
     mounted(){
-        this.setFormObject();
 
-        if(typeof this.action === 'string'){
-            this.action = this.route(this.action);
-        } else {
-            this.action = this.route(...this.action);
-        }
+        this.setFormObject();
     },
 
     /**
@@ -63,9 +59,12 @@ const FormHelpers = {
         this._getFormFields().forEach(field => {
 
             _.keys(this.validation[field]).forEach(rule => {
+
                 if(rulesMap[rule]){
+
                     this.validation[field][rule] = rulesMap[rule];
                 } else{
+
                     console.error(`Validation rule "${rule}" is called but not defined`)
                 }
             });
@@ -95,9 +94,13 @@ const FormHelpers = {
         setFormObject(){
             const form = {};
 
-            this._getFormFields().forEach(field => {
-                form[field] = this.entity[field];
-            });
+            if(this.entity){
+
+                this._getFormFields().forEach(field => {
+
+                    form[field] = this.entity[field];
+                });
+            }
 
             this.form = form;
         },
@@ -108,6 +111,7 @@ const FormHelpers = {
         onSubmit(){
 
             if(!this.$v.form.$error){
+
                 this.submitDisabled = true;
 
                 if(this.action){
@@ -129,6 +133,7 @@ const FormHelpers = {
         handleSubmitResponse(response) {
 
             if (response.response) {
+
                 response = response.response;
             }
 
@@ -155,6 +160,8 @@ const FormHelpers = {
                     }
                 }
             }
+
+            return response;
         }
     }
 };

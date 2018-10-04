@@ -48,6 +48,7 @@ class BatchController extends Controller
 
         return view('classes::edit_batch_terms', [
                         'batch' => $this->classRepository->findBatch($batchId),
+                        'terms_form_validator' => $this->jsValidator(CreateTermRequest::class),
                     ]);
     }
 

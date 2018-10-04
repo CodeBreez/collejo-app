@@ -9,7 +9,6 @@
                          :label="trans('classes::batch.name')"
                          :placeholder="trans('classes::batch.name_placeholder')"
                          :validator="$v"></c-form-input>
-
        </div>
 
         <div class="col-md-12">
@@ -25,7 +24,7 @@
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
 	    data(){
 		    return {
-                action: this.entity ? ['batch.details.edit', this.entity.id] : 'batch.new'
+                action: this.entity ? this.route('batch.details.edit', this.entity.id) : this.route('batch.new')
 		    }
 	    }
     }

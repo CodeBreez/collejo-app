@@ -1,7 +1,7 @@
 <template>
     <b-form @submit.prevent="onSubmit">
 
-        <div class="col-md-6">
+        <div class="col-md-6 edit-batch-grades">
             <b-form-checkbox v-model="grade.checked" v-for="(grade, index) in batchGrades" :key="grade.id">
                 {{grade.name}}
             </b-form-checkbox>

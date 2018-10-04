@@ -2,11 +2,16 @@
 
     <b-form-group :label="label">
 
-        <b-form-input :type="type"
+        <datepicker v-if="type === 'date'" input-class="form-control" v-model="inputValue"
+                    :format="getCalendarFormat()"
+                    @input="_updateInput()">
+        </datepicker>
+
+        <b-form-input v-else :type="type"
                       v-model="inputValue"
                       :name="name"
                       :placeholder="placeholder"
-                      @input="update()"></b-form-input>
+                      @input="_updateInput()"></b-form-input>
 
         <div class="invalid-feedback"
              v-for="(rule, index) in _getFieldRules()"
@@ -19,8 +24,15 @@
 
 <script>
 
+    import Datepicker from 'vuejs-datepicker';
+
     export default {
-        mixins: [C.mixins.Trans],
+        components: {
+            Datepicker
+        },
+
+        mixins: [C.mixins.DateTimeHelpers, C.mixins.Trans],
+
         props: {
             type: String,
             validator: null,
@@ -36,10 +48,20 @@
                 inputValue: null
             }
         },
+
         updated(){
 
             this.inputValue = this.value;
         },
+
+        mounted(){
+
+            if(this.value){
+
+                this.inputValue = this.value;
+            }
+        },
+
         methods: {
 
             _getFieldRules(){
@@ -55,7 +77,8 @@
                 return [];
             },
 
-            update() {
+            _updateInput() {
+
                 this.$emit('input', this.inputValue);
 
                 if(this.validator){

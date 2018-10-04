@@ -39,7 +39,9 @@
 @section('tab')
 
     <div id="editBatchTerms">
-        <edit-batch-terms :batch="{{$batch}}" :terms="{{$batch->terms}}"></edit-batch-terms>
+        <edit-batch-terms :batch="{{$batch}}"
+                          :terms="{{$batch->terms}}"
+                          :validation="{{$terms_form_validator->renderRules()}}"></edit-batch-terms>
     </div>
 
 @endsection

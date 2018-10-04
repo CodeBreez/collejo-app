@@ -4,6 +4,10 @@ const DateTimeHelpers = {
 
         dateFormat(date)
         {
+            if(!date){
+                return;
+            }
+
             return date.format(this.getDateFormat());
         },
 
@@ -13,6 +17,10 @@ const DateTimeHelpers = {
          * @param date
          */
         dateToUserTz(date){
+
+            if(!date){
+                return;
+            }
 
             return this.dateToMoment(date).utcOffset(this._getUserTimezoneOffset());
         },
@@ -25,6 +33,10 @@ const DateTimeHelpers = {
          * @returns {*}
          */
         dateToMoment(date, utc = true){
+
+            if(!date){
+                return;
+            }
 
             if(date.length > 20){
                 date = date.substring(0, date.length - 7);
