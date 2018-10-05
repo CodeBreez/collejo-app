@@ -21,7 +21,7 @@
                 <a href="{{ route('batches.list') }}">{{ trans('classes::batch.batches') }}</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('batch.details.view', $batch->id) }}">{{ $batch->name }}</a>
+                <a href="{{ route('batch.terms.view', $batch->id) }}">{{ $batch->name }}</a>
             </li>
             <li class="breadcrumb-item active">{{ trans('classes::batch.edit_batch') }}</li>
         </ol>

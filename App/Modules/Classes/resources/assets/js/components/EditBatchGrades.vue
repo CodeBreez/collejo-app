@@ -18,6 +18,7 @@
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
+
         props:{
             validation: Object,
             batch: {
@@ -30,6 +31,7 @@
             }
         },
         data(){
+
             return {
                 action: this.route('batch.grades.edit', this.batch.id),
                 batchGrades: [],
@@ -37,10 +39,13 @@
             }
         },
         mounted(){
+
             this.batchGrades = this.grades.map(grade => {
+
                 return {
                     name: grade.name,
                     checked: this.batch.grades.map(g => {
+
                         return g.id;
                     }).indexOf(grade.id) >= 0,
                     id: grade.id
@@ -48,13 +53,17 @@
             });
         },
         methods:{
+
             onSubmit(){
+
                 this.submitDisabled = true;
 
                 axios.post(this.action, {
                         grades: this.batchGrades.filter(grade => {
+
                             return grade.checked;
                         }).map(grade => {
+
                             return grade.id;
                         })
                     })

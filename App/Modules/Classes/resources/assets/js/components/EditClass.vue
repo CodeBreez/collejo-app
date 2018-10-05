@@ -12,13 +12,14 @@
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans],
+
         props: {
             clasis: {
-                default: () => {
-                },
+                default: {},
                 type: Object
             }
         },
+
         methods: {
             handleDelete() {
 

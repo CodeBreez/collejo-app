@@ -41,7 +41,7 @@
     <div id="editGradeDetails">
         <edit-grade-details
                 @if($grade)
-                :grade="{{$grade}}"
+                :entity="{{$grade}}"
                 @endif
                 :validation="{{$grade_form_validator->renderRules()}}">
 

@@ -42,11 +42,12 @@
         components: {
             Datepicker
         },
+
         mixins: [C.mixins.Routes, C.mixins.Trans],
+
         props: {
             grade: {
-                default: () => {
-                },
+                default: {},
                 type: Object
             },
             classes: {

@@ -120,6 +120,7 @@ const FormHelpers = {
                         .then(this.handleSubmitResponse)
                         .catch(this.handleSubmitResponse);
                 }else{
+
                     console.error('form does not have an action');
                 }
             }

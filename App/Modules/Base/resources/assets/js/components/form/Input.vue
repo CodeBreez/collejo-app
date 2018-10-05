@@ -39,8 +39,7 @@
             name: null,
             label: null,
             placeholder: null,
-            value: null,
-            model:null
+            value: null
         },
 
         data(){
@@ -51,18 +50,20 @@
 
         updated(){
 
-            this.inputValue = this.value;
+            this._updateInputValue();
         },
 
         mounted(){
 
-            if(this.value){
-
-                this.inputValue = this.value;
-            }
+            this._updateInputValue();
         },
 
         methods: {
+
+            _updateInputValue(){
+
+                this.inputValue = this.value;
+            },
 
             _getFieldRules(){
 
@@ -79,7 +80,10 @@
 
             _updateInput() {
 
-                this.$emit('input', this.inputValue);
+                if(this.inputValue){
+
+                    this.$emit('input', this.inputValue);
+                }
 
                 if(this.validator){
 

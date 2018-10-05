@@ -22,7 +22,9 @@
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
+
 	    data(){
+
 		    return {
                 action: this.entity ? this.route('batch.details.edit', this.entity.id) : this.route('batch.new')
 		    }

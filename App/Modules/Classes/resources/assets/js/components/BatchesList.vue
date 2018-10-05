@@ -39,17 +39,22 @@
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.PaginationHelper, C.mixins.DateTimeHelpers],
+
         props: {
             batches: Object
         },
+
         mounted() {
+
             if (this.batches && this.batches.data) {
+
                 this.items = this.batches.data;
 
                 this.createPaginationProps(this.batches);
             }
         },
         data() {
+
             return {
                 items: null,
                 fields: [
