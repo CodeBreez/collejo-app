@@ -87,6 +87,8 @@
 
                 if(this.validator){
 
+                    console.log(this.name);
+
                     this.validator['form'][this.name].$touch();
                 }
             }

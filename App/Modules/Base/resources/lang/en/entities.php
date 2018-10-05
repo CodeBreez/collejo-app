@@ -10,7 +10,7 @@ return [
         'plural'   => 'Grades', //'Courses'
     ],
     'term' => [
-        'singular' => 'Term',
-        'plural'   => 'Terms',
+        'singular' => 'Term', //'Semester',
+        'plural'   => 'Terms', //'Semesters',
     ],
 ];

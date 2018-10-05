@@ -3,7 +3,7 @@
     @if(is_null($user))
 
         <li class="nav-item"><a class="nav-link active" href="#">{{ trans('acl::user.user_details') }}</a></li>
-        <li class="nav-item"><a class="nav-link active" href="#">{{ trans('acl::user.user_roles') }}</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">{{ trans('acl::user.user_roles') }}</a></li>
 
     @else
 

@@ -92,17 +92,6 @@ const FormHelpers = {
          * Sets the form object bases on the validating fields
          */
         setFormObject(){
-            /*const form = {};
-
-            if(this.entity){
-
-                this._getFormFields().forEach(field => {
-
-                    form[field] = this.entity[field];
-                });
-            }
-
-            this.form = form;*/
 
             this.form = Object.assign({}, this.entity);
         },

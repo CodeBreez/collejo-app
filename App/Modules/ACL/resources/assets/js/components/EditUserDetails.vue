@@ -5,7 +5,7 @@
 
            <c-form-input type="text"
                          v-model="form.first_name"
-                         name="name"
+                         name="first_name"
                          :label="trans('acl::user.first_name')"
                          :validator="$v"></c-form-input>
 
@@ -36,8 +36,6 @@
 </template>
 
 <script>
-
-    import { required, email } from 'vuelidate/lib/validators'
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
