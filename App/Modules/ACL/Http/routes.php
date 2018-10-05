@@ -11,6 +11,12 @@ Route::group(['prefix' => 'dashboard/user'], function () {
 
     Route::post('{id}/edit', 'ACLController@postUserDetailsEdit');
 
+    Route::get('{id}/roles/view', 'ACLController@getUserRolesView')->name('user.roles.view');
+
+    Route::get('{id}/roles/edit', 'ACLController@getUserRolesEdit')->name('user.roles.edit');
+
+    Route::post('{id}/roles/edit', 'ACLController@postUserRolesEdit');
+
     Route::get('new', 'ACLController@getNewUser')->name('user.new');
     Route::post('new', 'ACLController@postNewUser');
 });

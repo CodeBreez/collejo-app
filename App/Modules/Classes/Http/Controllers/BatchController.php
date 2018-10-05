@@ -326,7 +326,8 @@ class BatchController extends Controller
     {
         $this->authorize('view_batch_details');
 
-        return $this->printJson(true, $this->classRepository->findBatch($request::get('batch_id'))->grades->pluck('name', 'id'));
+        return $this->printJson(true,
+            $this->classRepository->findBatch($request::get('batch_id'))->grades->pluck('name', 'id'));
     }
 
     public function __construct(ClassRepository $classRepository)

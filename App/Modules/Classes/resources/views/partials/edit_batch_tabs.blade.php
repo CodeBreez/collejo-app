@@ -1,6 +1,7 @@
-@if(is_null($batch))
+<ul class="nav nav-pills flex-md-column">
 
-    <ul class="nav nav-pills flex-md-column">
+    @if(is_null($batch))
+
         <li class="nav-item">
             <a class="nav-link active" href="#">{{ trans('classes::batch.batch_details') }}</a>
         </li>
@@ -10,11 +11,9 @@
         <li class="nav-item">
             <a class="nav-link disabled" href="#">{{ trans('classes::batch.batch_grades') }}</a>
         </li>
-    </ul>
 
-@else
+    @else
 
-    <ul class="nav nav-pills flex-md-column">
         <li class="nav-item">
             <a class="nav-link {{ active_class(if_route(['batch.details.edit'])) }}"
                href="{{ route('batch.details.edit', $batch->id) }}">{{ trans('classes::batch.batch_details') }}</a>
@@ -27,6 +26,7 @@
             <a class="nav-link {{ active_class(if_route(['batch.grades.edit'])) }}"
                href="{{ route('batch.grades.edit', $batch->id) }}">{{ trans('classes::batch.batch_grades') }}</a>
         </li>
-    </ul>
 
-@endif
+    @endif
+
+</ul>

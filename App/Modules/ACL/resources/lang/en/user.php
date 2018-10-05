@@ -12,7 +12,8 @@ return [
 
     'date_of_birth' => 'Date of Birth',
 
-    'user_details' => 'User Details',
+    'user_details' => 'Details',
+    'user_roles' => 'Roles',
     'edit_user'    => 'Edit User Details',
 
     'empty_list' => 'There are no Users in the system',

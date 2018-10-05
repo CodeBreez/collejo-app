@@ -6,9 +6,58 @@ use Collejo\App\Http\Controller;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Http\Requests\CreateUserRequest;
 use Collejo\App\Modules\ACL\Http\Requests\UpdateUserRequest;
+use Request;
 
 class ACLController extends Controller
 {
+
+    /**
+     * @param $userId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getUserRolesView($userId)
+    {
+
+        $this->authorize('view_user_account_info');
+
+        return view('acl::view_user_roles', [
+            'user' => $this->userRepository->findUser($userId),
+        ]);
+    }
+
+    /**
+     * @param $userId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getUserRolesEdit($userId)
+    {
+
+        $this->authorize('edit_user_account_info');
+
+        return view('acl::edit_user_roles', [
+            'user' => $this->userRepository->findUser($userId, 'roles'),
+            'roles' => $this->userRepository->getRoles()->get()
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $userId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function postUserRolesEdit(Request $request, $userId)
+    {
+
+        $this->authorize('edit_user_account_info');
+
+        $this->userRepository->assignRolesToUser($request::get('roles', []), $userId);
+
+        return $this->printJson(true, [], trans('acl::user.user_updated'));
+    }
+
     /**
      * Create user and redirect to the new user details.
      *

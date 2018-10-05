@@ -105,6 +105,12 @@ body{
 		margin-right: $box-padding;
 	}
 
+	.multi-select-form{
+		.custom-checkbox{
+			margin-bottom: 2rem;
+		}
+	}
+
 	@media (min-width: 768px) {
 
 		.tabs-view-tabs {

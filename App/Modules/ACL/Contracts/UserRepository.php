@@ -36,7 +36,7 @@ interface UserRepository
 
     public function findByEmail($email);
 
-    public function findUser($id);
+    public function findUser($id, $with);
 
     public function findRole($id);
 

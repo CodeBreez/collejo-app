@@ -13,6 +13,8 @@ class Role extends Model
 
     protected $fillable = ['role'];
 
+    protected $appends = ['name'];
+
     /**
      * Get a proper name that could be rendered in the front end.
      *

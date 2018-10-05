@@ -2,8 +2,8 @@
     <b-form @submit.prevent="onSubmit">
 
         <div class="col-md-6 multi-select-form">
-            <b-form-checkbox v-model="grade.checked" v-for="(grade, index) in batchGrades" :key="grade.id">
-                {{grade.name}}
+            <b-form-checkbox v-model="role.checked" v-for="(role, index) in userRoles" :key="role.id">
+                {{role.name}}
             </b-form-checkbox>
         </div>
 
@@ -21,11 +21,11 @@
 
         props:{
             validation: Object,
-            batch: {
+            user: {
                 default: null,
                 type: Object
             },
-            grades: {
+            roles: {
                 default: [],
                 type: Array
             }
@@ -33,22 +33,22 @@
         data(){
 
             return {
-                action: this.route('batch.grades.edit', this.batch.id),
-                batchGrades: [],
+                action: this.route('user.roles.edit', this.user.id),
+                userRoles: [],
                 submitDisabled:false
             }
         },
         mounted(){
 
-            this.batchGrades = this.grades.map(grade => {
+            this.userRoles = this.roles.map(role => {
 
                 return {
-                    name: grade.name,
-                    checked: this.batch.grades.map(g => {
+                    name: role.name,
+                    checked: this.user.roles.map(r => {
 
-                        return g.id;
-                    }).indexOf(grade.id) >= 0,
-                    id: grade.id
+                        return r.id;
+                    }).indexOf(role.id) >= 0,
+                    id: role.id
                 }
             });
         },
@@ -59,14 +59,14 @@
                 this.submitDisabled = true;
 
                 axios.post(this.action, {
-                        grades: this.batchGrades.filter(grade => {
+                    roles: this.userRoles.filter(role => {
 
-                            return grade.checked;
-                        }).map(grade => {
+                        return role.checked;
+                    }).map(role => {
 
-                            return grade.id;
-                        })
+                        return role.id;
                     })
+                })
                     .then(this.handleSubmitResponse)
                     .catch(this.handleSubmitResponse);
             }

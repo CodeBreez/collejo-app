@@ -10,7 +10,7 @@ class CreateUserRequest extends Request
     {
         return [
             'first_name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,' . $this->json('id'),
             'date_of_birth' => 'date',
         ];
     }
