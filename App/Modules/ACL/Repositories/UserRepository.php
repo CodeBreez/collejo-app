@@ -24,8 +24,8 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     {
         $user = $this->create([
             'first_name' => $name,
-            'email' => $email,
-            'password' => $password,
+            'email'      => $email,
+            'password'   => $password,
         ]);
 
         $this->addRoleToUser($user, $this->getRoleByName('admin'));
@@ -46,7 +46,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     /**
      * Sync user roles with the given User model.
      *
-     * @param User $user
+     * @param User  $user
      * @param array $roleNames
      */
     public function syncUserRoles(User $user, array $roleNames)
@@ -74,7 +74,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function addRoleToUser(User $user, Role $role)
     {
         if (!$this->userHasRole($user, $role)) {
-
             $user->roles()->attach($role, ['id' => $this->newUUID()]);
         }
     }
@@ -328,7 +327,6 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      */
     public function findUser($id, $with = null)
     {
-
         if ($with) {
             return User::with($with)->findOrFail($id);
         }
