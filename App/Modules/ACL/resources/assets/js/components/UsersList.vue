@@ -3,11 +3,11 @@
         <b-table v-if="items" :items="items" :fields="fields" responsive no-local-sorting>
 
             <template slot="name" slot-scope="row">
-                {{row.item.first_name}} {{row.item.last_name}}
+                <a :href="route('user.details.view', row.item.id)">{{row.item.first_name}} {{row.item.last_name}}</a>
             </template>
 
             <template slot="email" slot-scope="row">
-                <a :href="route('user.details.view', row.item.id)">{{row.value}}</a>
+                {{row.value}}
             </template>
 
         </b-table>

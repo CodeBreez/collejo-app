@@ -10,6 +10,8 @@ class CreateUserRequest extends Request
     {
         return [
             'first_name' => 'required',
+            'email' => 'required|email',
+            'date_of_birth' => 'date',
         ];
     }
 
@@ -17,6 +19,8 @@ class CreateUserRequest extends Request
     {
         return [
             'first_name' => trans('acl::user.first_name'),
+            'email' => trans('acl::user.email'),
+            'date_of_birth' => trans('acl::user.date_of_birth'),
         ];
     }
 }

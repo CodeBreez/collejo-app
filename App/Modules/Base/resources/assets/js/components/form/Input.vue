@@ -80,7 +80,7 @@
 
             _updateInput() {
 
-                if(this.inputValue){
+                if(this.inputValue !== null || this.inputValue !== ''){
 
                     this.$emit('input', this.inputValue);
                 }

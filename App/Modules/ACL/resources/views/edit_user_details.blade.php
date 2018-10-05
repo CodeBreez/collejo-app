@@ -34,7 +34,7 @@
     <div id="editUserDetails">
         <edit-user-details
                 @if($user)
-                :user="{{$user}}"
+                :entity="{{$user}}"
                 @endif
                 :validation="{{$user_form_validator->renderRules()}}">
 

@@ -2,16 +2,30 @@
     <b-form @submit.prevent="onSubmit" novalidate>
 
        <div class="col-md-6">
-           <b-form-group :label="trans('acl::user.first_name')">
 
-               <b-form-input type="text" v-model="form.first_name"
-                             @input="$v.form.first_name.$touch()"></b-form-input>
+           <c-form-input type="text"
+                         v-model="form.first_name"
+                         name="name"
+                         :label="trans('acl::user.first_name')"
+                         :validator="$v"></c-form-input>
 
-               <div class="invalid-feedback" v-if="$v.form.first_name.$dirty && !$v.form.first_name.required">
-                   {{trans('base::validation.required', trans('acl::user.first_name'))}}
-               </div>
+           <c-form-input type="text"
+                         v-model="form.last_name"
+                         name="last_name"
+                         :label="trans('acl::user.last_name')"
+                         :validator="$v"></c-form-input>
 
-           </b-form-group>
+           <c-form-input type="email"
+                         v-model="form.email"
+                         name="email"
+                         :label="trans('acl::user.email')"
+                         :validator="$v"></c-form-input>
+
+           <c-form-input type="date"
+                         v-model="form.date_of_birth"
+                         name="date_of_birth"
+                         :label="trans('acl::user.date_of_birth')"
+                         :validator="$v"></c-form-input>
        </div>
 
         <div class="col-md-12">
@@ -27,42 +41,13 @@
 
     export default {
         mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers],
-        props:{
-	    	validation: Object,
-            user: {
-	    	    default: null,
-                type: Object
-            }
-        },
-        validations(){
-            return this.validation;
-        },
-	    data(){
-		    return {
-                action: this.route('user.new'),
-                form: {
-                    first_name: null
-                },
-			    submitDisabled:false
-		    }
-	    },
-        mounted(){
-	        if(this.user){
-	            this.form = this.user;
-                this.action = this.route('user.details.edit', this.form.id);
-            }
-        },
-	    methods:{
-		    onSubmit(){
 
-                if(!this.$v.form.$error){
-                    this.submitDisabled = true;
+        data(){
 
-                    axios.post(this.action, this.form)
-                        .then(this.handleSubmitResponse)
-                        .catch(this.handleSubmitResponse);
-                }
-		    }
-	    }
+            return {
+                action: this.entity ? this.route('user.details.edit', this.entity.id) : this.route('user.new')
+            }
+        }
+
     }
 </script>

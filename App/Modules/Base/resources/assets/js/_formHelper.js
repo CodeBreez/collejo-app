@@ -92,7 +92,7 @@ const FormHelpers = {
          * Sets the form object bases on the validating fields
          */
         setFormObject(){
-            const form = {};
+            /*const form = {};
 
             if(this.entity){
 
@@ -102,7 +102,9 @@ const FormHelpers = {
                 });
             }
 
-            this.form = form;
+            this.form = form;*/
+
+            this.form = Object.assign({}, this.entity);
         },
 
         /**
