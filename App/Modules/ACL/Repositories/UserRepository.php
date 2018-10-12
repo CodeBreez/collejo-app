@@ -236,6 +236,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      * Returns a collection for Users.
      *
      * @param UserListCriteria $criteria
+     *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
     public function getUsers(UserListCriteria $criteria)

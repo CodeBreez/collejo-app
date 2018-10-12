@@ -167,7 +167,7 @@ class ACLController extends Controller
 
         return view('acl::users_list', [
             'criteria' => $criteria,
-            'users'  => $this->userRepository
+            'users'    => $this->userRepository
                 ->getUsers($criteria)
                 ->with('roles')
                 ->paginate(),
