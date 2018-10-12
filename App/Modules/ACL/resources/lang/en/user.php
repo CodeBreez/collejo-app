@@ -18,7 +18,7 @@ return [
     'user_roles' => 'Roles',
     'edit_user'    => 'Edit User Details',
 
-    'empty_list' => 'There are no Users in the system',
+    'empty_list' => 'There are no Users for the given criteria',
 
     'user_updated' => 'User details updated.',
 ];

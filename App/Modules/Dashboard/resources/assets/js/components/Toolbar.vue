@@ -17,9 +17,8 @@
             <b-card>
                 <b-form inline class="justify-content-between">
                     <div class="float-left">
-                       <label class="filter-title text-muted">{{trans('dashboard::dash.filter_by')}}</label>
 
-                        <span v-for="inp in filters">
+                        <span v-for="inp in filters" class="input-group">
 
                             <label class="filter-input-label" v-if="inp.type === 'text'">
                                 <span>{{inp.label}}</span>

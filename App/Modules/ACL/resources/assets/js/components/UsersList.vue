@@ -16,7 +16,7 @@
 
         </b-table>
 
-        <b-pagination-nav v-if="this.users.total > this.users.per_page" align="center" :link-gen="linkGen" :base-url="baseUrl"
+        <b-pagination-nav v-if="this.users && this.users.total > this.users.per_page" align="center" :link-gen="linkGen" :base-url="baseUrl"
                           :number-of-pages="totalPages" v-model="currentPage"></b-pagination-nav>
 
         <div class="placeholder-row" v-if="!items">

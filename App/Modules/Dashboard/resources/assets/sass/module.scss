@@ -86,9 +86,22 @@ body{
 			}
 		}
 
-		.filter-input-label{
-			span{
+		.input-group{
+			float:left;
 
+			.filter-input-label{
+				padding-right: $box-padding;
+				span{
+					position: absolute;
+					left: 0;
+					top: -14px;
+					font-size: 12px;
+				}
+				.form-control{
+					position: relative;
+					left: 0;
+					top: 10px;
+				}
 			}
 		}
 	}
