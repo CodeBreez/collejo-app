@@ -29,6 +29,7 @@ return [
     'search'        => 'Search',
     'search_filter' => 'Search Filter',
     'clear_search'  => 'Clear',
+    'sorting_by'    => 'Sorting by',
     'actions'       => 'Actions',
 
     'dashboard'       => 'Dashboard',

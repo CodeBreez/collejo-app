@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 
-	@include('base::layouts.partials.head')
+@include('base::layouts.partials.head')
 
-	<body class="setup-layout">
+<body class="auth-body">
 
-		<div class="container">
-			<div class="header">
-				<nav class="navbar navbar-toggleable-md navbar-light">
-                  <a href="/" class="navbar-brand brand-text"><span class="brand-name">{{config('app.name')}}</span></a>
-					<ul class="nav nav-pills pull-right">
-						<li><a target="_blank" href="https://github.com/codebreez/collejo-docs">{{ trans('base::setup.documentation') }}</a></li>
-					</ul>
-				</nav>
-			</div>
+<div class="col-md-12 setup-page">
 
-		  @yield('content')
+	<div class="col-lg-8 offset-2">
 
-		</div>
+		@yield('content')
 
-	</body>
+	</div>
+</div>
+
+@include('base::layouts.partials.footer')
+
+</body>
 </html>
