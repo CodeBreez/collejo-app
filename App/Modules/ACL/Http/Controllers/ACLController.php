@@ -11,15 +11,15 @@ use Request;
 
 class ACLController extends Controller
 {
-
     /**
      * @param $userId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getUserRolesView($userId)
     {
-
         $this->authorize('view_user_account_info');
 
         return view('acl::view_user_roles', [
@@ -29,29 +29,31 @@ class ACLController extends Controller
 
     /**
      * @param $userId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getUserRolesEdit($userId)
     {
-
         $this->authorize('edit_user_account_info');
 
         return view('acl::edit_user_roles', [
-            'user' => $this->userRepository->findUser($userId, 'roles'),
-            'roles' => $this->userRepository->getRoles()->get()
+            'user'  => $this->userRepository->findUser($userId, 'roles'),
+            'roles' => $this->userRepository->getRoles()->get(),
         ]);
     }
 
     /**
      * @param Request $request
      * @param $userId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postUserRolesEdit(Request $request, $userId)
     {
-
         $this->authorize('edit_user_account_info');
 
         $this->userRepository->assignRolesToUser($request::get('roles', []), $userId);
