@@ -18,6 +18,8 @@ abstract class BaseCriteria implements CriteriaInterface
 
     protected $form = [];
 
+    private $defaultSortKey = 'created_at';
+
     /**
      * Builds the SQL query required for filtering results.
      *
@@ -28,13 +30,16 @@ abstract class BaseCriteria implements CriteriaInterface
         $model = $this->getModel();
 
         $builder = $model->select($model->getTable().'.*')
-                    ->join(DB::raw('('.$this->getSubquery($model)->toSql().') as tmp'), $model->getTable().'.id', '=', 'tmp.id');
+                    ->join(DB::raw('('.$this->getSubQuery($model)->toSql().') as tmp'), $model->getTable().'.id', '=', 'tmp.id');
 
         foreach ($this->criteria() as $params) {
+
             $input = isset($params[2]) ? $params[2] : $params[0];
 
-            if (Request::has($input)) {
+            if (Request::has($input) && !empty(Request::get($input))) {
+
                 switch ($params[1]) {
+
                     case '%LIKE':
                         $builder = $builder->orWhere('tmp.'.$params[0], 'LIKE', '%'.Request::get($input));
                         break;
@@ -54,6 +59,10 @@ abstract class BaseCriteria implements CriteriaInterface
             }
         }
 
+        $builder = $builder->orderBy(Request::get('sort', $this->defaultSortKey), Request::get('order', 'asc'));
+
+        //print_r($builder->toSql());
+
         return $builder;
     }
 
@@ -65,6 +74,7 @@ abstract class BaseCriteria implements CriteriaInterface
     private function getModel()
     {
         if ($this->model) {
+
             $model = $this->model;
 
             return new $model();
@@ -81,14 +91,40 @@ abstract class BaseCriteria implements CriteriaInterface
         $form = $this->form()->all();
 
         return $this->criteria()->map(function ($item) use ($form) {
+
             $name = count($item) == 3 ? $item[2] : $item[0];
 
+            $formElement = isset($form[$name]) ? $form[$name] : [];
+
+            if(isset($formElement['itemsCallback'])){
+
+                $functionsName = $formElement['itemsCallback'];
+
+                $formElement['items'] = [
+                    [
+                        'text' => '...',
+                        'value' => null,
+                    ]
+                ];
+
+                $formElement['items'] = array_merge($formElement['items'],
+                    $this->callback($functionsName)->map(function($option){
+
+                    return [
+                        'text' => $option['name'],
+                        'value' => $option['id'],
+                    ];
+                })->toArray());
+
+                unset($formElement['itemsCallback']);
+            }
+
             return array_merge([
-                    'name'  => $name,
-                    'label' => ucwords(str_replace('_', ' ', $name)),
-                    'type'  => 'text',
-                    'value' => Request::get($name),
-                ], isset($form[$name]) ? $form[$name] : []);
+                'name'  => $name,
+                'label' => ucwords(str_replace('_', ' ', $name)),
+                'type'  => 'text',
+                'value' => Request::get($name),
+            ], $formElement);
         });
     }
 
@@ -109,17 +145,19 @@ abstract class BaseCriteria implements CriteriaInterface
      *
      * @return mixed
      */
-    private function getSubquery($query)
+    private function getSubQuery($query)
     {
         $selects = [$query->getTable().'.*'];
 
         foreach ($this->selects() as $as => $field) {
+
             $selects[] = $field.' AS '.$as;
         }
 
         $query = $query->select(DB::raw(implode(', ', $selects)));
 
         foreach ($this->joins() as $join) {
+
             $query = $query->leftJoin($join[0], $join[1], '=', $join[2]);
         }
 
@@ -140,6 +178,7 @@ abstract class BaseCriteria implements CriteriaInterface
         $key = 'criteria:'.$this->model.':callbacks:'.md5(get_class($this).'|'.$callback);
 
         if (!Cache::has($key)) {
+
             Cache::put($key, $this->$callback(), config('collejo.pagination.perpage'));
         }
 

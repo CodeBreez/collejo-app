@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\ACL\Repositories;
 
 use Collejo\App\Modules\ACL\Contracts\UserRepository as UserRepositoryContract;
+use Collejo\App\Modules\ACL\Criteria\UserListCriteria;
 use Collejo\App\Modules\ACL\Models\Permission;
 use Collejo\App\Modules\ACL\Models\Role;
 use Collejo\App\Modules\ACL\Models\User;
@@ -235,11 +236,12 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     /**
      * Returns a collection for Users.
      *
-     * @return User
+     * @param UserListCriteria $criteria
+     * @return \Collejo\Foundation\Repository\CacheableResult
      */
-    public function getUsers()
+    public function getUsers(UserListCriteria $criteria)
     {
-        return new User();
+        return $this->search($criteria);
     }
 
     /**

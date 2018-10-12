@@ -2,6 +2,7 @@
 
 namespace Collejo\App\Modules\ACL\Contracts;
 
+use Collejo\App\Modules\ACL\Criteria\UserListCriteria;
 use Collejo\App\Modules\ACL\Models\Permission;
 use Collejo\App\Modules\ACL\Models\Role;
 use Collejo\App\Modules\ACL\Models\User;
@@ -51,4 +52,6 @@ interface UserRepository
     public function getPermissions();
 
     public function update(array $attributes, $id);
+
+    public function getUsers(UserListCriteria $criteria);
 }

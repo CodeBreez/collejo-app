@@ -2,7 +2,7 @@
 
 @section('title', trans('acl::user.users'))
 
-@section('count', $users->count())
+@section('total', $users->total())
 
 @section('scripts')
     @parent

@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\ACL\Providers;
 
 use Collejo\App\Modules\ACL\Contracts\UserRepository as UserRepositoryContract;
+use Collejo\App\Modules\ACL\Criteria\UserListCriteria;
 use Collejo\App\Modules\ACL\Repositories\UserRepository;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 
@@ -16,6 +17,7 @@ class ACLModuleServiceProvider extends ModuleServiceProvider
     public function register()
     {
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);
+        $this->app->bind(UserListCriteria::class);
     }
 
     /**

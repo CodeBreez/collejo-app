@@ -10,6 +10,8 @@ return [
     'name'                => 'Name',
     'password'            => 'Password',
 
+    'created_at'        => 'Created At',
+
     'date_of_birth' => 'Date of Birth',
 
     'user_details' => 'Details',

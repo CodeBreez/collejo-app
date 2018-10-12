@@ -12,6 +12,7 @@ import {Routes} from './_routes';
 import {Trans} from './_trans';
 import {Notification} from './_notificationHelper';
 import {FormHelpers} from './_formHelper';
+import {TableHelper} from './_tableHelper';
 import {PaginationHelper} from './_paginationHelper';
 import {DateTimeHelpers} from './_dateTimeHelpers';
 
@@ -72,12 +73,14 @@ window.C = {
         Routes: Routes,
         Trans: Trans,
         FormHelpers: FormHelpers,
+        TableHelper: TableHelper,
         PaginationHelper: PaginationHelper,
         DateTimeHelpers: DateTimeHelpers,
     },
     routes: [],
     langs: {},
     menus: [],
+    sorting: null,
     notification: new Vue({
         mixins: [Notification],
         el: '#notification',

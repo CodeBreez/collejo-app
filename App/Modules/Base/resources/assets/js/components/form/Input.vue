@@ -69,7 +69,7 @@
 
                 if(this.validator){
 
-                    return _.keys(this.validator['form'][this.name]).filter(field => {
+                    return _.keys(this.validator.form[this.name]).filter(field => {
 
                         return field.charAt(0) !== '$';
                     });
@@ -87,9 +87,13 @@
 
                 if(this.validator){
 
-                    console.log(this.name);
+                    if(!this.validator.form[this.name]){
 
-                    this.validator['form'][this.name].$touch();
+                        console.error(`field '[this.name]' is defined in the form`);
+                        return
+                    }
+
+                    this.validator.form[this.name].$touch();
                 }
             }
         }

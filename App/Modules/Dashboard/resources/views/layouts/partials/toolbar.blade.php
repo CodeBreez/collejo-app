@@ -18,11 +18,11 @@
         <template slot="title">
             <h2>
                 @yield('title')
-                @hasSection('count')
+                @hasSection('total')
                     <span v-b-tooltip
                           title="{!!trans('dashboard::dash.total_records')!!}"
                           class="badge badge-info badge-count">
-                        @yield('count')
+                        @yield('total')
                     </span>
                 @endif
             </h2>

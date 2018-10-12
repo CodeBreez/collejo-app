@@ -257,6 +257,6 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      */
     public function getBatches(BatchListCriteria $criteria)
     {
-        return $this->search($criteria)->orderBy('start_date');
+        return $this->search($criteria);
     }
 }

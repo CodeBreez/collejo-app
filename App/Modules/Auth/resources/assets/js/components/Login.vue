@@ -43,8 +43,8 @@
 	    	return {
                 action: this.route('login'),
                 form: {
-                    email: '',
-                    password: '',
+                    email: null,
+                    password: null,
                     remember_me: false
 			    }
 		    }

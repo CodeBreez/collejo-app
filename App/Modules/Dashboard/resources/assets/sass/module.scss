@@ -36,6 +36,8 @@ body{
 
 .dash-content{
 
+	min-height: 60vh;
+
 	h2{
 		margin: $box-padding 0;
 		color: $gray-600;
@@ -76,6 +78,18 @@ body{
 		.filter-title{
 			float:left;
 			padding: 0.4375rem 0.4375rem 0 0;
+		}
+
+		.float-right{
+			.filter-title{
+				padding: 0.4375rem 0 0 0;
+			}
+		}
+
+		.filter-input-label{
+			span{
+
+			}
 		}
 	}
 

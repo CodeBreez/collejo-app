@@ -4,6 +4,7 @@ namespace Collejo\App\Modules\ACL\Http\Controllers;
 
 use Collejo\App\Http\Controller;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
+use Collejo\App\Modules\ACL\Criteria\UserListCriteria;
 use Collejo\App\Modules\ACL\Http\Requests\CreateUserRequest;
 use Collejo\App\Modules\ACL\Http\Requests\UpdateUserRequest;
 use Request;
@@ -158,12 +159,16 @@ class ACLController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getManage()
+    public function getManage(UserListCriteria $criteria)
     {
         $this->authorize('view_user_account_info');
 
         return view('acl::users_list', [
-            'users' => $this->userRepository->getUsers()->paginate(config('collejo.pagination.perpage')),
+            'criteria' => $criteria,
+            'users'  => $this->userRepository
+                ->getUsers($criteria)
+                ->with('roles')
+                ->paginate(),
         ]);
     }
 

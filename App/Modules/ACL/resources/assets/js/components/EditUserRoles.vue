@@ -30,6 +30,7 @@
                 type: Array
             }
         },
+
         data(){
 
             return {
@@ -38,6 +39,7 @@
                 submitDisabled:false
             }
         },
+
         mounted(){
 
             this.userRoles = this.roles.map(role => {
@@ -52,6 +54,7 @@
                 }
             });
         },
+
         methods:{
 
             onSubmit(){

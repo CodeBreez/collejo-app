@@ -9,6 +9,8 @@ class BatchListCriteria extends BaseCriteria
 {
     protected $model = Batch::class;
 
+    private $defaultSortKey = '';
+
     protected $criteria = [
             ['name', '%LIKE%'],
         ];

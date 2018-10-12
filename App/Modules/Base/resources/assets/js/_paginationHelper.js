@@ -5,9 +5,10 @@ const PaginationHelper = {
         return {
             totalPages: null,
             currentPage: null,
-            baseUrl: null,
+            baseUrl: null
         };
     },
+
     methods: {
 
         /**
@@ -27,7 +28,7 @@ const PaginationHelper = {
          */
         linkGen(pageNum) {
 
-            return `?page=${pageNum}`;
+            return `?page=${pageNum}&${window.location.search.replace('?','')}`;
         }
     }
 };

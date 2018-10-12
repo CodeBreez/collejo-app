@@ -241,7 +241,7 @@ class GradeController extends Controller
 
         return view('classes::grades_list', [
                 'grades' => $this->classRepository->getGrades()->with('classes')
-                    ->paginate(config('collejo.pagination.perpage')),
+                    ->paginate(),
             ]);
     }
 
