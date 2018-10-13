@@ -4,12 +4,11 @@ namespace Collejo\App\Modules\Students\Models;
 
 use Collejo\App\Modules\ACL\Models\Traits\CommonUserPropertiesTrait;
 use Collejo\Foundation\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
-
     use SoftDeletes, CommonUserPropertiesTrait;
 
     protected $table = 'students';
@@ -66,5 +65,3 @@ class Student extends Model
         return $this->hasOne(Media::class, 'id', 'image_id');
     }
 }
-
-

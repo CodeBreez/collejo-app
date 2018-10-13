@@ -2,9 +2,9 @@
 
 namespace Collejo\App\Modules\Students\Tests\Unit;
 
+use Collejo\App\Modules\ACL\Models\User;
 use Collejo\App\Modules\Students\Contracts\StudentRepository;
 use Collejo\App\Modules\Students\Models\Student;
-use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

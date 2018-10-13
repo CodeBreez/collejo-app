@@ -101,8 +101,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
     {
         $grade = $this->findGrade($gradeId);
 
-        DB::transaction(function () use ($attributes, $grade, &$class){
-
+        DB::transaction(function () use ($attributes, $grade, &$class) {
             $class = Clasis::create($attributes);
 
             $class->grade()->associate($grade)->save();
@@ -215,8 +214,7 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
         $attributes['start_date'] = toUTC($attributes['start_date']);
         $attributes['end_date'] = toUTC($attributes['end_date']);
 
-        DB::transaction(function () use ($attributes, $batch, &$term){
-
+        DB::transaction(function () use ($attributes, $batch, &$term) {
             $term = Term::create($attributes);
 
             $term->batch()->associate($batch)->save();

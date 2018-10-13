@@ -12,5 +12,4 @@ class StudentListCriteria extends BaseCriteria
     protected $criteria = [
             ['name', '%LIKE%'],
         ];
-
 }

@@ -4,8 +4,8 @@ namespace Collejo\App\Modules\ACL\Models\Traits;
 
 use Collejo\App\Modules\ACL\Models\User;
 
-trait CommonUserPropertiesTrait{
-
+trait CommonUserPropertiesTrait
+{
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -40,5 +40,4 @@ trait CommonUserPropertiesTrait{
     {
         return $this->user->addresses;
     }
-
 }
