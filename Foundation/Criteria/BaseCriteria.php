@@ -33,11 +33,9 @@ abstract class BaseCriteria implements CriteriaInterface
                     ->join(DB::raw('('.$this->getSubQuery($model)->toSql().') as tmp'), $model->getTable().'.id', '=', 'tmp.id');
 
         foreach ($this->criteria() as $params) {
-
             $input = isset($params[2]) ? $params[2] : $params[0];
 
             if (Request::has($input) && !empty(Request::get($input))) {
-
                 switch ($params[1]) {
 
                     case '%LIKE':
@@ -74,7 +72,6 @@ abstract class BaseCriteria implements CriteriaInterface
     private function getModel()
     {
         if ($this->model) {
-
             $model = $this->model;
 
             return new $model();
@@ -91,30 +88,27 @@ abstract class BaseCriteria implements CriteriaInterface
         $form = $this->form()->all();
 
         return $this->criteria()->map(function ($item) use ($form) {
-
             $name = count($item) == 3 ? $item[2] : $item[0];
 
             $formElement = isset($form[$name]) ? $form[$name] : [];
 
-            if(isset($formElement['itemsCallback'])){
-
+            if (isset($formElement['itemsCallback'])) {
                 $functionsName = $formElement['itemsCallback'];
 
                 $formElement['items'] = [
                     [
-                        'text' => '...',
+                        'text'  => '...',
                         'value' => null,
-                    ]
+                    ],
                 ];
 
                 $formElement['items'] = array_merge($formElement['items'],
-                    $this->callback($functionsName)->map(function($option){
-
-                    return [
-                        'text' => $option['name'],
+                    $this->callback($functionsName)->map(function ($option) {
+                        return [
+                        'text'  => $option['name'],
                         'value' => $option['id'],
                     ];
-                })->toArray());
+                    })->toArray());
 
                 unset($formElement['itemsCallback']);
             }
@@ -150,14 +144,12 @@ abstract class BaseCriteria implements CriteriaInterface
         $selects = [$query->getTable().'.*'];
 
         foreach ($this->selects() as $as => $field) {
-
             $selects[] = $field.' AS '.$as;
         }
 
         $query = $query->select(DB::raw(implode(', ', $selects)));
 
         foreach ($this->joins() as $join) {
-
             $query = $query->leftJoin($join[0], $join[1], '=', $join[2]);
         }
 
@@ -178,7 +170,6 @@ abstract class BaseCriteria implements CriteriaInterface
         $key = 'criteria:'.$this->model.':callbacks:'.md5(get_class($this).'|'.$callback);
 
         if (!Cache::has($key)) {
-
             Cache::put($key, $this->$callback(), config('collejo.pagination.perpage'));
         }
 

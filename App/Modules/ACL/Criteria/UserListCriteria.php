@@ -18,7 +18,7 @@ class UserListCriteria extends BaseCriteria
 
     protected $selects = [
             'role_id' => 'role_user.role_id',
-            'name' => 'CONCAT(users.first_name, \' \', users.last_name)',
+            'name'    => 'CONCAT(users.first_name, \' \', users.last_name)',
         ];
 
     protected $joins = [
@@ -27,9 +27,9 @@ class UserListCriteria extends BaseCriteria
 
     protected $form = [
         'role' => [
-            'type' => 'select',
-            'itemsCallback' => 'userRoles'
-        ]
+            'type'          => 'select',
+            'itemsCallback' => 'userRoles',
+        ],
     ];
 
     public function callbackUserRoles()
