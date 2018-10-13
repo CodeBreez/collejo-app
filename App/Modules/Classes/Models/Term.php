@@ -32,7 +32,7 @@ class Term extends Model
     public static function boot()
     {
         $changeEvent = function ($model) {
-            if ($model->batch->terms->count()) {
+            if ($model->batch && $model->batch->terms->count()) {
                 $model->batch->start_date = $model->batch->terms->first()->start_date;
                 $model->batch->end_date = $model->batch->terms->last()->end_date;
 

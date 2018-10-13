@@ -4,7 +4,7 @@ namespace Collejo\App\Modules\Classes\Providers;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
-use Collejo\App\Modules\Classes\Repository\ClassRepository;
+use Collejo\App\Modules\Classes\Repositories\ClassRepository;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 
 class ClassesModuleServiceProvider extends ModuleServiceProvider

@@ -4,12 +4,11 @@ namespace Collejo\Foundation\Testing;
 
 use Collejo\Foundation\Database\Eloquent\LoadFactories;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, LoadFactories, DatabaseMigrations, DatabaseTransactions;
+    use CreatesApplication, LoadFactories, DatabaseMigrations;
 
     /**
      * Assert if two array have same values.

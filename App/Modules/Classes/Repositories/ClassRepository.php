@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\App\Modules\Classes\Repository;
+namespace Collejo\App\Modules\Classes\Repositories;
 
 use Collejo\App\Modules\Classes\Contracts\ClassRepository as ClassRepositoryContract;
 use Collejo\App\Modules\Classes\Criteria\BatchListCriteria;
@@ -9,6 +9,7 @@ use Collejo\App\Modules\Classes\Models\Clasis;
 use Collejo\App\Modules\Classes\Models\Grade;
 use Collejo\App\Modules\Classes\Models\Term;
 use Collejo\Foundation\Repository\BaseRepository;
+use DB;
 
 class ClassRepository extends BaseRepository implements ClassRepositoryContract
 {
@@ -98,9 +99,16 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
      */
     public function createClass(array $attributes, $gradeId)
     {
-        $attributes['grade_id'] = $this->findGrade($gradeId)->id;
+        $grade = $this->findGrade($gradeId);
 
-        return Clasis::create($attributes);
+        DB::transaction(function () use ($attributes, $grade, &$class){
+
+            $class = Clasis::create($attributes);
+
+            $class->grade()->associate($grade)->save();
+        });
+
+        return $class;
     }
 
     /**
@@ -206,9 +214,15 @@ class ClassRepository extends BaseRepository implements ClassRepositoryContract
 
         $attributes['start_date'] = toUTC($attributes['start_date']);
         $attributes['end_date'] = toUTC($attributes['end_date']);
-        $attributes['batch_id'] = $batch->id;
 
-        return Term::create($attributes);
+        DB::transaction(function () use ($attributes, $batch, &$term){
+
+            $term = Term::create($attributes);
+
+            $term->batch()->associate($batch)->save();
+        });
+
+        return $term;
     }
 
     /**

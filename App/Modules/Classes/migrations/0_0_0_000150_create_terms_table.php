@@ -14,7 +14,7 @@ class CreateTermsTable extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->string('batch_id', 45);
+            $table->string('batch_id', 45)->nullable();
             $table->string('name', 45);
             $table->timestamp('start_date');
             $table->timestamp('end_date');

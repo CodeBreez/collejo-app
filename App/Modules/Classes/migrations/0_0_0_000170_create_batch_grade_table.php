@@ -14,8 +14,8 @@ class CreateBatchGradeTable extends Migration
     {
         Schema::create('batch_grade', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->string('batch_id', 45);
-            $table->string('grade_id', 45);
+            $table->string('batch_id', 45)->nullable();
+            $table->string('grade_id', 45)->nullable();
             $table->string('created_by')->nullable();
             $table->timestamp('created_at');
         });
