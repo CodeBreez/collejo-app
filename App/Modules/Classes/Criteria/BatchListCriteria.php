@@ -14,5 +14,4 @@ class BatchListCriteria extends BaseCriteria
     protected $criteria = [
             ['name', '%LIKE%'],
         ];
-
 }
