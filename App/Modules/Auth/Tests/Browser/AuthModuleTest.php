@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 
 class AuthModuleTest extends DuskTestCase
 {
-    /**
+    /*
      * Test if the module is loaded.
      *
      * @throws \Exception
