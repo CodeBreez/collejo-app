@@ -14,7 +14,7 @@ class AuthModuleTest extends DuskTestCase
      * @throws \Throwable
      * @covers \Collejo\App\Modules\Auth\Http\Controllers\LoginController::showLoginForm()
      */
-    public function testModuleLoaded()
+    /*public function testModuleLoaded()
     {
         $this->runDatabaseMigrations();
 
@@ -23,5 +23,5 @@ class AuthModuleTest extends DuskTestCase
                     ->assertSee(config('app.name'))
                     ->assertTitle(trans('auth::auth.login').' - '.config('app.name'));
         });
-    }
+    }*/
 }
