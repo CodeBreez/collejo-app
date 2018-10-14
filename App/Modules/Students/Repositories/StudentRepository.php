@@ -5,7 +5,9 @@ namespace Collejo\App\Modules\Students\Repositories;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Students\Contracts\StudentRepository as StudentRepositoryContract;
+use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 use Collejo\App\Modules\Students\Models\Student;
+use Collejo\App\Modules\Students\Models\StudentCategory;
 use Collejo\Foundation\Repository\BaseRepository;
 use DB;
 
@@ -14,6 +16,16 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
     protected $userRepository;
 
     protected $classRepository;
+
+    /**
+     * Returns a collection of student categories
+     *
+     * @return \Collejo\Foundation\Repository\CacheableResult
+     */
+    public function getStudentCategories()
+    {
+        return $this->search(StudentCategory::class);
+    }
 
     /**
      * Returns or fails finding a Student by the id.
@@ -90,8 +102,15 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
         return $student;
     }
 
-    public function getStudents()
+    /**
+     * Search for users bases on the criteria
+     *
+     * @param $criteria
+     * @return \Collejo\Foundation\Repository\CacheableResult
+     */
+    public function getStudents(StudentListCriteria $criteria)
     {
+        return $this->search($criteria);
     }
 
     /**

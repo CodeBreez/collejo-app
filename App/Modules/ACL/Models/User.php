@@ -14,6 +14,8 @@ class User extends Authenticatable
 
     protected $fillable = ['first_name', 'last_name', 'date_of_birth', 'email', 'password'];
 
+    protected $appends = ['name'];
+
     protected $hidden = ['password', 'remember_token'];
 
     /**
@@ -76,23 +78,4 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    /*public function student()
-    {
-        return $this->hasOne(Student::class);
-    }
-
-    public function employee()
-    {
-        return $this->hasOne(Employee::class);
-    }
-
-    public function guardian()
-    {
-        return $this->hasOne(Guardian::class);
-    }
-
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
-    }*/
 }

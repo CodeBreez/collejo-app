@@ -12,6 +12,11 @@ class Address extends Model
 
     protected $casts = ['is_emergency' => 'boolean'];
 
+    /**
+     * Returns the User of this Address
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
