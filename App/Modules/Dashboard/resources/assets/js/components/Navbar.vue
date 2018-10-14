@@ -19,7 +19,7 @@
 								:href="subMenu.path"
 								v-if="subMenu.type === 'm'" >{{ subMenu.label }}</b-dropdown-item>
 
-						<b-dropdown-divider v-if="subMenu.type === 's'"></b-dropdown-divider>
+						<b-dropdown-divider v-if="subMenu.type === 's' && !subMenu.isLastItem"></b-dropdown-divider>
 
 					</div>
 

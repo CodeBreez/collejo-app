@@ -29,6 +29,8 @@ class MenuItem implements ArrayAccess, Arrayable
 
     public $type;
 
+    public $isLastItem = false;
+
     /**
      * Sets the type of the menu item.
      *
@@ -278,6 +280,7 @@ class MenuItem implements ArrayAccess, Arrayable
             'position'  => $this->getPosition(),
             'children'  => $this->children->values(),
             'type'      => $this->type,
+            'isLastItem'   => $this->isLastItem,
         ];
     }
 

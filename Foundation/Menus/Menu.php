@@ -120,6 +120,8 @@ class Menu
                 $children->push($child);
             }
 
+            $children->last()->isLastItem = true;
+
             $group->children = $children;
         }
 

@@ -7,8 +7,8 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::post('login', 'LoginController@login');
 
-    //Route::get('reauth', 'AuthController@getReauth')->name('auth.reauth');
-    //Route::post('reauth', 'AuthController@postReauth');
+    Route::get('reauth', 'AuthController@getReauth')->name('auth.reauth');
+    Route::post('reauth', 'AuthController@postReauth');
 
     Route::get('logout', 'LoginController@logout')->name('auth.logout');
 });

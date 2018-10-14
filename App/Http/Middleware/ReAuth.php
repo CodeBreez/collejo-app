@@ -20,7 +20,8 @@ class ReAuth
     public function handle($request, Closure $next, $guard = null)
     {
         $token = Session::get('reauth-token');
-        $ttl = config('collejo.auth.reauth_ttl');
+
+        $ttl = config('collejo.tweaks.reauth_ttl');
 
         if (!is_null($ttl) && (is_null($token)
             || ($token && $token['email'] != Auth::user()->email)

@@ -4,6 +4,7 @@
  * converts a user timestamp to UTC to be stored on db.
  */
 if (!function_exists('toUTC')) {
+
     function toUTC($time)
     {
         return Carbon::parse($time, Cookie::get('collejo_tz', 'UTC'))->setTimezone('UTC');
@@ -14,6 +15,7 @@ if (!function_exists('toUTC')) {
  * converts a UTC time to user tz
  */
 if (!function_exists('toUserTz')) {
+
     function toUserTz($time)
     {
         return Carbon::parse($time, 'UTC')->setTimezone(Cookie::get('collejo_tz', 'UTC'));
@@ -24,6 +26,7 @@ if (!function_exists('toUserTz')) {
  * converts a carbon date to date string
  */
 if (!function_exists('formatDate')) {
+
     function formatDate(Carbon $time)
     {
         return $time->toDateString();
@@ -34,6 +37,7 @@ if (!function_exists('formatDate')) {
  * converts a carbon date to time string
  */
 if (!function_exists('formatTime')) {
+
     function formatTime(Carbon $time)
     {
         return $time->format('H:i');
@@ -48,9 +52,11 @@ if (!function_exists('formatTime')) {
  * @return array
  */
 if (!function_exists('listDir')) {
+
     function listDir($path)
     {
         return array_filter(scandir($path), function ($item) {
+
             return !in_array($item, ['.', '..']) && substr($item, 0, 1) != '.';
         });
     }
