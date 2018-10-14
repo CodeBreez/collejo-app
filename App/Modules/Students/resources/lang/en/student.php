@@ -4,8 +4,8 @@ return [
     'students' => 'Students',
 
     'admission_number' => 'Admission Number',
-    'admitted_on' => 'Admitted On',
-    'name' => 'Name',
+    'admitted_on'      => 'Admitted On',
+    'name'             => 'Name',
 
     'new_student' => 'New Student',
 

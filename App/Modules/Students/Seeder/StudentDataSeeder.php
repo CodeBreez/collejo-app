@@ -19,21 +19,20 @@ class StudentDataSeeder extends Seeder
     {
 
         // create student categories
-       /* foreach ([
-                     'Transferred',
-                     'Economy',
-                     'Foreign',
-                     'Special Education'
-                 ] as $category) {
+        /* foreach ([
+                      'Transferred',
+                      'Economy',
+                      'Foreign',
+                      'Special Education'
+                  ] as $category) {
 
-            factory(StudentCategory::class)->create([
-                'name' => $category,
-                'code' => substr(strtoupper($category), 0, 3)
-            ]);
-        }*/
+             factory(StudentCategory::class)->create([
+                 'name' => $category,
+                 'code' => substr(strtoupper($category), 0, 3)
+             ]);
+         }*/
 
-        factory(User::class, 20)->create()->each(function($user){
-
+        factory(User::class, 20)->create()->each(function ($user) {
             $student = factory(Student::class)->make();
 
             $student->user()->associate($user)->save();

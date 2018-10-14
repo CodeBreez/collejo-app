@@ -20,7 +20,7 @@ class StudentListCriteria extends BaseCriteria
     ];
 
     protected $selects = [
-        'name' => 'CONCAT(users.first_name, \' \', users.last_name)',
+        'name'     => 'CONCAT(users.first_name, \' \', users.last_name)',
         'batch_id' => 'batches.id',
         'class_id' => 'classes.id',
     ];
@@ -29,22 +29,22 @@ class StudentListCriteria extends BaseCriteria
         ['users', 'students.user_id', 'users.id'],
         ['class_student', 'students.id', 'class_student.student_id'],
         ['batches', 'class_student.batch_id', 'batches.id'],
-        ['classes', 'class_student.class_id', 'classes.id']
+        ['classes', 'class_student.class_id', 'classes.id'],
     ];
 
     protected $form = [
         'student_category' => [
-            'type' => 'select',
-            'itemsCallback' => 'studentCategories'
+            'type'          => 'select',
+            'itemsCallback' => 'studentCategories',
         ],
         'batch' => [
-            'type' => 'select',
-            'itemsCallback' => 'batches'
+            'type'          => 'select',
+            'itemsCallback' => 'batches',
         ],
         'class' => [
-            'type' => 'select',
-            'itemsCallback' => 'classes'
-        ]
+            'type'          => 'select',
+            'itemsCallback' => 'classes',
+        ],
     ];
 
     public function callbackStudentCategories()

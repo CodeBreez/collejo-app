@@ -3,22 +3,21 @@
 namespace Collejo\App\Modules\Students\Models;
 
 use Collejo\App\Modules\ACL\Models\Traits\CommonUserPropertiesTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Collejo\Foundation\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Guardian extends Model
 {
-
     use SoftDeletes, CommonUserPropertiesTrait;
 
     protected $table = 'guardians';
 
     protected $fillable = ['ssn'];
 
-	protected $with = ['user'];
+    protected $with = ['user'];
 
     /**
-     * Returns a collection of Students for this Guardian
+     * Returns a collection of Students for this Guardian.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
