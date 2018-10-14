@@ -18,7 +18,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
     protected $classRepository;
 
     /**
-     * Returns a collection of student categories
+     * Returns a collection of student categories.
      *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
@@ -103,9 +103,10 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
     }
 
     /**
-     * Search for users bases on the criteria
+     * Search for users bases on the criteria.
      *
      * @param $criteria
+     *
      * @return \Collejo\Foundation\Repository\CacheableResult
      */
     public function getStudents(StudentListCriteria $criteria)
