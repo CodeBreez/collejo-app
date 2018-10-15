@@ -17,9 +17,9 @@ class StudentController extends Controller
         $this->authorize('edit_student_general_details');
 
         return view('students::edit_student_details', [
-            'student' => $this->studentRepository->findStudent($studentId),
-            'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
-            'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class)
+            'student'                => $this->studentRepository->findStudent($studentId),
+            'student_categories'     => $this->studentRepository->getStudentCategories()->paginate(),
+            'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class),
         ]);
     }
 
@@ -39,15 +39,18 @@ class StudentController extends Controller
         $this->authorize('view_student_general_details', $student);
 
         return view('students::view_student_details', [
-            'student' => $student
+            'student' => $student,
         ]);
     }
+
     /**
-     * Save new Student data
+     * Save new Student data.
      *
      * @param CreateStudentRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postStudentNew(CreateStudentRequest $request)
     {
@@ -59,19 +62,20 @@ class StudentController extends Controller
     }
 
     /**
-     * Create new Student
+     * Create new Student.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function getStudentNew()
     {
         $this->authorize('create_student');
 
         return view('students::edit_student_details', [
-            'student' => null,
-            'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
-            'student_form_validator' => $this->jsValidator(CreateStudentRequest::class)
+            'student'                => null,
+            'student_categories'     => $this->studentRepository->getStudentCategories()->paginate(),
+            'student_form_validator' => $this->jsValidator(CreateStudentRequest::class),
         ]);
     }
 

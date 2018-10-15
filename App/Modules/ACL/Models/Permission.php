@@ -13,7 +13,8 @@ class Permission extends Model
     protected $appends = ['name'];
 
     /**
-     * Returns the Roles for this Permission
+     * Returns the Roles for this Permission.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
@@ -22,7 +23,7 @@ class Permission extends Model
     }
 
     /**
-     * Returns the child Permissions of this Permission
+     * Returns the child Permissions of this Permission.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -32,7 +33,7 @@ class Permission extends Model
     }
 
     /**
-     * Returns the parent Permission of this Permission
+     * Returns the parent Permission of this Permission.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -42,7 +43,7 @@ class Permission extends Model
     }
 
     /**
-     * Returns Permissions name
+     * Returns Permissions name.
      *
      * @return mixed
      */

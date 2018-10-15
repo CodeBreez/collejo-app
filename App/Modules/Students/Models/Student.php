@@ -6,8 +6,8 @@ use Collejo\App\Modules\ACL\Models\Traits\CommonUserPropertiesTrait;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\App\Modules\Classes\Models\Clasis;
 use Collejo\Foundation\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
@@ -22,7 +22,7 @@ class Student extends Model
     protected $appends = ['class', 'grade', 'batch'];
 
     /**
-     * Returns a collection of Guardians connections to this Student
+     * Returns a collection of Guardians connections to this Student.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -32,7 +32,7 @@ class Student extends Model
     }
 
     /**
-     * Category of this Student
+     * Category of this Student.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -42,7 +42,7 @@ class Student extends Model
     }
 
     /**
-     * Returns the list of classes the Student was assigned to
+     * Returns the list of classes the Student was assigned to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -54,7 +54,7 @@ class Student extends Model
     }
 
     /**
-     * Returns the current class for this student
+     * Returns the current class for this student.
      *
      * @return mixed
      */
@@ -64,44 +64,43 @@ class Student extends Model
     }
 
     /**
-     * Returns the Class
+     * Returns the Class.
      *
      * @return mixed
      */
     public function getClassAttribute()
     {
         if ($row = $this->currentClassRow()) {
-
             return Clasis::findOrFail($row->class_id);
         }
     }
 
     /**
-     * Returns the Batch
+     * Returns the Batch.
+     *
      * @return mixed
      */
     public function getBatchAttribute()
     {
         if ($row = $this->currentClassRow()) {
-
             return Batch::findOrFail($row->batch_id);
         }
     }
 
     /**
-     * Returns the Grade
+     * Returns the Grade.
+     *
      * @return mixed
      */
     public function getGradeAttribute()
     {
         if ($class = $this->class) {
-
             return $class->grade;
         }
     }
 
     /**
-     * Returns the picture of the Student
+     * Returns the picture of the Student.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
