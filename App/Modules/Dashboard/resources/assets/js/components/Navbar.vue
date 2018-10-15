@@ -16,7 +16,7 @@
 
 					<div v-for="subMenu in menu.children" :key="subMenu.name">
 						<b-dropdown-item
-								:href="subMenu.path"
+								:href="route(subMenu.name)"
 								v-if="subMenu.type === 'm'" >{{ subMenu.label }}</b-dropdown-item>
 
 						<b-dropdown-divider v-if="subMenu.type === 's' && !subMenu.isLastItem"></b-dropdown-divider>
@@ -43,7 +43,7 @@
 
 						<div v-for="subMenu in menu.children" :key="subMenu.name">
 							<b-dropdown-item
-									:href="subMenu.path"
+									:href="route(subMenu.name)"
 									v-if="subMenu.type === 'm'" >{{ subMenu.label }}</b-dropdown-item>
 
 							<b-dropdown-divider v-if="subMenu.type === 's'"></b-dropdown-divider>

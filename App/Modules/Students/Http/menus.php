@@ -21,4 +21,4 @@ Menu::group(trans('students::menu.students'), 'fa-users', function ($parent) {
 
     })->setParent($parent);
 
-})->setOrder(5);
+})->setOrder(2);

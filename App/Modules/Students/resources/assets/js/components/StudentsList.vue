@@ -36,8 +36,6 @@
 
         mounted() {
 
-            console.log(this.students);
-
             if (this.students && this.students.data) {
 
                 this.items = this.students.data;

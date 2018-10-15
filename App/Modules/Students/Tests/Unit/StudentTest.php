@@ -4,6 +4,7 @@ namespace Collejo\App\Modules\Students\Tests\Unit;
 
 use Collejo\App\Modules\ACL\Models\User;
 use Collejo\App\Modules\Students\Contracts\StudentRepository;
+use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 use Collejo\App\Modules\Students\Models\Student;
 use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -13,6 +14,19 @@ class StudentTest extends TestCase
     use DatabaseMigrations;
 
     private $studentRepository;
+
+    /**
+     * Test Getting Student list.
+     */
+    public function testGetStudents()
+    {
+        factory(Student::class, 5)->create();
+
+        $students = $this->studentRepository
+            ->getStudents(app()->make(StudentListCriteria::class))->get();
+
+        $this->assertCount(5, $students);
+    }
 
     /**
      * Test creating a Student.

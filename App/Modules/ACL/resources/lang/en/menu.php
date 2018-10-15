@@ -2,5 +2,5 @@
 
 return [
     'users'  => 'Users',
-    'manage' => 'Manage',
+    'user_manage' => 'Users and Access',
 ];
