@@ -6,13 +6,12 @@ use Collejo\App\Http\Controller;
 
 class AuthController extends Controller
 {
-
     public function postReauth(Request $request, Session $session)
     {
         if (Hash::check($request::get('password'), Auth::user()->password)) {
             $session::put('reauth-token', [
                 'email' => Auth::user()->email,
-                'ts' => time()
+                'ts'    => time(),
             ]);
 
             return $this->printJson(true, ['redir' => URL::previous()]);

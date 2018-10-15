@@ -272,14 +272,14 @@ class MenuItem implements ArrayAccess, Arrayable
     public function toArray()
     {
         return [
-            'name'      => $this->getName(),
-            'label'     => $this->getLabel(),
-            'icon'      => $this->getIcon(),
-            'path'      => $this->getFullPath(),
-            'parent'    => $this->getParent(),
-            'position'  => $this->getPosition(),
-            'children'  => $this->children->values(),
-            'type'      => $this->type,
+            'name'         => $this->getName(),
+            'label'        => $this->getLabel(),
+            'icon'         => $this->getIcon(),
+            'path'         => $this->getFullPath(),
+            'parent'       => $this->getParent(),
+            'position'     => $this->getPosition(),
+            'children'     => $this->children->values(),
+            'type'         => $this->type,
             'isLastItem'   => $this->isLastItem,
         ];
     }
