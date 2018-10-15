@@ -1,7 +1,6 @@
 <?php
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
-
     Route::group(['prefix' => 'batches'], function () {
         Route::get('/list', 'BatchController@getBatchList')->name('batches.list');
     });
@@ -61,5 +60,4 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
         Route::get('/classes', 'GradeController@getGradeClasses')->middleware('ajax')->name('grade.classes.search');
     });
-
 });

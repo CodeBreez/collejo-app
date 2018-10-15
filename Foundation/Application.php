@@ -21,10 +21,8 @@ class Application extends IlluminateApplication
     public function isInstalled()
     {
         try {
-
             return (bool) DB::select('select migration from migrations');
         } catch (\Exception $e) {
-
             return false;
         }
     }
