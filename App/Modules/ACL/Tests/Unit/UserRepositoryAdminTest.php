@@ -38,6 +38,8 @@ class UserRepositoryAdminTest extends TestCase
 
         $model = $this->userRepository->createAdminUser($user->first_name, $user->email, '123');
 
+        $model->password = '123';
+
         $this->assertArrayValuesEquals($model, $user);
     }
 
