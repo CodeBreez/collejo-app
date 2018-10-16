@@ -18,8 +18,6 @@ Route::group(['prefix' => 'password'], function () {
     Route::post('email', 'ResetPasswordController@postEmail');
 });
 
-Route::group(['prefix' => 'dashboard'], function() {
-
+Route::group(['prefix' => 'dashboard'], function () {
     Route::get('profile', 'ProfileController@getProfile')->name('user.profile');
-
 });
