@@ -20,7 +20,3 @@ Route::group(['prefix' => 'dashboard/user'], function () {
     Route::get('new', 'ACLController@getNewUser')->name('user.new');
     Route::post('new', 'ACLController@postNewUser');
 });
-
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('my-profile', 'ProfileController@getProfile')->name('user.profile');
-});

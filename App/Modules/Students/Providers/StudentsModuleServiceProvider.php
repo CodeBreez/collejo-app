@@ -2,8 +2,11 @@
 
 namespace Collejo\App\Modules\Students\Providers;
 
+use Collejo\App\Modules\Students\Contracts\GuardianRepository as GuardianRepositoryContract;
 use Collejo\App\Modules\Students\Contracts\StudentRepository as StudentRepositoryContract;
+use Collejo\App\Modules\Students\Criteria\GuardiansListCriteria;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
+use Collejo\App\Modules\Students\Repositories\GuardianRepository;
 use Collejo\App\Modules\Students\Repositories\StudentRepository;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
 
@@ -18,6 +21,9 @@ class StudentsModuleServiceProvider extends ModuleServiceProvider
     {
         $this->app->bind(StudentRepositoryContract::class, StudentRepository::class);
         $this->app->bind(StudentListCriteria::class);
+
+        $this->app->bind(GuardianRepositoryContract::class, GuardianRepository::class);
+        $this->app->bind(GuardiansListCriteria::class);
     }
 
     /**

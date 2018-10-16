@@ -16,7 +16,7 @@ const Routes = {
                 return route.name === name;
             });
 
-            if(routes.length === 1){
+            if(routes.length >= 1){
 
                 let url = `/${routes[0].uri}`;
 
