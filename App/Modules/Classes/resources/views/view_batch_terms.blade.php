@@ -2,6 +2,16 @@
 
 @section('title', $batch->name)
 
+@section('styles')
+    @parent
+    <link href="{{ mix('/assets/classes/css/module.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
+@section('scripts')
+    @parent
+    <script type="text/javascript" src="{{ mix('/assets/classes/js/termsTimeline.js') }}"></script>
+@endsection
+
 @section('tools')
 
     @can('add_edit_batch')
@@ -20,20 +30,8 @@
 
 @section('tab')
 
-    <div class="card-group">
-
-        @foreach($batch->terms as $terms)
-
-            <div class="card">
-                <div class="card-header">{{ $terms->name }}</div>
-                <div class="card-block">
-                    <p class="card-text">Start Date : {{ $terms->start_date }}</p>
-                    <p class="card-text">End Date : {{ $terms->end_date }}</p>
-                </div>
-            </div>
-
-        @endforeach
-
+    <div id="termsTimeline">
+        <terms-timeline :terms="{{$batch->terms}}"></terms-timeline>
     </div>
 
 @endsection
