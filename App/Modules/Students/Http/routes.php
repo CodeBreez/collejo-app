@@ -1,7 +1,6 @@
 <?php
 
 Route::group(['prefix' => 'dashboard/students', 'middleware' => 'auth'], function () {
-
     Route::get('/list', 'StudentController@getStudentList')->name('students.list');
 
     Route::group(['prefix' => 'student', 'middleware' => 'auth'], function () {
@@ -14,15 +13,11 @@ Route::group(['prefix' => 'dashboard/students', 'middleware' => 'auth'], functio
         Route::post('/{id}/details/edit', 'StudentController@postStudentDetailEdit');
     });
 
-    Route::group(['prefix' => 'student_categories', 'middleware' => 'auth'], function() {
-
+    Route::group(['prefix' => 'student_categories', 'middleware' => 'auth'], function () {
         Route::get('/list', 'StudentCategoryController@getStudentCategoriesList')->name('student_categories.list');
     });
 
-    Route::group(['prefix' => 'guardians', 'middleware' => 'auth'], function() {
-
+    Route::group(['prefix' => 'guardians', 'middleware' => 'auth'], function () {
         Route::get('/list', 'GuardianController@getGuardiansList')->name('guardians.list');
     });
 });
-
-
