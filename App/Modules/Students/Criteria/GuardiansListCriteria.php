@@ -11,21 +11,21 @@ class GuardiansListCriteria extends BaseCriteria
 
     protected $criteria = [
         ['ssn', '%LIKE%', 'ssn'],
-        ['name', '%LIKE%', 'name']
+        ['name', '%LIKE%', 'name'],
     ];
 
     protected $selects = [
-        'name' => 'CONCAT(users.first_name, \' \', users.last_name)'
+        'name' => 'CONCAT(users.first_name, \' \', users.last_name)',
     ];
 
     protected $joins = [
-        ['users', 'guardians.user_id', 'users.id']
+        ['users', 'guardians.user_id', 'users.id'],
     ];
 
     protected $form = [
         'ssn' => [
-            'type' => 'text',
-            'label' => 'SSN'
-        ]
+            'type'  => 'text',
+            'label' => 'SSN',
+        ],
     ];
 }
