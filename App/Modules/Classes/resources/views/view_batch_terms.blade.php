@@ -9,7 +9,7 @@
 
 @section('scripts')
     @parent
-    <script type="text/javascript" src="{{ mix('/assets/classes/js/termsTimeline.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('/assets/classes/js/viewTerms.js') }}"></script>
 @endsection
 
 @section('tools')
@@ -30,7 +30,7 @@
 
 @section('tab')
 
-    <div id="termsTimeline">
+    <div id="viewTerms">
         <terms-timeline :terms="{{$batch->terms}}"></terms-timeline>
     </div>
 

@@ -17,12 +17,15 @@
             </li>
         </ul>
 
+        <b-table :items="terms" :fields="tableFields" responsive no-local-sorting></b-table>
     </div>
 </template>
 
 <script>
 
     export default {
+        mixins: [C.mixins.Trans, C.mixins.DateTimeHelpers],
+
         props: {
             terms: {
                 default: [],
@@ -33,6 +36,24 @@
         data() {
 
             return {
+                tableFields: [
+                    {
+                        key: 'name',
+                        label: this.trans('classes::term.name')
+                    },{
+                        key: 'start_date',
+                        label: this.trans('classes::term.start_date'),
+                        formatter: (value, key, item) => {
+                            return this.dateFormat(this.dateToUserTz(value))
+                        }
+                    },{
+                        key: 'end_date',
+                        label: this.trans('classes::term.end_date'),
+                        formatter: (value, key, item) => {
+                            return this.dateFormat(this.dateToUserTz(value))
+                        }
+                    },
+                ],
                 timeLine: {
                     blocks: [],
                     dates: []

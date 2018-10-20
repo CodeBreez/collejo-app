@@ -1,3 +1,5 @@
+@import "../../../../Base/resources/assets/sass/variables";
+
 .terms-list{
   ul{
     .term-layer{
@@ -23,6 +25,8 @@
         .term{
           padding: 10px;
           background-color: rgba(0, 123, 255, 0.5);
+          border-left: 2px solid #71a6de;
+          border-right: 2px solid #71a6de;
         }
       }
 
@@ -36,5 +40,9 @@
         }
       }
     }
+  }
+
+  .table-responsive{
+    margin-top: $box-padding * 2;
   }
 }
