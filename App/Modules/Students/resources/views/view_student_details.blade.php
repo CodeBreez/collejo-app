@@ -5,7 +5,7 @@
 @section('tools')
 
     @can('edit_student_general_details')
-        <a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-primary pull-right">
+        <a href="{{ route('student.details.edit', $student->id) }}" class="btn btn-primary">
             <i class="fa fa-fw fa-edit"></i> {{ trans('base::common.edit') }}
         </a>
     @endcan
@@ -25,7 +25,7 @@
             @if($student->picture)
                 <img class="img-lazy thumbnail img-responsive" src="{{ $student->picture->url('small') }}">
             @else
-                <img class="thumbnail img-responsive" src="{{ asset(elixir('/images/user_avatar_small.png')) }}">
+                <img class="thumbnail img-responsive" src="{{ asset('/images/user_avatar_small.png') }}">
             @endif
         </dl>
         <dl class="row">
@@ -33,7 +33,7 @@
             <dd class="col-sm-8">{{ $student->admission_number }}</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-4">{{ trans('students::student.admission_date') }}</dt>
+            <dt class="col-sm-4">{{ trans('students::student.admitted_on') }}</dt>
             <dd class="col-sm-8">{{ formatDate(toUserTz($student->admitted_on)) }}</dd>
         </dl>
         <dl class="row">

@@ -3,14 +3,73 @@
 namespace Collejo\App\Modules\Students\Http\Controllers;
 
 use Collejo\App\Http\Controller;
+use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Students\Contracts\StudentRepository;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
+use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
 use Request;
 
 class StudentController extends Controller
 {
     protected $studentRepository;
+    protected $classRepository;
+
+
+    public function getStudentAccountEdit($studentId)
+    {
+        $this->authorize('edit_user_account_info');
+
+        $this->middleware('reauth');
+
+        return view('students::edit_student_account', [
+            'student' => $this->studentRepository->findStudent($studentId),
+            'account_form_validator' => $this->jsValidator(UpdateStudentAccountRequest::class)
+        ]);
+    }
+
+    public function getStudentAccountView($studentId)
+    {
+        $this->authorize('view_user_account_info');
+
+        $this->middleware('reauth');
+
+        return view('students::view_student_account', [
+            'student' => $this->studentRepository->findStudent($studentId)
+        ]);
+    }
+
+    public function getStudentAddressesView($studentId)
+    {
+        $this->authorize('view_student_contact_details');
+
+        return view('students::view_student_addreses', [
+            'student' => $this->studentRepository->findStudent($studentId)
+        ]);
+    }
+
+    public function getStudentGuardiansView($studentId)
+    {
+        $student = $this->studentRepository->findStudent($studentId);
+
+        $this->authorize('view_student_guardian_details', $student);
+
+        return view('students::view_student_guardians_details', [
+            'student' => $student
+        ]);
+    }
+
+    public function getStudentClassesView($studentId)
+    {
+        $student = $this->studentRepository->findStudent($studentId);
+
+        $this->authorize('view_student_class_details', $student);
+
+        return view('students::view_classes_details', [
+            'student' => $student,
+            'classRepository' => $this->classRepository
+        ]);
+    }
 
     public function getStudentDetailEdit($studentId)
     {
@@ -99,8 +158,9 @@ class StudentController extends Controller
             ]);
     }
 
-    public function __construct(StudentRepository $studentRepository)
+    public function __construct(StudentRepository $studentRepository, ClassRepository $classRepository)
     {
         $this->studentRepository = $studentRepository;
+        $this->classRepository = $classRepository;
     }
 }

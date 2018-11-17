@@ -5,9 +5,10 @@ namespace Collejo\App\Modules\Students\Models;
 use Collejo\App\Modules\ACL\Models\Traits\CommonUserPropertiesTrait;
 use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\App\Modules\Classes\Models\Clasis;
+use Collejo\App\Modules\Media\Models\Media;
 use Collejo\Foundation\Database\Eloquent\Model;
-use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Student extends Model
 {
