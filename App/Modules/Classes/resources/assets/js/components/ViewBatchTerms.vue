@@ -36,6 +36,7 @@
         data() {
 
             return {
+                containerWidth:0,
                 tableFields: [
                     {
                         key: 'name',
@@ -58,7 +59,7 @@
                     blocks: [],
                     dates: []
                 },
-                multiplier: 1,
+                multiplier: 3,
                 startDate: null,
                 endDate: null,
                 totalDays:null,
@@ -82,20 +83,27 @@
 
             _renderTimeLine(){
 
-                this.startDate = moment(this.terms[0].start_date);
-                this.endDate = moment(this.terms[this.terms.length -1].end_date);
+                const containerWidth = this.$el.offsetWidth;
 
-                this.totalDays = this._getDiffInDays(this.startDate, this.endDate);
+                if(this.terms.length){
 
-                this.multiplier = (100 / this.totalDays).toFixed(2);
+                    this.startDate = moment(this.terms[0].start_date);
+                    this.endDate = moment(this.terms[this.terms.length -1].end_date);
 
-                this._calculateBlocks();
-                this._calculateDates();
+                    this.totalDays = this._getDiffInDays(this.startDate, this.endDate);
+
+                    //this.multiplier = (100 / this.totalDays).toFixed(2);
+
+                    this._calculateBlocks();
+                    this._calculateDates();
+                }
             },
 
             _calculateDates(){
 
                 let sd = this.startDate;
+
+                this.timeLine.dates = [];
 
                 while(sd.isSameOrBefore(this.endDate)){
 
@@ -118,19 +126,24 @@
 
                 const first = this.timeLine.dates[0];
 
-                first.from.set('date', this.startDate.get('date'));
-                first.days = this._getDiffInDays(first.from, first.to)+1;
-                first.width = Math.floor(first.days * this.multiplier);
+                if(first) {
+                    first.from.set('date', this.startDate.get('date'));
+                    first.days = this._getDiffInDays(first.from, first.to) + 1;
+                    first.width = first.days * this.multiplier;
+                }
 
                 const last = this.timeLine.dates[this.timeLine.dates.length-1];
 
-                last.to.set('date', this.endDate.get('date'));
-                last.days = this._getDiffInDays(last.from, last.to) +1;
-                last.width = Math.floor(last.days * this.multiplier);
-
+                if(last){
+                    last.to.set('date', this.endDate.get('date'));
+                    last.days = this._getDiffInDays(last.from, last.to) +1;
+                    last.width = last.days * this.multiplier;
+                }
             },
 
             _calculateBlocks(){
+
+                this.timeLine.blocks = [];
 
                 this.terms.forEach((term, index) => {
 

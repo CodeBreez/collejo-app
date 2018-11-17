@@ -1,130 +1,187 @@
 <template>
-    <b-card-group deck>
+    <div class="terms-list">
 
-        <edit-term v-for="(term, index) in termsList"
-                   :key="index"
-                   :term="term"
-                   @delete="handleDelete(index)"
-                    @edit="handleEdit(index)"></edit-term>
+        <ul class="list-group">
+            <li class="list-group-item term-layer">
+                <div :style="{width:timeLineItem.width + 'px'}" v-for="(timeLineItem, index) in timeLine.blocks" :key="index" class="block">
+                    <div v-if="timeLineItem.term" class="term">
+                        {{timeLineItem.term.name}}
+                    </div>
+                    <div v-if="!timeLineItem.term" class="vacation placeholder"></div>
+                </div>
+            </li>
+            <li class="list-group-item term-layer">
+                <div class="date" :style="{width:date.width + 'px'}" v-for="(date, index) in timeLine.dates" :key="index">
+                    {{date.label}}
+                </div>
+            </li>
+        </ul>
 
-        <b-card bg-variant="light" class="text-center">
-            <b-button @click.prevent="addNewTerm" variant="link">
-                <i class="fa fa-2x fa-plus"></i><br/>{{trans('classes::term.new_term')}}
-            </b-button>
-        </b-card>
-
-
-        <term-form @saved="handleSaved"
-                   @show="handleShow"
-                   @cancel="handleCancel"
-                   :entity="currentTerm"
-                   :batch="batch"
-                    :validation="validation"
-                    :modalOpen="modalOpen"></term-form>
-
-    </b-card-group>
+        <b-form @submit.prevent="onSubmit" novalidate>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="border-0" v-for="(field, index) in tableFields" :key="index" scope="col">{{field.label}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(term, index) in terms" :key="index">
+                        <td>
+                            <b-form-input type="text"
+                                          v-model="term.name"
+                                          name="name"
+                                          @input="_renderTimeLine()"></b-form-input>
+                        </td>
+                        <td>
+                            <datepicker input-class="form-control" v-model="term.start_date"
+                                        :format="getCalendarFormat()"
+                                        @input="_renderTimeLine()">
+                            </datepicker>
+                        </td>
+                        <td>
+                            <datepicker input-class="form-control" v-model="term.end_date"
+                                        :format="getCalendarFormat()"
+                                        @input="_renderTimeLine()">
+                            </datepicker>
+                        </td>
+                        <td>
+                            <b-button size="sm" variant="danger" :title="trans('classes::term.delete')"
+                            @click="removeRow(index)">
+                                <i class="fa fa-fw fa-trash"></i>
+                            </b-button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="align-right">
+                            <b-button @click="addNewRow()">{{ trans('base::common.add_row') }}</b-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <b-button type="submit" :disabled="submitDisabled" variant="primary">{{ trans('base::common.save') }}</b-button>
+            </div>
+        </b-form>
+    </div>
 </template>
 
 <script>
 
-    Vue.component('edit-term', require('./EditTerm'));
-    Vue.component('term-form', require('./EditTermForm'));
+    import ViewBatchTerms from './ViewBatchTerms.vue';
+    import Datepicker from 'vuejs-datepicker';
 
     export default {
-        mixins: [C.mixins.Routes, C.mixins.Trans],
 
-        props: {
+        components: {
+            Datepicker
+        },
+
+        extends: ViewBatchTerms,
+
+        mixins: [C.mixins.Routes, C.mixins.Trans, C.mixins.FormHelpers, C.mixins.DateTimeHelpers],
+
+        props:{
             validation: Object,
-            batch: {
-                default: {},
-                type: Object
-            },
-            terms: {
-                default: [],
-                type: Array
-            }
+            batch: Object
         },
 
-        data() {
+        data(){
+
             return {
-                termsList: [],
-                currentTerm: null,
-                currentIndex: null,
-                modalOpen: false
+                submitDisabled: false,
+                deleted: []
             }
         },
 
-        mounted() {
+        mounted(){
 
-            this.termsList = this.terms;
+            if(!this.terms.length){
+
+                this.addNewRow();
+            }
         },
 
-        methods: {
+        methods:{
 
-            addNewTerm() {
+            onSubmit(){
 
-                this.termsList.push(null);
+                this.submitDisabled = true;
 
-                this.handleEdit(this.termsList.length);
+                const requests = [];
+
+                this.terms.forEach((term, index) => {
+
+                    const action = term.id ? this.route('batch.term.edit', {
+                        id: this.batch.id,
+                        tid: term.id
+                    }) : this.route('batch.term.new', this.batch.id);
+
+                    requests.push(new Promise((resolve, reject) => {
+
+                        axios.post(action, term)
+                            .then(response => {
+
+                                this.terms[index] = response.data.data.term;
+
+                                resolve();
+                            })
+                            .catch(reject)
+                    }));
+                });
+
+                this.deleted.forEach(id => {
+
+                    requests.push(new Promise((resolve, reject) => {
+
+                        axios.delete(this.route('batch.term.delete', {
+                            id: this.batch.id,
+                            tid: id
+                        }))
+                        .then(() => {
+
+                            resolve();
+                        })
+                        .catch(reject)
+                    }));
+                });
+
+                Promise.all(requests).then(() => {
+
+                    this.submitDisabled = false;
+                    this.deleted = [];
+
+                    this._renderTimeLine();
+
+                    window.C.notification.success(this.trans('classes::term.terms_updated'));
+
+                }).catch(this.handleSubmitResponse);
             },
 
-            handleDelete(index) {
+            removeRow(index){
 
-                this.currentIndex = index;
+                if(this.terms[index]){
 
-                axios.delete(this.route('batch.term.delete', {
-                    id: this.batch.id,
-                    tid: this.termsList[this.currentIndex].id
-                }))
-                    .then(this.handleSubmitResponse)
-                    .then(response => {
+                    if(this.terms[index].id){
 
-                        this.termsList.splice(this.currentIndex, 1);
+                        this.deleted.push(this.terms[index].id);
+                    }
 
-                    })
-                    .catch(this.handleSubmitResponse);
-            },
-
-            handleShow() {
-
-                this.modalOpen = true;
-            },
-
-            handleEdit(index) {
-
-                this.setCurrentTerm(index);
-
-                this.modalOpen = true;
-            },
-
-            handleCancel(){
-
-                if(_.filter(_.values(_.pick(this.currentTerm, _.keys(this.validation))), (item) => {
-                    return item;
-                }).length <= 0){
-
-                    this.termsList = _.slice(this.termsList, 0, this.termsList.length - 1);
+                    this.terms.splice(index, 1);
                 }
 
-                this.modalOpen = false;
-
+                this._renderTimeLine();
             },
 
-            setCurrentTerm(index) {
+            addNewRow(){
 
-                this.currentIndex = index;
+                this.terms.push({
+                    name:null,
+                    start_date:null,
+                    end_date:null
+                });
 
-                this.currentTerm = Object.assign({}, this.termsList[this.currentIndex]);
-            },
-
-            handleSaved(form){
-
-                this.$set(this.termsList, this.currentIndex, Object.assign({}, form));
-
-                this.currentTerm = null;
-
-                this.modalOpen = false;
-            },
+                this._renderTimeLine();
+            }
         }
     }
 </script>

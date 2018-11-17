@@ -11,4 +11,6 @@ return [
     'term_created'         => trans('base::entities.term.singular').' created',
     'term_deleted'         => trans('base::entities.term.singular').' deleted',
     'term_updated'         => trans('base::entities.term.singular').' updated',
+
+    'terms_updated'         => trans('base::entities.term.plural').' updated',
 ];

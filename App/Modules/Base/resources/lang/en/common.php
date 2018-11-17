@@ -31,6 +31,7 @@ return [
     'clear_search'  => 'Clear',
     'sorting_by'    => 'Sorting by',
     'actions'       => 'Actions',
+    'add_row'       => 'Add Row',
 
     'dashboard'       => 'Dashboard',
     'go_to_dashboard' => 'Go To Dashboard',
