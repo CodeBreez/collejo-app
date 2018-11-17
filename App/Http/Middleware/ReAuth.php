@@ -4,9 +4,9 @@ namespace Collejo\App\Http\Middleware;
 
 use Auth;
 use Closure;
-use Session;
 use Collejo\App\Http\JsValidator\JsValidatorFactory;
 use Collejo\App\Modules\Auth\Http\Requests\ReauthRequest;
+use Session;
 
 class ReAuth
 {
@@ -37,7 +37,7 @@ class ReAuth
             }
 
             return response(view('auth::reauth', [
-                'reauth_form_validator' => JsValidatorFactory::create(ReauthRequest::class)
+                'reauth_form_validator' => JsValidatorFactory::create(ReauthRequest::class),
             ]));
         }
 
