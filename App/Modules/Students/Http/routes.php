@@ -1,7 +1,6 @@
 <?php
 
 Route::group(['prefix' => 'dashboard'], function () {
-
     Route::group(['prefix' => 'students'], function () {
         Route::get('/list', 'StudentController@getStudentList')->name('students.list');
     });
@@ -51,8 +50,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/list', 'StudentCategoryController@getStudentCategoriesList')->name('student_categories.list');
     });
 
-    Route::group(['prefix' => 'student_category'], function() {
-
+    Route::group(['prefix' => 'student_category'], function () {
         Route::get('/new', 'StudentCategoryController@getStudentCategoryNew')->name('student_category.new');
         Route::post('/new', 'StudentCategoryController@postStudentCategoryNew');
 
@@ -60,15 +58,13 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::post('/{id}/edit', 'StudentCategoryController@postStudentCategoryEdit');
     });
 
-    Route::group(['prefix' => 'guardians'], function() {
-
+    Route::group(['prefix' => 'guardians'], function () {
         Route::get('/search', 'GuardianController@getGuardiansSearch')->middleware('ajax')->name('guardians.search');
 
         Route::get('/list', 'GuardianController@getGuardiansList')->name('guardians.list');
     });
 
-    Route::group(['prefix' => 'guardian'], function() {
-
+    Route::group(['prefix' => 'guardian'], function () {
         Route::get('/new', 'GuardianController@getGuardianNew')->name('guardian.new');
         Route::post('/new', 'GuardianController@postGuardianNew');
 
