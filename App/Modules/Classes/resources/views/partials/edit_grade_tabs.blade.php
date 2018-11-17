@@ -2,7 +2,6 @@
 
     @if(is_null($grade))
 
-        <ul class="nav nav-pills flex-md-column">
         <li class="nav-item">
             <a class="nav-link active" href="#">{{ trans('classes::grade.grade_details') }}</a>
         </li>
