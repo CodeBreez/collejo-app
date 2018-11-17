@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Auth\Http\Controllers;
 
 use Collejo\App\Http\Controller;
+use Auth;
 
 class ProfileController extends Controller
 {

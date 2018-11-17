@@ -9,6 +9,7 @@ use Collejo\App\Http\Middleware\RedirectIfAuthenticated;
 use Collejo\App\Http\Middleware\TrimStrings;
 use Collejo\App\Http\Middleware\TrustProxies;
 use Collejo\App\Http\Middleware\VerifyCsrfToken;
+use Collejo\App\Http\Middleware\ReAuth;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -54,7 +55,7 @@ class Kernel extends HttpKernel
             StartSession::class,
             AuthenticateSession::class,
             ShareErrorsFromSession::class,
-            //VerifyCsrfToken::class,
+            VerifyCsrfToken::class,
             SubstituteBindings::class,
         ],
 
@@ -73,7 +74,8 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth'       => Authenticate::class,
-        'auth.basic' => AuthenticateWithBasicAuth::class,
+        'reauth' => ReAuth::class,
+        //'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings'   => SubstituteBindings::class,
         'can'        => Authorize::class,
         'guest'      => RedirectIfAuthenticated::class,

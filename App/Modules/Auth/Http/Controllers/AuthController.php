@@ -3,6 +3,11 @@
 namespace Collejo\App\Modules\Auth\Http\Controllers;
 
 use Collejo\App\Http\Controller;
+use Request;
+use Session;
+use Auth;
+use URL;
+use Hash;
 
 class AuthController extends Controller
 {

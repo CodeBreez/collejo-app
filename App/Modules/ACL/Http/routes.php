@@ -1,22 +1,25 @@
 <?php
 
-Route::group(['prefix' => 'dashboard/users'], function () {
-    Route::get('manage', 'ACLController@getManage')->name('users.manage');
-});
+Route::group(['prefix' => 'dashboard', 'middleware' => 'reauth'], function () {
 
-Route::group(['prefix' => 'dashboard/user'], function () {
-    Route::get('{id}/view', 'ACLController@getUserDetailsView')->name('user.details.view');
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('manage', 'ACLController@getManage')->name('users.manage');
+    });
 
-    Route::get('{id}/edit', 'ACLController@getUserDetailsEdit')->name('user.details.edit');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('{id}/view', 'ACLController@getUserDetailsView')->name('user.details.view');
 
-    Route::post('{id}/edit', 'ACLController@postUserDetailsEdit');
+        Route::get('{id}/edit', 'ACLController@getUserDetailsEdit')->name('user.details.edit');
 
-    Route::get('{id}/roles/view', 'ACLController@getUserRolesView')->name('user.roles.view');
+        Route::post('{id}/edit', 'ACLController@postUserDetailsEdit');
 
-    Route::get('{id}/roles/edit', 'ACLController@getUserRolesEdit')->name('user.roles.edit');
+        Route::get('{id}/roles/view', 'ACLController@getUserRolesView')->name('user.roles.view');
 
-    Route::post('{id}/roles/edit', 'ACLController@postUserRolesEdit');
+        Route::get('{id}/roles/edit', 'ACLController@getUserRolesEdit')->name('user.roles.edit');
 
-    Route::get('new', 'ACLController@getNewUser')->name('user.new');
-    Route::post('new', 'ACLController@postNewUser');
+        Route::post('{id}/roles/edit', 'ACLController@postUserRolesEdit');
+
+        Route::get('new', 'ACLController@getNewUser')->name('user.new');
+        Route::post('new', 'ACLController@postNewUser');
+    });
 });

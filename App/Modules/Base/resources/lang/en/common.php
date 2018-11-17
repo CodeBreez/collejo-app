@@ -32,6 +32,7 @@ return [
     'sorting_by'    => 'Sorting by',
     'actions'       => 'Actions',
     'add_row'       => 'Add Row',
+    'continue'       => 'Continue',
 
     'dashboard'       => 'Dashboard',
     'go_to_dashboard' => 'Go To Dashboard',
