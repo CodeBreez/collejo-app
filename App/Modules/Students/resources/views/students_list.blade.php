@@ -13,8 +13,9 @@
 
     @can('add_edit_student')
 
-        <a href="{{ route('student.new') }}" class="btn btn-primary"><i
-                    class="fa fa-fw fa-plus"></i> {{ trans('students::student.new_student') }}</a>
+        <a href="{{ route('student.new') }}" class="btn btn-primary">
+            <i class="fa fa-fw fa-plus"></i> {{ trans('students::student.new_student') }}
+        </a>
 
     @endcan
 

@@ -15,12 +15,10 @@
             </template>
 
             <template slot="actions" slot-scope="row">
-                <b-button v-b-tooltip variant="outline-secondary" :title="trans('classes::batch.view_terms')"
-                          :href="route('batch.terms.view', row.item.id)">
+                <b-button v-b-tooltip variant="outline-secondary" :href="route('batch.terms.view', row.item.id)">
                     {{ trans('classes::term.terms') }}
                 </b-button>
-                <b-button v-b-tooltip variant="outline-secondary" :title="trans('classes::batch.view_grades')"
-                          :href="route('batch.grades.view', row.item.id)">
+                <b-button v-b-tooltip variant="outline-secondary" :href="route('batch.grades.view', row.item.id)">
                     {{ trans('classes::grade.grades') }}
                 </b-button>
             </template>

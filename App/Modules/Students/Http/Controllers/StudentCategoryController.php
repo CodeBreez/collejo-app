@@ -96,7 +96,7 @@ class StudentCategoryController extends Controller
         $this->authorize('list_student_categories');
 
         return view('students::student_categories_list', [
-                'student_categories' => $this->studentRepository->getStudentCategories()->paginate(config('collejo.pagination.perpage')),
+                'student_categories' => $this->studentRepository->getStudentCategories()->paginate(),
             ]);
     }
 
