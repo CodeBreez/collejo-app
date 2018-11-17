@@ -93,4 +93,5 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/{id}/account/edit', 'GuardianController@getGuardianAccountEdit')->name('guardian.account.edit');
         Route::post('/{id}/account/edit', 'GuardianController@postGuardianAccountEdit');
     });
+
 });
