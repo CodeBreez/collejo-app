@@ -4,7 +4,7 @@ namespace Collejo\App\Modules\Students\Http\Requests;
 
 use Collejo\Foundation\Http\Requests\Request;
 
-class UpdateStudentRequest extends Request
+class UpdateStudentDetailsRequest extends Request
 {
     public function rules()
     {

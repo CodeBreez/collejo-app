@@ -2,7 +2,9 @@
 
 namespace Collejo\App\Modules\Media\Providers;
 
+use Collejo\App\Modules\Classes\Contracts\MediaRepositoryContract;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
+use MediaRepository;
 
 class MediaModuleServiceProvider extends ModuleServiceProvider
 {
@@ -13,7 +15,7 @@ class MediaModuleServiceProvider extends ModuleServiceProvider
      */
     public function register()
     {
-
+        $this->app->bind(MediaRepositoryContract::class, MediaRepository::class);
     }
 
     /**

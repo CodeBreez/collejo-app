@@ -8,6 +8,7 @@ use Collejo\App\Modules\Students\Contracts\StudentRepository;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
+use Collejo\App\Modules\Students\Http\Requests\UpdateStudentDetailsRequest;
 use Request;
 
 class StudentController extends Controller
@@ -78,11 +79,11 @@ class StudentController extends Controller
         return view('students::edit_student_details', [
             'student'                => $this->studentRepository->findStudent($studentId),
             'student_categories'     => $this->studentRepository->getStudentCategories()->paginate(),
-            'student_form_validator' => $this->jsValidator(UpdateStudentRequest::class),
+            'student_details_form_validator' => $this->jsValidator(UpdateStudentDetailsRequest::class),
         ]);
     }
 
-    public function postStudentDetailEdit(UpdateStudentRequest $request, $studentId)
+    public function postStudentDetailEdit(UpdateStudentDetailsRequest $request, $studentId)
     {
         $this->authorize('edit_student_general_details');
 

@@ -5,6 +5,8 @@ return [
 
     'admission_number' => 'Admission Number',
     'admitted_on'      => 'Admitted On',
+    'first_name'             => 'First Name',
+    'last_name'             => 'Last Name',
     'name'             => 'Name',
     'email'         => 'Email',
     'password'  => 'Password',
