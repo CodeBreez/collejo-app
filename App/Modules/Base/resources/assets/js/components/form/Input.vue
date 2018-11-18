@@ -16,7 +16,8 @@
                        :options="options"
                        @input="_updateInput()"></b-form-select>
 
-        <b-form-input v-if="type === 'text' || type === 'number'" :type="type"
+
+        <b-form-input v-if="['text', 'number', 'email', 'password'].indexOf(type) >= 0" :type="type"
                       v-model="inputValue"
                       :name="name"
                       :placeholder="placeholder"
