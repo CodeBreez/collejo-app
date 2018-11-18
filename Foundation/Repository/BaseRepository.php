@@ -11,6 +11,8 @@ abstract class BaseRepository
 {
     protected $sessionOwner;
 
+    protected $appends = [];
+
     /**
      * Performs a search using the given criteria object.
      *

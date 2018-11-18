@@ -2,12 +2,21 @@
 
     <b-form-group :label="label">
 
-        <datepicker v-if="type === 'date'" input-class="form-control" v-model="inputValue"
+        <datepicker v-if="type === 'date'" input-class="form-control"
+                    v-model="inputValue"
                     :format="getCalendarFormat()"
                     @input="_updateInput()">
         </datepicker>
 
-        <b-form-input v-else :type="type"
+        <b-form-select v-if="type === 'select'"
+                       v-model="inputValue"
+                       :name="name"
+                       value-field="id"
+                       text-field="name"
+                       :options="options"
+                       @input="_updateInput()"></b-form-select>
+
+        <b-form-input v-if="type === 'text' || type === 'number'" :type="type"
                       v-model="inputValue"
                       :name="name"
                       :placeholder="placeholder"
@@ -39,7 +48,8 @@
             name: null,
             label: null,
             placeholder: null,
-            value: null
+            value: null,
+            options: null,
         },
 
         data(){

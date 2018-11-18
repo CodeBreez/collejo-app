@@ -2,6 +2,7 @@
 
 namespace Collejo\App\Modules\Media\Http\Controllers;
 
+use Collejo\App\Modules\Media\Contracts\MediaRepositoryContract as MediaRepository;
 use Collejo\App\Http\Controller;
 use Exception;
 use Request;
@@ -10,18 +11,18 @@ use Uploader;
 class MediaController extends Controller
 {
 
+    private $mediaRepository;
+
 	public function postUpload(Request $request)
 	{
 
 		if ($request::hasFile('file')) {
 
-			$media = Uploader::upload($request::file('file'), $request::get('bucket'));
+			$media = $this->mediaRepository->upload($request::file('file'), $request::get('bucket'));
 
-			return $this->printPartial(view('media::partials.file', [
-										'media' => $media,
-										'maxFiles' => intval($request::get('max')),
-										'fieldName' => $request::get('name')
-									]));
+			return $this->printJson(true, [
+                'media' => $media,
+            ]);
 		}
 
 		throw new Exception('a file must be uploaded');
@@ -39,6 +40,11 @@ class MediaController extends Controller
 		$id = $parts[0];
 		$size = isset($parts[1]) ? $parts[1] : 'original';
 
-		return Uploader::getMedia($id, $bucketName, $size);
+		return $this->mediaRepository->getMedia($id, $bucketName, $size);
 	}
+
+    public function __construct(MediaRepository $mediaRepository)
+    {
+        $this->mediaRepository = $mediaRepository;
+    }
 }

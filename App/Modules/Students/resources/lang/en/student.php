@@ -7,6 +7,7 @@ return [
     'admitted_on'      => 'Admitted On',
     'first_name'             => 'First Name',
     'last_name'             => 'Last Name',
+    'student_category'  => 'Student Category',
     'name'             => 'Name',
     'email'         => 'Email',
     'password'  => 'Password',
@@ -26,4 +27,5 @@ return [
     'account_details' => 'Account Details',
 
     'empty_list' => 'There are no Students in the system for the given criteria.',
+    'student_updated' => 'Student updated.',
 ];

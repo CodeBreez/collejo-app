@@ -20,7 +20,7 @@ class Student extends Model
 
     protected $dates = ['admitted_on'];
 
-    protected $appends = ['class', 'grade', 'batch'];
+    protected $appends = ['class', 'grade', 'batch', 'first_name', 'last_name', 'date_of_birth', 'email'];
 
     /**
      * Returns a collection of Guardians connections to this Student.

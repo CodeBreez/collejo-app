@@ -2,9 +2,9 @@
 
 namespace Collejo\App\Modules\Media\Providers;
 
-use Collejo\App\Modules\Classes\Contracts\MediaRepositoryContract;
+use Collejo\App\Modules\Media\Contracts\MediaRepositoryContract;
+use Collejo\App\Modules\Media\Repositories\MediaRepository;
 use Collejo\Foundation\Modules\BaseModuleServiceProvider as ModuleServiceProvider;
-use MediaRepository;
 
 class MediaModuleServiceProvider extends ModuleServiceProvider
 {

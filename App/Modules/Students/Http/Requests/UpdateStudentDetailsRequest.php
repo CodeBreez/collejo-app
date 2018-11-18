@@ -11,7 +11,7 @@ class UpdateStudentDetailsRequest extends Request
         $createRequest = new CreateStudentRequest();
 
         return array_merge($createRequest->rules(), [
-                'admission_number' => 'required|unique:students,admission_number,'.$this->get('sid'),
+                'admission_number' => 'required|unique:students,admission_number,'.$this->json('id'),
             ]);
     }
 

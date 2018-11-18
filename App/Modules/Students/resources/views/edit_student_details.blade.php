@@ -2,6 +2,11 @@
 
 @section('title', $student ? trans('students::student.edit_student') : trans('students::student.new_student'))
 
+@section('styles')
+    @parent
+    <link href="{{ mix('/assets/media/css/uploader.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
 @section('scripts')
     @parent
     <script type="text/javascript" src="{{ mix('/assets/media/js/uploader.js') }}"></script>
@@ -35,6 +40,7 @@
                 @if($student)
                 :entity="{{$student}}"
                 @endif
+                :student-categories="{{$student_categories}}"
                 :validation="{{$student_details_form_validator->renderRules()}}">
 
         </edit-student-details>

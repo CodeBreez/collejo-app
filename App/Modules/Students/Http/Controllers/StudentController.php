@@ -78,7 +78,7 @@ class StudentController extends Controller
 
         return view('students::edit_student_details', [
             'student'                => $this->studentRepository->findStudent($studentId),
-            'student_categories'     => $this->studentRepository->getStudentCategories()->paginate(),
+            'student_categories'     => $this->studentRepository->getStudentCategories()->get(),
             'student_details_form_validator' => $this->jsValidator(UpdateStudentDetailsRequest::class),
         ]);
     }
@@ -134,7 +134,7 @@ class StudentController extends Controller
 
         return view('students::edit_student_details', [
             'student'                => null,
-            'student_categories'     => $this->studentRepository->getStudentCategories()->paginate(),
+            'student_categories'     => $this->studentRepository->getStudentCategories()->get(),
             'student_form_validator' => $this->jsValidator(CreateStudentRequest::class),
         ]);
     }

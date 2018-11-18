@@ -11,9 +11,16 @@ class Media extends Model
 
     protected $fillable = ['mime', 'bucket', 'ext'];
 
+    protected $appends = ['small_url'];
+
     public function url($size = null)
     {
     	return '/media/' . $this->bucket . '/' . $this->id . (!is_null($size) ? '_' . $size : '')  . '.' . $this->ext;
+    }
+
+    public function getSmallUrlAttribute()
+    {
+        return $this->url('small');
     }
 
     public function getFileNameAttribute()
