@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'reauth'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth' ,'reauth']], function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('manage', 'ACLController@getManage')->name('users.manage');
     });

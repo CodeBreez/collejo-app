@@ -17,6 +17,12 @@ class StudentController extends Controller
     protected $classRepository;
 
 
+    /** Get Student account edit form
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentAccountEdit($studentId)
     {
         $this->authorize('edit_user_account_info');
@@ -29,6 +35,13 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Get Student account view
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentAccountView($studentId)
     {
         $this->authorize('view_user_account_info');
@@ -40,6 +53,13 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Get Student Addresses view
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentAddressesView($studentId)
     {
         $this->authorize('view_student_contact_details');
@@ -49,6 +69,13 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Get Student Guardians view
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentGuardiansView($studentId)
     {
         $student = $this->studentRepository->findStudent($studentId);
@@ -60,6 +87,13 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Get Student Classes view
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentClassesView($studentId)
     {
         $student = $this->studentRepository->findStudent($studentId);
@@ -72,6 +106,13 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Get Student details edit form
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentDetailEdit($studentId)
     {
         $this->authorize('edit_student_general_details');
@@ -83,6 +124,14 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Save Student details
+     *
+     * @param UpdateStudentDetailsRequest $request
+     * @param $studentId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postStudentDetailEdit(UpdateStudentDetailsRequest $request, $studentId)
     {
         $this->authorize('edit_student_general_details');
@@ -92,6 +141,13 @@ class StudentController extends Controller
         return $this->printJson(true, [], trans('students::student.student_updated'));
     }
 
+    /**
+     * Get Student details view template
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function getStudentDetailView($studentId)
     {
         $student = $this->studentRepository->findStudent($studentId);

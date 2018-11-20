@@ -8,6 +8,13 @@ use Collejo\Foundation\Repository\BaseRepository;
 
 class GuardianRepository extends BaseRepository implements GuardianRepositoryContract
 {
+
+    /**
+     * Get guardians by the given criteria
+     *
+     * @param $criteria
+     * @return \Collejo\Foundation\Repository\CacheableResult
+     */
     public function getGuardians($criteria)
     {
         return $this->search($criteria);

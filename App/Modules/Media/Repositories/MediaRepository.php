@@ -16,7 +16,14 @@ use Uuid;
 Class MediaRepository extends BaseRepository implements MediaRepositoryContract
 {
 
-
+    /**
+     * Upload a file to a given bucket
+     *
+     * @param UploadedFile $file
+     * @param $bucketName
+     * @return mixed
+     * @throws Exception
+     */
     public static function upload(UploadedFile $file, $bucketName)
     {
         if (!$file->isValid()) {
@@ -63,6 +70,14 @@ Class MediaRepository extends BaseRepository implements MediaRepositoryContract
         return $media;
     }
 
+    /**
+     * Gets media file by id and bucket name
+     *
+     * @param $id
+     * @param $bucketName
+     * @param $size
+     * @throws Exception
+     */
     public static function getMedia($id, $bucketName, $size)
     {
         $media = Media::where(['id' => $id, 'bucket' => $bucketName])->first();

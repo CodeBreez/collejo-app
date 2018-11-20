@@ -29,12 +29,18 @@ class LoginController extends Controller
     }
 
     /**
-     * ON successful authentication redirect to the intended url or to the default route.
+     * On successful authentication redirect to the intended url or to the default route.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function authenticated()
     {
+        // This is required to make the reauth screen not appear right after login
+        Session::put('reauth-token', [
+            'email' => Auth::user()->email,
+            'ts'    => time(),
+        ]);
+
         return $this->printJson(true, [
             'redir' => Session::get('url.intended', $this->redirectTo),
         ]);
@@ -44,6 +50,7 @@ class LoginController extends Controller
      * Returns the login form view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function showLoginForm()
     {

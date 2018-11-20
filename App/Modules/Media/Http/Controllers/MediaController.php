@@ -13,6 +13,13 @@ class MediaController extends Controller
 
     private $mediaRepository;
 
+    /**
+     * Uploads a file
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws Exception
+     */
 	public function postUpload(Request $request)
 	{
 
@@ -28,6 +35,14 @@ class MediaController extends Controller
 		throw new Exception('a file must be uploaded');
 	}
 
+    /**
+     * Retrieves a file by path
+     * If the file is an image retrieve the resized version of it
+     *
+     * @param $bucketName
+     * @param $fileName
+     * @return mixed
+     */
 	public function getMedia($bucketName, $fileName)
 	{
 		$parts = explode('.', $fileName);

@@ -7,10 +7,13 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::post('login', 'LoginController@login');
 
-    Route::get('reauth', 'AuthController@getReauth')->name('auth.reauth');
-    Route::post('reauth', 'AuthController@postReauth');
+    Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('logout', 'LoginController@logout')->name('auth.logout');
+        Route::get('reauth', 'AuthController@getReauth')->name('auth.reauth');
+        Route::post('reauth', 'AuthController@postReauth');
+
+        Route::get('logout', 'LoginController@logout')->name('auth.logout');
+    });
 });
 
 Route::group(['prefix' => 'password'], function () {
@@ -18,6 +21,6 @@ Route::group(['prefix' => 'password'], function () {
     Route::post('email', 'ResetPasswordController@postEmail');
 });
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('profile', 'ProfileController@getProfile')->name('user.profile');
 });

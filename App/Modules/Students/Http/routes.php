@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::group(['prefix' => 'students'], function () {
         Route::get('/list', 'StudentController@getStudentList')->name('students.list');
     });
