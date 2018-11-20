@@ -19,5 +19,4 @@ interface StudentRepository
     public function createStudent(array $attributes);
 
     public function getStudents(StudentListCriteria $criteria);
-
 }

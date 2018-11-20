@@ -6,5 +6,4 @@ use Collejo\App\Modules\ACL\Http\Requests\CreateUserRequest;
 
 class UpdateStudentAccountRequest extends CreateUserRequest
 {
-
 }

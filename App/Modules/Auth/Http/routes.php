@@ -8,7 +8,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'LoginController@login');
 
     Route::group(['middleware' => 'auth'], function () {
-
         Route::get('reauth', 'AuthController@getReauth')->name('auth.reauth');
         Route::post('reauth', 'AuthController@postReauth');
 
