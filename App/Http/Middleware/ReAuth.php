@@ -2,11 +2,11 @@
 
 namespace Collejo\App\Http\Middleware;
 
+use Auth;
+use Closure;
 use Collejo\App\Http\JsValidator\JsValidatorFactory;
 use Collejo\App\Modules\Auth\Http\Requests\ReauthRequest;
 use Session;
-use Auth;
-use Closure;
 
 class ReAuth
 {

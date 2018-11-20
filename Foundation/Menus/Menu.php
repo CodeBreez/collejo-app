@@ -120,8 +120,7 @@ class Menu
                 $children->push($child);
             }
 
-            if($children->last()){
-
+            if ($children->last()) {
                 $children->last()->isLastItem = true;
             }
 

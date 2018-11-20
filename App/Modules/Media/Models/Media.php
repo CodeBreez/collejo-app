@@ -6,7 +6,6 @@ use Collejo\Foundation\Database\Eloquent\Model;
 
 class Media extends Model
 {
-
     protected $table = 'media';
 
     protected $fillable = ['mime', 'bucket', 'ext'];
@@ -14,18 +13,19 @@ class Media extends Model
     protected $appends = ['small_url'];
 
     /**
-     * Url for the file
+     * Url for the file.
      *
      * @param null $size
+     *
      * @return string
      */
     public function url($size = null)
     {
-    	return '/media/' . $this->bucket . '/' . $this->id . (!is_null($size) ? '_' . $size : '')  . '.' . $this->ext;
+        return '/media/'.$this->bucket.'/'.$this->id.(!is_null($size) ? '_'.$size : '').'.'.$this->ext;
     }
 
     /**
-     * For images get the small version url
+     * For images get the small version url.
      *
      * @return string
      */
@@ -35,12 +35,12 @@ class Media extends Model
     }
 
     /**
-     * Get the filename with extension
+     * Get the filename with extension.
      *
      * @return string
      */
     public function getFileNameAttribute()
     {
-    	return $this->id . '.' . $this->ext;
+        return $this->id.'.'.$this->ext;
     }
 }

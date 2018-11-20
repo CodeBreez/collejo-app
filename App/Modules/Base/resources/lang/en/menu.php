@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'administration' => 'Administration'
+    'administration' => 'Administration',
 ];

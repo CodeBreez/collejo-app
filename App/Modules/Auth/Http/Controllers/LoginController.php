@@ -2,11 +2,11 @@
 
 namespace Collejo\App\Modules\Auth\Http\Controllers;
 
+use Auth;
 use Collejo\App\Http\Controller;
 use Collejo\App\Modules\Auth\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Session;
-use Auth;
 
 class LoginController extends Controller
 {
@@ -50,8 +50,9 @@ class LoginController extends Controller
     /**
      * Returns the login form view.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showLoginForm()
     {
