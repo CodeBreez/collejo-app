@@ -16,7 +16,7 @@ class Student extends Model
 
     protected $table = 'students';
 
-    protected $fillable = ['admission_number', 'admitted_on', 'image_id'];
+    protected $fillable = ['admission_number', 'admitted_on', 'image_id', 'student_category_id'];
 
     protected $dates = ['admitted_on'];
 

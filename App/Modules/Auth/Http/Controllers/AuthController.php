@@ -2,8 +2,8 @@
 
 namespace Collejo\App\Modules\Auth\Http\Controllers;
 
-use Auth;
 use Collejo\App\Http\Controller;
+use Auth;
 use Hash;
 use Request;
 use Session;

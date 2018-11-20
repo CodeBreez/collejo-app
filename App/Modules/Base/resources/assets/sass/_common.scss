@@ -58,3 +58,7 @@
         background-color:transparent !important;
     }
 }
+
+.dropdown-toggle::after{
+    vertical-align: 0.18em;
+}

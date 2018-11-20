@@ -39,6 +39,16 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
         return Student::findOrFail($id);
     }
 
+    public function findStudentCategory($studentCategoryId)
+    {
+        return StudentCategory::findOrFail($studentCategoryId);
+    }
+
+    public function assignStudentCategory($studentCategoryId, $studentId)
+    {
+        $this->findStudent($studentId)->studentCategory()->save($this->findStudentCategory($studentCategoryId));
+    }
+
     /**
      * Updates the given Student and the User with the given attributes.
      *

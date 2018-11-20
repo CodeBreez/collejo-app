@@ -36,7 +36,6 @@
                           :label="trans('students::student.date_of_birth')"
                           :validator="$v"></c-form-input>
         </div>
-        {{form}}
 
         <div class="col-md-12">
             <b-button type="submit" :disabled="submitDisabled" variant="primary">{{ trans('base::common.save') }}</b-button>

@@ -5,7 +5,7 @@ return [
 
     'student_new' => 'New Student',
 
-    'guardians' => 'Guardians',
+    'guardians' => 'Parents and Guardians',
 
     'student_categories' => 'Student Categories',
 ];

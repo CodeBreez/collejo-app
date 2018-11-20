@@ -6,6 +6,7 @@ use Collejo\App\Http\Controller;
 use Collejo\App\Modules\Auth\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Session;
+use Auth;
 
 class LoginController extends Controller
 {
