@@ -3,6 +3,7 @@
 return [
     'students' => 'Students',
 
+    'student_image' => 'Student Image',
     'admission_number'       => 'Admission Number',
     'admitted_on'            => 'Admitted On',
     'first_name'             => 'First Name',

@@ -1,14 +1,18 @@
 <template>
-    <div class="media-uploader border rounded" @mouseover="showUploadIcon" @mouseleave="hideUploadIcon">
 
-        <b-img-lazy :class="{'iconVisible':iconVisible}" v-if="imageUrl" class="image rounded" :src="imageUrl"></b-img-lazy>
+    <b-form-group :label="label">
+        <div class="media-uploader border rounded" @mouseover="showUploadIcon" @mouseleave="hideUploadIcon">
 
-        <b-form-file v-model="file" plain :title="trans('media::uploader.placeholder')"></b-form-file>
+            <b-img-lazy :class="{'iconVisible':iconVisible}" v-if="imageUrl" class="image rounded" :src="imageUrl"></b-img-lazy>
 
-        <span v-if="!imageUrl || iconVisible" class="fa fa-fw fa-upload fa-3x"></span>
+            <b-form-file v-model="file" plain :title="trans('media::uploader.placeholder')"></b-form-file>
 
-        <b-progress v-if="progress > 0" :value="progress" :max="max" show-progress animated></b-progress>
-    </div>
+            <span v-if="!imageUrl || iconVisible" class="fa fa-fw fa-upload fa-3x"></span>
+
+            <b-progress v-if="progress > 0" :value="progress" :max="max" show-progress animated></b-progress>
+        </div>
+
+    </b-form-group>
 </template>
 
 <script>
@@ -17,6 +21,7 @@
         mixins: [C.mixins.Routes, C.mixins.Trans],
 
         props: {
+            label: null,
             value: null,
             bucket: String
         },
@@ -94,7 +99,7 @@
 
             value(newValue){
 
-                this.imageUrl = `/media/${this.bucket}/${newValue}_small.jpg`;
+                this.imageUrl = `/media/${this.bucket}/${newValue}_small.jpeg`;
             }
         },
     }

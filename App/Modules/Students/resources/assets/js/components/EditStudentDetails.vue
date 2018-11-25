@@ -3,7 +3,9 @@
 
         <div class="col-md-6">
 
-            <media-uploader v-model="form.image_id" bucket="student_pictures"></media-uploader>
+            <media-uploader v-model="form.image_id"
+                            :label="trans('students::student.student_image')"
+                            bucket="student_pictures"></media-uploader>
 
             <c-form-input type="date"
                           v-model="form.admitted_on"
