@@ -5,9 +5,9 @@
 
             <b-img-lazy :class="{'iconVisible':iconVisible}" v-if="imageUrl" class="image rounded" :src="imageUrl"></b-img-lazy>
 
-            <b-form-file v-model="file" plain :title="trans('media::uploader.placeholder')"></b-form-file>
-
             <span v-if="!imageUrl || iconVisible" class="fa fa-fw fa-upload fa-3x"></span>
+
+            <b-form-file v-model="file" plain :title="trans('media::uploader.placeholder')"></b-form-file>
 
             <b-progress v-if="progress > 0" :value="progress" :max="max" show-progress animated></b-progress>
         </div>
@@ -71,15 +71,8 @@
                 })
                 .then(response => {
 
-                    const image = new Image();
-
-                    image.onload = () => {
-
-                        this.imageUrl = response.data.data.media.small_url;
-                        this.progress = 0;
-                    };
-
-                    image.src = response.data.data.media.small_url;
+                    this.imageUrl = response.data.data.media.small_url;
+                    this.progress = 0;
 
                     this.$emit('input', response.data.data.media.id);
                 })

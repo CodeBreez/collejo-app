@@ -10,8 +10,6 @@ class Media extends Model
 
     protected $fillable = ['mime', 'bucket', 'ext'];
 
-    protected $appends = ['small_url'];
-
     /**
      * Url for the file.
      *
