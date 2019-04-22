@@ -1,14 +1,20 @@
 @import "variables";
 
-.navbar-brand {
-    background: url("../../images/collejo.svg") left center no-repeat;
-    padding-left: 2.188rem;
-    height: 30px;
-    background-size: contain;
+.navbar{
+    .navbar-brand {
+        background: url("../../images/collejo.svg") left center no-repeat;
+        padding-left: 2.188rem;
+        height: 30px;
+        background-size: contain;
 
-    .brand-name {
-        position: relative;
-        top: -0.3125rem
+        .brand-name {
+            position: relative;
+            top: -0.3125rem
+        }
+    }
+
+    .dropdown-menu{
+        font-size: 0.875rem !important;
     }
 }
 

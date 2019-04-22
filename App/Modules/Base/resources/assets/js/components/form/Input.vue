@@ -91,7 +91,7 @@
 
             _updateInput() {
 
-                if(this.inputValue !== null || this.inputValue !== ''){
+                if(this.inputValue !== undefined && this.inputValue !== null){
 
                     this.$emit('input', this.inputValue);
                 }
