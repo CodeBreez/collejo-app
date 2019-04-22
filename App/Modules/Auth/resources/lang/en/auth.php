@@ -8,9 +8,9 @@ return [
     'throttle'    => 'Too many login attempts. Please try again in :seconds seconds.',
     'remember_me' => 'Remember Me',
     'login'       => 'Login',
-    'reauth'      => 'Security Check',
+    'reauth'      => 'Security Checkpoint',
 
-    'reauth_msg'     => 'Enter your password again',
+    'reauth_msg'     => 'Enter your password to continue.',
     'reauth_expired' => 'Authentication must be confirmed to save data',
 
 ];

@@ -12,7 +12,7 @@
                 <b-nav-item-dropdown v-for="menu in menus"
 									 :key="menu.name"
 									 v-if="menu.position === 'left'"
-                                     :text="'<i class=\'fa '+menu.icon+'\'></i>' + menu.label" left>
+                                     :html="'<i class=\'fa '+menu.icon+'\'></i>' + menu.label" left>
 
 					<div v-for="subMenu in menu.children" :key="subMenu.name">
 						<b-dropdown-item
@@ -39,7 +39,7 @@
 				<span v-for="menu in menus" :key="menu.name">
 
 					<b-nav-item-dropdown v-if="menu.position === 'right'"
-                                         :text="'<i class=\'fa '+menu.icon+'\'></i>' + menu.label" right>
+                                         :html="'<i class=\'fa '+menu.icon+'\'></i>' + menu.label" right>
 
 						<div v-for="subMenu in menu.children" :key="subMenu.name">
 							<b-dropdown-item
