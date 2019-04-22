@@ -14,7 +14,6 @@ use Request;
 
 class ACLController extends Controller
 {
-
     public function getUserAccountView($userId)
     {
         $this->authorize('view_user_account_info');
@@ -29,7 +28,7 @@ class ACLController extends Controller
         $this->authorize('edit_user_account_info');
 
         return view('acl::edit_user_account', [
-            'user'  => present($this->userRepository->findUser($userId), UserAccountPresenter::class),
+            'user'                => present($this->userRepository->findUser($userId), UserAccountPresenter::class),
             'user_form_validator' => $this->jsValidator(UpdateUserAccountRequest::class),
         ]);
     }
@@ -202,7 +201,7 @@ class ACLController extends Controller
             'users'    => present($this->userRepository
                 ->getUsers($criteria)
                 ->with('roles')
-                ->paginate(), UserListPresenter::class)
+                ->paginate(), UserListPresenter::class),
         ]);
     }
 

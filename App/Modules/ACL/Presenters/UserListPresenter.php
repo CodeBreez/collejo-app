@@ -6,7 +6,6 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class UserListPresenter extends BasePresenter
 {
-
     protected $appends = [
         'name',
     ];

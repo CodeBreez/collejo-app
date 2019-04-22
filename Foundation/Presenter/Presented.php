@@ -2,16 +2,15 @@
 
 namespace Collejo\Foundation\Presenter;
 
-use Countable;
 use ArrayAccess;
-use JsonSerializable;
-use IteratorAggregate;
-use Illuminate\Contracts\Support\Jsonable;
+use Countable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use IteratorAggregate;
+use JsonSerializable;
 
 class Presented implements ArrayAccess, Arrayable, Countable, IteratorAggregate, Jsonable, JsonSerializable
 {
-
     protected $collection;
 
     public function jsonSerialize()

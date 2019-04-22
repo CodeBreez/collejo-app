@@ -12,17 +12,15 @@ class CollectionPresenter
 
     public function present()
     {
-        $presenter = new $this->presenter;
+        $presenter = new $this->presenter();
 
-        return $this->collection->map(function($item) use ($presenter){
-
+        return $this->collection->map(function ($item) use ($presenter) {
             $presented = $item->setHidden($presenter->getHiddenKeys())->append($presenter->getAppendedKeys())->toArray();
 
-            foreach($presenter->getLoadKeys() as $loadKey){
-
+            foreach ($presenter->getLoadKeys() as $loadKey) {
                 $modelPresenter = new ModelPresenter($item->$loadKey, $presenter->getLoadPresenter($loadKey));
 
-                $presented[$loadKey] =  $modelPresenter->present();
+                $presented[$loadKey] = $modelPresenter->present();
             }
 
             return $presented;

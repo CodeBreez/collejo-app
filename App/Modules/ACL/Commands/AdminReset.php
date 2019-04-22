@@ -57,9 +57,8 @@ class AdminReset extends Command
         $user = $this->userRepository->findByEmail($email);
 
         $this->userRepository->update([
-            'password' => $password
+            'password' => $password,
         ], $user->id);
-
     }
 
     /**

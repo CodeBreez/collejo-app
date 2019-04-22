@@ -10,14 +10,14 @@ class UpdateUserAccountRequest extends Request
     {
         return [
             'email'         => 'required|email|unique:users,email,'.$this->json('id'),
-            'password'  => ''
+            'password'      => '',
         ];
     }
 
     public function attributes()
     {
         return [
-            'email'         => trans('acl::user.email'),
+            'email'            => trans('acl::user.email'),
             'password'         => trans('acl::user.password'),
         ];
     }

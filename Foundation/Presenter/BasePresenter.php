@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 
 abstract class BasePresenter
 {
-
     protected $load = [];
 
     protected $hidden = [];
@@ -25,8 +24,7 @@ abstract class BasePresenter
 
     public function getLoadKeys()
     {
-        return array_map(function($key){
-
+        return array_map(function ($key) {
             return Str::camel($key);
         }, array_keys($this->load));
     }

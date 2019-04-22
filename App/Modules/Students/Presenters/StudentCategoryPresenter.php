@@ -6,5 +6,4 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class StudentCategoryPresenter extends BasePresenter
 {
-
 }

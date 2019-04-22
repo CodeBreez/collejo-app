@@ -6,7 +6,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PaginatedPresenter
 {
-
     protected $paginator;
 
     protected $presenter;

@@ -8,10 +8,9 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class StudentDetailsPresenter extends BasePresenter
 {
-
     protected $load = [
-        'user' => UserBasicInformationPresenter::class,
-        'picture' => MediaBasicInformationPresenter::class,
+        'user'             => UserBasicInformationPresenter::class,
+        'picture'          => MediaBasicInformationPresenter::class,
         'student_category' => StudentCategoryPresenter::class,
     ];
 
