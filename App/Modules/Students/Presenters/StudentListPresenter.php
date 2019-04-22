@@ -7,7 +7,6 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class StudentListPresenter extends BasePresenter
 {
-
     protected $load = [
         'user' => UserBasicInformationPresenter::class,
     ];

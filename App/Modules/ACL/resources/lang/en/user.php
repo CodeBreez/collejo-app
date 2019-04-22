@@ -14,9 +14,9 @@ return [
 
     'date_of_birth' => 'Date of Birth',
 
-    'user_details' => 'Details',
-    'user_roles'   => 'Roles',
-    'edit_user'    => 'Edit User Details',
+    'user_details'    => 'Details',
+    'user_roles'      => 'Roles',
+    'edit_user'       => 'Edit User Details',
     'account_details' => 'Account',
 
     'empty_list' => 'There are no Users for the given criteria',

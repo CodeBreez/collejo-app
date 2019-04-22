@@ -13,7 +13,7 @@ class ModelPresenter
 
     public function present()
     {
-        $presenter = new $this->presenter;
+        $presenter = new $this->presenter();
 
         $presentedModel = $this->model->loadMissing($presenter->getLoadKeys())
             ->setHidden($presenter->getHiddenKeys())
@@ -21,15 +21,13 @@ class ModelPresenter
 
         $presented = $presentedModel->toArray();
 
-        foreach($presenter->getLoadKeys() as $loadKey){
-
+        foreach ($presenter->getLoadKeys() as $loadKey) {
             $loadedKeyModel = $presentedModel->$loadKey;
 
-            if($loadedKeyModel){
+            if ($loadedKeyModel) {
+                $modelPresenter = new self($loadedKeyModel, $presenter->getLoadPresenter($loadKey));
 
-                $modelPresenter = new ModelPresenter($loadedKeyModel, $presenter->getLoadPresenter($loadKey));
-
-                $presented[Str::snake($loadKey)] =  $modelPresenter->present();
+                $presented[Str::snake($loadKey)] = $modelPresenter->present();
             }
         }
 

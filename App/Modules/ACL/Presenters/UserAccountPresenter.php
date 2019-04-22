@@ -6,7 +6,6 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class UserAccountPresenter extends BasePresenter
 {
-
     protected $hidden = [
         'password',
     ];

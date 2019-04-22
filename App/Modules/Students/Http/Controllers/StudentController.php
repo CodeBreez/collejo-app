@@ -107,11 +107,13 @@ class StudentController extends Controller
     }
 
     /**
-     * Get the student classes edit form
+     * Get the student classes edit form.
      *
      * @param $studentId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentClassesEdit($studentId)
     {
@@ -120,7 +122,7 @@ class StudentController extends Controller
         $this->authorize('assign_student_to_class', $student);
 
         return view('students::edit_classes_details', [
-            'student' => $student
+            'student' => $student,
         ]);
     }
 
@@ -234,8 +236,8 @@ class StudentController extends Controller
         $this->authorize('create_student');
 
         return view('students::edit_student_details', [
-            'student'                => null,
-            'student_categories'     => $this->studentRepository->getStudentCategories()->get(),
+            'student'                        => null,
+            'student_categories'             => $this->studentRepository->getStudentCategories()->get(),
             'student_details_form_validator' => $this->jsValidator(CreateStudentRequest::class),
         ]);
     }

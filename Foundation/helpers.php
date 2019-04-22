@@ -1,35 +1,26 @@
 <?php
 
 /**
- * Present an object to the view
+ * Present an object to the view.
  */
-
 if (!function_exists('present')) {
     function present($object, $presenter)
     {
-
         if ($object instanceof Illuminate\Database\Eloquent\Model) {
-
             $presenter = new Collejo\Foundation\Presenter\ModelPresenter($object, $presenter);
-
         } elseif ($object instanceof Illuminate\Contracts\Pagination\LengthAwarePaginator) {
-
             $presenter = new Collejo\Foundation\Presenter\PaginatedPresenter($object, $presenter);
-
-        } elseif ($object instanceof Illuminate\Support\Collection){
-
+        } elseif ($object instanceof Illuminate\Support\Collection) {
             $presenter = new Collejo\Foundation\Presenter\CollectionPresenter($object, $presenter);
-
-        }else{
-
-            throw Exception('Cannot present object of type' . get_class($object));
+        } else {
+            throw Exception('Cannot present object of type'.get_class($object));
         }
 
         return $presenter->present();
     }
 }
 
-/**
+/*
  * Converts a user timestamp to UTC to be stored on db.
  */
 if (!function_exists('toUTC')) {

@@ -6,7 +6,6 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class MediaBasicInformationPresenter extends BasePresenter
 {
-
     protected $hidden = [
         'created_by',
         'updated_by',
