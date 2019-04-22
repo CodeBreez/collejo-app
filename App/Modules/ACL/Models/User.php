@@ -14,10 +14,6 @@ class User extends Authenticatable
 
     protected $fillable = ['first_name', 'last_name', 'date_of_birth', 'email', 'password'];
 
-    protected $appends = ['name'];
-
-    protected $hidden = ['password', 'remember_token'];
-
     /**
      * Determines if a given permission is assigned to this User.
      *

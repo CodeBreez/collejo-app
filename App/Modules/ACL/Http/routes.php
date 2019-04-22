@@ -18,6 +18,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'reauth']], func
 
         Route::post('{id}/roles/edit', 'ACLController@postUserRolesEdit');
 
+        Route::get('{id}/account/view', 'ACLController@getUserAccountView')->name('user.account.view');
+
+        Route::get('{id}/account/edit', 'ACLController@getUserAccountEdit')->name('user.account.edit');
+
+        Route::post('{id}/account/edit', 'ACLController@postUserAccountEdit');
+
         Route::get('new', 'ACLController@getNewUser')->name('user.new');
         Route::post('new', 'ACLController@postNewUser');
     });

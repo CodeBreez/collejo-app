@@ -6,7 +6,7 @@
                 <a :href="route('user.details.view', row.item.id)">{{row.value}}</a>
             </template>
 
-            <template slot="created_at" slot-scope="row">
+            <template slot="updated_at" slot-scope="row">
                 {{dateFormat(dateToUserTz(row.value))}}
             </template>
 
@@ -54,8 +54,8 @@
                         label: this.trans('acl::user.email'),
                         sortable: true
                     }, {
-                        key: 'created_at',
-                        label: this.trans('acl::user.created_at'),
+                        key: 'updated_at',
+                        label: this.trans('acl::user.updated_at'),
                         sortable: true
                     }, {
                         key: 'actions',

@@ -21,7 +21,6 @@
 @endsection
 
 @section('table')
-
     <div id="usersList">
         <users-list
                 @if($users->count())

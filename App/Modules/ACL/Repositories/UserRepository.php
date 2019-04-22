@@ -287,9 +287,12 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function update(array $attributes, $id)
     {
         if (isset($attributes['password'])) {
-            $attributes['password'] = Hash::make($attributes['password']);
+            if(!empty($attributes['password'])){
+                $attributes['password'] = Hash::make($attributes['password']);
+            }else{
+                unset($attributes['password']);
+            }
         }
-
         return User::findOrFail($id)->update($attributes);
     }
 

@@ -6,11 +6,43 @@ use Collejo\App\Http\Controller;
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
 use Collejo\App\Modules\ACL\Criteria\UserListCriteria;
 use Collejo\App\Modules\ACL\Http\Requests\CreateUserRequest;
+use Collejo\App\Modules\ACL\Http\Requests\UpdateUserAccountRequest;
 use Collejo\App\Modules\ACL\Http\Requests\UpdateUserRequest;
+use Collejo\App\Modules\ACL\Presenters\UserAccountPresenter;
+use Collejo\App\Modules\ACL\Presenters\UserListPresenter;
 use Request;
 
 class ACLController extends Controller
 {
+
+    public function getUserAccountView($userId)
+    {
+        $this->authorize('view_user_account_info');
+
+        return view('acl::view_user_account', [
+            'user' => $this->userRepository->findUser($userId),
+        ]);
+    }
+
+    public function getUserAccountEdit($userId)
+    {
+        $this->authorize('edit_user_account_info');
+
+        return view('acl::edit_user_account', [
+            'user'  => present($this->userRepository->findUser($userId), UserAccountPresenter::class),
+            'user_form_validator' => $this->jsValidator(UpdateUserAccountRequest::class),
+        ]);
+    }
+
+    public function postUserAccountEdit(UpdateUserAccountRequest $request, $userId)
+    {
+        $this->authorize('edit_user_account_info');
+
+        $this->userRepository->update($request->all(), $userId);
+
+        return $this->printJson(true, [], trans('acl::user.user_updated'));
+    }
+
     /**
      * @param $userId
      *
@@ -167,10 +199,10 @@ class ACLController extends Controller
 
         return view('acl::users_list', [
             'criteria' => $criteria,
-            'users'    => $this->userRepository
+            'users'    => present($this->userRepository
                 ->getUsers($criteria)
                 ->with('roles')
-                ->paginate(),
+                ->paginate(), UserListPresenter::class)
         ]);
     }
 
