@@ -3,11 +3,12 @@
 namespace Collejo\App\Modules\Employees\Repositories;
 
 use Collejo\App\Modules\ACL\Contracts\UserRepository;
-use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Employees\Contracts\EmployeeRepository as EmployeeRepositoryContract;
-use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
-use Collejo\App\Modules\Students\Models\Student;
-use Collejo\App\Modules\Students\Models\StudentCategory;
+use Collejo\App\Modules\Employees\Models\Employee;
+use Collejo\App\Modules\Employees\Models\EmployeeCategory;
+use Collejo\App\Modules\Employees\Models\EmployeeDepartment;
+use Collejo\App\Modules\Employees\Models\EmployeeGrade;
+use Collejo\App\Modules\Employees\Models\EmployeePosition;
 use Collejo\Foundation\Repository\BaseRepository;
 use DB;
 
@@ -207,6 +208,6 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
     {
     	parent::boot();
 
-    	$this->userRepository = app()->make(UserRepositoryContract::class);
+    	$this->userRepository = app()->make(UserRepository::class);
     }
 }

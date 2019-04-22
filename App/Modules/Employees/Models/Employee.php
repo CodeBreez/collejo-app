@@ -13,7 +13,14 @@ class Employee extends Model
 
     protected $table = 'employees';
 
-    protected $fillable = ['user_id', 'employee_number', 'joined_on', 'employee_position_id', 'employee_department_id', 'employee_grade_id', 'image_id'];
+    protected $fillable = [
+        'employee_number',
+        'joined_on',
+        'employee_position_id',
+        'employee_department_id',
+        'employee_grade_id',
+        'image_id'
+    ];
 
     protected $dates = ['joined_on'];
 
