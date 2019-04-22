@@ -20,8 +20,6 @@ class Student extends Model
 
     protected $dates = ['admitted_on'];
 
-    protected $appends = ['class', 'grade', 'batch', 'first_name', 'last_name', 'date_of_birth', 'email'];
-
     /**
      * Returns a collection of Guardians connections to this Student.
      *
@@ -39,7 +37,7 @@ class Student extends Model
      */
     public function studentCategory()
     {
-        return $this->hasOne(StudentCategory::class);
+        return $this->hasOne(StudentCategory::class, 'id', 'student_category_id');
     }
 
     /**

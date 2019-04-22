@@ -44,13 +44,12 @@
         </div>
     </div>
 
-
     <div class="clearfix"></div>
 
     <div class="col-xs-6">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{{ trans('common.saving') }}">{{ trans('common.save') }}</button>
+                <button type="submit" class="btn btn-primary">{{ trans('base::common.save') }}</button>
             </div>
         </div>
     </div>

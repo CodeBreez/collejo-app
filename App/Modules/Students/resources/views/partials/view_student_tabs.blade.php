@@ -17,21 +17,21 @@
     @endcan
 
     @can('view_student_guardian_details')
-        <li class="nav-item">
+        <!--li class="nav-item">
             <a class="nav-link {{ active_class(if_route(['student.guardians.view'])) }}"
                href="{{ route('student.guardians.view', $student->id) }}">
                 {{ trans('students::student.guardians_details') }}
             </a>
-        </li>
+        </li-->
     @endcan
 
     @can('edit_student_contact_details')
-	    <li class="nav-item">
+	    <!--li class="nav-item">
 	    	<a class="nav-link {{ active_class(if_route(['student.addresses.view'])) }}"
                href="{{ route('student.addresses.view', $student->id) }}">
                 {{ trans('students::student.contact_details') }}
             </a>
-	    </li>
+	    </li-->
     @endcan
 
     @can('view_user_account_info')

@@ -14,6 +14,12 @@
                           :validator="$v"></c-form-input>
 
             <c-form-input type="text"
+                          v-model="form.admission_number"
+                          name="admission_number"
+                          :label="trans('students::student.admission_number')"
+                          :validator="$v"></c-form-input>
+
+            <c-form-input type="text"
                           v-model="form.first_name"
                           name="first_name"
                           :label="trans('students::student.first_name')"
@@ -60,6 +66,7 @@
             return {
                 action: this.entity ? this.route('student.details.edit', this.entity.id) : this.route('student.new')
             }
-        }
+        },
+
     }
 </script>

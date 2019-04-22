@@ -23,7 +23,7 @@
     <div class="col-sm-6">
         <dl class="row">
             @if($student->picture)
-                <img class="img-lazy thumbnail img-responsive" src="{{ $student->picture->url('small') }}">
+                <img class="img-lazy thumbnail img-responsive" src="{{ $student->picture->small_url }}">
             @else
                 <img class="thumbnail img-responsive" src="{{ asset('/images/user_avatar_small.png') }}">
             @endif
@@ -43,6 +43,10 @@
         <dl class="row">
             <dt class="col-sm-4">{{ trans('students::student.date_of_birth') }}</dt>
             <dd class="col-sm-8">{{ $student->date_of_birth }}</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-4">{{ trans('students::student.student_category') }}</dt>
+            <dd class="col-sm-8">{{ $student->student_category->name }}</dd>
         </dl>
     </div>
 

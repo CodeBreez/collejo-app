@@ -9,6 +9,8 @@ use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentDetailsRequest;
+use Collejo\App\Modules\Students\Presenters\StudentDetailsPresenter;
+use Collejo\App\Modules\Students\Presenters\StudentListPresenter;
 use Request;
 
 class StudentController extends Controller
@@ -94,6 +96,34 @@ class StudentController extends Controller
         ]);
     }
 
+    public function getStudentClassAssign($studentId)
+    {
+        $this->authorize('assign_student_to_class');
+
+        return [
+            'student' => $this->studentRepository->findStudent($studentId),
+            'batches' => $this->classRepository->activeBatches()->get(),
+        ];
+    }
+
+    /**
+     * Get the student classes edit form
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getStudentClassesEdit($studentId)
+    {
+        $student = $this->studentRepository->findStudent($studentId);
+
+        $this->authorize('assign_student_to_class', $student);
+
+        return view('students::edit_classes_details', [
+            'student' => $student
+        ]);
+    }
+
     /**
      * Get Student Classes view.
      *
@@ -129,7 +159,7 @@ class StudentController extends Controller
         $this->authorize('edit_student_general_details');
 
         return view('students::edit_student_details', [
-            'student'                        => $this->studentRepository->findStudent($studentId),
+            'student'                        => present($this->studentRepository->findStudent($studentId), StudentDetailsPresenter::class),
             'student_categories'             => $this->studentRepository->getStudentCategories()->get(),
             'student_details_form_validator' => $this->jsValidator(UpdateStudentDetailsRequest::class),
         ]);
@@ -170,7 +200,7 @@ class StudentController extends Controller
         $this->authorize('view_student_general_details', $student);
 
         return view('students::view_student_details', [
-            'student' => $student,
+            'student' => present($student, StudentDetailsPresenter::class),
         ]);
     }
 
@@ -206,7 +236,7 @@ class StudentController extends Controller
         return view('students::edit_student_details', [
             'student'                => null,
             'student_categories'     => $this->studentRepository->getStudentCategories()->get(),
-            'student_form_validator' => $this->jsValidator(CreateStudentRequest::class),
+            'student_details_form_validator' => $this->jsValidator(CreateStudentRequest::class),
         ]);
     }
 
@@ -225,8 +255,7 @@ class StudentController extends Controller
 
         return view('students::students_list', [
                 'criteria' => $criteria,
-                'students' => $this->studentRepository->getStudents($criteria)->with('user')
-                    ->paginate(),
+                'students' => present($this->studentRepository->getStudents($criteria)->paginate(), StudentListPresenter::class),
             ]);
     }
 
