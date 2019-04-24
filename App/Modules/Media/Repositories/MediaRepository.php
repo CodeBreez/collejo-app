@@ -5,12 +5,13 @@ namespace Collejo\App\Modules\Media\Repositories;
 use Collejo\App\Modules\Media\Contracts\MediaRepositoryContract;
 use Collejo\App\Modules\Media\Helpers\Bucket;
 use Collejo\App\Modules\Media\Models\Media;
+use Collejo\Foundation\Exceptions\DisplayableException;
 use Collejo\Foundation\Repository\BaseRepository;
-use Exception;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
-use Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Exception;
+use Storage;
 
 class MediaRepository extends BaseRepository implements MediaRepositoryContract
 {
@@ -27,17 +28,17 @@ class MediaRepository extends BaseRepository implements MediaRepositoryContract
     public static function upload(UploadedFile $file, $bucketName)
     {
         if (!$file->isValid()) {
-            throw new Exception(trans('media::uploader.invalid_file'));
+            throw new DisplayableException(trans('media::uploader.invalid_file'));
         }
 
         $bucket = Bucket::find($bucketName);
 
-        if (!empty($bucket->mimeTypes()) && !in_array($file->getMimeType(), $bucket->mimeTypes())) {
-            throw new Exception(trans('media::uploader.invalid_file_type'));
+        if (!in_array($file->getMimeType(), $bucket->mimeTypes())) {
+            throw new DisplayableException(trans('media::uploader.invalid_file_type'));
         }
 
-        if (!empty($bucket->maxSize()) && !in_array($file->getClientSize(), $bucket->maxSize())) {
-            throw new Exception(trans('media::uploader.invalid_file_size'));
+        if ($file->getSize() > $bucket->maxSize()) {
+            throw new DisplayableException(trans('media::uploader.invalid_file_size'));
         }
 
         $disk = Storage::disk($bucket->disk());

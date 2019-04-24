@@ -71,10 +71,18 @@
                 })
                 .then(response => {
 
-                    this.imageUrl = response.data.data.media.small_url;
+                    if(response.data.success){
+
+                        this.imageUrl = response.data.data.media.small_url;
+
+                        this.$emit('input', response.data.data.media.id);
+                    }else{
+
+                        window.C.notification.warning(response.data.message)
+                    }
+
                     this.progress = 0;
 
-                    this.$emit('input', response.data.data.media.id);
                 })
                 .catch(this.handleSubmitResponse);
             }
@@ -92,7 +100,10 @@
 
             value(newValue){
 
-                this.imageUrl = `/media/${this.bucket}/${newValue}_small.jpeg`;
+                if(newValue){
+                    this.imageUrl = `/media/${this.bucket}/${newValue}_small.jpeg`;
+                }
+
             }
         },
     }
