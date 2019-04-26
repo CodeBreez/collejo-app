@@ -2,22 +2,41 @@
 
 namespace Collejo\App\Modules\Base\Http\Controllers;
 
-use Auth;
-use Cache;
 use Collejo\App\Http\Controller;
 use Illuminate\Routing\Router;
 use Module;
+use Auth;
+use Cache;
+use Gate;
 
 class AssetsController extends Controller
 {
     public function getFrontAssets(Router $router)
     {
         $content = 'C.langs='.json_encode($this->getLocals())
-            .';'.'C.routes='.json_encode($this->getRoutes($router));
+            .';'.'C.routes='.json_encode($this->getRoutes($router))
+            .';'.'C.permissions='.json_encode($this->getPermissions());
 
         return response($content)
             ->header('Cache-Control', 'max-age='.config('fe_asset_cache_ttl'))
             ->header('Content-Type', 'application/javascript');
+    }
+
+    /**
+     * Returns a cached array of permissions for the application for current User.
+     *
+     * @return mixed
+     */
+    private function getPermissions()
+    {
+        if(!Auth::user()){
+
+            return [];
+        }
+
+        return Auth::user()->permissions->map(function($permission){
+            return $permission->permission;
+        });
     }
 
     /**
@@ -35,7 +54,6 @@ class AssetsController extends Controller
             foreach ($router->getRoutes() as $route) {
                 if ($route->getName()) {
                     $routes[] = [
-                        'methods' => $route->methods(),
                         'name'    => $route->getName(),
                         'uri'     => $route->uri(),
                     ];
