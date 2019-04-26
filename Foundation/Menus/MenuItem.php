@@ -31,6 +31,8 @@ class MenuItem implements ArrayAccess, Arrayable
 
     public $isLastItem = false;
 
+    public $isVisible = false;
+
     /**
      * Sets the type of the menu item.
      *
@@ -196,23 +198,20 @@ class MenuItem implements ArrayAccess, Arrayable
     /**
      * Returns whether the menu item is visible to the user in session.
      *
-     * @return bool
+     * @return void
      */
-    public function isVisible()
+    public function updateVisibility($user)
     {
-        if ($this->children->count()) {
-            foreach ($this->children as $child) {
-                if ($child->permission && Gate::allows($child->permission)) {
-                    return true;
-                }
-            }
-        } else {
-            if ($this->permission && Gate::allows($this->permission)) {
-                return true;
-            }
+        $globallyVisibleMenusNames = ['user.profile', 'auth.logout'];
+
+        if($this->type == 's' || in_array($this->name, $globallyVisibleMenusNames)){
+
+            $this->isVisible = true;
+            return;
         }
 
-        return false;
+        $this->isVisible = $user ? $user->hasPermission($this->permission) : false;
+
     }
 
     /**
@@ -281,6 +280,7 @@ class MenuItem implements ArrayAccess, Arrayable
             'children'     => $this->children->values(),
             'type'         => $this->type,
             'isLastItem'   => $this->isLastItem,
+            'isVisible'     => $this->isVisible
         ];
     }
 
