@@ -14,7 +14,7 @@ class CreateStudentCategoriesTable extends Migration
     {
         Schema::create('student_categories', function (Blueprint $table) {
             $table->string('id', 45)->primary();
-            $table->string('name', 20)->unique();
+            $table->string('name', 20);
             $table->string('code', 10)->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
