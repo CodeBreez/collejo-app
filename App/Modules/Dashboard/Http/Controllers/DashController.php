@@ -3,6 +3,8 @@
 namespace Collejo\App\Modules\Dashboard\Http\Controllers;
 
 use Collejo\App\Http\Controller;
+use Menu;
+use Auth;
 
 class DashController extends Controller
 {
