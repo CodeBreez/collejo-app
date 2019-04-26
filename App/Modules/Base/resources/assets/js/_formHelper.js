@@ -140,13 +140,26 @@ const FormHelpers = {
 
                     if (!response.data.success) {
 
-                        window.C.notification.warning(response.data.message);
-                    } else if (response.data.errors) {
+                        if (response.data.errors) {
 
-                        window.C.notification.danger(response.data.message);
-                    }
+                            const msgDetails =  [];
 
-                    if (response.data.success) {
+                            Object.keys(response.data.errors).forEach(field => {
+
+                                response.data.errors[field].forEach(msg => {
+                                    msgDetails.push(this.trans('base::' + msg, field));
+                                });
+                            });
+
+                            window.C.notification.danger(response.data.message, true, msgDetails);
+
+                        }else{
+
+                            window.C.notification.warning(response.data.message);
+
+                        }
+
+                    } else if (response.data.success) {
 
                         window.C.notification.success(response.data.message);
                     }

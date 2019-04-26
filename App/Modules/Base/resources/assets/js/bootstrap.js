@@ -9,6 +9,7 @@ import Vuelidate from 'vuelidate';
  * Common collejo Vue mixins
  */
 import {Routes} from './_routes';
+import {Permissions} from './_permissions';
 import {Trans} from './_trans';
 import {Notification} from './_notificationHelper';
 import {FormHelpers} from './_formHelper';
@@ -54,7 +55,7 @@ window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 window.axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 window.axios.interceptors.response.use(response => {
 
-	if(response.data.data.redir){
+	if(response.data.data && response.data.data.redir){
 
         window.location = response.data.data.redir;
 	}
@@ -71,6 +72,7 @@ window.axios.interceptors.response.use(response => {
 window.C = {
     mixins : {
         Routes: Routes,
+        Permissions: Permissions,
         Trans: Trans,
         FormHelpers: FormHelpers,
         TableHelper: TableHelper,

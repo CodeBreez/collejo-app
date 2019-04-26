@@ -7,11 +7,13 @@ const Notification = {
          *
          * @param message
          * @param dismissible
+         * @param msgDetails
          */
-        success(message, dismissible = true) {
+        success(message, dismissible = true, msgDetails = null) {
 
             this._showMessage({
                 message,
+                msgDetails,
                 dismissible
             });
         },
@@ -21,11 +23,13 @@ const Notification = {
          *
          * @param message
          * @param dismissible
+         * @param msgDetails
          */
-        danger(message, dismissible = true) {
+        danger(message, dismissible = true, msgDetails = null) {
 
             this._showMessage({
                 message,
+                msgDetails,
                 dismissible,
                 variant: 'danger'
             });
@@ -36,11 +40,13 @@ const Notification = {
          *
          * @param message
          * @param dismissible
+         * @param msgDetails
          */
-        warning(message, dismissible = true) {
+        warning(message, dismissible = true, msgDetails = null) {
 
             this._showMessage({
                 message,
+                msgDetails,
                 dismissible,
                 variant: 'warning'
             });
@@ -51,11 +57,13 @@ const Notification = {
          *
          * @param message
          * @param dismissible
+         * @param msgDetails
          */
-        info(message, dismissible = true) {
+        info(message, dismissible = true, msgDetails = null) {
 
             this._showMessage({
                 message,
+                msgDetails,
                 dismissible,
                 variant: 'info'
             });
