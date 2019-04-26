@@ -14,7 +14,9 @@ class ProfileController extends Controller
      */
     public function getProfile()
     {
-        return redirect(route('user.details.view', Auth::user()->id));
+        return view('auth::view_profile_details', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function __construct()
