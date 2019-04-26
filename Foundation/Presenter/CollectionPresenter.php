@@ -3,6 +3,7 @@
 namespace Collejo\Foundation\Presenter;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class CollectionPresenter
 {
@@ -20,7 +21,7 @@ class CollectionPresenter
             foreach ($presenter->getLoadKeys() as $loadKey) {
                 $modelPresenter = new ModelPresenter($item->$loadKey, $presenter->getLoadPresenter($loadKey));
 
-                $presented[$loadKey] = $modelPresenter->present();
+                $presented[Str::snake($loadKey)] = $modelPresenter->present();
             }
 
             return $presented;
