@@ -7,5 +7,5 @@ return [
 
     'guardians' => 'Parents and Guardians',
 
-    'student_categories' => 'Student Categories',
+    'student_categories' => 'Categories',
 ];
