@@ -3,6 +3,7 @@
 namespace Collejo\App\Modules\Employees\Models;
 
 use Collejo\App\Modules\ACL\Models\Traits\CommonUserPropertiesTrait;
+use Collejo\App\Modules\Media\Models\Media;
 use Collejo\Foundation\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -12,6 +12,7 @@ class EmployeeListCriteria extends BaseCriteria{
 
 	protected $criteria = [
 			['employee_department_id', '=', 'employee_department'],
+            ['employee_position_id', '=', 'employee_position'],
 			['employee_number', '%LIKE%'],
 			['name', '%LIKE%'],
 		];
@@ -28,7 +29,11 @@ class EmployeeListCriteria extends BaseCriteria{
 			'employee_department' => [
 				'type' => 'select',
 				'itemsCallback' => 'employeeDepartments'
-			]
+			],
+            'employee_position' => [
+                'type' => 'select',
+                'itemsCallback' => 'employeePositions'
+            ]
 		];
 
 	protected $eagerLoads = ['department'];
@@ -37,4 +42,9 @@ class EmployeeListCriteria extends BaseCriteria{
 	{
 		return app()->make(EmployeeRepository::class)->getEmployeeDepartments()->get();
 	}
+
+    public function callbackEmployeePositions()
+    {
+        return app()->make(EmployeeRepository::class)->getEmployeePositions()->get();
+    }
 }
