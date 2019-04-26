@@ -2,8 +2,9 @@
 
 namespace Collejo\App\Exceptions;
 
-use Exception;
+use Collejo\Foundation\Exceptions\DisplayableException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Exception;
 
 class Handler extends ExceptionHandler
 {
@@ -53,6 +54,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof DisplayableException && $request->expectsJson()) {
+
+            return response()->json([
+                'success' => false,
+                'data' => [] ,
+                'message' => $exception->getMessage()
+            ]);
+        }
+
         return parent::render($request, $exception);
     }
 }
