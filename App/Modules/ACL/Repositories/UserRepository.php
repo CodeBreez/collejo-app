@@ -93,6 +93,17 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     }
 
     /**
+     * Assign an array of permission ids to the given Role.
+     *
+     * @param array $permissionIds
+     * @param $roleId
+     */
+    public function assignPermissionsToRole(array $permissionIds, $roleId)
+    {
+        $this->findRole($roleId)->permissions()->sync($this->createPivotIds($permissionIds));
+    }
+
+    /**
      * Syncs given role's permissions, optionally a module name is supported.
      *
      * @param Role  $role

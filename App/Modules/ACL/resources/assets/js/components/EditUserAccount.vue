@@ -9,7 +9,7 @@
                          :label="trans('acl::user.email')"
                          :validator="$v"></c-form-input>
 
-           <c-form-input type="text"
+           <c-form-input type="password"
                          v-model="form.password"
                          name="password"
                          :label="trans('acl::user.password')"

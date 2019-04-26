@@ -186,13 +186,63 @@ class ACLController extends Controller
     }
 
     /**
+     * Returns a list of available roles
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getPermissionsManage(){
+
+        $this->authorize('add_remove_permission_to_role');
+
+        return view('acl::roles_list', [
+            'roles'    => $this->userRepository->getRoles()->with('permissions')->paginate(),
+        ]);
+    }
+
+    /**
+     * Get the Role edit form
+     *
+     * @param $roleId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getRoleEdit($roleId)
+    {
+        $this->authorize('add_edit_role');
+
+        return view('acl::edit_role', [
+            'role'                => $this->userRepository->findRole($roleId)->load('permissions'),
+            'permissions' => $this->userRepository->getPermissions()->where('parent_id', null)->with('children')->get(),
+            'role_form_validator' => $this->jsValidator(UpdateUserRequest::class),
+        ]);
+    }
+
+    /**
+     * Save a role configuration
+     *
+     * @param Request $request
+     * @param $roleId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function postRoleEdit(Request $request, $roleId)
+    {
+        $this->authorize('add_edit_role');
+
+        $this->userRepository->assignPermissionsToRole($request::get('permissions', []), $roleId);
+
+        return $this->printJson(true, [], trans('acl::role.role_updated'));
+    }
+
+    /**
      * Returns the UI for managing users.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getManage(UserListCriteria $criteria)
+    public function getUserManage(UserListCriteria $criteria)
     {
         $this->authorize('view_user_account_info');
 

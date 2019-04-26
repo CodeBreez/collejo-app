@@ -46,7 +46,7 @@ class AdminPermissions extends Command
     {
         $provider = new $providerName(app());
 
-        $this->info('Processing '.$provider->getModuleName());
+        $this->info('Processing : '.$provider->getModuleName());
 
         $provider->createPermissions();
     }
