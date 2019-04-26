@@ -7,9 +7,12 @@ use Auth;
 use Illuminate\Database\Eloquent\Model as Base;
 use Schema;
 use Webpatser\Uuid\Uuid;
+use Illuminate\Database\Eloquent\Concerns\HasEvents;
 
 abstract class Model extends Base
 {
+    use HasEvents;
+
     public $incrementing = false;
 
     /**
