@@ -47,24 +47,4 @@ class StudentsModuleServiceProvider extends ModuleServiceProvider
             'list_student_categories'       => ['add_edit_student_category'],
         ];
     }
-
-    public function getGates()
-    {
-        return [
-            'view_student_general_details' => function ($user, $student) {
-                return $user->hasPermission('view_student_general_details') &&
-                    ($user->hasRole('guardian') && $user->guardian && $user->guardian->students->contains($student->id) ||
-                        $user->hasRole('student') && $user->student && $user->student->id == $student->id ||
-                        $user->hasRole('employee') && $user->employee && $user->employee->classes->contains($student->id) ||
-                        $user->hasRole('admin'));
-            },
-            'view_student_class_history_details' => function ($user, $student) {
-                return $user->hasPermission('view_student_general_details') &&
-                    ($user->hasRole('guardian') && $user->guardian && $user->guardian->students->contains($student->id) ||
-                        $user->hasRole('student') && $user->student && $user->student->id == $student->id ||
-                        $user->hasRole('employee') && $user->employee && $user->employee->classes->contains($student->id) ||
-                        $user->hasRole('admin'));
-            },
-        ];
-    }
 }

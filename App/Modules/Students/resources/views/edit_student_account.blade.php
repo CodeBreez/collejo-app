@@ -26,9 +26,6 @@
 
 <form class="form-horizontal" method="POST" id="edit-account-form" action="{{ route('student.account.edit', $student->id) }}">
 
-    <input type="hidden" name="sid" value="{{ $student->id }}">
-    <input type="hidden" name="uid" value="{{ $student->user->id }}">
-
     <div class="col-xs-6">
         <div class="form-group">
             <label class="col-sm-4 control-label">{{ trans('students::student.email') }}</label>

@@ -24,7 +24,7 @@
                 <a href="{{ route('student.details.view', $student->id) }}">{{ $student->name }}</a>
             </li>
         @endif
-        <li class="breadcrumb-item active">{{ trans('students::student.edit_student') }}</li>
+        <li class="breadcrumb-item active">{{  $student ? trans('students::student.edit_student') : trans('students::student.new_student') }}</li>
     </ol>
 
 @endsection

@@ -46,7 +46,7 @@
         </dl>
         <dl class="row">
             <dt class="col-sm-4">{{ trans('students::student.student_category') }}</dt>
-            <dd class="col-sm-8">{{ $student->student_category->name }}</dd>
+            <dd class="col-sm-8">{{ @$student->student_category->name }}</dd>
         </dl>
     </div>
 

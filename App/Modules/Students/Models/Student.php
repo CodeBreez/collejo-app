@@ -7,8 +7,8 @@ use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\App\Modules\Classes\Models\Clasis;
 use Collejo\App\Modules\Media\Models\Media;
 use Collejo\Foundation\Database\Eloquent\Model;
-use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Student extends Model
 {
@@ -33,11 +33,11 @@ class Student extends Model
     /**
      * Category of this Student.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function studentCategory()
     {
-        return $this->hasOne(StudentCategory::class, 'id', 'student_category_id');
+        return $this->belongsTo(StudentCategory::class);
     }
 
     /**

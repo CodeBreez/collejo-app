@@ -10,39 +10,42 @@ use Collejo\Foundation\Database\Seeder;
 
 class StudentDataSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
 
-        // Create student categories
-        foreach ([
-                      'Transferred',
-                      'Economy',
-                      'Foreign',
-                      'Special Education',
-                  ] as $category) {
-            factory(StudentCategory::class)->create([
-                 'name' => $category,
-                 'code' => substr(strtoupper($category), 0, 3),
-             ]);
-        }
+		// Create student categories
+		foreach ([
+					  'Transferred',
+					  'Economy',
+					  'Foreign',
+					  'Special Education',
+				  ] as $category) {
+			factory(StudentCategory::class)->create([
+				 'name' => $category,
+				 'code' => substr(strtoupper($category), 0, 3),
+			]);
+		}
 
-        factory(User::class, 20)->create()->each(function ($user) {
-            $student = factory(Student::class)->make();
+		factory(User::class, 20)->create()->each(function ($user) {
+			$student = factory(Student::class)->make();
 
-            $student->user()->associate($user)->save();
+			$student->user()->associate($user);
+            $student->studentCategory()->associate($this->faker->randomElement(StudentCategory::all()));
 
-            $guardian = factory(Guardian::class)->make();
+            $student->save();
 
-            $guardianUser = factory(User::class)->create();
+			$guardian = factory(Guardian::class)->make();
 
-            $guardian->user()->associate($guardianUser)->save();
+			$guardianUser = factory(User::class)->create();
 
-            $student->guardians()->sync($this->createPivotIds([$guardian->id]));
-        });
-    }
+			$guardian->user()->associate($guardianUser)->save();
+
+			$student->guardians()->sync($this->createPivotIds([$guardian->id]));
+		});
+	}
 }
