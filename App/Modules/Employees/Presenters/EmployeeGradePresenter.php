@@ -6,7 +6,6 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class EmployeeGradePresenter extends BasePresenter
 {
-
     protected $hidden = [
         'created_by',
         'updated_by',

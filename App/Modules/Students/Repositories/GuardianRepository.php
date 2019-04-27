@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class GuardianRepository extends BaseRepository implements GuardianRepositoryContract
 {
-
     /**
-     * Create new guardian with the given attributes
+     * Create new guardian with the given attributes.
      *
      * @param array $attributes
+     *
      * @return null
      */
     public function createGuardian(array $attributes)
@@ -37,10 +37,11 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
     }
 
     /**
-     * Update a guardian with the given id and attributes
+     * Update a guardian with the given id and attributes.
      *
      * @param array $attributes
      * @param $guardianId
+     *
      * @return mixed
      */
     public function updateGuardian(array $attributes, $guardianId)
@@ -59,9 +60,10 @@ class GuardianRepository extends BaseRepository implements GuardianRepositoryCon
     }
 
     /**
-     * Get guardian by id
+     * Get guardian by id.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findGuardian($id)

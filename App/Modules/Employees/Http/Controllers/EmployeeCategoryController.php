@@ -67,12 +67,14 @@ class EmployeeCategoryController extends Controller
     }
 
     /**
-     * Save employee category
+     * Save employee category.
      *
      * @param UpdateEmployeeCategoryRequest $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postEmployeeCategoryEdit(UpdateEmployeeCategoryRequest $request, $id)
     {
