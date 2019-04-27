@@ -2,12 +2,11 @@
 
 namespace Collejo\App\Modules\Base\Http\Controllers;
 
+use Auth;
+use Cache;
 use Collejo\App\Http\Controller;
 use Illuminate\Routing\Router;
 use Module;
-use Auth;
-use Cache;
-use Gate;
 
 class AssetsController extends Controller
 {
@@ -29,12 +28,11 @@ class AssetsController extends Controller
      */
     private function getPermissions()
     {
-        if(!Auth::user()){
-
+        if (!Auth::user()) {
             return [];
         }
 
-        return Auth::user()->permissions->map(function($permission){
+        return Auth::user()->permissions->map(function ($permission) {
             return $permission->permission;
         });
     }

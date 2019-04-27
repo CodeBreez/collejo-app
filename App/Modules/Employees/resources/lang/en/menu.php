@@ -1,9 +1,9 @@
 <?php
 
 return [
-	'employees' => 'Employees',
-	'employee_list' => 'All Employees',
-	'employee_new' => 'New Employee',
+    'employees'     => 'Employees',
+    'employee_list' => 'All Employees',
+    'employee_new'  => 'New Employee',
 
     'categories' => 'Categories',
 

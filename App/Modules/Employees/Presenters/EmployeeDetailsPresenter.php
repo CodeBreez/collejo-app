@@ -9,11 +9,11 @@ use Collejo\Foundation\Presenter\BasePresenter;
 class EmployeeDetailsPresenter extends BasePresenter
 {
     protected $load = [
-        'picture'          => MediaBasicInformationPresenter::class,
-        'user' => UserBasicInformationPresenter::class,
+        'picture'             => MediaBasicInformationPresenter::class,
+        'user'                => UserBasicInformationPresenter::class,
         'employee_department' => EmployeeDepartmentPresenter::class,
-        'employee_position' => EmployeePositionPresenter::class,
-        'employee_grade' => EmployeeGradePresenter::class,
+        'employee_position'   => EmployeePositionPresenter::class,
+        'employee_grade'      => EmployeeGradePresenter::class,
     ];
 
     protected $appends = [

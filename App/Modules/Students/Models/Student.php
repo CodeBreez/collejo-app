@@ -7,8 +7,8 @@ use Collejo\App\Modules\Classes\Models\Batch;
 use Collejo\App\Modules\Classes\Models\Clasis;
 use Collejo\App\Modules\Media\Models\Media;
 use Collejo\Foundation\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {

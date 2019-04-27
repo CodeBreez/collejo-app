@@ -9,100 +9,106 @@ use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeePositionRequest;
 
 class EmployeePositionController extends Controller
 {
-
-	protected $employeeRepository;
+    protected $employeeRepository;
 
     /**
-     * Get new employee position form
+     * Get new employee position form.
      *
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
+     * @return mixed
      */
-	public function getEmployeePositionNew()
-	{
+    public function getEmployeePositionNew()
+    {
         $this->authorize('add_edit_employee_position');
 
         return view('employees::edit_employee_position_details', [
-            'employee_position' => null,
+            'employee_position'       => null,
             'position_form_validator' => $this->jsValidator(CreateEmployeePositionRequest::class),
-            'employee_categories' => $this->employeeRepository->getEmployeeCategories()->get()
+            'employee_categories'     => $this->employeeRepository->getEmployeeCategories()->get(),
         ]);
-	}
+    }
 
     /**
-     * Save new employee position
+     * Save new employee position.
      *
      * @param CreateEmployeePositionRequest $request
-     * @return mixed
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return mixed
      */
-	public function postEmployeePositionNew(CreateEmployeePositionRequest $request)
-	{
+    public function postEmployeePositionNew(CreateEmployeePositionRequest $request)
+    {
         $this->authorize('add_edit_employee_position');
 
         $employeePosition = $this->employeeRepository->createEmployeePosition($request->all());
 
         return $this->printRedirect(route('employee_position.details.edit', $employeePosition->id),
             trans('employees::employee_position.employee_position_created'));
-	}
+    }
 
     /**
-     * Get employee position form
+     * Get employee position form.
      *
      * @param $id
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
-	public function getEmployeePositionEdit($id)
-	{
+    public function getEmployeePositionEdit($id)
+    {
         $this->authorize('add_edit_employee_position');
 
         return view('employees::edit_employee_position_details', [
-            'employee_position' => $this->employeeRepository->findEmployeePosition($id),
+            'employee_position'       => $this->employeeRepository->findEmployeePosition($id),
             'position_form_validator' => $this->jsValidator(CreateEmployeePositionRequest::class),
-            'employee_categories' => $this->employeeRepository->getEmployeeCategories()->get()
+            'employee_categories'     => $this->employeeRepository->getEmployeeCategories()->get(),
         ]);
-	}
+    }
 
     /**
-     * Post employee position data
+     * Post employee position data.
      *
      * @param UpdateEmployeePositionRequest $request
      * @param $id
-     * @return mixed
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return mixed
      */
-	public function postEmployeePositionEdit(UpdateEmployeePositionRequest $request, $id)
-	{
+    public function postEmployeePositionEdit(UpdateEmployeePositionRequest $request, $id)
+    {
         $this->authorize('add_edit_employee_position');
 
         $this->employeeRepository->updateEmployeePosition($request->all(), $id);
 
         return $this->printJson(true, [], trans('employees::employee_position.employee_position_updated'));
-	}
+    }
 
     /**
-     * Get a list of employee positions
+     * Get a list of employee positions.
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-	public function getEmployeePositionList()
-	{
+    public function getEmployeePositionList()
+    {
         $this->authorize('add_edit_employee_position');
 
-		return view('employees::employee_position_list', [
-						'employee_positions' => $this->employeeRepository
+        return view('employees::employee_position_list', [
+                        'employee_positions' => $this->employeeRepository
                             ->getEmployeePositions()
                             ->with('employeeCategory')
-                            ->paginate(config('collejo.pagination.perpage'))
-					]);
-	}
+                            ->paginate(config('collejo.pagination.perpage')),
+                    ]);
+    }
 
-	public function __construct(EmployeeRepository $employeeRepository)
-	{
-
+    public function __construct(EmployeeRepository $employeeRepository)
+    {
         $this->employeeRepository = $employeeRepository;
-	}
+    }
 }

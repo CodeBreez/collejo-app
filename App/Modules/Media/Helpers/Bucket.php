@@ -51,9 +51,7 @@ class Bucket
     public function __call($method, $args)
     {
         if (isset($this->config[snake_case($method)])) {
-
             return $this->config[snake_case($method)];
-
         }
     }
 }

@@ -7,11 +7,11 @@ use Collejo\App\Modules\Media\Helpers\Bucket;
 use Collejo\App\Modules\Media\Models\Media;
 use Collejo\Foundation\Exceptions\DisplayableException;
 use Collejo\Foundation\Repository\BaseRepository;
+use Exception;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Exception;
 use Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MediaRepository extends BaseRepository implements MediaRepositoryContract
 {

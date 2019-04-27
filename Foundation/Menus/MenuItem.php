@@ -3,7 +3,6 @@
 namespace Collejo\Foundation\Menus;
 
 use ArrayAccess;
-use Gate;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -204,14 +203,13 @@ class MenuItem implements ArrayAccess, Arrayable
     {
         $globallyVisibleMenusNames = ['user.profile', 'auth.logout'];
 
-        if($this->type == 's' || in_array($this->name, $globallyVisibleMenusNames)){
-
+        if ($this->type == 's' || in_array($this->name, $globallyVisibleMenusNames)) {
             $this->isVisible = true;
+
             return;
         }
 
         $this->isVisible = $user ? $user->hasPermission($this->permission) : false;
-
     }
 
     /**
@@ -271,16 +269,16 @@ class MenuItem implements ArrayAccess, Arrayable
     public function toArray()
     {
         return [
-            'name'         => $this->getName(),
-            'label'        => $this->getLabel(),
-            'icon'         => $this->getIcon(),
-            'path'         => $this->getFullPath(),
-            'parent'       => $this->getParent(),
-            'position'     => $this->getPosition(),
-            'children'     => $this->children->values(),
-            'type'         => $this->type,
-            'isLastItem'   => $this->isLastItem,
-            'isVisible'     => $this->isVisible
+            'name'          => $this->getName(),
+            'label'         => $this->getLabel(),
+            'icon'          => $this->getIcon(),
+            'path'          => $this->getFullPath(),
+            'parent'        => $this->getParent(),
+            'position'      => $this->getPosition(),
+            'children'      => $this->children->values(),
+            'type'          => $this->type,
+            'isLastItem'    => $this->isLastItem,
+            'isVisible'     => $this->isVisible,
         ];
     }
 

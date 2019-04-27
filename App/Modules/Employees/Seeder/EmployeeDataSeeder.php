@@ -29,7 +29,6 @@ class EmployeeDataSeeder extends Seeder
                      'Lab assistant',
                      'Accountant',
                  ] as $category) {
-
             $categoryModel = factory(EmployeeCategory::class)->create([
                 'name' => $category,
                 'code' => substr(strtoupper($category), 0, 3),
@@ -44,10 +43,9 @@ class EmployeeDataSeeder extends Seeder
                          'Lab assistant',
                          'Accountant',
                      ] as $position) {
-
                 factory(EmployeePosition::class)->create([
-                    'name' => $position,
-                    'employee_category_id' => $categoryModel->id
+                    'name'                 => $position,
+                    'employee_category_id' => $categoryModel->id,
                 ]);
             }
         }
@@ -59,7 +57,6 @@ class EmployeeDataSeeder extends Seeder
                      'Academic',
                      'Management',
                  ] as $department) {
-
             factory(EmployeeDepartment::class)->create([
                 'name' => $department,
                 'code' => substr(strtoupper($department), 0, 3),
@@ -73,7 +70,6 @@ class EmployeeDataSeeder extends Seeder
                      'X',
                      'C',
                  ] as $grade) {
-
             factory(EmployeeGrade::class)->create([
                 'name' => $grade,
                 'code' => substr(strtoupper($grade), 0, 3),
@@ -81,7 +77,6 @@ class EmployeeDataSeeder extends Seeder
         }
 
         factory(User::class, 20)->create()->each(function ($user) {
-
             $employee = factory(Employee::class)->make();
 
             $employee->employeeDepartment()->associate($this->faker->randomElement(EmployeeDepartment::all()));

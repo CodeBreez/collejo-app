@@ -1,22 +1,17 @@
 <?php
 
-Menu::group(trans('employees::menu.employees'), 'fa-briefcase', function($parent){
-
-    Menu::group(function($parent){
-
+Menu::group(trans('employees::menu.employees'), 'fa-briefcase', function ($parent) {
+    Menu::group(function ($parent) {
         Menu::create('employees.list', trans('employees::menu.employee_list'))
             ->setParent($parent)
             ->setPermission('list_employees');
 
-
         Menu::create('employee.new', trans('employees::menu.employee_new'))
             ->setParent($parent)
             ->setPermission('create_employee');
-
     })->setParent($parent);
 
-
-    Menu::group(function($parent){
+    Menu::group(function ($parent) {
         Menu::create('employee_categories.list', trans('employees::menu.categories'))
                 ->setParent($parent)
                 ->setPermission('list_employee_categories');

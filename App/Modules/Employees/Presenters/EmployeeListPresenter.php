@@ -8,10 +8,10 @@ use Collejo\Foundation\Presenter\BasePresenter;
 class EmployeeListPresenter extends BasePresenter
 {
     protected $load = [
-        'user' => UserBasicInformationPresenter::class,
+        'user'                => UserBasicInformationPresenter::class,
         'employee_department' => EmployeeDepartmentPresenter::class,
-        'employee_position' => EmployeePositionPresenter::class,
-        'employee_grade' => EmployeeGradePresenter::class,
+        'employee_position'   => EmployeePositionPresenter::class,
+        'employee_grade'      => EmployeeGradePresenter::class,
     ];
 
     protected $hidden = [

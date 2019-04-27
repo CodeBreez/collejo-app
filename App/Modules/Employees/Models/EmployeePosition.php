@@ -6,7 +6,6 @@ use Collejo\Foundation\Database\Eloquent\Model;
 
 class EmployeePosition extends Model
 {
-
     protected $table = 'employee_positions';
 
     protected $fillable = ['name', 'employee_category_id'];
@@ -15,12 +14,11 @@ class EmployeePosition extends Model
 
     public function employeeCategory()
     {
-    	return $this->belongsTo(EmployeeCategory::class);
+        return $this->belongsTo(EmployeeCategory::class);
     }
 
     public function employees()
     {
-    	return $this->hasManyThrough(EmployeeCategory::class, 'employeeCategory');
+        return $this->hasManyThrough(EmployeeCategory::class, 'employeeCategory');
     }
-
 }

@@ -4,10 +4,10 @@ namespace Collejo\Foundation\Database\Eloquent;
 
 use Auth;
 //use Collejo\App\Events\CriteriaDataChanged;
+use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Model as Base;
 use Schema;
 use Webpatser\Uuid\Uuid;
-use Illuminate\Database\Eloquent\Concerns\HasEvents;
 
 abstract class Model extends Base
 {

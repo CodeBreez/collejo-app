@@ -108,46 +108,36 @@ class Menu
         $groups = $this->getItems()->where('type', 'g');
 
         foreach ($groups as $group) {
-
             $group->updateVisibility($user);
 
             $children = collect();
 
             foreach ($this->getItems()->whereStrict('parent', (string) $group->getName()) as $child) {
-
                 $child->updateVisibility($user);
 
                 if ($child->type == 's') {
-
                     $groupItems = collect();
 
                     foreach ($this->getItems()->where('parent', (string) $child->getName()) as $subMenuItem) {
-
                         $subMenuItem->updateVisibility($user);
 
                         $groupItems->push($subMenuItem);
                     }
 
-                    if($groupItems->count()){
-
+                    if ($groupItems->count()) {
                         $children = $children->merge($groupItems);
                         $children->push($child);
                     }
-
-                }else{
-
+                } else {
                     $children->push($child);
                 }
-
             }
 
             if ($children->last()) {
-
                 $children->last()->isLastItem = true;
             }
 
-            $group->isVisible = $children->filter(function($child){
-
+            $group->isVisible = $children->filter(function ($child) {
                 return $child->isVisible && $child->type != 's';
             })->count();
 

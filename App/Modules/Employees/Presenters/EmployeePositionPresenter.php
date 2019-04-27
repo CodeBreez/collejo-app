@@ -6,7 +6,6 @@ use Collejo\Foundation\Presenter\BasePresenter;
 
 class EmployeePositionPresenter extends BasePresenter
 {
-
     protected $load = [
         'employee_category' => EmployeeCategoryPresenter::class,
     ];
