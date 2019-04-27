@@ -28,5 +28,6 @@ return [
     'account_details'   => 'Account Details',
 
     'empty_list'      => 'There are no Students in the system for the given criteria.',
+    'student_created' => 'Student created.',
     'student_updated' => 'Student updated.',
 ];

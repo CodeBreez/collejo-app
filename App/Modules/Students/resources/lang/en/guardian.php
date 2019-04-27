@@ -5,7 +5,7 @@ return [
     'guardians'      => 'Guardians',
     'students'       => 'Students',
 
-    'create_guardian' => 'Create Guardian',
+    'new_guardian' => 'New Guardian',
     'edit_guardian'   => 'Edit Guardian',
 
     'first_name' => 'First Name',
@@ -24,4 +24,7 @@ return [
     'empty_list'     => 'There are no Guardians in the system.',
 
     'widget_children_in_school' => 'Children In School',
+
+    'guardian_created' => 'Guardian created.',
+    'guardian_updated' => 'Guardian updated.',
 ];

@@ -6,7 +6,7 @@
 
 	@can('edit_student_general_details')
 		<a href="{{ route('guardian.details.edit', $guardian->id) }}" class="btn btn-primary">
-			<i class="fa fa-fw fa-edit"></i> {{ trans('common.edit') }}
+			<i class="fa fa-fw fa-edit"></i> {{ trans('base::common.edit') }}
 		</a>
 	@endcan
 

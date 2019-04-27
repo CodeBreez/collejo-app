@@ -291,7 +291,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryCon
         DB::transaction(function () use ($attributes, $employeeAttributes, &$employee) {
             $user = $this->userRepository->create($attributes);
 
-            $employee = Employee::create($employeeAttributes);
+            $employee = Employee::make($employeeAttributes);
 
             $employee->user()->associate($user)->save();
 

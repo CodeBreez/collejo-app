@@ -102,7 +102,7 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
         DB::transaction(function () use ($attributes, $studentAttributes, &$student) {
             $user = $this->userRepository->create($attributes);
 
-            $student = Student::create($studentAttributes);
+            $student = Student::make($studentAttributes);
 
             $student->user()->associate($user)->save();
 
