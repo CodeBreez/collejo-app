@@ -11,6 +11,4 @@ interface GuardianRepository
     public function findGuardian($id);
 
     public function getGuardians($criteria);
-
-
 }

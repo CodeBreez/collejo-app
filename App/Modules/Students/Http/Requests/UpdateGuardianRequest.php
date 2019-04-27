@@ -6,20 +6,19 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class UpdateGuardianRequest extends Request
 {
-
-	public function rules()
-	{
-		$createRequest = new CreateGuardianRequest();
+    public function rules()
+    {
+        $createRequest = new CreateGuardianRequest();
 
         return array_merge($createRequest->rules(), [
             'ssn' => 'required|unique:guardians,ssn,'.$this->json('id'),
         ]);
-	}
+    }
 
-	public function attributes()
-	{
-		$createRequest = new CreateGuardianRequest();
+    public function attributes()
+    {
+        $createRequest = new CreateGuardianRequest();
 
-		return $createRequest->attributes();
-	}
+        return $createRequest->attributes();
+    }
 }
