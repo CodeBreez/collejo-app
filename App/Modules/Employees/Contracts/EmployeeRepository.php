@@ -4,45 +4,43 @@ namespace Collejo\App\Modules\Employees\Contracts;
 
 interface EmployeeRepository
 {
+    public function updateEmployeePosition(array $attributes, $employeePositionId);
 
-	public function updateEmployeePosition(array $attributes, $employeePositionId);
+    public function createEmployeePosition(array $attributes);
 
-	public function createEmployeePosition(array $attributes);
+    public function findEmployeePosition($employeePositionId);
 
-	public function findEmployeePosition($employeePositionId);
+    public function getEmployeePositions();
 
-	public function getEmployeePositions();
+    public function updateEmployeeGrade(array $attributes, $employeeGradeId);
 
-	public function updateEmployeeGrade(array $attributes, $employeeGradeId);
+    public function createEmployeeGrade(array $attributes);
 
-	public function createEmployeeGrade(array $attributes);
+    public function findEmployeeGrade($employeeGradeId);
 
-	public function findEmployeeGrade($employeeGradeId);
+    public function getEmployeeGrades();
 
-	public function getEmployeeGrades();
+    public function updateEmployeeDepartment(array $attributes, $employeeDepartmentId);
 
-	public function updateEmployeeDepartment(array $attributes, $employeeDepartmentId);
+    public function createEmployeeDepartment(array $attributes);
 
-	public function createEmployeeDepartment(array $attributes);
+    public function findEmployeeDepartment($employeeDepartmentId);
 
-	public function findEmployeeDepartment($employeeDepartmentId);
+    public function getEmployeeDepartments();
 
-	public function getEmployeeDepartments();
+    public function updateEmployeeCategory(array $attributes, $employeeCategoryId);
 
-	public function updateEmployeeCategory(array $attributes, $employeeCategoryId);
+    public function createEmployeeCategory(array $attributes);
 
-	public function createEmployeeCategory(array $attributes);
+    public function findEmployeeCategory($employeeCategoryId);
 
-	public function findEmployeeCategory($employeeCategoryId);
+    public function getEmployeeCategories();
 
-	public function getEmployeeCategories();
+    public function getEmployees($criteria);
 
-	public function getEmployees($criteria);
+    public function updateEmployee(array $attributes, $employeeId);
 
-	public function updateEmployee(array $attributes, $employeeId);
+    public function createEmployee(array $attributes);
 
-	public function createEmployee(array $attributes);
-
-	public function boot();
-
+    public function boot();
 }

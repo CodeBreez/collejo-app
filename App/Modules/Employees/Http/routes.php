@@ -1,14 +1,11 @@
 <?php
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
-
-    Route::group(['prefix' => 'employees'], function() {
-
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'employees'], function () {
         Route::get('/list', 'EmployeeController@getEmployeeList')->name('employees.list');
     });
 
-    Route::group(['prefix' => 'employee'], function() {
-
+    Route::group(['prefix' => 'employee'], function () {
         Route::get('/new', 'EmployeeController@getEmployeeNew')->name('employee.new');
         Route::post('/new', 'EmployeeController@postEmployeeNew');
 
@@ -31,16 +28,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 
         Route::get('/{id}/account/edit', 'EmployeeController@getEmployeeAccountEdit')->name('employee.account.edit');
         Route::post('/{id}/account/edit', 'EmployeeController@postEmployeeAccountEdit');
-
     });
 
-    Route::group(['prefix' => 'employee_categories'], function() {
-
+    Route::group(['prefix' => 'employee_categories'], function () {
         Route::get('/list', 'EmployeeCategoryController@getEmployeeCategoryList')->name('employee_categories.list');
     });
 
-    Route::group(['prefix' => 'employee_category'], function() {
-
+    Route::group(['prefix' => 'employee_category'], function () {
         Route::get('/new', 'EmployeeCategoryController@getEmployeeCategoryNew')->name('employee_category.new');
         Route::post('/new', 'EmployeeCategoryController@postEmployeeCategoryNew');
 
@@ -48,13 +42,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
         Route::post('/{id}/edit', 'EmployeeCategoryController@postEmployeeCategoryEdit');
     });
 
-    Route::group(['prefix' => 'employee_departments'], function() {
-
+    Route::group(['prefix' => 'employee_departments'], function () {
         Route::get('/list', 'EmployeeDepartmentController@getEmployeeDepartmentList')->name('employee_departments.list');
     });
 
-    Route::group(['prefix' => 'employee_department'], function() {
-
+    Route::group(['prefix' => 'employee_department'], function () {
         Route::get('/new', 'EmployeeDepartmentController@getEmployeeDepartmentNew')->name('employee_department.new');
         Route::post('/new', 'EmployeeDepartmentController@postEmployeeDepartmentNew');
 
@@ -62,13 +54,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
         Route::post('/{id}/edit', 'EmployeeDepartmentController@postEmployeeDepartmentEdit');
     });
 
-    Route::group(['prefix' => 'employee_grades'], function() {
-
+    Route::group(['prefix' => 'employee_grades'], function () {
         Route::get('/list', 'EmployeeGradeController@getEmployeeGradeList')->name('employee_grades.list');
     });
 
-    Route::group(['prefix' => 'employee_grade'], function() {
-
+    Route::group(['prefix' => 'employee_grade'], function () {
         Route::get('/new', 'EmployeeGradeController@getEmployeeGradeNew')->name('employee_grade.new');
         Route::post('/new', 'EmployeeGradeController@postEmployeeGradeNew');
 
@@ -76,13 +66,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
         Route::post('/{id}/edit', 'EmployeeGradeController@postEmployeeGradeEdit');
     });
 
-    Route::group(['prefix' => 'employee_positions'], function() {
-
+    Route::group(['prefix' => 'employee_positions'], function () {
         Route::get('/list', 'EmployeePositionController@getEmployeePositionList')->name('employee_positions.list');
     });
 
-    Route::group(['prefix' => 'employee_position'], function() {
-
+    Route::group(['prefix' => 'employee_position'], function () {
         Route::get('/new', 'EmployeePositionController@getEmployeePositionNew')->name('employee_position.new');
         Route::post('/new', 'EmployeePositionController@postEmployeePositionNew');
 

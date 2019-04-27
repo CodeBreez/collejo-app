@@ -6,21 +6,20 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class UpdateEmployeeCategoryRequest extends Request
 {
+    public function rules()
+    {
+        $createRequest = new CreateEmployeeCategoryRequest();
 
-	public function rules()
-	{
-		$createRequest = new CreateEmployeeCategoryRequest();
+        return array_merge($createRequest->rules(), [
+                'name' => 'required|unique:employee_categories,name,'.$this->json('id'),
+                'code' => 'max:5|unique:employee_categories,code,'.$this->json('id'),
+            ]);
+    }
 
-	    return array_merge($createRequest->rules(), [
-	    		'name' => 'required|unique:employee_categories,name,' . $this->json('id'),
-	        	'code' => 'max:5|unique:employee_categories,code,' . $this->json('id'),
-	    	]);
-	}
+    public function attributes()
+    {
+        $createRequest = new CreateEmployeeCategoryRequest();
 
-	public function attributes()
-	{
-		$createRequest = new CreateEmployeeCategoryRequest();
-
-		return $createRequest->attributes();
-	}
+        return $createRequest->attributes();
+    }
 }

@@ -1,7 +1,6 @@
 <?php
 
 Menu::group(trans('classes::menu.classes'), 'fa-graduation-cap', function ($parent) {
-
     Menu::create('batches.list', trans('classes::menu.batches'))
         ->setParent($parent)
         ->setPermission('list_batches')
@@ -11,5 +10,4 @@ Menu::group(trans('classes::menu.classes'), 'fa-graduation-cap', function ($pare
         ->setParent($parent)
         ->setPermission('list_grades')
         ->setPath('grades.list');
-
 })->setOrder(10);

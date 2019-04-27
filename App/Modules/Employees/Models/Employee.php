@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
 {
-
     use SoftDeletes, CommonUserPropertiesTrait;
 
     protected $table = 'employees';
@@ -20,7 +19,7 @@ class Employee extends Model
         'employee_position_id',
         'employee_department_id',
         'employee_grade_id',
-        'image_id'
+        'image_id',
     ];
 
     protected $dates = ['joined_on'];
@@ -29,17 +28,17 @@ class Employee extends Model
 
     public function employeeDepartment()
     {
-    	return $this->belongsTo(EmployeeDepartment::class);
+        return $this->belongsTo(EmployeeDepartment::class);
     }
 
     public function employeePosition()
     {
-    	return $this->belongsTo(EmployeePosition::class);
+        return $this->belongsTo(EmployeePosition::class);
     }
 
     public function employeeGrade()
     {
-    	return $this->belongsTo(EmployeeGrade::class);
+        return $this->belongsTo(EmployeeGrade::class);
     }
 
     public function picture()
