@@ -43,7 +43,7 @@ class EmployeePositionController extends Controller
 
         $employeePosition = $this->employeeRepository->createEmployeePosition($request->all());
 
-        return $this->printRedirect(route('employee.details.edit', $employeePosition->id),
+        return $this->printRedirect(route('employee_position.details.edit', $employeePosition->id),
             trans('employees::employee_position.employee_position_created'));
 	}
 
