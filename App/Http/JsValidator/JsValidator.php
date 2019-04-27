@@ -57,15 +57,15 @@ class JsValidator
 
             switch ($rule) {
                 case 'max':
-                    $returned->maxlength = intval($ruleOptions[0]);
+                    $returned->maxLength = intval($ruleOptions[0]);
                     break;
 
                 case 'min':
-                    $returned->minlength = intval($ruleOptions[0]);
+                    $returned->minLength = intval($ruleOptions[0]);
                     break;
 
                 case 'between':
-                    $returned->rangelength = [intval($ruleOptions[0]), intval($ruleOptions[1])];
+                    $returned->rangeLength = [intval($ruleOptions[0]), intval($ruleOptions[1])];
                     break;
 
                 case 'required':
