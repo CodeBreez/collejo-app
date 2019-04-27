@@ -1,22 +1,6 @@
 <template>
     <div class="terms-list">
 
-        <ul class="list-group">
-            <li class="list-group-item term-layer">
-                <div :style="{width:timeLineItem.width + 'px'}" v-for="(timeLineItem, index) in timeLine.blocks" :key="index" class="block">
-                    <div v-if="timeLineItem.term" class="term">
-                        {{timeLineItem.term.name}}
-                    </div>
-                    <div v-if="!timeLineItem.term" class="vacation placeholder"></div>
-                </div>
-            </li>
-            <li class="list-group-item term-layer">
-                <div class="date" :style="{width:date.width + 'px'}" v-for="(date, index) in timeLine.dates" :key="index">
-                    {{date.label}}
-                </div>
-            </li>
-        </ul>
-
         <b-form @submit.prevent="onSubmit" novalidate>
             <table class="table">
                 <thead>
@@ -29,19 +13,16 @@
                         <td>
                             <b-form-input type="text"
                                           v-model="term.name"
-                                          name="name"
-                                          @input="_renderTimeLine()"></b-form-input>
+                                          name="name"></b-form-input>
                         </td>
                         <td>
                             <datepicker input-class="form-control" v-model="term.start_date"
-                                        :format="getCalendarFormat()"
-                                        @input="_renderTimeLine()">
+                                        :format="getCalendarFormat()">
                             </datepicker>
                         </td>
                         <td>
                             <datepicker input-class="form-control" v-model="term.end_date"
-                                        :format="getCalendarFormat()"
-                                        @input="_renderTimeLine()">
+                                        :format="getCalendarFormat()">
                             </datepicker>
                         </td>
                         <td>
@@ -150,8 +131,6 @@
                     this.submitDisabled = false;
                     this.deleted = [];
 
-                    this._renderTimeLine();
-
                     window.C.notification.success(this.trans('classes::term.terms_updated'));
 
                 }).catch(this.handleSubmitResponse);
@@ -169,7 +148,6 @@
                     this.terms.splice(index, 1);
                 }
 
-                this._renderTimeLine();
             },
 
             addNewRow(){
@@ -180,7 +158,6 @@
                     end_date:null
                 });
 
-                this._renderTimeLine();
             }
         }
     }
