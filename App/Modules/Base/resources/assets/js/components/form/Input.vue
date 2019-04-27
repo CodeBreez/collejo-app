@@ -100,7 +100,7 @@
 
                     if(!this.validator.form[this.name]){
 
-                        console.error(`field '[this.name]' is defined in the form`);
+                        console.error(`field ${this.name} is not defined in the form`);
                         return
                     }
 

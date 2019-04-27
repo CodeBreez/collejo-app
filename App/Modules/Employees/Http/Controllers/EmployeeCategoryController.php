@@ -66,6 +66,14 @@ class EmployeeCategoryController extends Controller
         ]);
     }
 
+    /**
+     * Save employee category
+     *
+     * @param UpdateEmployeeCategoryRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function postEmployeeCategoryEdit(UpdateEmployeeCategoryRequest $request, $id)
     {
         $this->authorize('add_edit_employee_category');
