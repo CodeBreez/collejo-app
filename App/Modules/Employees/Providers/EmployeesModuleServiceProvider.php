@@ -35,7 +35,7 @@ class EmployeesModuleServiceProvider extends ModuleServiceProvider
             'view_employee_recruitment_details' => ['edit_employee_recruitment_details'],
             'list_employees' => ['create_employee'],
             'list_employee_positions' => ['add_edit_employee_position'],
-            'add_edit_employee_position' => ['add_edit_employee_category'],
+            'add_edit_employee_position' => ['list_employee_categories', 'add_edit_employee_category'],
             'list_employee_grades' => ['add_edit_employee_grade'],
             'list_employee_departments' => ['add_edit_employee_department'],
         ];
