@@ -43,7 +43,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::get('/{id}/assign_guardian', 'StudentController@getStudentGuardianAssign')->name('student.assign_guardian');
         Route::post('/{id}/assign_guardian', 'StudentController@postStudentGuardianAssign');
 
-        Route::get('/{id}/remove_guardian/{gid}', 'StudentController@getStudentGuardianRemove')->name('student.remove_guardian');
     });
 
     Route::group(['prefix' => 'student_categories'], function () {

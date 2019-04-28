@@ -50,8 +50,11 @@ class EmployeeController extends Controller
 
         $this->middleware('reauth');
 
+        $employee = $this->employeeRepository->findEmployee($employeeId);
+
         return view('employees::view_employee_account', [
-                'employee' => $this->employeeRepository->findEmployee($employeeId),
+                'employee' => $employee,
+                'user' => present($employee->user, UserAccountPresenter::class),
             ]);
     }
 
@@ -83,14 +86,14 @@ class EmployeeController extends Controller
     /**
      * Post account edit form.
      *
-     * @param UpdateEmployeeAccountRequest $request
+     * @param UpdateUserAccountRequest $request
      * @param $employeeId
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postEmployeeAccountEdit(UpdateEmployeeAccountRequest $request, $employeeId)
+    public function postEmployeeAccountEdit(UpdateUserAccountRequest $request, $employeeId)
     {
         $this->authorize('edit_user_account_info');
 

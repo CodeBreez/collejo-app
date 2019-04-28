@@ -3,11 +3,12 @@
 namespace Collejo\App\Modules\Students\Http\Controllers;
 
 use Collejo\App\Http\Controller;
+use Collejo\App\Modules\ACL\Http\Requests\UpdateUserAccountRequest;
+use Collejo\App\Modules\ACL\Presenters\UserAccountPresenter;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Students\Contracts\StudentRepository;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
-use Collejo\App\Modules\Students\Http\Requests\UpdateStudentAccountRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentDetailsRequest;
 use Collejo\App\Modules\Students\Presenters\StudentDetailsPresenter;
 use Collejo\App\Modules\Students\Presenters\StudentListPresenter;
@@ -25,6 +26,7 @@ class StudentController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function getStudentAccountEdit($studentId)
     {
@@ -32,9 +34,12 @@ class StudentController extends Controller
 
         $this->middleware('reauth');
 
+        $student = $this->studentRepository->findStudent($studentId);
+
         return view('students::edit_student_account', [
-            'student'                => $this->studentRepository->findStudent($studentId),
-            'account_form_validator' => $this->jsValidator(UpdateStudentAccountRequest::class),
+            'student'                => $student,
+            'user' => present($student->user, UserAccountPresenter::class),
+            'account_form_validator' => $this->jsValidator(UpdateUserAccountRequest::class),
         ]);
     }
 
@@ -53,36 +58,40 @@ class StudentController extends Controller
 
         $this->middleware('reauth');
 
+        $student = $this->studentRepository->findStudent($studentId);
+
         return view('students::view_student_account', [
-            'student' => $this->studentRepository->findStudent($studentId),
+            'user' => $student->user,
+            'student' => $student
         ]);
     }
 
     /**
-     * Get Student Addresses view.
+     * Post account edit form.
      *
+     * @param UpdateUserAccountRequest $request
      * @param $studentId
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function getStudentAddressesView($studentId)
+    public function postStudentAccountEdit(UpdateUserAccountRequest $request, $studentId)
     {
-        $this->authorize('view_student_contact_details');
+        $this->authorize('edit_user_account_info');
 
-        return view('students::view_student_addreses', [
-            'student' => $this->studentRepository->findStudent($studentId),
-        ]);
+        $this->middleware('reauth');
+
+        $this->studentRepository->updateStudent($request->all(), $studentId);
+
+        return $this->printJson(true, [], trans('students::student.student_updated'));
     }
 
     /**
      * Get Student Guardians view.
      *
      * @param $studentId
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentGuardiansView($studentId)
@@ -92,36 +101,6 @@ class StudentController extends Controller
         $this->authorize('view_student_guardian_details', $student);
 
         return view('students::view_student_guardians_details', [
-            'student' => $student,
-        ]);
-    }
-
-    public function getStudentClassAssign($studentId)
-    {
-        $this->authorize('assign_student_to_class');
-
-        return [
-            'student' => $this->studentRepository->findStudent($studentId),
-            'batches' => $this->classRepository->activeBatches()->get(),
-        ];
-    }
-
-    /**
-     * Get the student classes edit form.
-     *
-     * @param $studentId
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getStudentClassesEdit($studentId)
-    {
-        $student = $this->studentRepository->findStudent($studentId);
-
-        $this->authorize('assign_student_to_class', $student);
-
-        return view('students::edit_classes_details', [
             'student' => $student,
         ]);
     }
@@ -155,6 +134,7 @@ class StudentController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function getStudentDetailEdit($studentId)
     {
@@ -174,7 +154,6 @@ class StudentController extends Controller
      * @param $studentId
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function postStudentDetailEdit(UpdateStudentDetailsRequest $request, $studentId)
@@ -190,9 +169,7 @@ class StudentController extends Controller
      * Get Student details view template.
      *
      * @param $studentId
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentDetailView($studentId)
@@ -229,8 +206,8 @@ class StudentController extends Controller
      * Create new Student.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function getStudentNew()
     {
@@ -247,9 +224,7 @@ class StudentController extends Controller
      * Render Grades list.
      *
      * @param Request $request
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentList(StudentListCriteria $criteria)

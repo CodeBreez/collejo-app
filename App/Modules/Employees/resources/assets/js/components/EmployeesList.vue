@@ -7,11 +7,11 @@
             </template>
 
             <template slot="employee_department" slot-scope="row">
-                <a :href="route('employee.employee_department.edit', row.item.employee_department.id)">{{row.item.employee_department.name}}</a>
+                <a :href="route('employee_department.details.edit', row.item.employee_department.id)">{{row.item.employee_department.name}}</a>
             </template>
 
             <template slot="employee_position" slot-scope="row">
-                <a :href="route('employee.employee_position.details.edit', row.item.employee_position.id)">{{row.item.employee_position.name}}</a>
+                <a :href="route('employee_position.details.edit', row.item.employee_position.id)">{{row.item.employee_position.name}}</a>
             </template>
 
             <template slot="joined_on" slot-scope="row">
