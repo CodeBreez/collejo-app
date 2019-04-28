@@ -25,7 +25,7 @@ class GuardianController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getGuardianAccountView ($guardianId)
+    public function getGuardianAccountView($guardianId)
     {
         $this->authorize('view_user_account_info');
 
@@ -34,8 +34,8 @@ class GuardianController extends Controller
         $guardian = $this->guardianRepository->findGuardian($guardianId);
 
         return view('students::view_guardian_account', [
-            'user' => $guardian->user,
-            'guardian' => $guardian
+            'user'     => $guardian->user,
+            'guardian' => $guardian,
         ]);
     }
 
@@ -84,12 +84,14 @@ class GuardianController extends Controller
 
         return $this->printJson(true, [], trans('students::guardian.guardian_updated'));
     }
+
     /**
-     * Get create guardian form
+     * Get create guardian form.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGuardianNew()
     {
@@ -102,11 +104,13 @@ class GuardianController extends Controller
     }
 
     /**
-     * Save new guardian data
+     * Save new guardian data.
      *
      * @param CreateGuardianRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postGuardianNew(CreateGuardianRequest $request)
     {
@@ -119,11 +123,13 @@ class GuardianController extends Controller
     }
 
     /**
-     * Get guardian details view
+     * Get guardian details view.
      *
      * @param $guardianId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGuardianDetailView($guardianId)
     {
@@ -131,35 +137,39 @@ class GuardianController extends Controller
 
         return view('students::view_guardian_details', [
             'guardian' => present($this->guardianRepository->findGuardian($guardianId),
-                GuardianDetailsPresenter::class)
+                GuardianDetailsPresenter::class),
         ]);
     }
 
     /**
-     * Get guardian details edit form
+     * Get guardian details edit form.
      *
      * @param $guardianId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGuardianDetailEdit($guardianId)
     {
         $this->authorize('edit_guardian');
 
         return view('students::edit_guardian_details', [
-            'guardian' => present($this->guardianRepository->findGuardian($guardianId), GuardianDetailsPresenter::class),
-            'guardian_details_form_validator' => $this->jsValidator(UpdateGuardianRequest::class)
+            'guardian'                        => present($this->guardianRepository->findGuardian($guardianId), GuardianDetailsPresenter::class),
+            'guardian_details_form_validator' => $this->jsValidator(UpdateGuardianRequest::class),
         ]);
     }
 
     /**
-     * Save guardian details form
+     * Save guardian details form.
      *
      * @param UpdateGuardianRequest $request
      * @param $guardianId
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postGuardianDetailEdit(UpdateGuardianRequest $request, $guardianId)
     {
@@ -174,6 +184,7 @@ class GuardianController extends Controller
      * @param GuardiansListCriteria $criteria
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getGuardiansList(GuardiansListCriteria $criteria)

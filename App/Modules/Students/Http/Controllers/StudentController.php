@@ -24,9 +24,9 @@ class StudentController extends Controller
      * @param $studentId
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
      */
     public function getStudentAccountEdit($studentId)
     {
@@ -38,7 +38,7 @@ class StudentController extends Controller
 
         return view('students::edit_student_account', [
             'student'                => $student,
-            'user' => present($student->user, UserAccountPresenter::class),
+            'user'                   => present($student->user, UserAccountPresenter::class),
             'account_form_validator' => $this->jsValidator(UpdateUserAccountRequest::class),
         ]);
     }
@@ -61,8 +61,8 @@ class StudentController extends Controller
         $student = $this->studentRepository->findStudent($studentId);
 
         return view('students::view_student_account', [
-            'user' => $student->user,
-            'student' => $student
+            'user'    => $student->user,
+            'student' => $student,
         ]);
     }
 
@@ -91,7 +91,9 @@ class StudentController extends Controller
      * Get Student Guardians view.
      *
      * @param $studentId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentGuardiansView($studentId)
@@ -132,9 +134,9 @@ class StudentController extends Controller
      * @param $studentId
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
      */
     public function getStudentDetailEdit($studentId)
     {
@@ -154,6 +156,7 @@ class StudentController extends Controller
      * @param $studentId
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function postStudentDetailEdit(UpdateStudentDetailsRequest $request, $studentId)
@@ -169,7 +172,9 @@ class StudentController extends Controller
      * Get Student details view template.
      *
      * @param $studentId
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentDetailView($studentId)
@@ -206,8 +211,9 @@ class StudentController extends Controller
      * Create new Student.
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentNew()
     {
@@ -224,7 +230,9 @@ class StudentController extends Controller
      * Render Grades list.
      *
      * @param Request $request
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getStudentList(StudentListCriteria $criteria)

@@ -42,7 +42,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
         Route::get('/{id}/assign_guardian', 'StudentController@getStudentGuardianAssign')->name('student.assign_guardian');
         Route::post('/{id}/assign_guardian', 'StudentController@postStudentGuardianAssign');
-
     });
 
     Route::group(['prefix' => 'student_categories'], function () {
