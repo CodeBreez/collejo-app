@@ -6,6 +6,61 @@
 	min-height: 3.438rem;
 }
 
+.nav-loader{
+	.logo {
+		/*-webkit-animation-name: spin;
+		-webkit-animation-duration: 2800ms;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: ease;*/
+
+		height: 30px;
+		width: 30px;
+		background-size: contain;
+	}
+
+	/*@-webkit-keyframes spin {
+		from {
+			transform:rotate(0deg);
+		}
+		to {
+			transform:rotate(720deg);
+		}
+	}*/
+
+	.navbar-brand{
+		background: none;
+		padding-left: 5px;
+	}
+
+	.preloader{
+		padding: 15px 40px;
+		margin: -10px 0;
+
+		&.rounded-circle{
+			padding: 15px 15px;
+		}
+	}
+}
+
+.toolbar-loader{
+	padding: 12px 0;
+
+	.title{
+		padding: 20px 110px;
+	}
+
+	.button{
+		padding: 20px 20px;
+		float: right;
+		margin-left: 15px;
+	}
+
+	.button-mini{
+		padding: 20px 80px;
+		float: right;
+	}
+}
+
 #toolbar{
 	min-height: 2.375rem;
 }

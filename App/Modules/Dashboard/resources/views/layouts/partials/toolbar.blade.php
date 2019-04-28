@@ -28,5 +28,11 @@
             </h2>
         </template>
 
+        <div class="toolbar-loader">
+            <div class="preloader rounded title"></div>
+            <div class="preloader rounded button"></div>
+            <div class="preloader rounded button-mini"></div>
+        </div>
+
     </toolbar>
 </div>
