@@ -6,21 +6,20 @@ use Collejo\Foundation\Http\Requests\Request;
 
 class UpdateEmployeeGradeRequest extends Request
 {
+    public function rules()
+    {
+        $createRequest = new CreateEmployeeGradeRequest();
 
-	public function rules()
-	{
-		$createRequest = new CreateEmployeeGradeRequest();
+        return array_merge($createRequest->rules(), [
+                'name' => 'required|unique:employee_grades,name,'.$this->json('id'),
+                'code' => 'max:5|unique:employee_grades,code,'.$this->json('id'),
+            ]);
+    }
 
-	    return array_merge($createRequest->rules(), [
-	    		'name' => 'required|unique:employee_grades,name,' . $this->json('id'),
-	        	'code' => 'max:5|unique:employee_grades,code,' . $this->json('id'),
-	    	]);
-	}
+    public function attributes()
+    {
+        $createRequest = new CreateEmployeeGradeRequest();
 
-	public function attributes()
-	{
-		$createRequest = new CreateEmployeeGradeRequest();
-
-		return $createRequest->attributes();
-	}
+        return $createRequest->attributes();
+    }
 }

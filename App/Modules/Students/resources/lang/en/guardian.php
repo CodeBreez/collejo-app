@@ -5,7 +5,7 @@ return [
     'guardians'      => 'Guardians',
     'students'       => 'Students',
 
-    'new_guardian' => 'New Guardian',
+    'new_guardian'    => 'New Guardian',
     'edit_guardian'   => 'Edit Guardian',
 
     'first_name' => 'First Name',
