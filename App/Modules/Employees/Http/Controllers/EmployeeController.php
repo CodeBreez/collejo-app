@@ -8,7 +8,6 @@ use Collejo\App\Modules\ACL\Presenters\UserAccountPresenter;
 use Collejo\App\Modules\Employees\Contracts\EmployeeRepository;
 use Collejo\App\Modules\Employees\Criteria\EmployeeListCriteria;
 use Collejo\App\Modules\Employees\Http\Requests\CreateEmployeeDetailsRequest;
-use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeAccountRequest;
 use Collejo\App\Modules\Employees\Http\Requests\UpdateEmployeeDetailsRequest;
 use Collejo\App\Modules\Employees\Presenters\EmployeeDetailsPresenter;
 use Collejo\App\Modules\Employees\Presenters\EmployeeListPresenter;
@@ -54,7 +53,7 @@ class EmployeeController extends Controller
 
         return view('employees::view_employee_account', [
                 'employee' => $employee,
-                'user' => present($employee->user, UserAccountPresenter::class),
+                'user'     => present($employee->user, UserAccountPresenter::class),
             ]);
     }
 
