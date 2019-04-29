@@ -6,7 +6,7 @@
 
 <section class="text-center">
 
-	<div class="card">
+	<div class="card setup-required-card">
 
 		<div class="card-body p-5">
 
