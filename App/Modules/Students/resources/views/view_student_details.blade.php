@@ -34,7 +34,7 @@
         </dl>
         <dl class="row">
             <dt class="col-sm-4">{{ trans('students::student.admitted_on') }}</dt>
-            <dd class="col-sm-8">{{ formatDate(toUserTz($student->admitted_on)) }}</dd>
+            <dd class="col-sm-8">{{ dateFormat(dateToUserTz($student->admitted_on)) }}</dd>
         </dl>
         <dl class="row">
             <dt class="col-sm-4">{{ trans('students::student.name') }}</dt>

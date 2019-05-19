@@ -8,8 +8,10 @@ use Collejo\App\Modules\ACL\Presenters\UserAccountPresenter;
 use Collejo\App\Modules\Classes\Contracts\ClassRepository;
 use Collejo\App\Modules\Students\Contracts\StudentRepository;
 use Collejo\App\Modules\Students\Criteria\StudentListCriteria;
+use Collejo\App\Modules\Students\Http\Requests\AssignStudentClassRequest;
 use Collejo\App\Modules\Students\Http\Requests\CreateStudentRequest;
 use Collejo\App\Modules\Students\Http\Requests\UpdateStudentDetailsRequest;
+use Collejo\App\Modules\Students\Presenters\StudentClassDetailsPresenter;
 use Collejo\App\Modules\Students\Presenters\StudentDetailsPresenter;
 use Collejo\App\Modules\Students\Presenters\StudentListPresenter;
 use Request;
@@ -18,6 +20,27 @@ class StudentController extends Controller
 {
     protected $studentRepository;
     protected $classRepository;
+
+    /**
+     * Get student class assigner
+     *
+     * @param $studentId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
+     */
+    public function getStudentClassesEdit ($studentId)
+    {
+        $this->authorize('assign_student_to_class');
+
+        $student = $this->studentRepository->findStudent($studentId);
+
+        return view('students::assign_student_class', [
+            'student'         => present($student, StudentDetailsPresenter::class),
+            'classes' => present($student->classes, StudentClassDetailsPresenter::class),
+            'student_class_form_validator' => $this->jsValidator(AssignStudentClassRequest::class),
+        ]);
+    }
 
     /** Get Student account edit form
      *
@@ -39,7 +62,7 @@ class StudentController extends Controller
         return view('students::edit_student_account', [
             'student'                => $student,
             'user'                   => present($student->user, UserAccountPresenter::class),
-            'account_form_validator' => $this->jsValidator(UpdateUserAccountRequest::class),
+            'user_form_validator' => $this->jsValidator(UpdateUserAccountRequest::class),
         ]);
     }
 
@@ -122,9 +145,9 @@ class StudentController extends Controller
 
         $this->authorize('view_student_class_details', $student);
 
-        return view('students::view_classes_details', [
-            'student'         => $student,
-            'classRepository' => $this->classRepository,
+        return view('students::view_student_classes_details', [
+            'student'         => present($student, StudentDetailsPresenter::class),
+            'classes' => present($student->classes, StudentClassDetailsPresenter::class),
         ]);
     }
 
@@ -229,11 +252,9 @@ class StudentController extends Controller
     /**
      * Render Grades list.
      *
-     * @param Request $request
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
+     * @param StudentListCriteria $criteria
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function getStudentList(StudentListCriteria $criteria)
     {

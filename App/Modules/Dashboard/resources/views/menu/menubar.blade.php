@@ -10,36 +10,30 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                <span class="nav-link">
-                    <div class="preloader rounded-circle"></div>
-                    <div class="preloader rounded"></div>
-                </span>
+                        <span class="nav-link">
+                            <div class="preloader rounded-circle"></div>
+                            <div class="preloader rounded"></div>
+                        </span>
                     </li>
                     <li class="nav-item active">
-                <span class="nav-link">
-                    <div class="preloader rounded-circle"></div>
-                    <div class="preloader rounded"></div>
-                </span>
+                        <span class="nav-link">
+                            <div class="preloader rounded-circle"></div>
+                            <div class="preloader rounded"></div>
+                        </span>
                     </li>
                     <li class="nav-item active">
-                <span class="nav-link">
-                    <div class="preloader rounded-circle"></div>
-                    <div class="preloader rounded"></div>
-                </span>
+                        <span class="nav-link">
+                            <div class="preloader rounded-circle"></div>
+                            <div class="preloader rounded"></div>
+                        </span>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                <span class="nav-link">
-                    <div class="preloader rounded-circle"></div>
-                    <div class="preloader rounded"></div>
-                </span>
-                    </li>
-                    <li class="nav-item active">
-                <span class="nav-link">
-                    <div class="preloader rounded-circle"></div>
-                    <div class="preloader rounded"></div>
-                </span>
+                        <span class="nav-link">
+                            <div class="preloader rounded-circle"></div>
+                            <div class="preloader rounded"></div>
+                        </span>
                     </li>
                 </ul>
             </div>

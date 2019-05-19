@@ -34,7 +34,7 @@
 		</dl>
 		<dl class="row">
 			<dt class="col-sm-4">{{ trans('employees::employee.joined_on') }}</dt>
-			<dd class="col-sm-8">{{ formatDate(toUserTz($employee->joined_on)) }}</dd>
+			<dd class="col-sm-8">{{ dateFormat(dateToUserTz($employee->joined_on)) }}</dd>
 		</dl>
 		<dl class="row">
 			<dt class="col-sm-4">{{ trans('employees::employee.name') }}</dt>

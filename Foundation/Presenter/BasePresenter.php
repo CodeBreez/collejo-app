@@ -12,6 +12,8 @@ abstract class BasePresenter
 
     protected $appends = [];
 
+    protected $decorate = [];
+
     public function getAppendedKeys()
     {
         return $this->appends;
@@ -32,5 +34,10 @@ abstract class BasePresenter
     public function getLoadPresenter($key)
     {
         return $this->load[Str::snake($key)];
+    }
+
+    public function getDecorators()
+    {
+        return $this->decorate;
     }
 }

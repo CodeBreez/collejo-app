@@ -49,6 +49,23 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
         $this->findStudent($studentId)->studentCategory()->save($this->findStudentCategory($studentCategoryId));
     }
 
+    public function assignToClass($batchId, $gradeId, $classId, $studentId, $graduate = false)
+    {
+        if (!$this->findStudent($studentId)->classes->contains($classId)) {
+
+            $student = $this->findStudent($studentId);
+
+            if (!$graduate && $student->class) {
+                $student->classes()->detach($student->class->id);
+            }
+
+            $student->classes()
+                ->attach($this->classRepository->findClass($classId, $gradeId), $this->includePivotMetaData([
+                    'batch_id' => $this->classRepository->findBatch($batchId)->id,
+                ]));
+        }
+    }
+
     /**
      * Updates the given Student and the User with the given attributes.
      *

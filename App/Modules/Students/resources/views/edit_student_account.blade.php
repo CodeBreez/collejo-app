@@ -2,6 +2,11 @@
 
 @section('title', trans('students::student.edit_student'))
 
+@section('scripts')
+    @parent
+    <script type="text/javascript" src="{{ mix('/assets/acl/js/editUserAccount.js') }}"></script>
+@endsection
+
 @section('breadcrumbs')
 
     <ol class="breadcrumb">
@@ -24,35 +29,14 @@
 
 @section('tab')
 
-<form class="form-horizontal" method="POST" id="edit-account-form" action="{{ route('student.account.edit', $student->id) }}">
+    <div id="editUserAccount">
+        <edit-user-account
+                @if($user)
+                :entity="{{collect($user)}}"
+                @endif
+                :validation="{{$user_form_validator->renderRules()}}">
 
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label class="col-sm-4 control-label">{{ trans('students::student.email') }}</label>
-            <div class="col-sm-8">
-                <input type="email" name="email" class="form-control" placeholder="name@example.com" value="{{ $student->email }}">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">{{ trans('students::student.password') }}</label>
-            <div class="col-sm-8">
-                <input type="password" name="password" class="form-control">
-            </div>
-        </div>
+        </edit-user-account>
     </div>
-
-    <div class="clearfix"></div>
-
-    <div class="col-xs-6">
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" class="btn btn-primary">{{ trans('base::common.save') }}</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="clearfix"></div>
-
-</form>
 
 @endsection

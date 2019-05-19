@@ -1,14 +1,11 @@
 <?php
 
-namespace Collejo\App\Modules\ACL\Presenters;
+namespace Collejo\App\Modules\Classes\Presenters;
 
-use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Presenter\BasePresenter;
 
-class ClassBasicInformationPresenter extends BasePresenter
+class GradeBasicDetailsPresenter extends BasePresenter
 {
-    protected $class = User::class;
-
     protected $hidden = [
         'created_by',
         'updated_by',

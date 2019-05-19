@@ -33,8 +33,8 @@ if (!function_exists('toUTC')) {
 /*
  * Converts a UTC time to user tz
  */
-if (!function_exists('toUserTz')) {
-    function toUserTz($time)
+if (!function_exists('dateToUserTz')) {
+    function dateToUserTz($time)
     {
         return Carbon::parse($time, 'UTC')->setTimezone(Cookie::get('collejo_tz', 'UTC'));
     }
@@ -43,8 +43,8 @@ if (!function_exists('toUserTz')) {
 /*
  * Converts a carbon date to date string
  */
-if (!function_exists('formatDate')) {
-    function formatDate(Carbon $time)
+if (!function_exists('dateFormat')) {
+    function dateFormat(Carbon $time)
     {
         return $time->toDateString();
     }

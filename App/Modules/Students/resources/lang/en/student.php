@@ -23,6 +23,7 @@ return [
     'students_list'     => 'Student Details',
     'student_details'   => 'Student Details',
     'classes_details'   => 'Class Details',
+    'assign_class'   => 'Assign to class',
     'guardians_details' => 'Guardian Details',
     'contact_details'   => 'Contact Details',
     'account_details'   => 'Account Details',
