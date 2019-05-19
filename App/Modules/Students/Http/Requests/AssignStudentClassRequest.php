@@ -9,8 +9,8 @@ class AssignStudentClassRequest extends Request
     public function rules()
     {
         return [
-            'batch_id' => 'required',
-            'grade_id'  => 'required',
+            'batch_id'        => 'required',
+            'grade_id'        => 'required',
             'class_id'        => 'required',
         ];
     }

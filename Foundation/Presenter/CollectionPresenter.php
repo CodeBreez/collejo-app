@@ -24,8 +24,7 @@ class CollectionPresenter
                 $presented[Str::snake($loadKey)] = $modelPresenter->present();
             }
 
-            foreach ($presenter->getDecorators() as $decoratedKey => $decoratorClass){
-
+            foreach ($presenter->getDecorators() as $decoratedKey => $decoratorClass) {
                 $decorator = new $decoratorClass();
 
                 $presented[$decoratedKey] = $decorator->decorated($presented[$decoratedKey]);

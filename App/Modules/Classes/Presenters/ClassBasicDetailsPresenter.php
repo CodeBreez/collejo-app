@@ -7,7 +7,7 @@ use Collejo\Foundation\Presenter\BasePresenter;
 class ClassBasicDetailsPresenter extends BasePresenter
 {
     protected $load = [
-        'grade' => GradeBasicDetailsPresenter::class
+        'grade' => GradeBasicDetailsPresenter::class,
     ];
 
     protected $hidden = [
