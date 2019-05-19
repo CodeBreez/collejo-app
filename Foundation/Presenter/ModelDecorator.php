@@ -2,7 +2,6 @@
 
 namespace Collejo\Foundation\Presenter;
 
-
 abstract class ModelDecorator
 {
     protected $modelReference = [];
@@ -14,9 +13,7 @@ abstract class ModelDecorator
 
     public function decorated($presented)
     {
-
-        foreach ($this->getDecorators() as $decoratedKey => $decorate){
-
+        foreach ($this->getDecorators() as $decoratedKey => $decorate) {
             $decoratedModel = $decorate[0];
             $presenterClass = $decorate[1];
             $alias = $decorate[2];
@@ -24,16 +21,14 @@ abstract class ModelDecorator
             $decoratedModel = new $decoratedModel();
             $decoratedModel = $decoratedModel::find($presented[$decoratedKey]);
 
-            if($decoratedModel && $presenterClass){
+            if ($decoratedModel && $presenterClass) {
                 $presentable = present($decoratedModel, $presenterClass);
-
             }
 
-            if($alias){
+            if ($alias) {
                 $presented[$alias] = $presentable;
                 unset($presented[$decoratedKey]);
-
-            }else{
+            } else {
                 $presented[$decoratedKey] = $presentable;
             }
         }

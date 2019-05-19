@@ -52,7 +52,6 @@ class StudentRepository extends BaseRepository implements StudentRepositoryContr
     public function assignToClass($batchId, $gradeId, $classId, $studentId, $graduate = false)
     {
         if (!$this->findStudent($studentId)->classes->contains($classId)) {
-
             $student = $this->findStudent($studentId);
 
             if (!$graduate && $student->class) {
