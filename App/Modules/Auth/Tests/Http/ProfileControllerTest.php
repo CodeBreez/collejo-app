@@ -1,6 +1,6 @@
 <?php
 
-namespace Collejo\App\Modules\ACL\Tests\Browser;
+namespace Collejo\App\Modules\Auth\Tests\Browser;
 
 use Collejo\App\Modules\ACL\Models\User;
 use Collejo\Foundation\Testing\TestCase;
@@ -10,7 +10,6 @@ class ProfileControllerTest extends TestCase
     /**
      * @throws \Exception
      * @throws \Throwable
-     * @covers \Collejo\App\Modules\ACL\Http\Controllers\ProfileController::getProfile()
      */
     public function testGetProfile()
     {
@@ -20,6 +19,6 @@ class ProfileControllerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('user.profile'))
-            ->assertRedirect(route('user.details.view', $user->id));
+            ->assertViewIs('auth::view_profile_details');
     }
 }

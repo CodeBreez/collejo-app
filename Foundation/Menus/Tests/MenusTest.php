@@ -57,7 +57,6 @@ class MenusTest extends TestCase
         $this->assertTrue($menu->getPermission() == $permission);
         $this->assertTrue($menu->getIcon() == $icon);
         $this->assertTrue($menu->order == $order);
-        $this->assertFalse($menu->isVisible());
     }
 
     /**
