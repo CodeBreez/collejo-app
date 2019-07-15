@@ -6,10 +6,10 @@ use Collejo\App\Modules\ACL\Models\User;
 use Collejo\App\Modules\Employees\Contracts\EmployeeRepository;
 use Collejo\App\Modules\Employees\Criteria\EmployeeListCriteria;
 use Collejo\App\Modules\Employees\Models\Employee;
+use Collejo\App\Modules\Employees\Models\EmployeeCategory;
+use Collejo\App\Modules\Employees\Models\EmployeePosition;
 use Collejo\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Collejo\App\Modules\Employees\Models\EmployeePosition;
-use Collejo\App\Modules\Employees\Models\EmployeeCategory;
 
 class EmployeeTest extends TestCase
 {
@@ -24,10 +24,10 @@ class EmployeeTest extends TestCase
     {
         $employeeCategory = factory(EmployeeCategory::class)->create();
         $employeePosition = factory(EmployeePosition::class)->create([
-            'employee_category_id' => $employeeCategory->id
+            'employee_category_id' => $employeeCategory->id,
         ]);
         factory(Employee::class, 5)->create([
-            'employee_position_id' => $employeePosition->id
+            'employee_position_id' => $employeePosition->id,
         ]);
 
         $employees = $this->employeeRepository
@@ -43,10 +43,10 @@ class EmployeeTest extends TestCase
     {
         $employeeCategory = factory(EmployeeCategory::class)->create();
         $employeePosition = factory(EmployeePosition::class)->create([
-            'employee_category_id' => $employeeCategory->id
+            'employee_category_id' => $employeeCategory->id,
         ]);
         $employee = factory(Employee::class)->make([
-            'employee_position_id' => $employeePosition->id
+            'employee_position_id' => $employeePosition->id,
         ]);
         $user = factory(User::class)->make();
 
@@ -66,11 +66,11 @@ class EmployeeTest extends TestCase
 
         $employeeCategory = factory(EmployeeCategory::class)->create();
         $employeePosition = factory(EmployeePosition::class)->create([
-            'employee_category_id' => $employeeCategory->id
+            'employee_category_id' => $employeeCategory->id,
         ]);
 
         $employee = factory(Employee::class)->create([
-            'employee_position_id' => $employeePosition->id
+            'employee_position_id' => $employeePosition->id,
         ]);
 
         $employee->user()->associate($user)->save();
