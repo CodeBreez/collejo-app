@@ -27,7 +27,7 @@ class EmployeeTest extends TestCase
             'employee_category_id' => $employeeCategory->id
         ]);
         factory(Employee::class, 5)->create([
-            'employee_postion_id' => $employeePosition->id
+            'employee_position_id' => $employeePosition->id
         ]);
 
         $employees = $this->employeeRepository
@@ -46,7 +46,7 @@ class EmployeeTest extends TestCase
             'employee_category_id' => $employeeCategory->id
         ]);
         $employee = factory(Employee::class)->make([
-            'employee_postion_id' => $employeePosition->id
+            'employee_position_id' => $employeePosition->id
         ]);
         $user = factory(User::class)->make();
 
@@ -70,7 +70,7 @@ class EmployeeTest extends TestCase
         ]);
 
         $employee = factory(Employee::class)->create([
-            'employee_postion_id' => $employeePosition->id
+            'employee_position_id' => $employeePosition->id
         ]);
 
         $employee->user()->associate($user)->save();
