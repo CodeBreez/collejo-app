@@ -1,0 +1,17 @@
+@import "../../../../Base/resources/assets/sass/variables";
+
+body.auth-body{
+  background-size: cover;
+  background: lighten($brand-primary, 25) url("../../images/auth-bg.svg");
+}
+
+.brand-text {
+  font-family: $font-family-brand;
+}
+
+.auth-logo{
+  background: url("../../images/collejo.svg") center center no-repeat;
+	height: 9.375rem;
+  background-size: contain;
+  margin-bottom: $box-padding;
+}

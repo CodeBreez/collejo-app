@@ -1,0 +1,44 @@
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+.media-uploader{
+
+  $size : 200px;
+  position: relative;
+
+  width: $size;
+  height: $size;
+
+  .b-form-file, .form-control-file{
+    height: $size;
+    width: $size;
+  }
+
+  .form-control-file{
+    opacity: 0;
+  }
+
+  .progress{
+    width: $size - 20px;
+    margin: 10px;
+    position: absolute;
+    top: $size - 40px;
+  }
+
+  .image{
+    position: absolute;
+    top: 0;
+
+    &.iconVisible{
+      opacity: .5;
+    }
+  }
+
+  .fa{
+    position: absolute;
+    top: 80px;
+    left: 75px;
+    opacity: .5;
+  }
+}

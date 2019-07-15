@@ -1,0 +1,49 @@
+@import "../../../../Base/resources/assets/sass/variables";
+
+.terms-list{
+  ul{
+    .term-layer{
+
+      padding: 0;
+
+      .block,.date{
+        float: left;
+        border-right: thin solid #dadada;
+      }
+
+      .block{
+        .term,.vacation{
+          min-height: 60px;
+        }
+
+        .vacation{
+
+          padding: 0 !important;
+          margin:0 !important;
+        }
+
+        .term{
+          padding: 10px;
+          background-color: rgba(0, 123, 255, 0.5);
+          border-left: 2px solid #71a6de;
+          border-right: 2px solid #71a6de;
+        }
+      }
+
+      .date{
+        padding: 5px;
+        height: 30px;
+        overflow: hidden;
+        min-height: 1em;
+
+        .year{
+          position: relative;
+        }
+      }
+    }
+  }
+
+  .table-responsive{
+    margin-top: $box-padding * 2;
+  }
+}

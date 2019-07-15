@@ -1,0 +1,17 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,600");
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+// Bootstrap
+@import "bs";
+
+// Collejo components
+@import "common";
+@import "setup";
+@import "checkbox";
+
+// Layouts
+@import "auth";

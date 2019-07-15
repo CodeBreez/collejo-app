@@ -1,0 +1,93 @@
+@import "variables";
+
+.navbar{
+    .navbar-brand {
+        background: url("../../images/collejo.svg") left center no-repeat;
+        padding-left: 2.188rem;
+        height: 30px;
+        background-size: contain;
+
+        .brand-name {
+            position: relative;
+            top: -0.3125rem
+        }
+    }
+
+    .dropdown-menu{
+        font-size: 0.875rem !important;
+    }
+}
+
+.notifications-wrap {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 0;
+
+    .notifications-list {
+        width: 33.33%;
+        left: 33.33%;
+        position: absolute;
+        margin-top: $box-padding;
+    }
+
+    .alert-dismissible .close {
+        padding: 0.55rem 1.05rem;
+    }
+}
+
+.landing-screen{
+
+    min-height: 80vh;
+
+    i.fa{
+        font-size: 6.25rem;
+        color: lighten($gray-100, 50%);
+        margin-top: 3.125rem;
+        margin-bottom: $box-padding * 2;
+    }
+}
+
+.invalid-feedback {
+    display: block !important;
+}
+
+
+.vdp-datepicker{
+    input{
+        background-color:transparent !important;
+    }
+}
+
+.dropdown-toggle::after{
+    vertical-align: 0.18em;
+}
+
+.row-column-group{
+    padding: 15px;
+}
+
+.preloader{
+    background: $gray-400;
+    background-image: linear-gradient(to right, $gray-400 0%, $gray-200 20%, $gray-400 40%, $gray-300 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 104px;
+    display: inline-block;
+    position: relative;
+
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: placeholderShimmer;
+    -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes placeholderShimmer {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}

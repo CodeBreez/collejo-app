@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// Body
+$body-bg: $gray-100;
+
+// Borders
+$box-padding: ($grid-gutter-width / 2);
+
+// Brands
+$brand-primary: #3498db;
+$brand-info: #3498db;
+$brand-success: #27ae60;
+$brand-warning: #e67e22;
+$brand-danger: #c0392b;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Roboto", sans-serif;
+$font-family-serif: 'Roboto', sans-serif;
+$font-family-brand: "Raleway", Helvetica, Arial;
+$font-size-base: .875rem;
+$line-height-base: 1.6;
+$text-color: #636b6f;

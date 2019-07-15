@@ -1,0 +1,17 @@
+@import "../../../../Base/resources/assets/sass/bs";
+
+.auth-row {
+  min-height: 100%;
+  height: auto !important;
+  margin-bottom: 2rem;
+}
+
+.form-auth {
+  margin-top: 20%;
+  background: #fff;
+  padding: $box-padding * 2;
+}
+
+footer{
+  padding: $box-padding;
+}
