@@ -1,6 +1,5 @@
 <?php
 
-
 // Define how courses and terms should appear on the front end
 // Depending on your system this could be customized
 
