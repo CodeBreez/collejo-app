@@ -25,7 +25,7 @@ class Bucket
             throw new Exception('specified bucket not found');
         }
 
-        return new Self($config);
+        return new self($config);
     }
 
     /**
